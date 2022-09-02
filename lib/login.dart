@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:jinya_cms_app/data/accountDatabase.dart';
 import 'package:jinya_cms_app/home.dart';
 import 'package:jinya_cms_app/l10n/localizations.dart';
+import 'package:jinya_cms_app/network/artist/account.dart' as accountClient;
 import 'package:jinya_cms_app/network/authentication/login.dart' as network;
 import 'package:jinya_cms_app/shared/currentUser.dart';
 import 'package:jinya_cms_app/shared/navDrawer.dart';
@@ -28,6 +29,8 @@ class LoginPageState extends State<LoginPage> {
             SettingsDatabase.selectedAccount!.email, _passwordController.text);
         SettingsDatabase.selectedAccount!.apiKey = loginResult.apiKey;
         SettingsDatabase.selectedAccount!.deviceToken = loginResult.deviceCode;
+        final currentUser = await accountClient.getAccount();
+        SettingsDatabase.selectedAccount!.profilepicture = currentUser.profilePicture;
         await updateAccount(SettingsDatabase.selectedAccount!.id,
             SettingsDatabase.selectedAccount!);
         navigator.push(MaterialPageRoute(

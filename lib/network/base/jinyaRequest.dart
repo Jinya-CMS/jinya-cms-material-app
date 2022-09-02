@@ -55,7 +55,7 @@ Future<JinyaResponse> post(
   data,
 }) async {
   final response = await http.post(
-    UriData.fromString('${SettingsDatabase.selectedAccount!.url}/$path').uri,
+    Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
     headers: {
       HttpHeaders.contentTypeHeader: 'application/json',
       'JinyaApiKey': SettingsDatabase.selectedAccount!.apiKey,
@@ -72,7 +72,7 @@ Future<JinyaResponse> unauthenticatedPost(
   data,
 }) async {
   final response = await http.post(
-    UriData.fromString('${SettingsDatabase.selectedAccount!.url}/$path').uri,
+    Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
     headers: {
       HttpHeaders.contentTypeHeader: 'application/json',
       'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
@@ -88,7 +88,7 @@ Future<JinyaResponse> put(
   data,
 }) async {
   final response = await http.put(
-    UriData.fromString('${SettingsDatabase.selectedAccount!.url}/$path').uri,
+    Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
     headers: {
       HttpHeaders.contentTypeHeader: 'application/json',
       'JinyaApiKey': SettingsDatabase.selectedAccount!.apiKey,
@@ -105,7 +105,7 @@ Future<JinyaResponse> unauthenticatedPut(
   data,
 }) async {
   final response = await http.put(
-    UriData.fromString('${SettingsDatabase.selectedAccount!.url}/$path').uri,
+    Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
     headers: {
       HttpHeaders.contentTypeHeader: 'application/json',
       'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
@@ -118,7 +118,7 @@ Future<JinyaResponse> unauthenticatedPut(
 
 Future<JinyaResponse> get(String path) async {
   final response = await http.get(
-      UriData.fromString('${SettingsDatabase.selectedAccount!.url}/$path').uri,
+      Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json',
         'JinyaApiKey': SettingsDatabase.selectedAccount!.apiKey,
@@ -130,7 +130,7 @@ Future<JinyaResponse> get(String path) async {
 
 Future<JinyaResponse> unauthenticatedGet(String path) async {
   final response = await http.get(
-      UriData.fromString('${SettingsDatabase.selectedAccount!.url}/$path').uri,
+      Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json',
         'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
@@ -141,7 +141,7 @@ Future<JinyaResponse> unauthenticatedGet(String path) async {
 
 Future<int> head(String path) async {
   final response = await http.head(
-      UriData.fromString('${SettingsDatabase.selectedAccount!.url}/$path').uri,
+      Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json',
         'JinyaApiKey': SettingsDatabase.selectedAccount!.apiKey,
@@ -153,7 +153,7 @@ Future<int> head(String path) async {
 
 Future<int> unauthenticatedHead(String path) async {
   final response = await http.head(
-      UriData.fromString('${SettingsDatabase.selectedAccount!.url}/$path').uri,
+      Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json',
         'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
@@ -164,7 +164,7 @@ Future<int> unauthenticatedHead(String path) async {
 
 Future<JinyaResponse> delete(String path) async {
   final response = await http.delete(
-      UriData.fromString('${SettingsDatabase.selectedAccount!.url}/$path').uri,
+      Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json',
         'JinyaApiKey': SettingsDatabase.selectedAccount!.apiKey,
@@ -176,7 +176,7 @@ Future<JinyaResponse> delete(String path) async {
 
 Future<JinyaResponse> unauthenticatedDelete(String path) async {
   final response = await http.delete(
-      UriData.fromString('${SettingsDatabase.selectedAccount!.url}/$path').uri,
+      Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json',
         'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,

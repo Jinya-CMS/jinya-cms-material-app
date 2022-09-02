@@ -90,12 +90,12 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
           child: ListView(
             children: <Widget>[
               UserAccountsDrawerHeader(
-                accountName: Text(currentUser!.name),
-                accountEmail: Text(currentUser!.email),
+                accountName:
+                    Text('${currentUser!.name} (${currentUser!.email})'),
+                accountEmail: Text(currentUser!.url),
                 currentAccountPicture: CircleAvatar(
-                  backgroundImage: NetworkImage(
-                      '${currentUser?.url}/api/user/${currentUser?.jinyaId}/profilepicture'),
-                ),
+                    backgroundImage: NetworkImage(
+                        '${currentUser!.url}${currentUser!.profilepicture}')),
                 otherAccountsPictures: accounts
                     .map(
                       (account) => GestureDetector(
@@ -116,7 +116,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                           label: l10n!.menuSwitchAccount,
                           child: CircleAvatar(
                             backgroundImage: NetworkImage(
-                              '${account.url}/api/user/${account.jinyaId}/profilepicture',
+                              '${account.url}${account.profilepicture}',
                             ),
                           ),
                         ),
@@ -150,9 +150,27 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
+                          ...accounts.map((account) => ListTile(
+                                title:
+                                    Text('${account.name} (${account.email})'),
+                                subtitle: Text(account.url),
+                                onTap: () {
+                                  SettingsDatabase.selectedAccount = account;
+                                  setState(() {
+                                    currentUser = account;
+                                    loadAccounts();
+                                    Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(
+                                        builder: (context) => HomePage(),
+                                      ),
+                                    );
+                                  });
+                                },
+                              )),
                           ListTile(
                             leading: const Icon(Icons.add),
                             title: Text(l10n!.menuAddAccount),
+                            iconColor: Theme.of(context).iconTheme.color,
                             onTap: () => Navigator.of(context).push(
                               MaterialPageRoute(
                                 builder: (context) => NewAccountPage(),
@@ -162,6 +180,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                           ListTile(
                             leading: const Icon(Icons.settings),
                             title: Text(l10n.menuManageAccounts),
+                            iconColor: Theme.of(context).iconTheme.color,
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(

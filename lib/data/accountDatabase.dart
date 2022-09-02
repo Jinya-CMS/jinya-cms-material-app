@@ -7,7 +7,7 @@ Future<Database> getDatabase() async {
     join(await getDatabasesPath(), 'accounts.db'),
     onCreate: (db, version) {
       return db.execute(
-        'CREATE TABLE accounts(id INTEGER PRIMARY KEY, jinyaId INT, url TEXT UNIQUE, name TEXT, email TEXT, apiKey TEXT, deviceToken TEXT)',
+        'CREATE TABLE accounts(id INTEGER PRIMARY KEY, jinyaId INT, url TEXT UNIQUE, name TEXT, email TEXT, apiKey TEXT, deviceToken TEXT, profilepicture TEXT)',
       );
     },
     version: 1,
@@ -21,27 +21,30 @@ class Account {
   String apiKey;
   String deviceToken;
   String url;
+  String profilepicture;
   int jinyaId;
 
   Account({
-    required this.id,
+    this.id = -1,
     required this.name,
     required this.email,
     required this.apiKey,
     required this.deviceToken,
     required this.url,
+    required this.profilepicture,
     required this.jinyaId,
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'id': this.id,
-      'jinyaId': this.jinyaId,
-      'name': this.name,
-      'email': this.email,
-      'url': this.url,
-      'apiKey': this.apiKey,
-      'deviceToken': this.deviceToken,
+      'id': id,
+      'jinyaId': jinyaId,
+      'name': name,
+      'email': email,
+      'url': url,
+      'apiKey': apiKey,
+      'deviceToken': deviceToken,
+      'profilepicture': profilepicture,
     };
   }
 
@@ -54,13 +57,16 @@ class Account {
       name: map['name'],
       url: map['url'],
       deviceToken: map['deviceToken'],
+      profilepicture: map['profilepicture'],
     );
   }
 }
 
 Future<void> createAccount(Account account) async {
   final db = await getDatabase();
-  await db.insert('accounts', account.toMap());
+  final data = account.toMap();
+  data.remove('id');
+  await db.insert('accounts', data);
 }
 
 Future<void> deleteAccount(int id) async {

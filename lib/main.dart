@@ -14,7 +14,21 @@ class MyApp extends StatelessWidget {
         Locale('en'),
         Locale('de'),
       ],
-      title: 'Jinya CMS',
+      title: 'Jinya CMS App',
+      darkTheme: ThemeData.dark().copyWith(
+        primaryTextTheme:
+            Typography.material2021(platform: TargetPlatform.android).white,
+        iconTheme: Theme.of(context).iconTheme.copyWith(
+              color: Colors.white,
+            ),
+        primaryIconTheme: Theme.of(context).iconTheme.copyWith(
+              color: Colors.white,
+            ),
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+            secondary: const Color(0xFF504a56),
+            primary: const Color(0xFF966554),
+            error: const Color(0xFF5C0B0B)),
+      ),
       theme: ThemeData(
         canvasColor: Colors.white,
         primaryTextTheme:

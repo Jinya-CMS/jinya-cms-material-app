@@ -34,7 +34,7 @@ class ManageAccountsPageState extends State<ManageAccountsPage> {
       appBar: AppBar(
         title: Text(l10n!.manageAccountsTitle),
       ),
-      drawer: JinyaNavigationDrawer(),
+      drawer: accounts.isEmpty ? null : JinyaNavigationDrawer(),
       body: Scrollbar(
         child: ListView.builder(
           itemCount: accounts.length,
@@ -77,7 +77,7 @@ class ManageAccountsPageState extends State<ManageAccountsPage> {
               ),
               leading: CircleAvatar(
                 backgroundImage: NetworkImage(
-                    '${accounts[index].url}/api/user/${accounts[index].jinyaId}/profilepicture',
+                    '${accounts[index].url}${accounts[index].profilepicture}',
                     headers: {'JinyaApiKey': accounts[index].apiKey}),
               ),
               isThreeLine: true,

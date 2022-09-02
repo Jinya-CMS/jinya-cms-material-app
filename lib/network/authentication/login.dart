@@ -52,7 +52,8 @@ Future<void> requestTwoFactorCode(
     'password': password,
   };
   final target = host ?? SettingsDatabase.selectedAccount!.url;
-  final response = await http.post(UriData.fromString('$target/api/2fa').uri,
+  final response = await http.post(
+    Uri.parse('$target/api/2fa'),
     body: jsonEncode(data).codeUnits,
     headers: {
       HttpHeaders.contentTypeHeader: 'application/json',
@@ -73,16 +74,18 @@ Future<LoginResult> login(
     'username': username,
     'password': password,
   };
+  final headers = {HttpHeaders.contentTypeHeader: 'application/json'};
   if (twoFactorCode != null) {
     data.addAll({'twoFactorCode': twoFactorCode});
+  } else {
+    headers.addAll(
+        {'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken});
   }
   final target = host ?? SettingsDatabase.selectedAccount!.url;
-  final response = await http.post(UriData.fromString('$target/api/login').uri,
+  final response = await http.post(
+    Uri.parse('$target/api/login'),
     body: jsonEncode(data).codeUnits,
-    headers: {
-      'JinyaDeviceCode': SettingsDatabase.selectedAccount?.deviceToken ?? '',
-      HttpHeaders.contentTypeHeader: 'application/json'
-    },
+    headers: headers,
   );
 
   return LoginResult.fromMap(jsonDecode(response.body));

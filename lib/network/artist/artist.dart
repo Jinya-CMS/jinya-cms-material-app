@@ -1,3 +1,5 @@
+import 'package:jinya_cms_app/network/base/jinyaRequest.dart';
+
 class Artist {
   int id;
   String artistName;
