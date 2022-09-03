@@ -20,23 +20,42 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'de';
 
-  static String m0(name) => "Account ${name} wurde erfolgreich gelöscht";
+  static String m0(name) => "Soll die Datei ${name} wirklich gelöscht werden?";
+
+  static String m1(name) => "Die Datei ${name} konnte nicht hochgeladen werden";
+
+  static String m2(name) => "Account ${name} wurde erfolgreich gelöscht";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actionUndo": MessageLookupByLibrary.simpleMessage("Rückgängig"),
         "appName": MessageLookupByLibrary.simpleMessage("Jinya CMS"),
+        "chooseFiles":
+            MessageLookupByLibrary.simpleMessage("Dateien wählen..."),
+        "delete": MessageLookupByLibrary.simpleMessage("Löschen"),
+        "deleteFileMessage": m0,
+        "deleteFileTitle":
+            MessageLookupByLibrary.simpleMessage("Datei löschen?"),
+        "editFileCancel":
+            MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
+        "editFileNameEmpty":
+            MessageLookupByLibrary.simpleMessage("Der Name ist erforderlich"),
+        "editFileSave": MessageLookupByLibrary.simpleMessage("Datei speichern"),
+        "failedUploading": m1,
+        "keep": MessageLookupByLibrary.simpleMessage("Nicht löschen"),
         "loginActionLogin": MessageLookupByLibrary.simpleMessage("Anmelden"),
         "loginEmail": MessageLookupByLibrary.simpleMessage("Email"),
         "loginInstance": MessageLookupByLibrary.simpleMessage("Jinya Host"),
         "loginPassword": MessageLookupByLibrary.simpleMessage("Passwort"),
-        "manageAccountsDeleteSuccess": m0,
+        "manageAccountsDeleteSuccess": m2,
         "manageAccountsTitle":
             MessageLookupByLibrary.simpleMessage("Accounts verwalten"),
+        "manageFilesTitle": MessageLookupByLibrary.simpleMessage("Dateien"),
         "menuAddAccount":
             MessageLookupByLibrary.simpleMessage("Account hinzufügen"),
         "menuManageAccounts":
             MessageLookupByLibrary.simpleMessage("Accounts verwalten"),
+        "menuManageFiles": MessageLookupByLibrary.simpleMessage("Dateien"),
         "menuSwitchAccount":
             MessageLookupByLibrary.simpleMessage("Account wechseln"),
         "newAccountActionTwoFactorCode":
@@ -65,6 +84,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Der Zwei Faktor Code ist ungültig"),
         "newAccountTwoFactorInputCode":
-            MessageLookupByLibrary.simpleMessage("Zwei Faktor Code")
+            MessageLookupByLibrary.simpleMessage("Zwei Faktor Code"),
+        "uploadFiles":
+            MessageLookupByLibrary.simpleMessage("Dateien hochladen"),
+        "uploadingFiles":
+            MessageLookupByLibrary.simpleMessage("Dateien hochladen...")
       };
 }

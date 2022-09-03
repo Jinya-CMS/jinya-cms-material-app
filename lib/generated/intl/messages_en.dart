@@ -20,12 +20,35 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(name) => "Account ${name} successfully deleted";
+  static String m0(name) => "Do you really want to delete the file ${name}?";
+
+  static String m3(name) => "The file ${name} is in use and cannot be deleted";
+
+  static String m4(name) => "The file ${name} could not be deleted";
+
+  static String m1(name) => "Failed to upload file ${name}";
+
+  static String m2(name) => "Account ${name} successfully deleted";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actionUndo": MessageLookupByLibrary.simpleMessage("Undo"),
         "appName": MessageLookupByLibrary.simpleMessage("Jinya CMS"),
+        "chooseFiles": MessageLookupByLibrary.simpleMessage("Choose files..."),
+        "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "deleteFileMessage": m0,
+        "deleteFileTitle": MessageLookupByLibrary.simpleMessage("Delete file?"),
+        "editFileCancel":
+            MessageLookupByLibrary.simpleMessage("Discard changes"),
+        "editFileName": MessageLookupByLibrary.simpleMessage("Name"),
+        "editFileNameEmpty":
+            MessageLookupByLibrary.simpleMessage("Name cannot be empty"),
+        "editFileSave": MessageLookupByLibrary.simpleMessage("Save file"),
+        "editFileTitle": MessageLookupByLibrary.simpleMessage("Edit file"),
+        "failedToDeleteFileConflict": m3,
+        "failedToDeleteFileGeneric": m4,
+        "failedUploading": m1,
+        "keep": MessageLookupByLibrary.simpleMessage("Don\'t delete"),
         "loginActionLogin": MessageLookupByLibrary.simpleMessage("Login"),
         "loginEmail": MessageLookupByLibrary.simpleMessage("Email"),
         "loginInstance": MessageLookupByLibrary.simpleMessage("Jinya host"),
@@ -33,12 +56,14 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your credentials are invalid"),
         "loginPassword": MessageLookupByLibrary.simpleMessage("Password"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
-        "manageAccountsDeleteSuccess": m0,
+        "manageAccountsDeleteSuccess": m2,
         "manageAccountsTitle":
             MessageLookupByLibrary.simpleMessage("Manage accounts"),
+        "manageFilesTitle": MessageLookupByLibrary.simpleMessage("Files"),
         "menuAddAccount": MessageLookupByLibrary.simpleMessage("Add account"),
         "menuManageAccounts":
             MessageLookupByLibrary.simpleMessage("Manage accounts"),
+        "menuManageFiles": MessageLookupByLibrary.simpleMessage("Files"),
         "menuSwitchAccount":
             MessageLookupByLibrary.simpleMessage("Switch account"),
         "newAccountActionTwoFactorCode":
@@ -66,6 +91,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "The two factor code is invalid"),
         "newAccountTwoFactorInputCode":
-            MessageLookupByLibrary.simpleMessage("Two factor code")
+            MessageLookupByLibrary.simpleMessage("Two factor code"),
+        "uploadFiles": MessageLookupByLibrary.simpleMessage("Upload files"),
+        "uploadingFiles":
+            MessageLookupByLibrary.simpleMessage("Uploading files...")
       };
 }

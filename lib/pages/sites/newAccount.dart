@@ -7,6 +7,8 @@ import 'package:validators/validators.dart';
 import 'package:jinya_cms_app/network/authentication/login.dart' as network;
 
 class NewAccountPage extends StatefulWidget {
+  const NewAccountPage({super.key});
+
   @override
   State<StatefulWidget> createState() => NewAccountPageState();
 }
@@ -34,7 +36,7 @@ class NewAccountPageState extends State<NewAccountPage> {
       final email = _emailController.text;
       final password = _passwordController.text;
 
-      final account = await getAccountByUrl(host);
+      final account = await getAccount(host);
       if (account != null && account.email == email) {
         final snackbar = SnackBar(
           content: Text(l10n!.newAccountErrorExists),

@@ -1,7 +1,9 @@
 import 'dart:io' as io;
 import 'dart:typed_data';
 
+import 'package:http/http.dart' as http;
 import 'package:jinya_cms_app/network/base/jinyaRequest.dart';
+import 'package:jinya_cms_app/shared/currentUser.dart';
 
 class File {
   int? id;
@@ -10,10 +12,10 @@ class File {
   String? type;
 
   File({
-   this.id,
-   this.name,
-   this.path,
-   this.type,
+    this.id,
+    this.name,
+    this.path,
+    this.type,
   });
 
   factory File.fromMap(Map<String, dynamic> json) {
@@ -41,7 +43,8 @@ Future<List<File>> getFiles() async {
     throw Exception('This should not happen');
   } else {
     final data = response.data;
-    return List.generate(data['count'], (i) => File.fromMap(data['items'][i]));
+    return List.generate(
+        data['itemsCount'], (i) => File.fromMap(data['items'][i]));
   }
 }
 
@@ -79,15 +82,22 @@ Future<void> deleteFile(int id) async {
 }
 
 Future<void> startUpload(int id) async {
-  final response = await post('api/media/file/$id/content');
+  final response = await put('api/media/file/$id/content');
   if (response.statusCode != io.HttpStatus.noContent) {
     throw Exception('This should not happen');
   }
 }
 
 Future<void> uploadChunk(int id, int position, Uint8List chunk) async {
-  final response =
-      await put('api/media/file/$id/content/$position', data: chunk);
+  final response = await http.put(
+    Uri.parse(
+        '${SettingsDatabase.selectedAccount!.url}/api/media/file/$id/content/$position'),
+    headers: {
+      'JinyaApiKey': SettingsDatabase.selectedAccount!.apiKey,
+      'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
+    },
+    body: chunk,
+  );
   if (response.statusCode != io.HttpStatus.noContent) {
     throw Exception('This should not happen');
   }

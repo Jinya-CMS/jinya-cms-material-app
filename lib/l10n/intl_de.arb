@@ -1,4 +1,5 @@
 {
+  "@@locale": "de",
   "appName": "Jinya CMS",
   "manageAccountsTitle": "Accounts verwalten",
   "actionUndo": "Rückgängig",
@@ -22,5 +23,18 @@
   "loginEmail": "Email",
   "loginPassword": "Passwort",
   "loginActionLogin": "Anmelden",
-  "menuSwitchAccount": "Account wechseln"
+  "menuSwitchAccount": "Account wechseln",
+  "menuManageFiles": "Dateien",
+  "manageFilesTitle": "Dateien",
+  "uploadFiles": "Dateien hochladen",
+  "chooseFiles": "Dateien wählen...",
+  "uploadingFiles": "Dateien hochladen...",
+  "failedUploading": "Die Datei {name} konnte nicht hochgeladen werden",
+  "deleteFileTitle": "Datei löschen?",
+  "deleteFileMessage": "Soll die Datei {name} wirklich gelöscht werden?",
+  "delete": "Löschen",
+  "keep": "Nicht löschen",
+  "editFileSave": "Datei speichern",
+  "editFileCancel": "Änderungen verwerfen",
+  "editFileNameEmpty": "Der Name ist erforderlich"
 }

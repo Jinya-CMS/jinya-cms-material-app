@@ -1,8 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_app/data/accountDatabase.dart';
 import 'package:jinya_cms_app/home.dart';
 import 'package:jinya_cms_app/l10n/localizations.dart';
+import 'package:jinya_cms_app/pages/media/list_files.dart';
 import 'package:jinya_cms_app/pages/sites/manageAccounts.dart';
 import 'package:jinya_cms_app/pages/sites/newAccount.dart';
 import 'package:jinya_cms_app/shared/currentUser.dart';
@@ -60,7 +62,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
       }
 
       var otherAccounts = values.where(
-        (account) => account.id != SettingsDatabase.selectedAccount!.id,
+        (account) => account.url != SettingsDatabase.selectedAccount!.url,
       );
       if (otherAccounts.isNotEmpty) {
         accs.addAll(otherAccounts);
@@ -82,7 +84,22 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final List<String> _drawerContents = <String>[];
+    final frontStageItems = <ListTile>[
+      ListTile(
+        title: Text(l10n!.menuManageFiles),
+        leading: const Icon(Icons.image),
+        iconColor: Theme.of(context).iconTheme.color,
+        onTap: () {
+          setState(() {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => ListFiles(),
+              ),
+            );
+          });
+        },
+      ),
+    ];
 
     return Row(
       children: [
@@ -94,8 +111,9 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                     Text('${currentUser!.name} (${currentUser!.email})'),
                 accountEmail: Text(currentUser!.url),
                 currentAccountPicture: CircleAvatar(
-                    backgroundImage: NetworkImage(
-                        '${currentUser!.url}${currentUser!.profilepicture}')),
+                  backgroundColor: Theme.of(context).primaryColor,
+                    backgroundImage: CachedNetworkImageProvider(
+                        '${currentUser!.url}${currentUser!.profilePicture}')),
                 otherAccountsPictures: accounts
                     .map(
                       (account) => GestureDetector(
@@ -113,10 +131,11 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                           });
                         },
                         child: Semantics(
-                          label: l10n!.menuSwitchAccount,
+                          label: l10n.menuSwitchAccount,
                           child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                              '${account.url}${account.profilepicture}',
+                            backgroundColor: Theme.of(context).primaryColor,
+                            backgroundImage: CachedNetworkImageProvider(
+                              '${account.url}${account.profilePicture}',
                             ),
                           ),
                         ),
@@ -140,6 +159,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: frontStageItems,
                     ),
                   ),
                   SlideTransition(
@@ -169,7 +189,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                               )),
                           ListTile(
                             leading: const Icon(Icons.add),
-                            title: Text(l10n!.menuAddAccount),
+                            title: Text(l10n.menuAddAccount),
                             iconColor: Theme.of(context).iconTheme.color,
                             onTap: () => Navigator.of(context).push(
                               MaterialPageRoute(

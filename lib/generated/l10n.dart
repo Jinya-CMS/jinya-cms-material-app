@@ -309,6 +309,176 @@ class S {
       args: [],
     );
   }
+
+  /// `Files`
+  String get menuManageFiles {
+    return Intl.message(
+      'Files',
+      name: 'menuManageFiles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Files`
+  String get manageFilesTitle {
+    return Intl.message(
+      'Files',
+      name: 'manageFilesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upload files`
+  String get uploadFiles {
+    return Intl.message(
+      'Upload files',
+      name: 'uploadFiles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose files...`
+  String get chooseFiles {
+    return Intl.message(
+      'Choose files...',
+      name: 'chooseFiles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Uploading files...`
+  String get uploadingFiles {
+    return Intl.message(
+      'Uploading files...',
+      name: 'uploadingFiles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to upload file {name}`
+  String failedUploading(Object name) {
+    return Intl.message(
+      'Failed to upload file $name',
+      name: 'failedUploading',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Delete file?`
+  String get deleteFileTitle {
+    return Intl.message(
+      'Delete file?',
+      name: 'deleteFileTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete the file {name}?`
+  String deleteFileMessage(Object name) {
+    return Intl.message(
+      'Do you really want to delete the file $name?',
+      name: 'deleteFileMessage',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message(
+      'Delete',
+      name: 'delete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't delete`
+  String get keep {
+    return Intl.message(
+      'Don\'t delete',
+      name: 'keep',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save file`
+  String get editFileSave {
+    return Intl.message(
+      'Save file',
+      name: 'editFileSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discard changes`
+  String get editFileCancel {
+    return Intl.message(
+      'Discard changes',
+      name: 'editFileCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit file`
+  String get editFileTitle {
+    return Intl.message(
+      'Edit file',
+      name: 'editFileTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get editFileName {
+    return Intl.message(
+      'Name',
+      name: 'editFileName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name cannot be empty`
+  String get editFileNameEmpty {
+    return Intl.message(
+      'Name cannot be empty',
+      name: 'editFileNameEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The file {name} is in use and cannot be deleted`
+  String failedToDeleteFileConflict(Object name) {
+    return Intl.message(
+      'The file $name is in use and cannot be deleted',
+      name: 'failedToDeleteFileConflict',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `The file {name} could not be deleted`
+  String failedToDeleteFileGeneric(Object name) {
+    return Intl.message(
+      'The file $name could not be deleted',
+      name: 'failedToDeleteFileGeneric',
+      desc: '',
+      args: [name],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

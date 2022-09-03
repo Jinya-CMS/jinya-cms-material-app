@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_app/l10n/localizations.dart';
 import 'package:jinya_cms_app/pages/sites/newAccount.dart';
@@ -12,7 +13,7 @@ class ManageAccountsPage extends StatefulWidget {
 }
 
 class ManageAccountsPageState extends State<ManageAccountsPage> {
-  var accounts = <Account>[];
+  Iterable<Account> accounts = <Account>[];
 
   void loadAccounts() async {
     final accs = await getAccounts();
@@ -23,6 +24,7 @@ class ManageAccountsPageState extends State<ManageAccountsPage> {
 
   @override
   void initState() {
+    super.initState();
     loadAccounts();
   }
 
@@ -53,11 +55,12 @@ class ManageAccountsPageState extends State<ManageAccountsPage> {
                 ),
               ),
             ),
-            key: Key(accounts[index].id.toString()),
+            key: Key(accounts.elementAt(index).url),
             onDismissed: (direction) {
-              final account = accounts[index];
-              deleteAccount(account.id).then((val) => loadAccounts());
+              final account = accounts.elementAt(index);
+              deleteAccount(account.url).then((val) => loadAccounts());
               final snackBar = SnackBar(
+                behavior: SnackBarBehavior.floating,
                 content: Text(l10n.manageAccountsDeleteSuccess(account.name)),
                 action: SnackBarAction(
                   textColor: Theme.of(context).primaryColor,
@@ -71,14 +74,14 @@ class ManageAccountsPageState extends State<ManageAccountsPage> {
             },
             direction: DismissDirection.endToStart,
             child: ListTile(
-              title: Text(accounts[index].name),
+              title: Text(accounts.elementAt(index).name),
               subtitle: Text(
-                '${accounts[index].email}\n${Uri.parse(accounts[index].url).host}',
+                '${accounts.elementAt(index).email}\n${Uri.parse(accounts.elementAt(index).url).host}',
               ),
               leading: CircleAvatar(
-                backgroundImage: NetworkImage(
-                    '${accounts[index].url}${accounts[index].profilepicture}',
-                    headers: {'JinyaApiKey': accounts[index].apiKey}),
+                backgroundImage: CachedNetworkImageProvider(
+                    '${accounts.elementAt(index).url}${accounts.elementAt(index).profilePicture}',
+                    headers: {'JinyaApiKey': accounts.elementAt(index).apiKey}),
               ),
               isThreeLine: true,
             ),
@@ -90,7 +93,7 @@ class ManageAccountsPageState extends State<ManageAccountsPage> {
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => NewAccountPage(),
+              builder: (context) => const NewAccountPage(),
             ),
           );
         },

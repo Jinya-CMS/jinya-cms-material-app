@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_app/l10n/localizations.dart';
-import 'package:jinya_cms_app/network/artist/artist.dart';
-import 'package:jinya_cms_app/network/base/jinyaRequest.dart';
 import 'package:jinya_cms_app/pages/sites/manageAccounts.dart';
 import 'package:jinya_cms_app/pages/sites/newAccount.dart';
 import 'package:jinya_cms_app/data/accountDatabase.dart';
@@ -40,15 +38,16 @@ class NewAccountTwoFactorPageState extends State<NewAccountTwoFactorPage> {
           email: widget.newAccountTransferObject.username,
           apiKey: result.apiKey,
           deviceToken: result.deviceCode,
-          profilepicture: '',
+          profilePicture: '',
           jinyaId: -1,
           name: '',
         );
         SettingsDatabase.selectedAccount = account;
         final currentUser = await accountClient.getAccount();
         account.name = currentUser.artistName;
-        account.profilepicture = currentUser.profilePicture;
+        account.profilePicture = currentUser.profilePicture;
         account.jinyaId = currentUser.id;
+        account.roles = currentUser.roles;
 
         await createAccount(account);
         navigator.push(MaterialPageRoute(

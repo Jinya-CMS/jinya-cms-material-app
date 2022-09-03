@@ -21,18 +21,20 @@ class LoginPageState extends State<LoginPage> {
   void login() async {
     final l10n = AppLocalizations.of(context);
     final navigator = Navigator.of(context);
-    final scaffoldMessanger = ScaffoldMessenger.of(context);
+    final scaffoldMessenger = ScaffoldMessenger.of(context);
 
     if (_formKey.currentState!.validate()) {
       try {
         final loginResult = await network.login(
-            SettingsDatabase.selectedAccount!.email, _passwordController.text);
+          SettingsDatabase.selectedAccount!.email,
+          _passwordController.text,
+        );
         SettingsDatabase.selectedAccount!.apiKey = loginResult.apiKey;
+        SettingsDatabase.selectedAccount!.roles = loginResult.roles;
         SettingsDatabase.selectedAccount!.deviceToken = loginResult.deviceCode;
         final currentUser = await accountClient.getAccount();
-        SettingsDatabase.selectedAccount!.profilepicture = currentUser.profilePicture;
-        await updateAccount(SettingsDatabase.selectedAccount!.id,
-            SettingsDatabase.selectedAccount!);
+        SettingsDatabase.selectedAccount!.profilePicture = currentUser.profilePicture;
+        await updateAccount(SettingsDatabase.selectedAccount!);
         navigator.push(MaterialPageRoute(
           builder: (context) => HomePage(),
         ));
@@ -40,7 +42,7 @@ class LoginPageState extends State<LoginPage> {
         final snackbar = SnackBar(
           content: Text(l10n!.loginInvalidCredentials),
         );
-        scaffoldMessanger.showSnackBar(snackbar);
+        scaffoldMessenger.showSnackBar(snackbar);
       }
     }
   }
