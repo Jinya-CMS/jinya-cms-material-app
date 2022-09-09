@@ -370,26 +370,6 @@ class S {
     );
   }
 
-  /// `Delete file?`
-  String get deleteFileTitle {
-    return Intl.message(
-      'Delete file?',
-      name: 'deleteFileTitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Do you really want to delete the file {name}?`
-  String deleteFileMessage(Object name) {
-    return Intl.message(
-      'Do you really want to delete the file $name?',
-      name: 'deleteFileMessage',
-      desc: '',
-      args: [name],
-    );
-  }
-
   /// `Delete`
   String get delete {
     return Intl.message(
@@ -460,6 +440,26 @@ class S {
     );
   }
 
+  /// `Delete file?`
+  String get deleteFileTitle {
+    return Intl.message(
+      'Delete file?',
+      name: 'deleteFileTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete the file {name}?`
+  String deleteFileMessage(Object name) {
+    return Intl.message(
+      'Do you really want to delete the file $name?',
+      name: 'deleteFileMessage',
+      desc: '',
+      args: [name],
+    );
+  }
+
   /// `The file {name} is in use and cannot be deleted`
   String failedToDeleteFileConflict(Object name) {
     return Intl.message(
@@ -477,6 +477,256 @@ class S {
       name: 'failedToDeleteFileGeneric',
       desc: '',
       args: [name],
+    );
+  }
+
+  /// `Galleries`
+  String get manageGalleriesTitle {
+    return Intl.message(
+      'Galleries',
+      name: 'manageGalleriesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Galleries`
+  String get menuManageGalleries {
+    return Intl.message(
+      'Galleries',
+      name: 'menuManageGalleries',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete gallery?`
+  String get deleteGalleryTitle {
+    return Intl.message(
+      'Delete gallery?',
+      name: 'deleteGalleryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete the gallery {name}?`
+  String deleteGalleryMessage(Object name) {
+    return Intl.message(
+      'Do you really want to delete the gallery $name?',
+      name: 'deleteGalleryMessage',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `The gallery {name} is in use and cannot be deleted`
+  String failedToDeleteGalleryConflict(Object name) {
+    return Intl.message(
+      'The gallery $name is in use and cannot be deleted',
+      name: 'failedToDeleteGalleryConflict',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `The gallery {name} could not be deleted`
+  String failedToDeleteGalleryGeneric(Object name) {
+    return Intl.message(
+      'The gallery $name could not be deleted',
+      name: 'failedToDeleteGalleryGeneric',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Orientation`
+  String get galleryOrientation {
+    return Intl.message(
+      'Orientation',
+      name: 'galleryOrientation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Horizontal`
+  String get galleryOrientationHorizontal {
+    return Intl.message(
+      'Horizontal',
+      name: 'galleryOrientationHorizontal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vertical`
+  String get galleryOrientationVertical {
+    return Intl.message(
+      'Vertical',
+      name: 'galleryOrientationVertical',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type`
+  String get galleryType {
+    return Intl.message(
+      'Type',
+      name: 'galleryType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Grid`
+  String get galleryTypeGrid {
+    return Intl.message(
+      'Grid',
+      name: 'galleryTypeGrid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `List`
+  String get galleryTypeList {
+    return Intl.message(
+      'List',
+      name: 'galleryTypeList',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit gallery`
+  String get editGalleryTitle {
+    return Intl.message(
+      'Edit gallery',
+      name: 'editGalleryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create gallery`
+  String get createGalleryTitle {
+    return Intl.message(
+      'Create gallery',
+      name: 'createGalleryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discard changes`
+  String get discard {
+    return Intl.message(
+      'Discard changes',
+      name: 'discard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save gallery`
+  String get saveGallery {
+    return Intl.message(
+      'Save gallery',
+      name: 'saveGallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get galleryName {
+    return Intl.message(
+      'Name',
+      name: 'galleryName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get galleryDescription {
+    return Intl.message(
+      'Description',
+      name: 'galleryDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The gallery name cannot be empty`
+  String get editGalleryNameCannotBeEmpty {
+    return Intl.message(
+      'The gallery name cannot be empty',
+      name: 'editGalleryNameCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A gallery with the given name already exists`
+  String get galleryEditConflict {
+    return Intl.message(
+      'A gallery with the given name already exists',
+      name: 'galleryEditConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A gallery with the given name already exists`
+  String get galleryAddConflict {
+    return Intl.message(
+      'A gallery with the given name already exists',
+      name: 'galleryAddConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The gallery could not be saved`
+  String get galleryEditGeneric {
+    return Intl.message(
+      'The gallery could not be saved',
+      name: 'galleryEditGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The gallery could not be saved`
+  String get galleryAddGeneric {
+    return Intl.message(
+      'The gallery could not be saved',
+      name: 'galleryAddGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save failed`
+  String get saveFailed {
+    return Intl.message(
+      'Save failed',
+      name: 'saveFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dismiss`
+  String get dismiss {
+    return Intl.message(
+      'Dismiss',
+      name: 'dismiss',
+      desc: '',
+      args: [],
     );
   }
 }

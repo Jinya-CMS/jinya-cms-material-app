@@ -1,13 +1,16 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:jinya_cms_app/login.dart';
 import 'package:jinya_cms_app/network/errors/ConflictException.dart';
 import 'package:jinya_cms_app/network/errors/MissingApiKeyException.dart';
 import 'package:jinya_cms_app/network/errors/MissingFieldException.dart';
 import 'package:jinya_cms_app/network/errors/NotEnoughPermissionsException.dart';
 import 'package:jinya_cms_app/network/errors/NotFoundException.dart';
 import 'package:jinya_cms_app/shared/currentUser.dart';
+import 'package:jinya_cms_app/shared/navigator_service.dart';
 
 class JinyaResponse {
   dynamic data;
@@ -29,6 +32,9 @@ class JinyaResponse {
     } else if (response.statusCode == HttpStatus.notFound) {
       throw NotFoundException();
     } else if (response.statusCode == HttpStatus.forbidden) {
+      NavigationService.instance.navigateTo(MaterialPageRoute(
+        builder: (context) => LoginPage(),
+      ));
       throw NotEnoughPermissionsException();
     } else if (response.statusCode == HttpStatus.conflict) {
       throw ConflictException();
@@ -117,70 +123,58 @@ Future<JinyaResponse> unauthenticatedPut(
 }
 
 Future<JinyaResponse> get(String path) async {
-  final response = await http.get(
-      Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
-      headers: {
-        HttpHeaders.contentTypeHeader: 'application/json',
-        'JinyaApiKey': SettingsDatabase.selectedAccount!.apiKey,
-        'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
-      });
+  final response = await http.get(Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'), headers: {
+    HttpHeaders.contentTypeHeader: 'application/json',
+    'JinyaApiKey': SettingsDatabase.selectedAccount!.apiKey,
+    'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
+  });
 
   return JinyaResponse.fromHttpResponse(response);
 }
 
 Future<JinyaResponse> unauthenticatedGet(String path) async {
-  final response = await http.get(
-      Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
-      headers: {
-        HttpHeaders.contentTypeHeader: 'application/json',
-        'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
-      });
+  final response = await http.get(Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'), headers: {
+    HttpHeaders.contentTypeHeader: 'application/json',
+    'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
+  });
 
   return JinyaResponse.fromHttpResponse(response);
 }
 
 Future<int> head(String path) async {
-  final response = await http.head(
-      Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
-      headers: {
-        HttpHeaders.contentTypeHeader: 'application/json',
-        'JinyaApiKey': SettingsDatabase.selectedAccount!.apiKey,
-        'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
-      });
+  final response = await http.head(Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'), headers: {
+    HttpHeaders.contentTypeHeader: 'application/json',
+    'JinyaApiKey': SettingsDatabase.selectedAccount!.apiKey,
+    'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
+  });
 
   return response.statusCode;
 }
 
 Future<int> unauthenticatedHead(String path) async {
-  final response = await http.head(
-      Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
-      headers: {
-        HttpHeaders.contentTypeHeader: 'application/json',
-        'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
-      });
+  final response = await http.head(Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'), headers: {
+    HttpHeaders.contentTypeHeader: 'application/json',
+    'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
+  });
 
   return response.statusCode;
 }
 
 Future<JinyaResponse> delete(String path) async {
-  final response = await http.delete(
-      Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
-      headers: {
-        HttpHeaders.contentTypeHeader: 'application/json',
-        'JinyaApiKey': SettingsDatabase.selectedAccount!.apiKey,
-        'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
-      });
+  final response = await http.delete(Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'), headers: {
+    HttpHeaders.contentTypeHeader: 'application/json',
+    'JinyaApiKey': SettingsDatabase.selectedAccount!.apiKey,
+    'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
+  });
 
   return JinyaResponse.fromHttpResponse(response);
 }
 
 Future<JinyaResponse> unauthenticatedDelete(String path) async {
-  final response = await http.delete(
-      Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'),
-      headers: {
-        HttpHeaders.contentTypeHeader: 'application/json',
-        'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
-      });
+  final response = await http.delete(Uri.parse('${SettingsDatabase.selectedAccount!.url}/$path'), headers: {
+    HttpHeaders.contentTypeHeader: 'application/json',
+    'JinyaDeviceCode': SettingsDatabase.selectedAccount!.deviceToken,
+  });
 
   return JinyaResponse.fromHttpResponse(response);
 }

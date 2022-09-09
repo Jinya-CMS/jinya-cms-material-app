@@ -39,18 +39,18 @@ class JinyaCmsApp extends StatelessWidget {
             secondary: const Color(0xFF504a56), primary: const Color(0xFF966554), error: const Color(0xFF5C0B0B)),
       ),
       theme: ThemeData(
-        primaryColor: const Color(0xFF504a56),
-        canvasColor: Colors.white,
-        primaryTextTheme: Typography.material2021(platform: TargetPlatform.android).white,
-        iconTheme: Theme.of(context).iconTheme.copyWith(
-              color: Colors.black,
-            ),
-        primaryIconTheme: Theme.of(context).iconTheme.copyWith(
-              color: Colors.black,
-            ),
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-            secondary: const Color(0xFF966554), primary: const Color(0xFF504a56), error: const Color(0xFF5C0B0B)),
-      ),
+          primaryColor: const Color(0xFF504a56),
+          canvasColor: Colors.white,
+          primaryTextTheme: Typography.material2021(platform: TargetPlatform.android).white,
+          iconTheme: Theme.of(context).iconTheme.copyWith(
+                color: Colors.black,
+              ),
+          primaryIconTheme: Theme.of(context).iconTheme.copyWith(
+                color: Colors.black,
+              ),
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+              secondary: const Color(0xFF966554), primary: const Color(0xFF504a56), error: const Color(0xFF5C0B0B)),
+          inputDecorationTheme: const InputDecorationTheme(border: OutlineInputBorder())),
       home: HomePage(),
     );
   }

@@ -5,19 +5,22 @@ import 'package:jinya_cms_app/data/accountDatabase.dart';
 import 'package:jinya_cms_app/home.dart';
 import 'package:jinya_cms_app/l10n/localizations.dart';
 import 'package:jinya_cms_app/pages/media/list_files.dart';
+import 'package:jinya_cms_app/pages/media/list_galleries.dart';
 import 'package:jinya_cms_app/pages/sites/manageAccounts.dart';
 import 'package:jinya_cms_app/pages/sites/newAccount.dart';
 import 'package:jinya_cms_app/shared/currentUser.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class JinyaNavigationDrawer extends StatefulWidget {
+  const JinyaNavigationDrawer({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return JinyaNavigationDrawerState();
   }
 }
 
-class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
-    with TickerProviderStateMixin {
+class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with TickerProviderStateMixin {
   static final Animatable<Offset> _drawerDetailsTween = Tween<Offset>(
     begin: const Offset(0.0, -1.0),
     end: Offset.zero,
@@ -84,22 +87,42 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final frontStageItems = <ListTile>[
-      ListTile(
-        title: Text(l10n!.menuManageFiles),
-        leading: const Icon(Icons.image),
-        iconColor: Theme.of(context).iconTheme.color,
-        onTap: () {
-          setState(() {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => ListFiles(),
-              ),
-            );
-          });
-        },
-      ),
-    ];
+    final frontStageItems = <ListTile>[];
+    if (SettingsDatabase.selectedAccount!.roles!.contains('ROLE_READER') ||
+        SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')) {
+      frontStageItems.add(
+        ListTile(
+          title: Text(l10n!.menuManageFiles),
+          leading: const Icon(Icons.image),
+          iconColor: Theme.of(context).iconTheme.color,
+          onTap: () {
+            setState(() {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => ListFiles(),
+                ),
+              );
+            });
+          },
+        ),
+      );
+      frontStageItems.add(
+        ListTile(
+          title: Text(l10n.menuManageGalleries),
+          leading: const Icon(MdiIcons.imageMultiple),
+          iconColor: Theme.of(context).iconTheme.color,
+          onTap: () {
+            setState(() {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => ListGalleries(),
+                ),
+              );
+            });
+          },
+        ),
+      );
+    }
 
     return Row(
       children: [
@@ -107,13 +130,11 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
           child: ListView(
             children: <Widget>[
               UserAccountsDrawerHeader(
-                accountName:
-                    Text('${currentUser!.name} (${currentUser!.email})'),
+                accountName: Text('${currentUser!.name} (${currentUser!.email})'),
                 accountEmail: Text(currentUser!.url),
                 currentAccountPicture: CircleAvatar(
-                  backgroundColor: Theme.of(context).primaryColor,
-                    backgroundImage: CachedNetworkImageProvider(
-                        '${currentUser!.url}${currentUser!.profilePicture}')),
+                    backgroundColor: Theme.of(context).primaryColor,
+                    backgroundImage: CachedNetworkImageProvider('${currentUser!.url}${currentUser!.profilePicture}')),
                 otherAccountsPictures: accounts
                     .map(
                       (account) => GestureDetector(
@@ -131,7 +152,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                           });
                         },
                         child: Semantics(
-                          label: l10n.menuSwitchAccount,
+                          label: l10n!.menuSwitchAccount,
                           child: CircleAvatar(
                             backgroundColor: Theme.of(context).primaryColor,
                             backgroundImage: CachedNetworkImageProvider(
@@ -171,8 +192,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           ...accounts.map((account) => ListTile(
-                                title:
-                                    Text('${account.name} (${account.email})'),
+                                title: Text('${account.name} (${account.email})'),
                                 subtitle: Text(account.url),
                                 onTap: () {
                                   SettingsDatabase.selectedAccount = account;
@@ -189,11 +209,11 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                               )),
                           ListTile(
                             leading: const Icon(Icons.add),
-                            title: Text(l10n.menuAddAccount),
+                            title: Text(l10n!.menuAddAccount),
                             iconColor: Theme.of(context).iconTheme.color,
                             onTap: () => Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (context) => NewAccountPage(),
+                                builder: (context) => const NewAccountPage(),
                               ),
                             ),
                           ),

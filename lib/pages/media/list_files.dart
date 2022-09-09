@@ -37,7 +37,7 @@ class ListFilesState extends State<ListFiles> {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
 
-    final scaffold = Scaffold(
+    return Scaffold(
       appBar: AppBar(
         title: Text(l10n!.manageFilesTitle),
       ),
@@ -206,7 +206,5 @@ class ListFilesState extends State<ListFiles> {
             )
           : null,
     );
-
-    return scaffold;
   }
 }

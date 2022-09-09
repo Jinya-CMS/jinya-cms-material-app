@@ -72,14 +72,6 @@
       "name": {}
     }
   },
-  "deleteFileTitle": "Delete file?",
-  "@deleteFileTitle": {},
-  "deleteFileMessage": "Do you really want to delete the file {name}?",
-  "@deleteFileMessage": {
-    "placeholders": {
-      "name": {}
-    }
-  },
   "delete": "Delete",
   "@delete": {},
   "keep": "Don't delete",
@@ -94,6 +86,14 @@
   "@editFileName": {},
   "editFileNameEmpty": "Name cannot be empty",
   "@editFileNameEmpty": {},
+  "deleteFileTitle": "Delete file?",
+  "@deleteFileTitle": {},
+  "deleteFileMessage": "Do you really want to delete the file {name}?",
+  "@deleteFileMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
   "failedToDeleteFileConflict": "The file {name} is in use and cannot be deleted",
   "@failedToDeleteFileConflict": {
     "placeholders": {
@@ -105,5 +105,67 @@
     "placeholders": {
       "name": {}
     }
-  }
+  },
+  "manageGalleriesTitle": "Galleries",
+  "@manageGalleriesTitle": {},
+  "menuManageGalleries": "Galleries",
+  "@menuManageGalleries": {},
+  "deleteGalleryTitle": "Delete gallery?",
+  "@deleteGalleryTitle": {},
+  "deleteGalleryMessage": "Do you really want to delete the gallery {name}?",
+  "@deleteGalleryMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "failedToDeleteGalleryConflict": "The gallery {name} is in use and cannot be deleted",
+  "@failedToDeleteGalleryConflict": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "failedToDeleteGalleryGeneric": "The gallery {name} could not be deleted",
+  "@failedToDeleteGalleryGeneric": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "galleryOrientation": "Orientation",
+  "@galleryOrientation": {},
+  "galleryOrientationHorizontal": "Horizontal",
+  "@galleryOrientationHorizontal": {},
+  "galleryOrientationVertical": "Vertical",
+  "@galleryOrientationVertical": {},
+  "galleryType": "Type",
+  "@galleryType": {},
+  "galleryTypeGrid": "Grid",
+  "@galleryTypeGrid": {},
+  "galleryTypeList": "List",
+  "@galleryTypeList": {},
+  "editGalleryTitle": "Edit gallery",
+  "@editGalleryTitle": {},
+  "createGalleryTitle": "Create gallery",
+  "@createGalleryTitle": {},
+  "discard": "Discard changes",
+  "@discard": {},
+  "saveGallery": "Save gallery",
+  "@saveGallery": {},
+  "galleryName": "Name",
+  "@galleryName": {},
+  "galleryDescription": "Description",
+  "@galleryDescription": {},
+  "editGalleryNameCannotBeEmpty": "The gallery name cannot be empty",
+  "@editGalleryNameCannotBeEmpty": {},
+  "galleryEditConflict": "A gallery with the given name already exists",
+  "@galleryEditConflict": {},
+  "galleryAddConflict": "A gallery with the given name already exists",
+  "@galleryAddConflict": {},
+  "galleryEditGeneric": "The gallery could not be saved",
+  "@galleryEditGeneric": {},
+  "galleryAddGeneric": "The gallery could not be saved",
+  "@galleryAddGeneric": {},
+  "saveFailed": "Save failed",
+  "@saveFailed": {},
+  "dismiss": "Dismiss",
+  "@dismiss": {}
 }
