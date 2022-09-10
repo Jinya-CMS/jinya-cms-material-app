@@ -729,6 +729,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Arrange {name}`
+  String galleryDesigner(Object name) {
+    return Intl.message(
+      'Arrange $name',
+      name: 'galleryDesigner',
+      desc: '',
+      args: [name],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

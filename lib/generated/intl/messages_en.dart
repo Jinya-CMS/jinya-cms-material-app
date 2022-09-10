@@ -35,7 +35,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m6(name) => "Failed to upload file ${name}";
 
-  static String m7(name) => "Account ${name} successfully deleted";
+  static String m7(name) => "Arrange ${name}";
+
+  static String m8(name) => "Account ${name} successfully deleted";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -74,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "The gallery could not be saved"),
         "galleryDescription":
             MessageLookupByLibrary.simpleMessage("Description"),
+        "galleryDesigner": m7,
         "galleryEditConflict": MessageLookupByLibrary.simpleMessage(
             "A gallery with the given name already exists"),
         "galleryEditGeneric": MessageLookupByLibrary.simpleMessage(
@@ -96,7 +99,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your credentials are invalid"),
         "loginPassword": MessageLookupByLibrary.simpleMessage("Password"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
-        "manageAccountsDeleteSuccess": m7,
+        "manageAccountsDeleteSuccess": m8,
         "manageAccountsTitle":
             MessageLookupByLibrary.simpleMessage("Manage accounts"),
         "manageFilesTitle": MessageLookupByLibrary.simpleMessage("Files"),

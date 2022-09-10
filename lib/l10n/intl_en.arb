@@ -167,5 +167,11 @@
   "saveFailed": "Save failed",
   "@saveFailed": {},
   "dismiss": "Dismiss",
-  "@dismiss": {}
+  "@dismiss": {},
+  "galleryDesigner": "Arrange {name}",
+  "@galleryDesigner": {
+    "placeholders": {
+      "name": {}
+    }
+  }
 }

@@ -67,5 +67,6 @@
   "galleryAddConflict": "Eine Galerie mit dem gewählten Namen existiert bereits",
   "galleryAddGeneric": "Die Galerie konnte nicht gespeichert werden",
   "saveFailed": "Speichern fehlgeschlagen",
-  "dismiss": "Schließen"
+  "dismiss": "Schließen",
+  "galleryDesigner": "{name} einrichten"
 }

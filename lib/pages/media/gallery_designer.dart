@@ -1,0 +1,128 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:jinya_cms_app/l10n/localizations.dart';
+import 'package:jinya_cms_app/network/media/galleries.dart' as media;
+import 'package:jinya_cms_app/shared/currentUser.dart';
+import 'package:jinya_cms_app/shared/navigator_service.dart';
+
+class GalleryDesigner extends StatefulWidget {
+  media.Gallery gallery;
+
+  GalleryDesigner(this.gallery, {super.key});
+
+  @override
+  _GalleryDesignerState createState() => _GalleryDesignerState(gallery);
+}
+
+class _GalleryDesignerState extends State<GalleryDesigner> {
+  media.Gallery gallery;
+  Iterable<media.GalleryFilePosition> positions = [];
+
+  _GalleryDesignerState(this.gallery);
+
+  loadPositions() async {
+    final positions = await media.getPositions(gallery.id);
+    setState(() {
+      this.positions = positions;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadPositions();
+  }
+
+  void resetPositions() {
+    setState(() {
+      for (var i = 0; i < positions.length; i++) {
+        positions.elementAt(i).position = i;
+      }
+    });
+  }
+
+  Future<void> removePosition(media.GalleryFilePosition position) async {
+    await media.removePosition(gallery.id, position.position);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n!.galleryDesigner(gallery.name)),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: () async {},
+            icon: const Icon(Icons.add),
+          ),
+        ],
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            NavigationService.instance.goBack();
+          },
+        ),
+      ),
+      body: ReorderableListView(
+        children: positions
+            .map(
+              (position) => Dismissible(
+                key: Key(position.id.toString()),
+                background: Container(
+                  color: Theme.of(context).errorColor,
+                  child: const Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 16.0),
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                onDismissed: (direction) {
+                  removePosition(position);
+                  final filtered = positions.where((element) => element.id != position.id);
+                  setState(() {
+                    positions = filtered;
+                    resetPositions();
+                  });
+                },
+                direction: DismissDirection.endToStart,
+                child: ListTile(
+                  key: Key('tile${position.id}'),
+                  title: Text(position.file.name!),
+                  leading: CachedNetworkImage(
+                    imageUrl: '${SettingsDatabase.selectedAccount!.url}/${position.file.path}',
+                    width: 80,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+            )
+            .toList(),
+        onReorder: (int oldIndex, int newIndex) {
+          final pos = positions.toList();
+          final oldPos = pos.elementAt(oldIndex);
+          if (oldIndex > newIndex) {
+            pos.removeAt(oldIndex);
+            pos.insert(newIndex, oldPos);
+          } else {
+            pos.insert(newIndex, oldPos);
+            pos.removeAt(oldIndex);
+          }
+          setState(() {
+            positions = pos;
+            resetPositions();
+          });
+          media.updatePosition(gallery.id, oldIndex, newIndex);
+        },
+      ),
+    );
+  }
+}

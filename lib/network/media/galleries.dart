@@ -111,8 +111,8 @@ Future<Gallery> getGallery(int id) async {
   return Gallery.fromMap(response.data);
 }
 
-Future<List<GalleryFilePosition>> getPositions(int id) async {
-  final response = await get('api/media/gallery/file/$id/file');
+Future<Iterable<GalleryFilePosition>> getPositions(int id) async {
+  final response = await get('api/media/gallery/$id/file');
   if (response.statusCode != HttpStatus.ok) {
     throw Exception('This should not happen');
   }
@@ -124,23 +124,22 @@ Future<List<GalleryFilePosition>> getPositions(int id) async {
 }
 
 Future<void> updatePosition(
-  int galleryFileId,
   int galleryId,
   int oldPosition,
   int newPosition,
 ) async {
   final response = await put(
-    'api/media/gallery/file/$galleryId/file/$galleryFileId/$oldPosition',
-    data: {'position': newPosition},
+    'api/media/gallery/$galleryId/file/$oldPosition',
+    data: {'newPosition': newPosition},
   );
   if (response.statusCode != HttpStatus.noContent) {
     throw Exception('This should not happen');
   }
 }
 
-Future<void> removePosition(int galleryId, int galleryFileId) async {
+Future<void> removePosition(int galleryId, int oldPosition) async {
   final response = await delete(
-    'api/media/gallery/file/$galleryId/file/$galleryFileId',
+    'api/media/gallery/$galleryId/file/$oldPosition',
   );
   if (response.statusCode != HttpStatus.noContent) {
     throw Exception('This should not happen');
@@ -152,7 +151,7 @@ Future<GalleryFilePosition> addPosition(
   int fileId,
   int position,
 ) async {
-  final response = await post('api/media/gallery/file/$galleryId/file', data: {
+  final response = await post('api/media/gallery/$galleryId/file', data: {
     'position': position,
     'file': fileId,
   });
