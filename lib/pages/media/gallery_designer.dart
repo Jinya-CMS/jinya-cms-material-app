@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_app/l10n/localizations.dart';
 import 'package:jinya_cms_app/network/media/galleries.dart' as media;
+import 'package:jinya_cms_app/network/media/files.dart' as mediaFiles;
 import 'package:jinya_cms_app/shared/currentUser.dart';
 import 'package:jinya_cms_app/shared/navigator_service.dart';
 
@@ -16,9 +17,17 @@ class GalleryDesigner extends StatefulWidget {
 
 class _GalleryDesignerState extends State<GalleryDesigner> {
   media.Gallery gallery;
+  Iterable<mediaFiles.File> files = [];
   Iterable<media.GalleryFilePosition> positions = [];
 
   _GalleryDesignerState(this.gallery);
+
+  loadFiles() async {
+    final files = await mediaFiles.getFiles();
+    setState(() {
+      this.files = files;
+    });
+  }
 
   loadPositions() async {
     final positions = await media.getPositions(gallery.id);
@@ -31,6 +40,7 @@ class _GalleryDesignerState extends State<GalleryDesigner> {
   void initState() {
     super.initState();
     loadPositions();
+    loadFiles();
   }
 
   void resetPositions() {
@@ -55,7 +65,47 @@ class _GalleryDesignerState extends State<GalleryDesigner> {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            onPressed: () async {},
+            onPressed: () async {
+              final positionIds = positions.map((m) => m.file.id);
+              final files = this.files.where((value) => !positionIds.contains(value.id));
+
+              final dialog = AlertDialog(
+                title: Text(l10n.pickFile),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      NavigationService.instance.goBack();
+                    },
+                    child: Text(l10n.dismiss),
+                  ),
+                ],
+                content: ListView.builder(
+                  itemBuilder: (context, index) {
+                    final file = files.elementAt(index);
+
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: OutlinedButton(
+                        onPressed: () async {
+                          final position = await media.addPosition(gallery.id, file.id!, positions.length);
+                          final data = positions.toList();
+                          data.add(position);
+                          setState(() {
+                            positions = data;
+                          });
+                          NavigationService.instance.goBack();
+                        },
+                        child: CachedNetworkImage(
+                          imageUrl: '${SettingsDatabase.selectedAccount!.url}/${file.path}',
+                        ),
+                      ),
+                    );
+                  },
+                  itemCount: files.length,
+                ),
+              );
+              await showDialog(context: context, builder: (context) => dialog);
+            },
             icon: const Icon(Icons.add),
           ),
         ],

@@ -139,6 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 "The two factor code is invalid"),
         "newAccountTwoFactorInputCode":
             MessageLookupByLibrary.simpleMessage("Two factor code"),
+        "pickFile": MessageLookupByLibrary.simpleMessage("Choose file"),
         "saveFailed": MessageLookupByLibrary.simpleMessage("Save failed"),
         "saveGallery": MessageLookupByLibrary.simpleMessage("Save gallery"),
         "uploadFiles": MessageLookupByLibrary.simpleMessage("Upload files"),

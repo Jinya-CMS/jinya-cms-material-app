@@ -68,5 +68,6 @@
   "galleryAddGeneric": "Die Galerie konnte nicht gespeichert werden",
   "saveFailed": "Speichern fehlgeschlagen",
   "dismiss": "Schließen",
-  "galleryDesigner": "{name} einrichten"
+  "galleryDesigner": "{name} einrichten",
+  "pickFile": "Datei wählen"
 }
