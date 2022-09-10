@@ -3,13 +3,13 @@ import 'dart:io' as io;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:jinya_cms_app/l10n/localizations.dart';
-import 'package:jinya_cms_app/network/errors/ConflictException.dart';
-import 'package:jinya_cms_app/network/media/files.dart';
-import 'package:jinya_cms_app/pages/media/upload_files_page.dart';
-import 'package:jinya_cms_app/shared/currentUser.dart';
-import 'package:jinya_cms_app/shared/navDrawer.dart';
-import 'package:jinya_cms_app/shared/navigator_service.dart';
+import 'package:jinya_cms_android_app/l10n/localizations.dart';
+import 'package:jinya_cms_android_app/network/errors/ConflictException.dart';
+import 'package:jinya_cms_android_app/network/media/files.dart';
+import 'package:jinya_cms_android_app/pages/media/upload_files_page.dart';
+import 'package:jinya_cms_android_app/shared/currentUser.dart';
+import 'package:jinya_cms_android_app/shared/navDrawer.dart';
+import 'package:jinya_cms_android_app/shared/navigator_service.dart';
 import 'package:prompt_dialog/prompt_dialog.dart';
 
 class ListFiles extends StatefulWidget {

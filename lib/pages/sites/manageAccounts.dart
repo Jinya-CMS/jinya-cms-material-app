@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:jinya_cms_app/l10n/localizations.dart';
-import 'package:jinya_cms_app/pages/sites/newAccount.dart';
-import 'package:jinya_cms_app/data/accountDatabase.dart';
-import 'package:jinya_cms_app/shared/navDrawer.dart';
+import 'package:jinya_cms_android_app/l10n/localizations.dart';
+import 'package:jinya_cms_android_app/pages/sites/newAccount.dart';
+import 'package:jinya_cms_android_app/data/accountDatabase.dart';
+import 'package:jinya_cms_android_app/shared/navDrawer.dart';
 
 class ManageAccountsPage extends StatefulWidget {
   @override

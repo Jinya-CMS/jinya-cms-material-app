@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:jinya_cms_app/l10n/localizations.dart';
-import 'package:jinya_cms_app/network/media/galleries.dart' as media;
-import 'package:jinya_cms_app/network/media/files.dart' as mediaFiles;
-import 'package:jinya_cms_app/shared/currentUser.dart';
-import 'package:jinya_cms_app/shared/navigator_service.dart';
+import 'package:jinya_cms_android_app/l10n/localizations.dart';
+import 'package:jinya_cms_android_app/network/media/galleries.dart' as media;
+import 'package:jinya_cms_android_app/network/media/files.dart' as mediaFiles;
+import 'package:jinya_cms_android_app/shared/currentUser.dart';
+import 'package:jinya_cms_android_app/shared/navigator_service.dart';
 
 class GalleryDesigner extends StatefulWidget {
   media.Gallery gallery;

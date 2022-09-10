@@ -1,5 +1,5 @@
-import 'package:jinya_cms_app/network/artist/artist.dart';
-import 'package:jinya_cms_app/network/base/jinyaRequest.dart';
+import 'package:jinya_cms_android_app/network/artist/artist.dart';
+import 'package:jinya_cms_android_app/network/base/jinyaRequest.dart';
 
 Future<Artist> getAccount() async {
   final response = await get('api/me');

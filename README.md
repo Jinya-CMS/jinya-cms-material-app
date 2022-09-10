@@ -1,4 +1,4 @@
-# jinya_cms_app
+# jinya_cms_android_app
 
 Jinya CMS App
 

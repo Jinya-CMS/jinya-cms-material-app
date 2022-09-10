@@ -2,8 +2,8 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:jinya_cms_app/network/base/jinyaRequest.dart';
-import 'package:jinya_cms_app/shared/currentUser.dart';
+import 'package:jinya_cms_android_app/network/base/jinyaRequest.dart';
+import 'package:jinya_cms_android_app/shared/currentUser.dart';
 
 mixin BadCredentialsException implements Exception {}
 

@@ -1,8 +1,8 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:jinya_cms_app/l10n/localizations.dart';
-import 'package:jinya_cms_app/network/media/files.dart';
-import 'package:jinya_cms_app/shared/navigator_service.dart';
+import 'package:jinya_cms_android_app/l10n/localizations.dart';
+import 'package:jinya_cms_android_app/network/media/files.dart';
+import 'package:jinya_cms_android_app/shared/navigator_service.dart';
 import 'dart:io' as io;
 
 import 'package:path/path.dart';

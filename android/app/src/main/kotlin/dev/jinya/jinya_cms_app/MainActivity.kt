@@ -1,4 +1,4 @@
-package dev.jinya.jinya_cms_app
+package dev.jinya.jinya_cms_android_app
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:jinya_cms_app/data/accountDatabase.dart';
-import 'package:jinya_cms_app/home.dart';
-import 'package:jinya_cms_app/l10n/localizations.dart';
-import 'package:jinya_cms_app/pages/media/list_files.dart';
-import 'package:jinya_cms_app/pages/media/list_galleries.dart';
-import 'package:jinya_cms_app/pages/sites/manageAccounts.dart';
-import 'package:jinya_cms_app/pages/sites/newAccount.dart';
-import 'package:jinya_cms_app/shared/currentUser.dart';
+import 'package:jinya_cms_android_app/data/accountDatabase.dart';
+import 'package:jinya_cms_android_app/home.dart';
+import 'package:jinya_cms_android_app/l10n/localizations.dart';
+import 'package:jinya_cms_android_app/pages/media/list_files.dart';
+import 'package:jinya_cms_android_app/pages/media/list_galleries.dart';
+import 'package:jinya_cms_android_app/pages/sites/manageAccounts.dart';
+import 'package:jinya_cms_android_app/pages/sites/newAccount.dart';
+import 'package:jinya_cms_android_app/shared/currentUser.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class JinyaNavigationDrawer extends StatefulWidget {

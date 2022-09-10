@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:jinya_cms_app/data/accountDatabase.dart';
-import 'package:jinya_cms_app/home.dart';
-import 'package:jinya_cms_app/l10n/localizations.dart';
-import 'package:jinya_cms_app/network/artist/account.dart' as accountClient;
-import 'package:jinya_cms_app/network/authentication/login.dart' as network;
-import 'package:jinya_cms_app/shared/currentUser.dart';
-import 'package:jinya_cms_app/shared/navDrawer.dart';
+import 'package:jinya_cms_android_app/data/accountDatabase.dart';
+import 'package:jinya_cms_android_app/home.dart';
+import 'package:jinya_cms_android_app/l10n/localizations.dart';
+import 'package:jinya_cms_android_app/network/artist/account.dart' as accountClient;
+import 'package:jinya_cms_android_app/network/authentication/login.dart' as network;
+import 'package:jinya_cms_android_app/shared/currentUser.dart';
+import 'package:jinya_cms_android_app/shared/navDrawer.dart';
 
 class LoginPage extends StatefulWidget {
   @override
