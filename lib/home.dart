@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:jinya_cms_android_app/data/accountDatabase.dart';
-import 'package:jinya_cms_android_app/l10n/localizations.dart';
-import 'package:jinya_cms_android_app/login.dart';
-import 'package:jinya_cms_android_app/pages/sites/manageAccounts.dart';
-import 'package:jinya_cms_android_app/shared/currentUser.dart';
-import 'package:jinya_cms_android_app/shared/navDrawer.dart';
-import 'package:jinya_cms_android_app/network/authentication/login.dart';
-import 'package:jinya_cms_android_app/shared/navigator_service.dart';
+import 'package:jinya_cms_material_app/data/accountDatabase.dart';
+import 'package:jinya_cms_material_app/l10n/localizations.dart';
+import 'package:jinya_cms_material_app/login.dart';
+import 'package:jinya_cms_material_app/pages/sites/manageAccounts.dart';
+import 'package:jinya_cms_material_app/shared/currentUser.dart';
+import 'package:jinya_cms_material_app/shared/navDrawer.dart';
+import 'package:jinya_cms_material_app/network/authentication/login.dart';
+import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 
 const String homePageBackground = 'assets/home/background.jpg';
 

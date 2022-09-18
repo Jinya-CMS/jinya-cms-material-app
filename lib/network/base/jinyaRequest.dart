@@ -3,14 +3,14 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:jinya_cms_android_app/login.dart';
-import 'package:jinya_cms_android_app/network/errors/ConflictException.dart';
-import 'package:jinya_cms_android_app/network/errors/MissingApiKeyException.dart';
-import 'package:jinya_cms_android_app/network/errors/MissingFieldException.dart';
-import 'package:jinya_cms_android_app/network/errors/NotEnoughPermissionsException.dart';
-import 'package:jinya_cms_android_app/network/errors/NotFoundException.dart';
-import 'package:jinya_cms_android_app/shared/currentUser.dart';
-import 'package:jinya_cms_android_app/shared/navigator_service.dart';
+import 'package:jinya_cms_material_app/login.dart';
+import 'package:jinya_cms_material_app/network/errors/ConflictException.dart';
+import 'package:jinya_cms_material_app/network/errors/MissingApiKeyException.dart';
+import 'package:jinya_cms_material_app/network/errors/MissingFieldException.dart';
+import 'package:jinya_cms_material_app/network/errors/NotEnoughPermissionsException.dart';
+import 'package:jinya_cms_material_app/network/errors/NotFoundException.dart';
+import 'package:jinya_cms_material_app/shared/currentUser.dart';
+import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 
 class JinyaResponse {
   dynamic data;

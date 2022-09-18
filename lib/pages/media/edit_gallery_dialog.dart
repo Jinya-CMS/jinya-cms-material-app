@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jinya_cms_android_app/l10n/localizations.dart';
-import 'package:jinya_cms_android_app/network/errors/ConflictException.dart';
-import 'package:jinya_cms_android_app/shared/navigator_service.dart';
-import 'package:jinya_cms_android_app/network/media/galleries.dart' as media;
+import 'package:jinya_cms_material_app/l10n/localizations.dart';
+import 'package:jinya_cms_material_app/network/errors/ConflictException.dart';
+import 'package:jinya_cms_material_app/shared/navigator_service.dart';
+import 'package:jinya_cms_material_app/network/media/galleries.dart' as media;
 
 class EditGalleryDialog extends StatefulWidget {
   media.Gallery gallery;

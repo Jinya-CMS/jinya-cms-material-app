@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:jinya_cms_android_app/data/accountDatabase.dart';
-import 'package:jinya_cms_android_app/home.dart';
+import 'package:jinya_cms_material_app/data/accountDatabase.dart';
+import 'package:jinya_cms_material_app/home.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:jinya_cms_android_app/shared/navigator_service.dart';
+import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {

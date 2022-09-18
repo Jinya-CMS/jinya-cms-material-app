@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:jinya_cms_android_app/l10n/localizations.dart';
-import 'package:jinya_cms_android_app/pages/sites/manageAccounts.dart';
-import 'package:jinya_cms_android_app/pages/sites/newAccountTwoFactor.dart';
-import 'package:jinya_cms_android_app/data/accountDatabase.dart';
+import 'package:jinya_cms_material_app/l10n/localizations.dart';
+import 'package:jinya_cms_material_app/pages/sites/manageAccounts.dart';
+import 'package:jinya_cms_material_app/pages/sites/newAccountTwoFactor.dart';
+import 'package:jinya_cms_material_app/data/accountDatabase.dart';
 import 'package:validators/validators.dart';
-import 'package:jinya_cms_android_app/network/authentication/login.dart' as network;
+import 'package:jinya_cms_material_app/network/authentication/login.dart' as network;
 
 class NewAccountPage extends StatefulWidget {
   const NewAccountPage({super.key});

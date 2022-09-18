@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:jinya_cms_android_app/l10n/localizations.dart';
-import 'package:jinya_cms_android_app/network/errors/ConflictException.dart';
-import 'package:jinya_cms_android_app/network/media/galleries.dart';
-import 'package:jinya_cms_android_app/network/media/galleries.dart' as media;
-import 'package:jinya_cms_android_app/pages/media/add_gallery_dialog.dart';
-import 'package:jinya_cms_android_app/pages/media/edit_gallery_dialog.dart';
-import 'package:jinya_cms_android_app/pages/media/gallery_designer.dart';
-import 'package:jinya_cms_android_app/shared/currentUser.dart';
-import 'package:jinya_cms_android_app/shared/navDrawer.dart';
-import 'package:jinya_cms_android_app/shared/navigator_service.dart';
+import 'package:jinya_cms_material_app/l10n/localizations.dart';
+import 'package:jinya_cms_material_app/network/errors/ConflictException.dart';
+import 'package:jinya_cms_material_app/network/media/galleries.dart';
+import 'package:jinya_cms_material_app/network/media/galleries.dart' as media;
+import 'package:jinya_cms_material_app/pages/media/add_gallery_dialog.dart';
+import 'package:jinya_cms_material_app/pages/media/edit_gallery_dialog.dart';
+import 'package:jinya_cms_material_app/pages/media/gallery_designer.dart';
+import 'package:jinya_cms_material_app/shared/currentUser.dart';
+import 'package:jinya_cms_material_app/shared/navDrawer.dart';
+import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 
 class ListGalleries extends StatefulWidget {
   const ListGalleries({super.key});
