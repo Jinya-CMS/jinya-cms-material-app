@@ -36,7 +36,7 @@ dependencies:
   validators: 3.0.0
   http: 0.13.5
   cached_network_image: 3.2.2
-  file_picker: 5.0.1
+  file_picker: ^5.2.0+1
   path: 1.8.2
   prompt_dialog: 1.0.9
   hive: 2.2.3
