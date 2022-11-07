@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:jinya_cms_api/client/jinya_client.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
-import 'package:jinya_cms_material_app/pages/sites/manageAccounts.dart';
-import 'package:jinya_cms_material_app/pages/sites/newAccountTwoFactor.dart';
+import 'package:jinya_cms_material_app/pages/sites/manage_accounts.dart';
+import 'package:jinya_cms_material_app/pages/sites/new_account_two_factor.dart';
 import 'package:jinya_cms_material_app/data/accountDatabase.dart';
+import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:validators/validators.dart';
-import 'package:jinya_cms_material_app/network/authentication/login.dart' as network;
 
 class NewAccountPage extends StatefulWidget {
   const NewAccountPage({super.key});
@@ -44,7 +45,7 @@ class NewAccountPageState extends State<NewAccountPage> {
         scaffoldManager!.showSnackBar(snackbar);
       } else {
         try {
-          await network.requestTwoFactorCode(email, password, host: host);
+          await JinyaClient(SettingsDatabase.selectedAccount!.url).requestTwoFactorCode(email, password);
           final transferObject = NewAccountTransferObject(
             email,
             password,

@@ -1,13 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
-import 'package:jinya_cms_material_app/network/media/galleries.dart' as media;
-import 'package:jinya_cms_material_app/network/media/files.dart' as mediaFiles;
-import 'package:jinya_cms_material_app/shared/currentUser.dart';
+import 'package:jinya_cms_material_app/shared/current_user.dart';
+import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 
 class GalleryDesigner extends StatefulWidget {
-  media.Gallery gallery;
+  jinya.Gallery gallery;
 
   GalleryDesigner(this.gallery, {super.key});
 
@@ -16,21 +15,22 @@ class GalleryDesigner extends StatefulWidget {
 }
 
 class _GalleryDesignerState extends State<GalleryDesigner> {
-  media.Gallery gallery;
-  Iterable<mediaFiles.File> files = [];
-  Iterable<media.GalleryFilePosition> positions = [];
+  jinya.Gallery gallery;
+  Iterable<jinya.File> files = [];
+  Iterable<jinya.GalleryFilePosition> positions = [];
+  final apiClient = SettingsDatabase.getClientForCurrentAccount();
 
   _GalleryDesignerState(this.gallery);
 
   loadFiles() async {
-    final files = await mediaFiles.getFiles();
+    final files = await apiClient.getFiles();
     setState(() {
       this.files = files;
     });
   }
 
   loadPositions() async {
-    final positions = await media.getPositions(gallery.id);
+    final positions = await apiClient.getGalleryFilePositions(gallery.id!);
     setState(() {
       this.positions = positions;
     });
@@ -51,8 +51,8 @@ class _GalleryDesignerState extends State<GalleryDesigner> {
     });
   }
 
-  Future<void> removePosition(media.GalleryFilePosition position) async {
-    await media.removePosition(gallery.id, position.position);
+  Future<void> removePosition(jinya.GalleryFilePosition position) async {
+    await apiClient.deleteGalleryFilePosition(gallery.id!, position.position!);
   }
 
   @override
@@ -61,12 +61,12 @@ class _GalleryDesignerState extends State<GalleryDesigner> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n!.galleryDesigner(gallery.name)),
+        title: Text(l10n!.galleryDesigner(gallery.name!)),
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
             onPressed: () async {
-              final positionIds = positions.map((m) => m.file.id);
+              final positionIds = positions.map((m) => m.file!.id!);
               final files = this.files.where((value) => !positionIds.contains(value.id));
 
               final dialog = AlertDialog(
@@ -87,7 +87,8 @@ class _GalleryDesignerState extends State<GalleryDesigner> {
                       padding: const EdgeInsets.all(8.0),
                       child: OutlinedButton(
                         onPressed: () async {
-                          final position = await media.addPosition(gallery.id, file.id!, positions.length);
+                          final position =
+                              await apiClient.createGalleryFilePosition(gallery.id!, file.id!, positions.length);
                           final data = positions.toList();
                           data.add(position);
                           setState(() {
@@ -145,9 +146,9 @@ class _GalleryDesignerState extends State<GalleryDesigner> {
                 direction: DismissDirection.endToStart,
                 child: ListTile(
                   key: Key('tile${position.id}'),
-                  title: Text(position.file.name!),
+                  title: Text(position.file!.name!),
                   leading: CachedNetworkImage(
-                    imageUrl: '${SettingsDatabase.selectedAccount!.url}/${position.file.path}',
+                    imageUrl: '${SettingsDatabase.selectedAccount!.url}/${position.file!.path!}',
                     width: 80,
                     height: double.infinity,
                     fit: BoxFit.cover,
@@ -170,7 +171,7 @@ class _GalleryDesignerState extends State<GalleryDesigner> {
             positions = pos;
             resetPositions();
           });
-          media.updatePosition(gallery.id, oldIndex, newIndex);
+          apiClient.moveGalleryFilePosition(gallery.id!, oldIndex, newIndex);
         },
       ),
     );

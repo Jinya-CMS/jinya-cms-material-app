@@ -3,25 +3,27 @@ import 'dart:io' as io;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
-import 'package:jinya_cms_material_app/network/errors/ConflictException.dart';
-import 'package:jinya_cms_material_app/network/media/files.dart';
 import 'package:jinya_cms_material_app/pages/media/upload_files_page.dart';
-import 'package:jinya_cms_material_app/shared/currentUser.dart';
-import 'package:jinya_cms_material_app/shared/navDrawer.dart';
+import 'package:jinya_cms_material_app/shared/current_user.dart';
+import 'package:jinya_cms_material_app/shared/nav_drawer.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 import 'package:prompt_dialog/prompt_dialog.dart';
 
 class ListFiles extends StatefulWidget {
+  const ListFiles({super.key});
+
   @override
   ListFilesState createState() => ListFilesState();
 }
 
 class ListFilesState extends State<ListFiles> {
-  var files = <File>[];
+  Iterable<jinya.File> files = <jinya.File>[];
+  final apiClient = SettingsDatabase.getClientForCurrentAccount();
 
   Future<void> loadFiles() async {
-    final files = await getFiles();
+    final files = await apiClient.getFiles();
     setState(() {
       this.files = files;
     });
@@ -41,7 +43,7 @@ class ListFilesState extends State<ListFiles> {
       appBar: AppBar(
         title: Text(l10n!.manageFilesTitle),
       ),
-      drawer: JinyaNavigationDrawer(),
+      drawer: const JinyaNavigationDrawer(),
       body: Scrollbar(
         child: RefreshIndicator(
           onRefresh: () async {
@@ -51,7 +53,7 @@ class ListFilesState extends State<ListFiles> {
             itemCount: files.length,
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             itemBuilder: (context, index) {
-              final item = files[index];
+              final item = files.elementAt(index);
               final children = [
                 ListTile(
                   title: Text(item.name!),
@@ -94,7 +96,8 @@ class ListFilesState extends State<ListFiles> {
                           );
                           if (result != null) {
                             try {
-                              await updateFile(item.id!, result);
+                              item.name = result;
+                              await apiClient.updateFile(item);
                               await loadFiles();
                             } catch (e) {
                               messenger.showSnackBar(
@@ -117,7 +120,10 @@ class ListFilesState extends State<ListFiles> {
                           );
                           if (result != null) {
                             try {
-                              await uploadFile(item.id!, io.File(result.paths.first!));
+                              await apiClient.startFileUpload(item.id!);
+                              await apiClient.uploadFileChunk(
+                                  item.id!, 0, await io.File(result.paths.first!).readAsBytes());
+                              await apiClient.finishFileUpload(item.id!);
                               await loadFiles();
                             } catch (e) {
                               messenger.showSnackBar(
@@ -148,10 +154,10 @@ class ListFilesState extends State<ListFiles> {
                                 TextButton(
                                   onPressed: () async {
                                     try {
-                                      await deleteFile(item.id!);
+                                      await apiClient.deleteFile(item.id!);
                                       NavigationService.instance.goBack();
                                       await loadFiles();
-                                    } on ConflictException {
+                                    } on jinya.ConflictException {
                                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                         content: Text(l10n.failedToDeleteFileConflict(item.name!)),
                                       ));
@@ -162,7 +168,7 @@ class ListFilesState extends State<ListFiles> {
                                     }
                                   },
                                   style: TextButton.styleFrom(
-                                    primary: Theme.of(context).errorColor,
+                                    foregroundColor: Theme.of(context).errorColor,
                                   ),
                                   child: Text(l10n.delete),
                                 ),

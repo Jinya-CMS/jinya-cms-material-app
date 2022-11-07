@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jinya_cms_api/client/jinya_client.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
-import 'package:jinya_cms_material_app/pages/sites/manageAccounts.dart';
-import 'package:jinya_cms_material_app/pages/sites/newAccount.dart';
+import 'package:jinya_cms_material_app/pages/sites/manage_accounts.dart';
+import 'package:jinya_cms_material_app/pages/sites/new_account.dart';
 import 'package:jinya_cms_material_app/data/accountDatabase.dart';
-import 'package:jinya_cms_material_app/network/artist/account.dart' as accountClient;
-import 'package:jinya_cms_material_app/network/authentication/login.dart' as loginClient;
-import 'package:jinya_cms_material_app/shared/currentUser.dart';
+import 'package:jinya_cms_material_app/shared/current_user.dart';
 
 class NewAccountTwoFactorPage extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class NewAccountTwoFactorPage extends StatefulWidget {
 
   final NewAccountTransferObject newAccountTransferObject;
 
-  NewAccountTwoFactorPage(this.newAccountTransferObject);
+  const NewAccountTwoFactorPage(this.newAccountTransferObject);
 }
 
 class NewAccountTwoFactorPageState extends State<NewAccountTwoFactorPage> {
@@ -25,33 +24,33 @@ class NewAccountTwoFactorPageState extends State<NewAccountTwoFactorPage> {
       final l10n = AppLocalizations.of(context);
       final navigator = Navigator.of(context);
       final scaffoldManager = ScaffoldMessenger.of(context);
+      final apiClient = JinyaClient(widget.newAccountTransferObject.url);
       try {
-        final result = await loginClient.login(
+        final result = await apiClient.login(
           widget.newAccountTransferObject.username,
           widget.newAccountTransferObject.password,
-          host: widget.newAccountTransferObject.url,
           twoFactorCode: _codeController.text,
         );
 
         final account = Account(
           url: widget.newAccountTransferObject.url,
           email: widget.newAccountTransferObject.username,
-          apiKey: result.apiKey,
-          deviceToken: result.deviceCode,
+          apiKey: result.apiKey!,
+          deviceToken: result.deviceCode!,
           profilePicture: '',
           jinyaId: -1,
           name: '',
         );
         SettingsDatabase.selectedAccount = account;
-        final currentUser = await accountClient.getAccount();
-        account.name = currentUser.artistName;
-        account.profilePicture = currentUser.profilePicture;
-        account.jinyaId = currentUser.id;
+        final currentUser = await apiClient.getArtistInfo();
+        account.name = currentUser.artistName!;
+        account.profilePicture = currentUser.profilePicture!;
+        account.jinyaId = currentUser.id!;
         account.roles = currentUser.roles;
 
         await createAccount(account);
         navigator.push(MaterialPageRoute(
-          builder: (context) => ManageAccountsPage(),
+          builder: (context) => const ManageAccountsPage(),
         ));
       } catch (e) {
         final snackbar = SnackBar(
@@ -74,7 +73,7 @@ class NewAccountTwoFactorPageState extends State<NewAccountTwoFactorPage> {
           onPressed: () => Navigator.pop(
             context,
             MaterialPageRoute(
-              builder: (context) => ManageAccountsPage(),
+              builder: (context) => const ManageAccountsPage(),
             ),
           ),
         ),

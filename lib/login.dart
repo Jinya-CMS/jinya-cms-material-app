@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:jinya_cms_api/client/jinya_client.dart';
 import 'package:jinya_cms_material_app/data/accountDatabase.dart';
 import 'package:jinya_cms_material_app/home.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
-import 'package:jinya_cms_material_app/network/artist/account.dart' as accountClient;
-import 'package:jinya_cms_material_app/network/authentication/login.dart' as network;
-import 'package:jinya_cms_material_app/shared/currentUser.dart';
-import 'package:jinya_cms_material_app/shared/navDrawer.dart';
+import 'package:jinya_cms_material_app/shared/current_user.dart';
+import 'package:jinya_cms_material_app/shared/nav_drawer.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -25,15 +23,13 @@ class LoginPageState extends State<LoginPage> {
 
     if (_formKey.currentState!.validate()) {
       try {
-        final loginResult = await network.login(
-          SettingsDatabase.selectedAccount!.email,
-          _passwordController.text,
-        );
-        SettingsDatabase.selectedAccount!.apiKey = loginResult.apiKey;
-        SettingsDatabase.selectedAccount!.roles = loginResult.roles;
-        SettingsDatabase.selectedAccount!.deviceToken = loginResult.deviceCode;
-        final currentUser = await accountClient.getAccount();
-        SettingsDatabase.selectedAccount!.profilePicture = currentUser.profilePicture;
+        final apiClient = JinyaClient(SettingsDatabase.selectedAccount!.url);
+        final loginResult = await apiClient.login(SettingsDatabase.selectedAccount!.email, _passwordController.text);
+        SettingsDatabase.selectedAccount!.apiKey = loginResult.apiKey!;
+        SettingsDatabase.selectedAccount!.roles = loginResult.roles!;
+        SettingsDatabase.selectedAccount!.deviceToken = loginResult.deviceCode!;
+        final currentUser = await apiClient.getArtistInfo();
+        SettingsDatabase.selectedAccount!.profilePicture = currentUser.profilePicture!;
         await updateAccount(SettingsDatabase.selectedAccount!);
         navigator.push(MaterialPageRoute(
           builder: (context) => HomePage(),
@@ -56,7 +52,7 @@ class LoginPageState extends State<LoginPage> {
       appBar: AppBar(
         title: Text(l10n!.loginTitle),
       ),
-      drawer: JinyaNavigationDrawer(),
+      drawer: const JinyaNavigationDrawer(),
       body: Container(
         padding: const EdgeInsets.symmetric(
           vertical: 8.0,

@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
-import 'package:jinya_cms_material_app/pages/sites/newAccount.dart';
+import 'package:jinya_cms_material_app/pages/sites/new_account.dart';
 import 'package:jinya_cms_material_app/data/accountDatabase.dart';
-import 'package:jinya_cms_material_app/shared/navDrawer.dart';
+import 'package:jinya_cms_material_app/shared/nav_drawer.dart';
 
 class ManageAccountsPage extends StatefulWidget {
+  const ManageAccountsPage({super.key});
+
   @override
   State<StatefulWidget> createState() {
     return ManageAccountsPageState();

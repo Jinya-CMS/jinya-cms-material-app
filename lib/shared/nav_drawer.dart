@@ -6,9 +6,9 @@ import 'package:jinya_cms_material_app/home.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/pages/media/list_files.dart';
 import 'package:jinya_cms_material_app/pages/media/list_galleries.dart';
-import 'package:jinya_cms_material_app/pages/sites/manageAccounts.dart';
-import 'package:jinya_cms_material_app/pages/sites/newAccount.dart';
-import 'package:jinya_cms_material_app/shared/currentUser.dart';
+import 'package:jinya_cms_material_app/pages/sites/manage_accounts.dart';
+import 'package:jinya_cms_material_app/pages/sites/new_account.dart';
+import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class JinyaNavigationDrawer extends StatefulWidget {

@@ -1,1 +1,0 @@
-class ConflictException implements Exception {}

@@ -16,7 +16,7 @@ class Account {
   @HiveField(5)
   String profilePicture;
   @HiveField(6)
-  List<String>? roles = [];
+  Iterable<String>? roles = [];
   @HiveField(7)
   int jinyaId;
 

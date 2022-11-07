@@ -1,7 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
-import 'package:jinya_cms_material_app/network/media/files.dart';
+import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 import 'dart:io' as io;
 
@@ -13,7 +13,7 @@ class UploadFilesPage extends StatefulWidget {
 
   final Function? onBack;
 
-  UploadFilesPage({super.key, this.onBack});
+  const UploadFilesPage({super.key, this.onBack});
 }
 
 class _UploadFilesPageState extends State<UploadFilesPage> {
@@ -21,7 +21,8 @@ class _UploadFilesPageState extends State<UploadFilesPage> {
 
   _UploadFilesPageState(this.onBack);
 
-  List<io.File> files = <io.File>[];
+  Iterable<io.File> files = <io.File>[];
+  final apiClient = SettingsDatabase.getClientForCurrentAccount();
 
   @override
   Widget build(BuildContext context) {
@@ -47,8 +48,10 @@ class _UploadFilesPageState extends State<UploadFilesPage> {
               for (var element in files) {
                 final name = basenameWithoutExtension(element.path);
                 try {
-                  final file = await createFile(name);
-                  await uploadFile(file.id!, element);
+                  final file = await apiClient.createFile(name);
+                  await apiClient.startFileUpload(file.id!);
+                  await apiClient.uploadFileChunk(file.id!, 0, await element.readAsBytes());
+                  await apiClient.finishFileUpload(file.id!);
                 } catch (err) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -92,17 +95,19 @@ class _UploadFilesPageState extends State<UploadFilesPage> {
                 ),
               ),
             ),
-            key: Key(files[index].path.toString()),
+            key: Key(files.elementAt(index).path.toString()),
             onDismissed: (direction) {
               setState(() {
-                files.removeAt(index);
+                final fileList = files.toList();
+                fileList.removeAt(index);
+                files = fileList;
               });
             },
             direction: DismissDirection.endToStart,
             child: ListTile(
-              title: Text(files[index].uri.pathSegments.last),
+              title: Text(files.elementAt(index).uri.pathSegments.last),
               leading: Image.file(
-                files[index],
+                files.elementAt(index),
                 width: 80,
                 height: double.infinity,
                 fit: BoxFit.cover,

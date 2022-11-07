@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
-import 'package:jinya_cms_material_app/network/errors/ConflictException.dart';
+import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
-import 'package:jinya_cms_material_app/network/media/galleries.dart' as media;
+import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 
 class EditGalleryDialog extends StatefulWidget {
-  media.Gallery gallery;
+  jinya.Gallery gallery;
 
   EditGalleryDialog(this.gallery, {super.key});
 
@@ -14,18 +14,20 @@ class EditGalleryDialog extends StatefulWidget {
 }
 
 class _EditGalleryDialogState extends State<EditGalleryDialog> {
-  media.Gallery gallery;
+  jinya.Gallery gallery;
 
   _EditGalleryDialogState(this.gallery) {
-    _nameController.text = gallery.name;
-    _descriptionController.text = gallery.description;
+    _nameController.text = gallery.name!;
+    _descriptionController.text = gallery.description!;
   }
 
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _descriptionController = TextEditingController();
-  var _orientation = media.Orientation.vertical;
-  var _type = media.Type.sequence;
+  var _orientation = jinya.Orientation.vertical;
+  var _type = jinya.Type.sequence;
+
+  final apiClient = SettingsDatabase.getClientForCurrentAccount();
 
   @override
   Widget build(BuildContext context) {
@@ -63,15 +65,15 @@ class _EditGalleryDialogState extends State<EditGalleryDialog> {
                 value: gallery.orientation,
                 items: [
                   DropdownMenuItem(
-                    value: media.Orientation.vertical,
+                    value: jinya.Orientation.vertical,
                     child: Text(l10n.galleryOrientationVertical),
                   ),
                   DropdownMenuItem(
-                    value: media.Orientation.horizontal,
+                    value: jinya.Orientation.horizontal,
                     child: Text(l10n.galleryOrientationHorizontal),
                   ),
                 ],
-                onChanged: (media.Orientation? value) {
+                onChanged: (jinya.Orientation? value) {
                   _orientation = value!;
                 },
               ),
@@ -80,15 +82,15 @@ class _EditGalleryDialogState extends State<EditGalleryDialog> {
                 value: gallery.type,
                 items: [
                   DropdownMenuItem(
-                    value: media.Type.masonry,
+                    value: jinya.Type.masonry,
                     child: Text(l10n.galleryTypeGrid),
                   ),
                   DropdownMenuItem(
-                    value: media.Type.sequence,
+                    value: jinya.Type.sequence,
                     child: Text(l10n.galleryTypeList),
                   ),
                 ],
-                onChanged: (media.Type? value) {
+                onChanged: (jinya.Type? value) {
                   _type = value!;
                 },
               ),
@@ -107,15 +109,15 @@ class _EditGalleryDialogState extends State<EditGalleryDialog> {
           onPressed: () async {
             if (_formKey.currentState!.validate()) {
               try {
-                await media.updateGallery(
-                  gallery.id,
+                await apiClient.updateGallery(jinya.Gallery(
                   name: _nameController.text,
                   description: _descriptionController.text,
                   orientation: _orientation,
                   type: _type,
-                );
+                  id: gallery.id,
+                ));
                 NavigationService.instance.goBack();
-              } on ConflictException {
+              } on jinya.ConflictException {
                 final dialog = AlertDialog(
                   title: Text(l10n.saveFailed),
                   content: Text(l10n.galleryEditConflict),

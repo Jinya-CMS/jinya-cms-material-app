@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
-import 'package:jinya_cms_material_app/network/errors/ConflictException.dart';
-import 'package:jinya_cms_material_app/network/media/galleries.dart';
-import 'package:jinya_cms_material_app/network/media/galleries.dart' as media;
 import 'package:jinya_cms_material_app/pages/media/add_gallery_dialog.dart';
 import 'package:jinya_cms_material_app/pages/media/edit_gallery_dialog.dart';
 import 'package:jinya_cms_material_app/pages/media/gallery_designer.dart';
-import 'package:jinya_cms_material_app/shared/currentUser.dart';
-import 'package:jinya_cms_material_app/shared/navDrawer.dart';
+import 'package:jinya_cms_material_app/shared/current_user.dart';
+import 'package:jinya_cms_material_app/shared/nav_drawer.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 
 class ListGalleries extends StatefulWidget {
@@ -18,10 +16,11 @@ class ListGalleries extends StatefulWidget {
 }
 
 class _ListGalleriesState extends State<ListGalleries> {
-  var galleries = <Gallery>[];
+  Iterable<jinya.Gallery> galleries = <jinya.Gallery>[];
+  final apiClient = SettingsDatabase.getClientForCurrentAccount();
 
   Future<void> loadGalleries() async {
-    final galleries = await getGalleries();
+    final galleries = await apiClient.getGalleries();
     setState(() {
       this.galleries = galleries;
     });
@@ -51,11 +50,11 @@ class _ListGalleriesState extends State<ListGalleries> {
             itemCount: galleries.length,
             padding: const EdgeInsets.symmetric(vertical: 8.0),
             itemBuilder: (context, index) {
-              final gallery = galleries[index];
+              final gallery = galleries.elementAt(index);
               final children = <Widget>[
                 ListTile(
-                  title: Text(gallery.name),
-                  subtitle: Text(gallery.description),
+                  title: Text(gallery.name!),
+                  subtitle: Text(gallery.description!),
                 ),
                 Row(
                   children: [
@@ -66,7 +65,7 @@ class _ListGalleriesState extends State<ListGalleries> {
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
-                    gallery.orientation == media.Orientation.horizontal
+                    gallery.orientation == jinya.Orientation.horizontal
                         ? Text(l10n.galleryOrientationHorizontal)
                         : Text(l10n.galleryOrientationVertical),
                   ],
@@ -80,7 +79,7 @@ class _ListGalleriesState extends State<ListGalleries> {
                         style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
-                    gallery.type == media.Type.masonry ? Text(l10n.galleryTypeGrid) : Text(l10n.galleryTypeList),
+                    gallery.type == jinya.Type.masonry ? Text(l10n.galleryTypeGrid) : Text(l10n.galleryTypeList),
                   ],
                 ),
               ];
@@ -112,7 +111,7 @@ class _ListGalleriesState extends State<ListGalleries> {
                             context: context,
                             builder: (context) => AlertDialog(
                               title: Text(l10n.deleteGalleryTitle),
-                              content: Text(l10n.deleteGalleryMessage(gallery.name)),
+                              content: Text(l10n.deleteGalleryMessage(gallery.name!)),
                               actions: [
                                 TextButton(
                                   onPressed: () {
@@ -123,21 +122,21 @@ class _ListGalleriesState extends State<ListGalleries> {
                                 TextButton(
                                   onPressed: () async {
                                     try {
-                                      await deleteGallery(gallery.id);
+                                      await apiClient.deleteGallery(gallery.id!);
                                       NavigationService.instance.goBack();
                                       await loadGalleries();
-                                    } on ConflictException {
+                                    } on jinya.ConflictException {
                                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                        content: Text(l10n.failedToDeleteGalleryConflict(gallery.name)),
+                                        content: Text(l10n.failedToDeleteGalleryConflict(gallery.name!)),
                                       ));
                                     } catch (e) {
                                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                        content: Text(l10n.failedToDeleteGalleryGeneric(gallery.name)),
+                                        content: Text(l10n.failedToDeleteGalleryGeneric(gallery.name!)),
                                       ));
                                     }
                                   },
                                   style: TextButton.styleFrom(
-                                    primary: Theme.of(context).errorColor,
+                                    foregroundColor: Theme.of(context).errorColor,
                                   ),
                                   child: Text(l10n.delete),
                                 ),
