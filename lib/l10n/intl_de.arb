@@ -69,5 +69,20 @@
   "saveFailed": "Speichern fehlgeschlagen",
   "dismiss": "Schließen",
   "galleryDesigner": "{name} einrichten",
-  "pickFile": "Datei wählen"
+  "pickFile": "Datei wählen",
+  "menuManageSimplePages": "Einfache Seiten",
+  "manageSimplePagesTitle": "Einfache Seiten",
+  "failedToDeleteSimplePageConflict": "Die Seite {title} konnte nicht gelöscht werden, da sie verwendet wird",
+  "failedToDeleteSimplePageGeneric": "Die Seite {title} konnte nicht gelöscht werden",
+  "deleteSimplePageTitle": "Seite löschen?",
+  "deleteSimplePageMessage": "Soll die Seite {title} wirklich gelöscht werden?",
+  "editSimplePage": "Seite bearbeiten",
+  "editSimplePageTitleCannotBeEmpty": "Der Titel ist erforderlich",
+  "simplePageTitle": "Titel",
+  "simplePageEditConflict": "Eine Seite mit dem gewählten Titel existiert bereits",
+  "simplePageEditGeneric": "Die Seite konnte nicht gespeichert werden",
+  "addSimplePage": "Seite hinzufügen",
+  "addSimplePageTitleCannotBeEmpty": "Der Titel ist erforderlich",
+  "simplePageAddConflict": "Eine Seite mit dem gewählten Titel existiert bereits",
+  "simplePageAddGeneric": "Die Seite konnte nicht gespeichert werden"
 }

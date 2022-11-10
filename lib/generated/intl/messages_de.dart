@@ -25,25 +25,37 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m1(name) =>
       "Soll die Galerie ${name} wirklich gelöscht werden?";
 
-  static String m2(name) =>
+  static String m2(title) =>
+      "Soll die Seite ${title} wirklich gelöscht werden?";
+
+  static String m3(name) =>
       "Die Datei ${name} konnte nicht gelöscht werden, da sie verwendet wird";
 
-  static String m3(name) => "Die Datei ${name} konnte nicht gelöscht werden";
+  static String m4(name) => "Die Datei ${name} konnte nicht gelöscht werden";
 
-  static String m4(name) =>
+  static String m5(name) =>
       "Die Galerie ${name} konnte nicht gelöscht werden, da sie verwendet wird";
 
-  static String m5(name) => "Die Galerie ${name} konnte nicht gelöscht werden";
+  static String m6(name) => "Die Galerie ${name} konnte nicht gelöscht werden";
 
-  static String m6(name) => "Die Datei ${name} konnte nicht hochgeladen werden";
+  static String m7(title) =>
+      "Die Seite ${title} konnte nicht gelöscht werden, da sie verwendet wird";
 
-  static String m7(name) => "${name} einrichten";
+  static String m8(title) => "Die Seite ${title} konnte nicht gelöscht werden";
 
-  static String m8(name) => "Account ${name} wurde erfolgreich gelöscht";
+  static String m9(name) => "Die Datei ${name} konnte nicht hochgeladen werden";
+
+  static String m10(name) => "${name} einrichten";
+
+  static String m11(name) => "Account ${name} wurde erfolgreich gelöscht";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actionUndo": MessageLookupByLibrary.simpleMessage("Rückgängig"),
+        "addSimplePage":
+            MessageLookupByLibrary.simpleMessage("Seite hinzufügen"),
+        "addSimplePageTitleCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Der Titel ist erforderlich"),
         "appName": MessageLookupByLibrary.simpleMessage("Jinya CMS"),
         "chooseFiles":
             MessageLookupByLibrary.simpleMessage("Dateien wählen..."),
@@ -56,6 +68,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteGalleryMessage": m1,
         "deleteGalleryTitle":
             MessageLookupByLibrary.simpleMessage("Galerie löschen?"),
+        "deleteSimplePageMessage": m2,
+        "deleteSimplePageTitle":
+            MessageLookupByLibrary.simpleMessage("Seite löschen?"),
         "discard": MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Schließen"),
         "editFileCancel":
@@ -70,18 +85,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Der Name ist erforderlich"),
         "editGalleryTitle":
             MessageLookupByLibrary.simpleMessage("Galerie bearbeiten"),
-        "failedToDeleteFileConflict": m2,
-        "failedToDeleteFileGeneric": m3,
-        "failedToDeleteGalleryConflict": m4,
-        "failedToDeleteGalleryGeneric": m5,
-        "failedUploading": m6,
+        "editSimplePage":
+            MessageLookupByLibrary.simpleMessage("Seite bearbeiten"),
+        "editSimplePageTitleCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Der Titel ist erforderlich"),
+        "failedToDeleteFileConflict": m3,
+        "failedToDeleteFileGeneric": m4,
+        "failedToDeleteGalleryConflict": m5,
+        "failedToDeleteGalleryGeneric": m6,
+        "failedToDeleteSimplePageConflict": m7,
+        "failedToDeleteSimplePageGeneric": m8,
+        "failedUploading": m9,
         "galleryAddConflict": MessageLookupByLibrary.simpleMessage(
             "Eine Galerie mit dem gewählten Namen existiert bereits"),
         "galleryAddGeneric": MessageLookupByLibrary.simpleMessage(
             "Die Galerie konnte nicht gespeichert werden"),
         "galleryDescription":
             MessageLookupByLibrary.simpleMessage("Beschreibung"),
-        "galleryDesigner": m7,
+        "galleryDesigner": m10,
         "galleryEditConflict": MessageLookupByLibrary.simpleMessage(
             "Eine Galerie mit dem gewählten Namen existiert bereits"),
         "galleryEditGeneric": MessageLookupByLibrary.simpleMessage(
@@ -104,18 +125,22 @@ class MessageLookup extends MessageLookupByLibrary {
             "Die Zugangsdaten für den Account sind falsch"),
         "loginPassword": MessageLookupByLibrary.simpleMessage("Passwort"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Anmelden"),
-        "manageAccountsDeleteSuccess": m8,
+        "manageAccountsDeleteSuccess": m11,
         "manageAccountsTitle":
             MessageLookupByLibrary.simpleMessage("Accounts verwalten"),
         "manageFilesTitle": MessageLookupByLibrary.simpleMessage("Dateien"),
         "manageGalleriesTitle":
             MessageLookupByLibrary.simpleMessage("Galerien"),
+        "manageSimplePagesTitle":
+            MessageLookupByLibrary.simpleMessage("Einfache Seiten"),
         "menuAddAccount":
             MessageLookupByLibrary.simpleMessage("Account hinzufügen"),
         "menuManageAccounts":
             MessageLookupByLibrary.simpleMessage("Accounts verwalten"),
         "menuManageFiles": MessageLookupByLibrary.simpleMessage("Dateien"),
         "menuManageGalleries": MessageLookupByLibrary.simpleMessage("Galerien"),
+        "menuManageSimplePages":
+            MessageLookupByLibrary.simpleMessage("Einfache Seiten"),
         "menuSwitchAccount":
             MessageLookupByLibrary.simpleMessage("Account wechseln"),
         "newAccountActionTwoFactorCode":
@@ -150,6 +175,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Speichern fehlgeschlagen"),
         "saveGallery":
             MessageLookupByLibrary.simpleMessage("Galerie speichern"),
+        "simplePageAddConflict": MessageLookupByLibrary.simpleMessage(
+            "Eine Seite mit dem gewählten Titel existiert bereits"),
+        "simplePageAddGeneric": MessageLookupByLibrary.simpleMessage(
+            "Die Seite konnte nicht gespeichert werden"),
+        "simplePageEditConflict": MessageLookupByLibrary.simpleMessage(
+            "Eine Seite mit dem gewählten Titel existiert bereits"),
+        "simplePageEditGeneric": MessageLookupByLibrary.simpleMessage(
+            "Die Seite konnte nicht gespeichert werden"),
+        "simplePageTitle": MessageLookupByLibrary.simpleMessage("Titel"),
         "uploadFiles":
             MessageLookupByLibrary.simpleMessage("Dateien hochladen"),
         "uploadingFiles":

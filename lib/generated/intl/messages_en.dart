@@ -24,24 +24,34 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(name) => "Do you really want to delete the gallery ${name}?";
 
-  static String m2(name) => "The file ${name} is in use and cannot be deleted";
+  static String m2(title) => "Do you really want to delete the page ${title}?";
 
-  static String m3(name) => "The file ${name} could not be deleted";
+  static String m3(name) => "The file ${name} is in use and cannot be deleted";
 
-  static String m4(name) =>
+  static String m4(name) => "The file ${name} could not be deleted";
+
+  static String m5(name) =>
       "The gallery ${name} is in use and cannot be deleted";
 
-  static String m5(name) => "The gallery ${name} could not be deleted";
+  static String m6(name) => "The gallery ${name} could not be deleted";
 
-  static String m6(name) => "Failed to upload file ${name}";
+  static String m7(title) =>
+      "The page ${title} is in use and cannot be deleted";
 
-  static String m7(name) => "Arrange ${name}";
+  static String m8(title) => "The page ${title} could not be deleted";
 
-  static String m8(name) => "Account ${name} successfully deleted";
+  static String m9(name) => "Failed to upload file ${name}";
+
+  static String m10(name) => "Arrange ${name}";
+
+  static String m11(name) => "Account ${name} successfully deleted";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actionUndo": MessageLookupByLibrary.simpleMessage("Undo"),
+        "addSimplePage": MessageLookupByLibrary.simpleMessage("Add page"),
+        "addSimplePageTitleCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
+            "The page title cannot be empty"),
         "appName": MessageLookupByLibrary.simpleMessage("Jinya CMS"),
         "chooseFiles": MessageLookupByLibrary.simpleMessage("Choose files..."),
         "createGalleryTitle":
@@ -52,6 +62,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteGalleryMessage": m1,
         "deleteGalleryTitle":
             MessageLookupByLibrary.simpleMessage("Delete gallery?"),
+        "deleteSimplePageMessage": m2,
+        "deleteSimplePageTitle":
+            MessageLookupByLibrary.simpleMessage("Delete page?"),
         "discard": MessageLookupByLibrary.simpleMessage("Discard changes"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "editFileCancel":
@@ -65,18 +78,24 @@ class MessageLookup extends MessageLookupByLibrary {
             "The gallery name cannot be empty"),
         "editGalleryTitle":
             MessageLookupByLibrary.simpleMessage("Edit gallery"),
-        "failedToDeleteFileConflict": m2,
-        "failedToDeleteFileGeneric": m3,
-        "failedToDeleteGalleryConflict": m4,
-        "failedToDeleteGalleryGeneric": m5,
-        "failedUploading": m6,
+        "editSimplePage": MessageLookupByLibrary.simpleMessage("Edit page"),
+        "editSimplePageTitleCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage(
+                "The page title cannot be empty"),
+        "failedToDeleteFileConflict": m3,
+        "failedToDeleteFileGeneric": m4,
+        "failedToDeleteGalleryConflict": m5,
+        "failedToDeleteGalleryGeneric": m6,
+        "failedToDeleteSimplePageConflict": m7,
+        "failedToDeleteSimplePageGeneric": m8,
+        "failedUploading": m9,
         "galleryAddConflict": MessageLookupByLibrary.simpleMessage(
             "A gallery with the given name already exists"),
         "galleryAddGeneric": MessageLookupByLibrary.simpleMessage(
             "The gallery could not be saved"),
         "galleryDescription":
             MessageLookupByLibrary.simpleMessage("Description"),
-        "galleryDesigner": m7,
+        "galleryDesigner": m10,
         "galleryEditConflict": MessageLookupByLibrary.simpleMessage(
             "A gallery with the given name already exists"),
         "galleryEditGeneric": MessageLookupByLibrary.simpleMessage(
@@ -99,18 +118,22 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your credentials are invalid"),
         "loginPassword": MessageLookupByLibrary.simpleMessage("Password"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
-        "manageAccountsDeleteSuccess": m8,
+        "manageAccountsDeleteSuccess": m11,
         "manageAccountsTitle":
             MessageLookupByLibrary.simpleMessage("Manage accounts"),
         "manageFilesTitle": MessageLookupByLibrary.simpleMessage("Files"),
         "manageGalleriesTitle":
             MessageLookupByLibrary.simpleMessage("Galleries"),
+        "manageSimplePagesTitle":
+            MessageLookupByLibrary.simpleMessage("Simple pages"),
         "menuAddAccount": MessageLookupByLibrary.simpleMessage("Add account"),
         "menuManageAccounts":
             MessageLookupByLibrary.simpleMessage("Manage accounts"),
         "menuManageFiles": MessageLookupByLibrary.simpleMessage("Files"),
         "menuManageGalleries":
             MessageLookupByLibrary.simpleMessage("Galleries"),
+        "menuManageSimplePages":
+            MessageLookupByLibrary.simpleMessage("Simple pages"),
         "menuSwitchAccount":
             MessageLookupByLibrary.simpleMessage("Switch account"),
         "newAccountActionTwoFactorCode":
@@ -142,6 +165,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "pickFile": MessageLookupByLibrary.simpleMessage("Choose file"),
         "saveFailed": MessageLookupByLibrary.simpleMessage("Save failed"),
         "saveGallery": MessageLookupByLibrary.simpleMessage("Save gallery"),
+        "simplePageAddConflict": MessageLookupByLibrary.simpleMessage(
+            "A simple page with the given title already exists"),
+        "simplePageAddGeneric": MessageLookupByLibrary.simpleMessage(
+            "The simple page could not be saved"),
+        "simplePageEditConflict": MessageLookupByLibrary.simpleMessage(
+            "A simple page with the given title already exists"),
+        "simplePageEditGeneric": MessageLookupByLibrary.simpleMessage(
+            "The simple page could not be saved"),
+        "simplePageTitle": MessageLookupByLibrary.simpleMessage("Title"),
         "uploadFiles": MessageLookupByLibrary.simpleMessage("Upload files"),
         "uploadingFiles":
             MessageLookupByLibrary.simpleMessage("Uploading files...")

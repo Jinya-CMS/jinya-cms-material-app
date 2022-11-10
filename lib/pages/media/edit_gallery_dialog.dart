@@ -32,7 +32,6 @@ class _EditGalleryDialogState extends State<EditGalleryDialog> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
-    final messenger = ScaffoldMessenger.of(context);
 
     return AlertDialog(
       scrollable: true,
@@ -42,57 +41,69 @@ class _EditGalleryDialogState extends State<EditGalleryDialog> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              TextFormField(
-                controller: _nameController,
-                keyboardType: TextInputType.name,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return l10n.editGalleryNameCannotBeEmpty;
-                  }
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _nameController,
+                  keyboardType: TextInputType.name,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return l10n.editGalleryNameCannotBeEmpty;
+                    }
 
-                  return null;
-                },
-                decoration: InputDecoration(labelText: l10n.galleryName),
+                    return null;
+                  },
+                  decoration: InputDecoration(labelText: l10n.galleryName),
+                ),
               ),
-              TextFormField(
-                controller: _descriptionController,
-                maxLines: 5,
-                decoration: InputDecoration(labelText: l10n.galleryDescription),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _descriptionController,
+                  maxLines: 5,
+                  decoration: InputDecoration(labelText: l10n.galleryDescription),
+                ),
               ),
-              DropdownButtonFormField(
-                decoration: InputDecoration(labelText: l10n.galleryOrientation),
-                value: gallery.orientation,
-                items: [
-                  DropdownMenuItem(
-                    value: jinya.Orientation.vertical,
-                    child: Text(l10n.galleryOrientationVertical),
-                  ),
-                  DropdownMenuItem(
-                    value: jinya.Orientation.horizontal,
-                    child: Text(l10n.galleryOrientationHorizontal),
-                  ),
-                ],
-                onChanged: (jinya.Orientation? value) {
-                  _orientation = value!;
-                },
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: DropdownButtonFormField(
+                  decoration: InputDecoration(labelText: l10n.galleryOrientation),
+                  value: gallery.orientation,
+                  items: [
+                    DropdownMenuItem(
+                      value: jinya.Orientation.vertical,
+                      child: Text(l10n.galleryOrientationVertical),
+                    ),
+                    DropdownMenuItem(
+                      value: jinya.Orientation.horizontal,
+                      child: Text(l10n.galleryOrientationHorizontal),
+                    ),
+                  ],
+                  onChanged: (jinya.Orientation? value) {
+                    _orientation = value!;
+                  },
+                ),
               ),
-              DropdownButtonFormField(
-                decoration: InputDecoration(labelText: l10n.galleryType),
-                value: gallery.type,
-                items: [
-                  DropdownMenuItem(
-                    value: jinya.Type.masonry,
-                    child: Text(l10n.galleryTypeGrid),
-                  ),
-                  DropdownMenuItem(
-                    value: jinya.Type.sequence,
-                    child: Text(l10n.galleryTypeList),
-                  ),
-                ],
-                onChanged: (jinya.Type? value) {
-                  _type = value!;
-                },
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: DropdownButtonFormField(
+                  decoration: InputDecoration(labelText: l10n.galleryType),
+                  value: gallery.type,
+                  items: [
+                    DropdownMenuItem(
+                      value: jinya.Type.masonry,
+                      child: Text(l10n.galleryTypeGrid),
+                    ),
+                    DropdownMenuItem(
+                      value: jinya.Type.sequence,
+                      child: Text(l10n.galleryTypeList),
+                    ),
+                  ],
+                  onChanged: (jinya.Type? value) {
+                    _type = value!;
+                  },
+                ),
               ),
             ],
           ),

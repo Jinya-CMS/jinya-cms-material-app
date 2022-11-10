@@ -749,6 +749,156 @@ class S {
       args: [],
     );
   }
+
+  /// `Simple pages`
+  String get menuManageSimplePages {
+    return Intl.message(
+      'Simple pages',
+      name: 'menuManageSimplePages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Simple pages`
+  String get manageSimplePagesTitle {
+    return Intl.message(
+      'Simple pages',
+      name: 'manageSimplePagesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The page {title} is in use and cannot be deleted`
+  String failedToDeleteSimplePageConflict(Object title) {
+    return Intl.message(
+      'The page $title is in use and cannot be deleted',
+      name: 'failedToDeleteSimplePageConflict',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `The page {title} could not be deleted`
+  String failedToDeleteSimplePageGeneric(Object title) {
+    return Intl.message(
+      'The page $title could not be deleted',
+      name: 'failedToDeleteSimplePageGeneric',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `Delete page?`
+  String get deleteSimplePageTitle {
+    return Intl.message(
+      'Delete page?',
+      name: 'deleteSimplePageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete the page {title}?`
+  String deleteSimplePageMessage(Object title) {
+    return Intl.message(
+      'Do you really want to delete the page $title?',
+      name: 'deleteSimplePageMessage',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `Edit page`
+  String get editSimplePage {
+    return Intl.message(
+      'Edit page',
+      name: 'editSimplePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The page title cannot be empty`
+  String get editSimplePageTitleCannotBeEmpty {
+    return Intl.message(
+      'The page title cannot be empty',
+      name: 'editSimplePageTitleCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title`
+  String get simplePageTitle {
+    return Intl.message(
+      'Title',
+      name: 'simplePageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A simple page with the given title already exists`
+  String get simplePageEditConflict {
+    return Intl.message(
+      'A simple page with the given title already exists',
+      name: 'simplePageEditConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The simple page could not be saved`
+  String get simplePageEditGeneric {
+    return Intl.message(
+      'The simple page could not be saved',
+      name: 'simplePageEditGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add page`
+  String get addSimplePage {
+    return Intl.message(
+      'Add page',
+      name: 'addSimplePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The page title cannot be empty`
+  String get addSimplePageTitleCannotBeEmpty {
+    return Intl.message(
+      'The page title cannot be empty',
+      name: 'addSimplePageTitleCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A simple page with the given title already exists`
+  String get simplePageAddConflict {
+    return Intl.message(
+      'A simple page with the given title already exists',
+      name: 'simplePageAddConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The simple page could not be saved`
+  String get simplePageAddGeneric {
+    return Intl.message(
+      'The simple page could not be saved',
+      name: 'simplePageAddGeneric',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

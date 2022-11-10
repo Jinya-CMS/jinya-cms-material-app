@@ -24,7 +24,9 @@ class HomePage extends StatelessWidget {
           ),
         );
       }
-    } else if (!(await JinyaClient(SettingsDatabase.selectedAccount!.url).validateApiKey(SettingsDatabase.selectedAccount!.apiKey))) {
+    } else if (!(await JinyaClient(SettingsDatabase.selectedAccount!.url,
+            apiKey: SettingsDatabase.selectedAccount!.apiKey)
+        .validateApiKey(SettingsDatabase.selectedAccount!.apiKey))) {
       NavigationService.instance.navigateToReplacement(
         MaterialPageRoute(
           builder: (context) => LoginPage(),

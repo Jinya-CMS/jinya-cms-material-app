@@ -175,5 +175,47 @@
     }
   },
   "pickFile": "Choose file",
-  "@pickFile": {}
+  "@pickFile": {},
+  "menuManageSimplePages": "Simple pages",
+  "@menuManageSimplePages": {},
+  "manageSimplePagesTitle": "Simple pages",
+  "@manageSimplePagesTitle": {},
+  "failedToDeleteSimplePageConflict": "The page {title} is in use and cannot be deleted",
+  "@failedToDeleteSimplePageConflict": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "failedToDeleteSimplePageGeneric": "The page {title} could not be deleted",
+  "@failedToDeleteSimplePageGeneric": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "deleteSimplePageTitle": "Delete page?",
+  "@deleteSimplePageTitle": {},
+  "deleteSimplePageMessage": "Do you really want to delete the page {title}?",
+  "@deleteSimplePageMessage": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "editSimplePage": "Edit page",
+  "@editSimplePage": {},
+  "editSimplePageTitleCannotBeEmpty": "The page title cannot be empty",
+  "@editSimplePageTitleCannotBeEmpty": {},
+  "simplePageTitle": "Title",
+  "@simplePageTitle": {},
+  "simplePageEditConflict": "A simple page with the given title already exists",
+  "@simplePageEditConflict": {},
+  "simplePageEditGeneric": "The simple page could not be saved",
+  "@simplePageEditGeneric": {},
+  "addSimplePage": "Add page",
+  "@addSimplePage": {},
+  "addSimplePageTitleCannotBeEmpty": "The page title cannot be empty",
+  "@addSimplePageTitleCannotBeEmpty": {},
+  "simplePageAddConflict": "A simple page with the given title already exists",
+  "@simplePageAddConflict": {},
+  "simplePageAddGeneric": "The simple page could not be saved",
+  "@simplePageAddGeneric": {}
 }

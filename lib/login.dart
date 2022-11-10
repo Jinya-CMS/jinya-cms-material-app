@@ -24,14 +24,14 @@ class LoginPageState extends State<LoginPage> {
     if (_formKey.currentState!.validate()) {
       try {
         final apiClient = JinyaClient(SettingsDatabase.selectedAccount!.url);
-        final loginResult = await apiClient.login(SettingsDatabase.selectedAccount!.email, _passwordController.text);
+        final loginResult = await apiClient.login(SettingsDatabase.selectedAccount!.email, _passwordController.text, deviceCode: SettingsDatabase.selectedAccount!.deviceToken);
         SettingsDatabase.selectedAccount!.apiKey = loginResult.apiKey!;
-        SettingsDatabase.selectedAccount!.roles = loginResult.roles!;
+        SettingsDatabase.selectedAccount!.roles = loginResult.roles!.toList().cast<String>();
         SettingsDatabase.selectedAccount!.deviceToken = loginResult.deviceCode!;
-        final currentUser = await apiClient.getArtistInfo();
+        final currentUser = await SettingsDatabase.getClientForCurrentAccount().getArtistInfo();
         SettingsDatabase.selectedAccount!.profilePicture = currentUser.profilePicture!;
         await updateAccount(SettingsDatabase.selectedAccount!);
-        navigator.push(MaterialPageRoute(
+        navigator.pushReplacement(MaterialPageRoute(
           builder: (context) => HomePage(),
         ));
       } catch (e) {
@@ -62,32 +62,41 @@ class LoginPageState extends State<LoginPage> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              TextFormField(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                readOnly: true,
-                initialValue: SettingsDatabase.selectedAccount!.url,
-                decoration: InputDecoration(
-                  labelText: l10n.loginInstance,
-                ),
-              ),
-              TextFormField(
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                readOnly: true,
-                initialValue: SettingsDatabase.selectedAccount!.email,
-                decoration: InputDecoration(
-                  labelText: l10n.loginEmail,
-                ),
-              ),
-              TextFormField(
-                controller: _passwordController,
-                obscureText: true,
-                autocorrect: false,
-                decoration: InputDecoration(
-                  labelText: l10n.loginPassword,
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  readOnly: true,
+                  initialValue: SettingsDatabase.selectedAccount!.url,
+                  decoration: InputDecoration(
+                    labelText: l10n.loginInstance,
+                  ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  readOnly: true,
+                  initialValue: SettingsDatabase.selectedAccount!.email,
+                  decoration: InputDecoration(
+                    labelText: l10n.loginEmail,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  autocorrect: false,
+                  decoration: InputDecoration(
+                    labelText: l10n.loginPassword,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[

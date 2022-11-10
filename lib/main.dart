@@ -27,6 +27,7 @@ class JinyaCmsApp extends StatelessWidget {
       ],
       title: 'Jinya CMS App',
       darkTheme: ThemeData.dark().copyWith(
+        useMaterial3: true,
         primaryColor: const Color(0xFF966554),
         primaryTextTheme: Typography.material2021(platform: TargetPlatform.android).white,
         iconTheme: Theme.of(context).iconTheme.copyWith(
@@ -35,10 +36,17 @@ class JinyaCmsApp extends StatelessWidget {
         primaryIconTheme: Theme.of(context).iconTheme.copyWith(
               color: Colors.white,
             ),
+        toggleableActiveColor: const Color(0xFF966554),
         colorScheme: ColorScheme.fromSwatch().copyWith(
-            secondary: const Color(0xFF504a56), primary: const Color(0xFF966554), error: const Color(0xFF5C0B0B)),
+          secondary: const Color(0xFF504a56),
+          primary: const Color(0xFF966554),
+          error: const Color(0xFF5C0B0B),
+          primaryContainer: const Color(0xFF966554),
+        ),
+        inputDecorationTheme: const InputDecorationTheme(border: OutlineInputBorder()),
       ),
       theme: ThemeData(
+          useMaterial3: true,
           primaryColor: const Color(0xFF504a56),
           canvasColor: Colors.white,
           primaryTextTheme: Typography.material2021(platform: TargetPlatform.android).white,
@@ -46,10 +54,15 @@ class JinyaCmsApp extends StatelessWidget {
                 color: Colors.black,
               ),
           primaryIconTheme: Theme.of(context).iconTheme.copyWith(
-                color: Colors.black,
+                color: Colors.white,
               ),
+          toggleableActiveColor: const Color(0xFF504a56),
           colorScheme: ColorScheme.fromSwatch().copyWith(
-              secondary: const Color(0xFF966554), primary: const Color(0xFF504a56), error: const Color(0xFF5C0B0B)),
+            secondary: const Color(0xFF966554),
+            primary: const Color(0xFF504a56),
+            error: const Color(0xFF5C0B0B),
+            primaryContainer: const Color(0xFF504a56),
+          ),
           inputDecorationTheme: const InputDecorationTheme(border: OutlineInputBorder())),
       home: HomePage(),
     );

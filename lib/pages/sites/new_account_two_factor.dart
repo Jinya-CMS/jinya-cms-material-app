@@ -42,7 +42,7 @@ class NewAccountTwoFactorPageState extends State<NewAccountTwoFactorPage> {
           name: '',
         );
         SettingsDatabase.selectedAccount = account;
-        final currentUser = await apiClient.getArtistInfo();
+        final currentUser = await SettingsDatabase.getClientForCurrentAccount().getArtistInfo();
         account.name = currentUser.artistName!;
         account.profilePicture = currentUser.profilePicture!;
         account.jinyaId = currentUser.id!;
@@ -83,40 +83,44 @@ class NewAccountTwoFactorPageState extends State<NewAccountTwoFactorPage> {
           vertical: 8.0,
           horizontal: 32.0,
         ),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              TextFormField(
-                controller: _codeController,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                keyboardType: const TextInputType.numberWithOptions(),
-                autocorrect: false,
-                validator: (value) {
-                  if (value!.length > 6 || value.length < 6) {
-                    return l10n.newAccountTwoFactorErrorInvalidCode;
-                  }
+        child: Scrollbar(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: TextFormField(
+                    controller: _codeController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    keyboardType: const TextInputType.numberWithOptions(),
+                    autocorrect: false,
+                    validator: (value) {
+                      if (value!.length > 6 || value.length < 6) {
+                        return l10n.newAccountTwoFactorErrorInvalidCode;
+                      }
 
-                  return null;
-                },
-                decoration: InputDecoration(
-                  labelText: l10n.newAccountTwoFactorInputCode,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    ElevatedButton(
-                      onPressed: login,
-                      child: Text(
-                          l10n.newAccountTwoFactorActionLogin.toUpperCase()),
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      labelText: l10n.newAccountTwoFactorInputCode,
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      ElevatedButton(
+                        onPressed: login,
+                        child: Text(l10n.newAccountTwoFactorActionLogin.toUpperCase()),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

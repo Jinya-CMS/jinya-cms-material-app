@@ -44,8 +44,8 @@ class NewAccountPageState extends State<NewAccountPage> {
         );
         scaffoldManager!.showSnackBar(snackbar);
       } else {
-        try {
-          await JinyaClient(SettingsDatabase.selectedAccount!.url).requestTwoFactorCode(email, password);
+        final success = await JinyaClient(host).requestTwoFactorCode(email, password);
+        if (success) {
           final transferObject = NewAccountTransferObject(
             email,
             password,
@@ -54,7 +54,7 @@ class NewAccountPageState extends State<NewAccountPage> {
           navigator!.push(MaterialPageRoute(
             builder: (context) => NewAccountTwoFactorPage(transferObject),
           ));
-        } catch (e) {
+        } else {
           final snackbar = SnackBar(
             behavior: SnackBarBehavior.floating,
             content: Text(l10n!.newAccountErrorInvalidCredentials),
@@ -90,75 +90,85 @@ class NewAccountPageState extends State<NewAccountPage> {
           vertical: 8.0,
           horizontal: 32.0,
         ),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              TextFormField(
-                controller: _hostController,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                keyboardType: TextInputType.url,
-                autocorrect: false,
-                validator: (value) {
-                  if (!isURL(
-                    value,
-                    protocols: ['http', 'https'],
-                    requireProtocol: true,
-                  )) {
-                    return l10n.newAccountErrorInvalidUrl;
-                  }
+        child: Scrollbar(
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: TextFormField(
+                    controller: _hostController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    keyboardType: TextInputType.url,
+                    autocorrect: false,
+                    validator: (value) {
+                      if (!isURL(
+                        value,
+                        protocols: ['http', 'https'],
+                        requireProtocol: true,
+                      )) {
+                        return l10n.newAccountErrorInvalidUrl;
+                      }
 
-                  return null;
-                },
-                decoration: InputDecoration(
-                  labelText: l10n.newAccountInputJinyaHost,
-                ),
-              ),
-              TextFormField(
-                controller: _emailController,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                keyboardType: TextInputType.emailAddress,
-                autocorrect: false,
-                validator: (value) {
-                  if (!isEmail(value!)) {
-                    return l10n.newAccountErrorInvalidEmail;
-                  }
-
-                  return null;
-                },
-                decoration: InputDecoration(
-                  labelText: l10n.newAccountInputEmail,
-                ),
-              ),
-              TextFormField(
-                controller: _passwordController,
-                obscureText: true,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return l10n.newAccountErrorInvalidPassword;
-                  }
-
-                  return null;
-                },
-                decoration: InputDecoration(
-                  labelText: l10n.newAccountInputPassword,
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    ElevatedButton(
-                      onPressed: requestTwoFactorCode,
-                      child: Text(
-                          l10n.newAccountActionTwoFactorCode.toUpperCase()),
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      labelText: l10n.newAccountInputJinyaHost,
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: TextFormField(
+                    controller: _emailController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    keyboardType: TextInputType.emailAddress,
+                    autocorrect: false,
+                    validator: (value) {
+                      if (!isEmail(value!)) {
+                        return l10n.newAccountErrorInvalidEmail;
+                      }
+
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      labelText: l10n.newAccountInputEmail,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: TextFormField(
+                    controller: _passwordController,
+                    obscureText: true,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return l10n.newAccountErrorInvalidPassword;
+                      }
+
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      labelText: l10n.newAccountInputPassword,
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      ElevatedButton(
+                        onPressed: requestTwoFactorCode,
+                        child: Text(l10n.newAccountActionTwoFactorCode.toUpperCase()),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
