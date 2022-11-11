@@ -32,9 +32,124 @@ class _ListGalleriesState extends State<ListGalleries> {
     loadGalleries();
   }
 
+  Widget itemBuilder(BuildContext context, int index) {
+    final l10n = AppLocalizations.of(context)!;
+    final gallery = galleries.elementAt(index);
+    final children = <Widget>[
+      ListTile(
+        title: Text(gallery.name!),
+        subtitle: Text(gallery.description!),
+      ),
+      Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 8.0),
+            child: Text(
+              l10n.galleryOrientation,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          gallery.orientation == jinya.Orientation.horizontal
+              ? Text(l10n.galleryOrientationHorizontal)
+              : Text(l10n.galleryOrientationVertical),
+        ],
+      ),
+      Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 16.0, right: 8.0),
+            child: Text(
+              l10n.galleryType,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ),
+          gallery.type == jinya.Type.masonry ? Text(l10n.galleryTypeGrid) : Text(l10n.galleryTypeList),
+        ],
+      ),
+    ];
+
+    if (SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')) {
+      children.add(
+        ButtonBar(
+          alignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            TextButton(
+              onPressed: () async {
+                final dialog = EditGalleryDialog(gallery);
+                await showDialog(context: context, builder: (context) => dialog);
+                await loadGalleries();
+              },
+              child: const Icon(Icons.edit),
+            ),
+            TextButton(
+              onPressed: () {
+                NavigationService.instance.navigateTo(MaterialPageRoute(
+                  builder: (context) => GalleryDesigner(gallery),
+                ));
+              },
+              child: const Icon(Icons.reorder),
+            ),
+            TextButton(
+              onPressed: () async {
+                await showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text(l10n.deleteGalleryTitle),
+                    content: Text(l10n.deleteGalleryMessage(gallery.name!)),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          NavigationService.instance.goBack();
+                        },
+                        child: Text(l10n.keep),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          try {
+                            await apiClient.deleteGallery(gallery.id!);
+                            NavigationService.instance.goBack();
+                            await loadGalleries();
+                          } on jinya.ConflictException {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(l10n.failedToDeleteGalleryConflict(gallery.name!)),
+                            ));
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(l10n.failedToDeleteGalleryGeneric(gallery.name!)),
+                            ));
+                          }
+                        },
+                        style: TextButton.styleFrom(
+                          foregroundColor: Theme.of(context).errorColor,
+                        ),
+                        child: Text(l10n.delete),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.delete,
+                color: Theme.of(context).errorColor,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+    return Card(
+      margin: const EdgeInsets.all(8.0),
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        children: children,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final query = MediaQuery.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -46,122 +161,23 @@ class _ListGalleriesState extends State<ListGalleries> {
           onRefresh: () async {
             await loadGalleries();
           },
-          child: ListView.builder(
-            itemCount: galleries.length,
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            itemBuilder: (context, index) {
-              final gallery = galleries.elementAt(index);
-              final children = <Widget>[
-                ListTile(
-                  title: Text(gallery.name!),
-                  subtitle: Text(gallery.description!),
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16.0, right: 8.0),
-                      child: Text(
-                        l10n.galleryOrientation,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    gallery.orientation == jinya.Orientation.horizontal
-                        ? Text(l10n.galleryOrientationHorizontal)
-                        : Text(l10n.galleryOrientationVertical),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 16.0, right: 8.0),
-                      child: Text(
-                        l10n.galleryType,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    gallery.type == jinya.Type.masonry ? Text(l10n.galleryTypeGrid) : Text(l10n.galleryTypeList),
-                  ],
-                ),
-              ];
-
-              if (SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')) {
-                children.add(
-                  ButtonBar(
-                    alignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextButton(
-                        onPressed: () async {
-                          final dialog = EditGalleryDialog(gallery);
-                          await showDialog(context: context, builder: (context) => dialog);
-                          await loadGalleries();
-                        },
-                        child: const Icon(Icons.edit),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          NavigationService.instance.navigateTo(MaterialPageRoute(
-                            builder: (context) => GalleryDesigner(gallery),
-                          ));
-                        },
-                        child: const Icon(Icons.reorder),
-                      ),
-                      TextButton(
-                        onPressed: () async {
-                          await showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: Text(l10n.deleteGalleryTitle),
-                              content: Text(l10n.deleteGalleryMessage(gallery.name!)),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    NavigationService.instance.goBack();
-                                  },
-                                  child: Text(l10n.keep),
-                                ),
-                                TextButton(
-                                  onPressed: () async {
-                                    try {
-                                      await apiClient.deleteGallery(gallery.id!);
-                                      NavigationService.instance.goBack();
-                                      await loadGalleries();
-                                    } on jinya.ConflictException {
-                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                        content: Text(l10n.failedToDeleteGalleryConflict(gallery.name!)),
-                                      ));
-                                    } catch (e) {
-                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                        content: Text(l10n.failedToDeleteGalleryGeneric(gallery.name!)),
-                                      ));
-                                    }
-                                  },
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: Theme.of(context).errorColor,
-                                  ),
-                                  child: Text(l10n.delete),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                        child: Icon(
-                          Icons.delete,
-                          color: Theme.of(context).errorColor,
-                        ),
-                      ),
-                    ],
+          child: query.size.width >= 720
+              ? GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: query.size.width >= 1080 ? 4 : 2,
+                    childAspectRatio: query.size.width >= 1080
+                        ? MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height)
+                        : MediaQuery.of(context).size.height / (MediaQuery.of(context).size.width),
                   ),
-                );
-              }
-              return Card(
-                margin: const EdgeInsets.all(8.0),
-                clipBehavior: Clip.antiAlias,
-                child: Column(
-                  children: children,
+                  itemCount: galleries.length,
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  itemBuilder: itemBuilder,
+                )
+              : ListView.builder(
+                  itemCount: galleries.length,
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  itemBuilder: itemBuilder,
                 ),
-              );
-            },
-          ),
         ),
       ),
       floatingActionButton: SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')

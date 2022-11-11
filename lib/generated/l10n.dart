@@ -899,6 +899,206 @@ class S {
       args: [],
     );
   }
+
+  /// `Segment pages`
+  String get menuManageSegmentPages {
+    return Intl.message(
+      'Segment pages',
+      name: 'menuManageSegmentPages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Segment pages`
+  String get manageSegmentPagesTitle {
+    return Intl.message(
+      'Segment pages',
+      name: 'manageSegmentPagesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The page {title} is in use and cannot be deleted`
+  String failedToDeleteSegmentPageConflict(Object title) {
+    return Intl.message(
+      'The page $title is in use and cannot be deleted',
+      name: 'failedToDeleteSegmentPageConflict',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `The page {title} could not be deleted`
+  String failedToDeleteSegmentPageGeneric(Object title) {
+    return Intl.message(
+      'The page $title could not be deleted',
+      name: 'failedToDeleteSegmentPageGeneric',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `Delete page?`
+  String get deleteSegmentPageTitle {
+    return Intl.message(
+      'Delete page?',
+      name: 'deleteSegmentPageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete the page {title}?`
+  String deleteSegmentPageMessage(Object title) {
+    return Intl.message(
+      'Do you really want to delete the page $title?',
+      name: 'deleteSegmentPageMessage',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `Edit page`
+  String get editSegmentPage {
+    return Intl.message(
+      'Edit page',
+      name: 'editSegmentPage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discard changes`
+  String get editSegmentPageCancel {
+    return Intl.message(
+      'Discard changes',
+      name: 'editSegmentPageCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save page`
+  String get editSegmentPageSave {
+    return Intl.message(
+      'Save page',
+      name: 'editSegmentPageSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get segmentPageName {
+    return Intl.message(
+      'Name',
+      name: 'segmentPageName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A segment page with the given title already exists`
+  String get segmentPageEditConflict {
+    return Intl.message(
+      'A segment page with the given title already exists',
+      name: 'segmentPageEditConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The segment page could not be saved`
+  String get segmentPageEditGeneric {
+    return Intl.message(
+      'The segment page could not be saved',
+      name: 'segmentPageEditGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add page`
+  String get addSegmentPage {
+    return Intl.message(
+      'Add page',
+      name: 'addSegmentPage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discard changes`
+  String get addSegmentPageCancel {
+    return Intl.message(
+      'Discard changes',
+      name: 'addSegmentPageCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create page`
+  String get addSegmentPageSave {
+    return Intl.message(
+      'Create page',
+      name: 'addSegmentPageSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A segment page with the given title already exists`
+  String get segmentPageAddConflict {
+    return Intl.message(
+      'A segment page with the given title already exists',
+      name: 'segmentPageAddConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The segment page could not be saved`
+  String get segmentPageAddGeneric {
+    return Intl.message(
+      'The segment page could not be saved',
+      name: 'segmentPageAddGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The page name cannot be empty`
+  String get editSegmentPageTitleCannotBeEmpty {
+    return Intl.message(
+      'The page name cannot be empty',
+      name: 'editSegmentPageTitleCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The page name cannot be empty`
+  String get addSegmentPageTitleCannotBeEmpty {
+    return Intl.message(
+      'The page name cannot be empty',
+      name: 'addSegmentPageTitleCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Segment count: {count}`
+  String segmentPageSegmentCount(Object count) {
+    return Intl.message(
+      'Segment count: $count',
+      name: 'segmentPageSegmentCount',
+      desc: '',
+      args: [count],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

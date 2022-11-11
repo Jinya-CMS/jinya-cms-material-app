@@ -31,13 +31,99 @@ class _ListSimplePagesState extends State<ListSimplePages> {
     loadPages();
   }
 
+  Widget itemBuilder(BuildContext context, int index) {
+    final l10n = AppLocalizations.of(context)!;
+    final page = pages.elementAt(index);
+    final children = <Widget>[
+      ListTile(
+        title: Text(page.title!),
+      ),
+    ];
+
+    if (SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')) {
+      children.add(
+        ButtonBar(
+          alignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            TextButton(
+              onPressed: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EditSimplePage(page, onSave: () {
+                      loadPages();
+                    }),
+                  ),
+                );
+              },
+              child: const Icon(Icons.edit),
+            ),
+            TextButton(
+              onPressed: () async {
+                await showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text(l10n.deleteSimplePageTitle),
+                    content: Text(l10n.deleteSimplePageMessage(page.title!)),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          NavigationService.instance.goBack();
+                        },
+                        child: Text(l10n.keep),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          try {
+                            await apiClient.deleteSimplePage(page.id!);
+                            NavigationService.instance.goBack();
+                            await loadPages();
+                          } on jinya.ConflictException {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(l10n.failedToDeleteSimplePageConflict(page.title!)),
+                            ));
+                          } catch (e) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(l10n.failedToDeleteSimplePageGeneric(page.title!)),
+                            ));
+                          }
+                        },
+                        style: TextButton.styleFrom(
+                          foregroundColor: Theme.of(context).errorColor,
+                        ),
+                        child: Text(l10n.delete),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: Icon(
+                Icons.delete,
+                color: Theme.of(context).errorColor,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+    return Card(
+      margin: const EdgeInsets.all(8.0),
+      clipBehavior: Clip.antiAlias,
+      child: Column(
+        children: children,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
+    final query = MediaQuery.of(context);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n!.manageSimplePagesTitle),
+        iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: const JinyaNavigationDrawer(),
       body: Scrollbar(
@@ -45,92 +131,23 @@ class _ListSimplePagesState extends State<ListSimplePages> {
           onRefresh: () async {
             await loadPages();
           },
-          child: ListView.builder(
-            itemCount: pages.length,
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            itemBuilder: (context, index) {
-              final page = pages.elementAt(index);
-              final children = <Widget>[
-                ListTile(
-                  title: Text(page.title!),
-                ),
-              ];
-
-              if (SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')) {
-                children.add(
-                  ButtonBar(
-                    alignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      TextButton(
-                        onPressed: () async {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => EditSimplePage(page, onSave: () {
-                                loadPages();
-                              }),
-                            ),
-                          );
-                        },
-                        child: const Icon(Icons.edit),
-                      ),
-                      TextButton(
-                        onPressed: () async {
-                          await showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: Text(l10n.deleteSimplePageTitle),
-                              content: Text(l10n.deleteSimplePageMessage(page.title!)),
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    NavigationService.instance.goBack();
-                                  },
-                                  child: Text(l10n.keep),
-                                ),
-                                TextButton(
-                                  onPressed: () async {
-                                    try {
-                                      await apiClient.deleteSimplePage(page.id!);
-                                      NavigationService.instance.goBack();
-                                      await loadPages();
-                                    } on jinya.ConflictException {
-                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                        content: Text(l10n.failedToDeleteSimplePageConflict(page.title!)),
-                                      ));
-                                    } catch (e) {
-                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                                        content: Text(l10n.failedToDeleteSimplePageGeneric(page.title!)),
-                                      ));
-                                    }
-                                  },
-                                  style: TextButton.styleFrom(
-                                    foregroundColor: Theme.of(context).errorColor,
-                                  ),
-                                  child: Text(l10n.delete),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                        child: Icon(
-                          Icons.delete,
-                          color: Theme.of(context).errorColor,
-                        ),
-                      ),
-                    ],
+          child: query.size.width >= 720
+              ? GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: query.size.width >= 1080 ? 4 : 2,
+                    childAspectRatio: query.size.width >= 1080
+                        ? MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height)
+                        : MediaQuery.of(context).size.height / (MediaQuery.of(context).size.width),
                   ),
-                );
-              }
-              return Card(
-                margin: const EdgeInsets.all(8.0),
-                clipBehavior: Clip.antiAlias,
-                child: Column(
-                  children: children,
+                  itemCount: pages.length,
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  itemBuilder: itemBuilder,
+                )
+              : ListView.builder(
+                  itemCount: pages.length,
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  itemBuilder: itemBuilder,
                 ),
-              );
-            },
-          ),
         ),
       ),
       floatingActionButton: SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')

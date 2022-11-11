@@ -217,5 +217,61 @@
   "simplePageAddConflict": "A simple page with the given title already exists",
   "@simplePageAddConflict": {},
   "simplePageAddGeneric": "The simple page could not be saved",
-  "@simplePageAddGeneric": {}
+  "@simplePageAddGeneric": {},
+  "menuManageSegmentPages": "Segment pages",
+  "@menuManageSegmentPages": {},
+  "manageSegmentPagesTitle": "Segment pages",
+  "@manageSegmentPagesTitle": {},
+  "failedToDeleteSegmentPageConflict": "The page {title} is in use and cannot be deleted",
+  "@failedToDeleteSegmentPageConflict": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "failedToDeleteSegmentPageGeneric": "The page {title} could not be deleted",
+  "@failedToDeleteSegmentPageGeneric": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "deleteSegmentPageTitle": "Delete page?",
+  "@deleteSegmentPageTitle": {},
+  "deleteSegmentPageMessage": "Do you really want to delete the page {title}?",
+  "@deleteSegmentPageMessage": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "editSegmentPage": "Edit page",
+  "@editSegmentPage": {},
+  "editSegmentPageCancel": "Discard changes",
+  "@editSegmentPageCancel": {},
+  "editSegmentPageSave": "Save page",
+  "@editSegmentPageSave": {},
+  "segmentPageName": "Name",
+  "@segmentPageName": {},
+  "segmentPageEditConflict": "A segment page with the given title already exists",
+  "@segmentPageEditConflict": {},
+  "segmentPageEditGeneric": "The segment page could not be saved",
+  "@segmentPageEditGeneric": {},
+  "addSegmentPage": "Add page",
+  "@addSegmentPage": {},
+  "addSegmentPageCancel": "Discard changes",
+  "@addSegmentPageCancel": {},
+  "addSegmentPageSave": "Create page",
+  "@addSegmentPageSave": {},
+  "segmentPageAddConflict": "A segment page with the given title already exists",
+  "@segmentPageAddConflict": {},
+  "segmentPageAddGeneric": "The segment page could not be saved",
+  "@segmentPageAddGeneric": {},
+  "editSegmentPageTitleCannotBeEmpty": "The page name cannot be empty",
+  "@editSegmentPageTitleCannotBeEmpty": {},
+  "addSegmentPageTitleCannotBeEmpty": "The page name cannot be empty",
+  "@addSegmentPageTitleCannotBeEmpty": {},
+  "segmentPageSegmentCount": "Segment count: {count}",
+  "@segmentPageSegmentCount": {
+    "placeholders": {
+      "count": {}
+    }
+  }
 }

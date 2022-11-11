@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jinya_cms_material_app/color_scheme.g.dart';
 import 'package:jinya_cms_material_app/data/accountDatabase.dart';
 import 'package:jinya_cms_material_app/home.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -28,41 +29,66 @@ class JinyaCmsApp extends StatelessWidget {
       title: 'Jinya CMS App',
       darkTheme: ThemeData.dark().copyWith(
         useMaterial3: true,
-        primaryColor: const Color(0xFF966554),
-        primaryTextTheme: Typography.material2021(platform: TargetPlatform.android).white,
-        iconTheme: Theme.of(context).iconTheme.copyWith(
-              color: Colors.white,
-            ),
-        primaryIconTheme: Theme.of(context).iconTheme.copyWith(
-              color: Colors.white,
-            ),
-        toggleableActiveColor: const Color(0xFF966554),
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          secondary: const Color(0xFF504a56),
-          primary: const Color(0xFF966554),
-          error: const Color(0xFF5C0B0B),
-          primaryContainer: const Color(0xFF966554),
-        ),
+        colorScheme: darkColorScheme,
+        // primaryColor: const Color(0xFF966554),
+        // primaryTextTheme: Typography.material2021(platform: TargetPlatform.android).white,
+        // iconTheme: Theme.of(context).iconTheme.copyWith(
+        //       color: Colors.white,
+        //     ),
+        // primaryIconTheme: Theme.of(context).iconTheme.copyWith(
+        //       color: Colors.white,
+        //     ),
+        // appBarTheme: AppBarTheme.of(context).copyWith(
+        //   backgroundColor: const Color(0xFF504a56),
+        //   foregroundColor: Colors.white,
+        //   actionsIconTheme: Theme.of(context).iconTheme.copyWith(
+        //         color: Colors.white,
+        //       ),
+        //   iconTheme: Theme.of(context).iconTheme.copyWith(
+        //         color: Colors.white,
+        //       ),
+        // ),
+        // cardTheme: CardTheme.of(context).copyWith(
+        //   color: Colors.black,
+        // ),
+        // toggleableActiveColor: const Color(0xFF966554),
+        // colorScheme: ColorScheme.fromSwatch().copyWith(
+        //   secondary: const Color(0xFF504a56),
+        //   primary: const Color(0xFF966554),
+        //   error: const Color(0xFFEB5454),
+        //   primaryContainer: const Color(0xFF966554),
+        // ),
         inputDecorationTheme: const InputDecorationTheme(border: OutlineInputBorder()),
       ),
       theme: ThemeData(
           useMaterial3: true,
-          primaryColor: const Color(0xFF504a56),
-          canvasColor: Colors.white,
-          primaryTextTheme: Typography.material2021(platform: TargetPlatform.android).white,
-          iconTheme: Theme.of(context).iconTheme.copyWith(
-                color: Colors.black,
-              ),
-          primaryIconTheme: Theme.of(context).iconTheme.copyWith(
-                color: Colors.white,
-              ),
-          toggleableActiveColor: const Color(0xFF504a56),
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-            secondary: const Color(0xFF966554),
-            primary: const Color(0xFF504a56),
-            error: const Color(0xFF5C0B0B),
-            primaryContainer: const Color(0xFF504a56),
-          ),
+          colorScheme: lightColorScheme,
+          // primaryColor: const Color(0xFF504a56),
+          // canvasColor: Colors.white,
+          // primaryTextTheme: Typography.material2021(platform: TargetPlatform.android).white,
+          // iconTheme: Theme.of(context).iconTheme.copyWith(
+          //       color: Colors.black,
+          //     ),
+          // primaryIconTheme: Theme.of(context).iconTheme.copyWith(
+          //       color: Colors.white,
+          //     ),
+          // toggleableActiveColor: const Color(0xFF504a56),
+          // colorScheme: ColorScheme.fromSwatch().copyWith(
+          //   secondary: const Color(0xFF966554),
+          //   primary: const Color(0xFF504a56),
+          //   error: const Color(0xFF5C0B0B),
+          //   primaryContainer: const Color(0xFF504a56),
+          // ),
+          // appBarTheme: AppBarTheme.of(context).copyWith(
+          //   backgroundColor: const Color(0xFF504a56),
+          //   foregroundColor: Colors.white,
+          //   actionsIconTheme: Theme.of(context).iconTheme.copyWith(
+          //         color: Colors.white,
+          //       ),
+          //   iconTheme: Theme.of(context).iconTheme.copyWith(
+          //         color: Colors.white,
+          //       ),
+          // ),
           inputDecorationTheme: const InputDecorationTheme(border: OutlineInputBorder())),
       home: HomePage(),
     );

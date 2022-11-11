@@ -6,6 +6,7 @@ import 'package:jinya_cms_material_app/home.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/pages/media/list_files.dart';
 import 'package:jinya_cms_material_app/pages/media/list_galleries.dart';
+import 'package:jinya_cms_material_app/pages/pages/list_segment_pages.dart';
 import 'package:jinya_cms_material_app/pages/pages/list_simple_pages.dart';
 import 'package:jinya_cms_material_app/pages/sites/manage_accounts.dart';
 import 'package:jinya_cms_material_app/pages/sites/new_account.dart';
@@ -133,6 +134,22 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
                   builder: (context) => ListSimplePages(),
+                ),
+              );
+            });
+          },
+        ),
+      );
+      frontStageItems.add(
+        ListTile(
+          title: Text(l10n.menuManageSegmentPages),
+          leading: const Icon(MdiIcons.fileDocumentMultiple),
+          iconColor: Theme.of(context).iconTheme.color,
+          onTap: () {
+            setState(() {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => ListSegmentPages(),
                 ),
               );
             });
