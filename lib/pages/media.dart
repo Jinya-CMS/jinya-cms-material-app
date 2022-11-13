@@ -22,7 +22,7 @@ class Media extends StatelessWidget {
                 text: l10n.menuManageFiles,
               ),
               Tab(
-                icon: Icon(MdiIcons.imageMultiple),
+                icon: const Icon(MdiIcons.imageMultiple),
                 text: l10n.menuManageGalleries,
               ),
             ],

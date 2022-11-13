@@ -6,9 +6,9 @@ import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 class _GalleryDesigner extends StatefulWidget {
-  jinya.Gallery gallery;
+  final jinya.Gallery gallery;
 
-  _GalleryDesigner(this.gallery, {super.key});
+  const _GalleryDesigner(this.gallery, {super.key});
 
   @override
   _GalleryDesignerState createState() => _GalleryDesignerState(gallery);
@@ -88,7 +88,7 @@ class _GalleryDesignerState extends State<_GalleryDesigner> {
                       child: OutlinedButton(
                         onPressed: () async {
                           final position =
-                          await apiClient.createGalleryFilePosition(gallery.id!, file.id!, positions.length);
+                              await apiClient.createGalleryFilePosition(gallery.id!, file.id!, positions.length);
                           final data = positions.toList();
                           data.add(position);
                           setState(() {
@@ -121,41 +121,41 @@ class _GalleryDesignerState extends State<_GalleryDesigner> {
         children: positions
             .map(
               (position) => Dismissible(
-            key: Key(position.id.toString()),
-            background: Container(
-              color: Theme.of(context).errorColor,
-              child: const Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: EdgeInsets.only(right: 16.0),
-                  child: Icon(
-                    Icons.delete,
-                    color: Colors.white,
+                key: Key(position.id.toString()),
+                background: Container(
+                  color: Theme.of(context).errorColor,
+                  child: const Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: EdgeInsets.only(right: 16.0),
+                      child: Icon(
+                        Icons.delete,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                onDismissed: (direction) {
+                  removePosition(position);
+                  final filtered = positions.where((element) => element.id != position.id);
+                  setState(() {
+                    positions = filtered;
+                    resetPositions();
+                  });
+                },
+                direction: DismissDirection.endToStart,
+                child: ListTile(
+                  key: Key('tile${position.id}'),
+                  title: Text(position.file!.name!),
+                  leading: CachedNetworkImage(
+                    imageUrl: '${SettingsDatabase.selectedAccount!.url}/${position.file!.path!}',
+                    width: 80,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),
-            ),
-            onDismissed: (direction) {
-              removePosition(position);
-              final filtered = positions.where((element) => element.id != position.id);
-              setState(() {
-                positions = filtered;
-                resetPositions();
-              });
-            },
-            direction: DismissDirection.endToStart,
-            child: ListTile(
-              key: Key('tile${position.id}'),
-              title: Text(position.file!.name!),
-              leading: CachedNetworkImage(
-                imageUrl: '${SettingsDatabase.selectedAccount!.url}/${position.file!.path!}',
-                width: 80,
-                height: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-        )
+            )
             .toList(),
         onReorder: (int oldIndex, int newIndex) {
           final pos = positions.toList();
@@ -333,9 +333,9 @@ class _AddGalleryDialogState extends State<_AddGalleryDialog> {
 }
 
 class _EditGalleryDialog extends StatefulWidget {
-  jinya.Gallery gallery;
+  final jinya.Gallery gallery;
 
-  _EditGalleryDialog(this.gallery, {super.key});
+  const _EditGalleryDialog(this.gallery, {super.key});
 
   @override
   _EditGalleryDialogState createState() => _EditGalleryDialogState(gallery);

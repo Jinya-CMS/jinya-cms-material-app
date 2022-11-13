@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:jinya_cms_api/client/jinya_client.dart';
 import 'package:jinya_cms_material_app/data/account_database.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
@@ -20,7 +19,7 @@ class HomePage extends StatelessWidget {
       } else {
         NavigationService.instance.navigateToReplacement(
           MaterialPageRoute(
-            builder: (context) => ManageAccountsPage(),
+            builder: (context) => const ManageAccountsPage(),
           ),
         );
       }
@@ -43,7 +42,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(AppLocalizations.of(context)!.appName),
       ),
-      drawer: JinyaNavigationDrawer(),
+      drawer: const JinyaNavigationDrawer(),
       body: Image.asset(
         homePageBackground,
         fit: BoxFit.cover,

@@ -93,7 +93,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
       frontStageItems.add(
         ListTile(
           title: Text(l10n.menuMedia),
-          leading: Icon(MdiIcons.imageMultiple),
+          leading: const Icon(MdiIcons.imageMultiple),
           onTap: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
@@ -119,11 +119,11 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
       frontStageItems.add(
         ListTile(
           title: Text(l10n.menuForms),
-          leading: Icon(MdiIcons.formTextbox),
+          leading: const Icon(MdiIcons.formTextbox),
           onTap: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => Forms(),
+                builder: (context) => const Forms(),
               ),
             );
           },
@@ -231,7 +231,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => ManageAccountsPage(),
+                                builder: (context) => const ManageAccountsPage(),
                               ),
                             ),
                           ),

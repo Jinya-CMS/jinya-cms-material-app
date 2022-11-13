@@ -12,7 +12,7 @@ import 'package:prompt_dialog/prompt_dialog.dart';
 
 class _UploadFilesPage extends StatefulWidget {
   @override
-  _UploadFilesPageState createState() => _UploadFilesPageState(this.onBack);
+  _UploadFilesPageState createState() => _UploadFilesPageState(onBack);
 
   final Function? onBack;
 

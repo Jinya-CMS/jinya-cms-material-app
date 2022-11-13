@@ -202,7 +202,7 @@ class NewAccountPageState extends State<NewAccountPage> {
           onPressed: () => Navigator.pop(
             context,
             MaterialPageRoute(
-              builder: (context) => ManageAccountsPage(),
+              builder: (context) => const ManageAccountsPage(),
             ),
           ),
         ),
@@ -331,7 +331,7 @@ class ManageAccountsPageState extends State<ManageAccountsPage> {
       appBar: AppBar(
         title: Text(l10n!.manageAccountsTitle),
       ),
-      drawer: accounts.isEmpty ? null : JinyaNavigationDrawer(),
+      drawer: accounts.isEmpty ? null : const JinyaNavigationDrawer(),
       body: Scrollbar(
         child: ListView.builder(
           itemCount: accounts.length,

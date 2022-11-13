@@ -1,5 +1,4 @@
 import 'package:fleather/fleather.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
@@ -136,7 +135,7 @@ class _AddFormDialogState extends State<_AddFormDialog> {
 }
 
 class _EditFormDialog extends StatefulWidget {
-  _EditFormDialog(this.form);
+  const _EditFormDialog(this.form);
 
   final jinya.Form form;
 

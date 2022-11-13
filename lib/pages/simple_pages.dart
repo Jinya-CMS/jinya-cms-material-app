@@ -7,9 +7,9 @@ import 'package:fleather/fleather.dart';
 import 'package:notustohtml/notustohtml.dart';
 
 class _EditSimplePage extends StatefulWidget {
-  _EditSimplePage(this.page, {super.key, required this.onSave});
+  const _EditSimplePage(this.page, {super.key, required this.onSave});
 
-  Function onSave;
+  final Function onSave;
   final jinya.SimplePage page;
 
   @override
@@ -141,9 +141,9 @@ class _EditSimplePageState extends State<_EditSimplePage> {
 }
 
 class _AddSimplePage extends StatefulWidget {
-  _AddSimplePage({super.key, required this.onSave});
+  const _AddSimplePage({super.key, required this.onSave});
 
-  Function onSave;
+  final Function onSave;
 
   @override
   _AddSimplePageState createState() => _AddSimplePageState(onSave);

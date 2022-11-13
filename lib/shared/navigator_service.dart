@@ -9,12 +9,12 @@ class NavigationService {
     navigationKey = GlobalKey<NavigatorState>();
   }
 
-  Future<dynamic> navigateToReplacement(MaterialPageRoute _rn) {
-    return navigationKey!.currentState!.pushReplacement(_rn);
+  Future<dynamic> navigateToReplacement(MaterialPageRoute rn) {
+    return navigationKey!.currentState!.pushReplacement(rn);
   }
 
-  Future<dynamic> navigateTo(MaterialPageRoute _rn) {
-    return navigationKey!.currentState!.push(_rn);
+  Future<dynamic> navigateTo(MaterialPageRoute rn) {
+    return navigationKey!.currentState!.push(rn);
   }
 
   goBack() {

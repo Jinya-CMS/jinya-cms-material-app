@@ -113,7 +113,7 @@ class _EditFileSegmentState extends State<_EditFileSegment> {
   int? selectedFileId;
   bool hasLink = false;
 
-  late final linkController;
+  late final TextEditingController linkController;
 
   final apiClient = SettingsDatabase.getClientForCurrentAccount();
 
