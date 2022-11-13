@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_api/client/jinya_client.dart';
-import 'package:jinya_cms_material_app/data/accountDatabase.dart';
+import 'package:jinya_cms_material_app/data/account_database.dart';
 import 'package:jinya_cms_material_app/home.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';

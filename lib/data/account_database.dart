@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-part 'accountDatabase.g.dart';
+part 'account_database.g.dart';
 
 @HiveType(typeId: 0)
 class Account {

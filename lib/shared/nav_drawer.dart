@@ -1,15 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:jinya_cms_material_app/data/accountDatabase.dart';
+import 'package:jinya_cms_material_app/data/account_database.dart';
 import 'package:jinya_cms_material_app/home.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
-import 'package:jinya_cms_material_app/pages/media/list_files.dart';
-import 'package:jinya_cms_material_app/pages/media/list_galleries.dart';
-import 'package:jinya_cms_material_app/pages/pages/list_segment_pages.dart';
-import 'package:jinya_cms_material_app/pages/pages/list_simple_pages.dart';
-import 'package:jinya_cms_material_app/pages/sites/manage_accounts.dart';
-import 'package:jinya_cms_material_app/pages/sites/new_account.dart';
+import 'package:jinya_cms_material_app/pages/forms.dart';
+import 'package:jinya_cms_material_app/pages/media.dart';
+import 'package:jinya_cms_material_app/pages/pages.dart';
+import 'package:jinya_cms_material_app/pages/accounts.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -88,71 +86,46 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
     final frontStageItems = <ListTile>[];
     if (SettingsDatabase.selectedAccount!.roles!.contains('ROLE_READER') ||
         SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')) {
       frontStageItems.add(
         ListTile(
-          title: Text(l10n!.menuManageFiles),
-          leading: const Icon(Icons.image),
-          iconColor: Theme.of(context).iconTheme.color,
+          title: Text(l10n.menuMedia),
+          leading: Icon(MdiIcons.imageMultiple),
           onTap: () {
-            setState(() {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => ListFiles(),
-                ),
-              );
-            });
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => Media(),
+              ),
+            );
           },
         ),
       );
       frontStageItems.add(
         ListTile(
-          title: Text(l10n.menuManageGalleries),
-          leading: const Icon(MdiIcons.imageMultiple),
-          iconColor: Theme.of(context).iconTheme.color,
+          title: Text(l10n.menuPages),
+          leading: const Icon(Icons.menu_book),
           onTap: () {
-            setState(() {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => ListGalleries(),
-                ),
-              );
-            });
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => Pages(),
+              ),
+            );
           },
         ),
       );
       frontStageItems.add(
         ListTile(
-          title: Text(l10n.menuManageSimplePages),
-          leading: const Icon(MdiIcons.fileDocument),
-          iconColor: Theme.of(context).iconTheme.color,
+          title: Text(l10n.menuForms),
+          leading: Icon(MdiIcons.formTextbox),
           onTap: () {
-            setState(() {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => ListSimplePages(),
-                ),
-              );
-            });
-          },
-        ),
-      );
-      frontStageItems.add(
-        ListTile(
-          title: Text(l10n.menuManageSegmentPages),
-          leading: const Icon(MdiIcons.fileDocumentMultiple),
-          iconColor: Theme.of(context).iconTheme.color,
-          onTap: () {
-            setState(() {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => ListSegmentPages(),
-                ),
-              );
-            });
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => Forms(),
+              ),
+            );
           },
         ),
       );

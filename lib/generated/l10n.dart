@@ -1219,6 +1219,256 @@ class S {
       args: [],
     );
   }
+
+  /// `Media`
+  String get menuMedia {
+    return Intl.message(
+      'Media',
+      name: 'menuMedia',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pages`
+  String get menuPages {
+    return Intl.message(
+      'Pages',
+      name: 'menuPages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forms`
+  String get menuForms {
+    return Intl.message(
+      'Forms',
+      name: 'menuForms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The form {title} is in use and cannot be deleted`
+  String failedToDeleteFormConflict(Object title) {
+    return Intl.message(
+      'The form $title is in use and cannot be deleted',
+      name: 'failedToDeleteFormConflict',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `The form {title} could not be deleted`
+  String failedToDeleteFormGeneric(Object title) {
+    return Intl.message(
+      'The form $title could not be deleted',
+      name: 'failedToDeleteFormGeneric',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `Delete form?`
+  String get deleteFormTitle {
+    return Intl.message(
+      'Delete form?',
+      name: 'deleteFormTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete the form {title}?`
+  String deleteFormMessage(Object title) {
+    return Intl.message(
+      'Do you really want to delete the form $title?',
+      name: 'deleteFormMessage',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `The title cannot be empty`
+  String get addFormTitleCannotBeEmpty {
+    return Intl.message(
+      'The title cannot be empty',
+      name: 'addFormTitleCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The to address cannot be empty`
+  String get addFormToAddressCannotBeEmpty {
+    return Intl.message(
+      'The to address cannot be empty',
+      name: 'addFormToAddressCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The to address must be an email`
+  String get addFormToAddressWrongFormat {
+    return Intl.message(
+      'The to address must be an email',
+      name: 'addFormToAddressWrongFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title`
+  String get formTitle {
+    return Intl.message(
+      'Title',
+      name: 'formTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To address`
+  String get formToAddress {
+    return Intl.message(
+      'To address',
+      name: 'formToAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add form`
+  String get addFormTitle {
+    return Intl.message(
+      'Add form',
+      name: 'addFormTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save form`
+  String get addFormSave {
+    return Intl.message(
+      'Save form',
+      name: 'addFormSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discard changes`
+  String get addFormCancel {
+    return Intl.message(
+      'Discard changes',
+      name: 'addFormCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A form with the given title already exists`
+  String get formAddConflict {
+    return Intl.message(
+      'A form with the given title already exists',
+      name: 'formAddConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The form could not be saved`
+  String get formAddGeneric {
+    return Intl.message(
+      'The form could not be saved',
+      name: 'formAddGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit form`
+  String get editFormTitle {
+    return Intl.message(
+      'Edit form',
+      name: 'editFormTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save form`
+  String get editFormSave {
+    return Intl.message(
+      'Save form',
+      name: 'editFormSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discard changes`
+  String get editFormCancel {
+    return Intl.message(
+      'Discard changes',
+      name: 'editFormCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A form with the given title already exists`
+  String get formEditConflict {
+    return Intl.message(
+      'A form with the given title already exists',
+      name: 'formEditConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The form could not be saved`
+  String get formEditGeneric {
+    return Intl.message(
+      'The form could not be saved',
+      name: 'formEditGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The title cannot be empty`
+  String get editFormTitleCannotBeEmpty {
+    return Intl.message(
+      'The title cannot be empty',
+      name: 'editFormTitleCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The to address cannot be empty`
+  String get editFormToAddressCannotBeEmpty {
+    return Intl.message(
+      'The to address cannot be empty',
+      name: 'editFormToAddressCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The to address must be an email`
+  String get editFormToAddressWrongFormat {
+    return Intl.message(
+      'The to address must be an email',
+      name: 'editFormToAddressWrongFormat',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

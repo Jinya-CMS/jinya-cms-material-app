@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'accountDatabase.dart';
+part of 'account_database.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator

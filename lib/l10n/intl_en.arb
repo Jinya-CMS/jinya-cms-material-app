@@ -301,5 +301,67 @@
   "editSegmentFileHasLink": "Has link",
   "@editSegmentFileHasLink": {},
   "editSegmentFileLink": "Link",
-  "@editSegmentFileLink": {}
+  "@editSegmentFileLink": {},
+  "menuMedia": "Media",
+  "@menuMedia": {},
+  "menuPages": "Pages",
+  "@menuPages": {},
+  "menuForms": "Forms",
+  "@menuForms": {},
+  "failedToDeleteFormConflict": "The form {title} is in use and cannot be deleted",
+  "@failedToDeleteFormConflict": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "failedToDeleteFormGeneric": "The form {title} could not be deleted",
+  "@failedToDeleteFormGeneric": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "deleteFormTitle": "Delete form?",
+  "@deleteFormTitle": {},
+  "deleteFormMessage": "Do you really want to delete the form {title}?",
+  "@deleteFormMessage": {
+    "placeholders": {
+      "title": {}
+    }
+  },
+  "addFormTitleCannotBeEmpty": "The title cannot be empty",
+  "@addFormTitleCannotBeEmpty": {},
+  "addFormToAddressCannotBeEmpty": "The to address cannot be empty",
+  "@addFormToAddressCannotBeEmpty": {},
+  "addFormToAddressWrongFormat": "The to address must be an email",
+  "@addFormToAddressWrongFormat": {},
+  "formTitle": "Title",
+  "@formTitle": {},
+  "formToAddress": "To address",
+  "@formToAddress": {},
+  "addFormTitle": "Add form",
+  "@addFormTitle": {},
+  "addFormSave": "Save form",
+  "@addFormSave": {},
+  "addFormCancel": "Discard changes",
+  "@addFormCancel": {},
+  "formAddConflict": "A form with the given title already exists",
+  "@formAddConflict": {},
+  "formAddGeneric": "The form could not be saved",
+  "@formAddGeneric": {},
+  "editFormTitle": "Edit form",
+  "@editFormTitle": {},
+  "editFormSave": "Save form",
+  "@editFormSave": {},
+  "editFormCancel": "Discard changes",
+  "@editFormCancel": {},
+  "formEditConflict": "A form with the given title already exists",
+  "@formEditConflict": {},
+  "formEditGeneric": "The form could not be saved",
+  "@formEditGeneric": {},
+  "editFormTitleCannotBeEmpty": "The title cannot be empty",
+  "@editFormTitleCannotBeEmpty": {},
+  "editFormToAddressCannotBeEmpty": "The to address cannot be empty",
+  "@editFormToAddressCannotBeEmpty": {},
+  "editFormToAddressWrongFormat": "The to address must be an email",
+  "@editFormToAddressWrongFormat": {}
 }
