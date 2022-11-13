@@ -1271,8 +1271,6 @@ class _FormDesignerState extends State<_FormDesigner> {
 }
 
 class Forms extends StatefulWidget {
-  const Forms({super.key});
-
   @override
   _FormsState createState() => _FormsState();
 }

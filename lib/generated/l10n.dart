@@ -1669,6 +1669,176 @@ class S {
       args: [],
     );
   }
+
+  /// `Blog`
+  String get menuBlog {
+    return Intl.message(
+      'Blog',
+      name: 'menuBlog',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Categories`
+  String get menuManageBlogCategories {
+    return Intl.message(
+      'Categories',
+      name: 'menuManageBlogCategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Posts`
+  String get menuManageBlogPosts {
+    return Intl.message(
+      'Posts',
+      name: 'menuManageBlogPosts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The category {name} is in use and cannot be deleted`
+  String failedToDeleteCategoryConflict(Object name) {
+    return Intl.message(
+      'The category $name is in use and cannot be deleted',
+      name: 'failedToDeleteCategoryConflict',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `The category {name} could not be deleted`
+  String failedToDeleteCategoryGeneric(Object name) {
+    return Intl.message(
+      'The category $name could not be deleted',
+      name: 'failedToDeleteCategoryGeneric',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Add category`
+  String get addBlogCategory {
+    return Intl.message(
+      'Add category',
+      name: 'addBlogCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The name cannot be empty`
+  String get addCategoryTitleCannotBeEmpty {
+    return Intl.message(
+      'The name cannot be empty',
+      name: 'addCategoryTitleCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No parent`
+  String get categoryNoParent {
+    return Intl.message(
+      'No parent',
+      name: 'categoryNoParent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get categoryName {
+    return Intl.message(
+      'Name',
+      name: 'categoryName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get categoryDescription {
+    return Intl.message(
+      'Description',
+      name: 'categoryDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Parent`
+  String get categoryParent {
+    return Intl.message(
+      'Parent',
+      name: 'categoryParent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Webhook URL`
+  String get categoryWebhookUrl {
+    return Intl.message(
+      'Webhook URL',
+      name: 'categoryWebhookUrl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Webhook enabled`
+  String get categoryWebhookEnabled {
+    return Intl.message(
+      'Webhook enabled',
+      name: 'categoryWebhookEnabled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save category`
+  String get saveCategory {
+    return Intl.message(
+      'Save category',
+      name: 'saveCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discard changes`
+  String get discardCategory {
+    return Intl.message(
+      'Discard changes',
+      name: 'discardCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit category`
+  String get editBlogCategory {
+    return Intl.message(
+      'Edit category',
+      name: 'editBlogCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The name cannot be empty`
+  String get editCategoryTitleCannotBeEmpty {
+    return Intl.message(
+      'The name cannot be empty',
+      name: 'editCategoryTitleCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

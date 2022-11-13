@@ -7,17 +7,16 @@ import 'package:fleather/fleather.dart';
 import 'package:notustohtml/notustohtml.dart';
 
 class _EditSimplePage extends StatefulWidget {
-  const _EditSimplePage(this.page, {super.key, required this.onSave});
+  const _EditSimplePage(this.page, {super.key});
 
-  final Function onSave;
   final jinya.SimplePage page;
 
   @override
-  _EditSimplePageState createState() => _EditSimplePageState(page, onSave);
+  _EditSimplePageState createState() => _EditSimplePageState(page);
 }
 
 class _EditSimplePageState extends State<_EditSimplePage> {
-  _EditSimplePageState(this.page, this.onSave) {
+  _EditSimplePageState(this.page) {
     _titleController.text = page.title!;
     try {
       final delta = converter.decode(page.content!);
@@ -28,7 +27,6 @@ class _EditSimplePageState extends State<_EditSimplePage> {
     }
   }
 
-  Function onSave;
   bool hideEditor = false;
   final converter = const NotusHtmlCodec();
   final jinya.SimplePage page;
@@ -64,7 +62,6 @@ class _EditSimplePageState extends State<_EditSimplePage> {
                     content: hideEditor ? page.content : converter.encode(_contentController.document.toDelta()),
                   ));
                   NavigationService.instance.goBack();
-                  onSave();
                 } on jinya.ConflictException {
                   final dialog = AlertDialog(
                     title: Text(l10n.saveFailed),
@@ -141,16 +138,13 @@ class _EditSimplePageState extends State<_EditSimplePage> {
 }
 
 class _AddSimplePage extends StatefulWidget {
-  const _AddSimplePage({super.key, required this.onSave});
-
-  final Function onSave;
+  const _AddSimplePage({super.key});
 
   @override
-  _AddSimplePageState createState() => _AddSimplePageState(onSave);
+  _AddSimplePageState createState() => _AddSimplePageState();
 }
 
 class _AddSimplePageState extends State<_AddSimplePage> {
-  Function onSave;
   final converter = const NotusHtmlCodec();
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
@@ -178,7 +172,6 @@ class _AddSimplePageState extends State<_AddSimplePage> {
                     ),
                   );
                   NavigationService.instance.goBack();
-                  onSave();
                 } on jinya.ConflictException {
                   final dialog = AlertDialog(
                     title: Text(l10n.saveFailed),
@@ -255,8 +248,6 @@ class _AddSimplePageState extends State<_AddSimplePage> {
       ),
     );
   }
-
-  _AddSimplePageState(this.onSave);
 }
 
 class ListSimplePages extends StatefulWidget {
@@ -299,14 +290,13 @@ class _ListSimplePagesState extends State<ListSimplePages> {
           children: [
             TextButton(
               onPressed: () async {
-                Navigator.push(
+                await  Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => _EditSimplePage(page, onSave: () {
-                      loadPages();
-                    }),
+                    builder: (context) => _EditSimplePage(page),
                   ),
                 );
+                await loadPages();
               },
               child: const Icon(Icons.edit),
             ),
@@ -400,14 +390,13 @@ class _ListSimplePagesState extends State<ListSimplePages> {
       floatingActionButton: SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
           ? FloatingActionButton(
               child: const Icon(Icons.add),
-              onPressed: () {
-                Navigator.of(context).push(
+              onPressed: () async {
+                await Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => _AddSimplePage(onSave: () {
-                      loadPages();
-                    }),
+                    builder: (context) => _AddSimplePage(),
                   ),
                 );
+                await loadPages();
               },
             )
           : null,

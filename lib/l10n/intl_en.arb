@@ -407,5 +407,47 @@
   "editFormItemOptions": "Options",
   "@editFormItemOptions": {},
   "editFormItemLabelCannotBeEmpty": "The label cannot be empty",
-  "@editFormItemLabelCannotBeEmpty": {}
+  "@editFormItemLabelCannotBeEmpty": {},
+  "menuBlog": "Blog",
+  "@menuBlog": {},
+  "menuManageBlogCategories": "Categories",
+  "@menuManageBlogCategories": {},
+  "menuManageBlogPosts": "Posts",
+  "@menuManageBlogPosts": {},
+  "failedToDeleteCategoryConflict": "The category {name} is in use and cannot be deleted",
+  "@failedToDeleteCategoryConflict": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "failedToDeleteCategoryGeneric": "The category {name} could not be deleted",
+  "@failedToDeleteCategoryGeneric": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "addBlogCategory": "Add category",
+  "@addBlogCategory": {},
+  "addCategoryTitleCannotBeEmpty": "The name cannot be empty",
+  "@addCategoryTitleCannotBeEmpty": {},
+  "categoryNoParent": "No parent",
+  "@categoryNoParent": {},
+  "categoryName": "Name",
+  "@categoryName": {},
+  "categoryDescription": "Description",
+  "@categoryDescription": {},
+  "categoryParent": "Parent",
+  "@categoryParent": {},
+  "categoryWebhookUrl": "Webhook URL",
+  "@categoryWebhookUrl": {},
+  "categoryWebhookEnabled": "Webhook enabled",
+  "@categoryWebhookEnabled": {},
+  "saveCategory": "Save category",
+  "@saveCategory": {},
+  "discardCategory": "Discard changes",
+  "@discardCategory": {},
+  "editBlogCategory": "Edit category",
+  "@editBlogCategory": {},
+  "editCategoryTitleCannotBeEmpty": "The name cannot be empty",
+  "@editCategoryTitleCannotBeEmpty": {}
 }

@@ -35,47 +35,57 @@ class MessageLookup extends MessageLookupByLibrary {
       "Soll die Seite ${title} wirklich gelöscht werden?";
 
   static String m5(name) =>
+      "Die Kategorie ${name} konnte nicht gelöscht werden, da es verwendet wird";
+
+  static String m6(name) =>
+      "Die Kategorie ${name} konnte nicht gelöscht werden";
+
+  static String m7(name) =>
       "Die Datei ${name} konnte nicht gelöscht werden, da sie verwendet wird";
 
-  static String m6(name) => "Die Datei ${name} konnte nicht gelöscht werden";
+  static String m8(name) => "Die Datei ${name} konnte nicht gelöscht werden";
 
-  static String m7(title) =>
+  static String m9(title) =>
       "Das Formular ${title} konnte nicht gelöscht werden, da es verwendet wird";
 
-  static String m8(title) =>
+  static String m10(title) =>
       "Das Formular ${title} konnte nicht gelöscht werden";
 
-  static String m9(name) =>
+  static String m11(name) =>
       "Die Galerie ${name} konnte nicht gelöscht werden, da sie verwendet wird";
 
-  static String m10(name) => "Die Galerie ${name} konnte nicht gelöscht werden";
-
-  static String m11(title) =>
-      "Die Seite ${title} konnte nicht gelöscht werden, da sie verwendet wird";
-
-  static String m12(title) => "Die Seite ${title} konnte nicht gelöscht werden";
+  static String m12(name) => "Die Galerie ${name} konnte nicht gelöscht werden";
 
   static String m13(title) =>
       "Die Seite ${title} konnte nicht gelöscht werden, da sie verwendet wird";
 
   static String m14(title) => "Die Seite ${title} konnte nicht gelöscht werden";
 
-  static String m15(name) =>
+  static String m15(title) =>
+      "Die Seite ${title} konnte nicht gelöscht werden, da sie verwendet wird";
+
+  static String m16(title) => "Die Seite ${title} konnte nicht gelöscht werden";
+
+  static String m17(name) =>
       "Die Datei ${name} konnte nicht hochgeladen werden";
 
-  static String m16(title) => "${title} anordnen";
-
-  static String m17(name) => "${name} einrichten";
-
-  static String m18(name) => "Account ${name} wurde erfolgreich gelöscht";
+  static String m18(title) => "${title} anordnen";
 
   static String m19(name) => "${name} einrichten";
 
-  static String m20(count) => "Anzahl Segmente: ${count}";
+  static String m20(name) => "Account ${name} wurde erfolgreich gelöscht";
+
+  static String m21(name) => "${name} einrichten";
+
+  static String m22(count) => "Anzahl Segmente: ${count}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actionUndo": MessageLookupByLibrary.simpleMessage("Rückgängig"),
+        "addBlogCategory":
+            MessageLookupByLibrary.simpleMessage("Kategorie hinzufügen"),
+        "addCategoryTitleCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Der Name ist erforderlich"),
         "addFormCancel":
             MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
         "addFormItemCheckbox": MessageLookupByLibrary.simpleMessage("Checkbox"),
@@ -113,6 +123,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "addSimplePageTitleCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("Der Titel ist erforderlich"),
         "appName": MessageLookupByLibrary.simpleMessage("Jinya CMS"),
+        "categoryDescription":
+            MessageLookupByLibrary.simpleMessage("Beschreibung"),
+        "categoryName": MessageLookupByLibrary.simpleMessage("Name"),
+        "categoryParent":
+            MessageLookupByLibrary.simpleMessage("Elternkategorie"),
+        "categoryWebhookEnabled":
+            MessageLookupByLibrary.simpleMessage("Webhook aktiviert"),
+        "categoryWebhookUrl":
+            MessageLookupByLibrary.simpleMessage("Webhook URL"),
         "chooseFiles":
             MessageLookupByLibrary.simpleMessage("Dateien wählen..."),
         "createGalleryTitle":
@@ -134,7 +153,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteSimplePageTitle":
             MessageLookupByLibrary.simpleMessage("Seite löschen?"),
         "discard": MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
+        "discardCategory":
+            MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Schließen"),
+        "editBlogCategory":
+            MessageLookupByLibrary.simpleMessage("Kategorie bearbeiten"),
+        "editCategoryTitleCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Der Name ist erforderlich"),
         "editFileCancel":
             MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
         "editFileName": MessageLookupByLibrary.simpleMessage("Name"),
@@ -198,22 +223,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Seite bearbeiten"),
         "editSimplePageTitleCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("Der Titel ist erforderlich"),
-        "failedToDeleteFileConflict": m5,
-        "failedToDeleteFileGeneric": m6,
-        "failedToDeleteFormConflict": m7,
-        "failedToDeleteFormGeneric": m8,
-        "failedToDeleteGalleryConflict": m9,
-        "failedToDeleteGalleryGeneric": m10,
-        "failedToDeleteSegmentPageConflict": m11,
-        "failedToDeleteSegmentPageGeneric": m12,
-        "failedToDeleteSimplePageConflict": m13,
-        "failedToDeleteSimplePageGeneric": m14,
-        "failedUploading": m15,
+        "failedToDeleteCategoryConflict": m5,
+        "failedToDeleteCategoryGeneric": m6,
+        "failedToDeleteFileConflict": m7,
+        "failedToDeleteFileGeneric": m8,
+        "failedToDeleteFormConflict": m9,
+        "failedToDeleteFormGeneric": m10,
+        "failedToDeleteGalleryConflict": m11,
+        "failedToDeleteGalleryGeneric": m12,
+        "failedToDeleteSegmentPageConflict": m13,
+        "failedToDeleteSegmentPageGeneric": m14,
+        "failedToDeleteSimplePageConflict": m15,
+        "failedToDeleteSimplePageGeneric": m16,
+        "failedUploading": m17,
         "formAddConflict": MessageLookupByLibrary.simpleMessage(
             "Ein Formular mit dem gewählten Titel existiert bereits"),
         "formAddGeneric": MessageLookupByLibrary.simpleMessage(
             "Das Formular konnte nicht gespeichert werden"),
-        "formDesigner": m16,
+        "formDesigner": m18,
         "formEditConflict": MessageLookupByLibrary.simpleMessage(
             "Ein Formular mit dem gewählten Titel existiert bereits"),
         "formEditGeneric": MessageLookupByLibrary.simpleMessage(
@@ -231,7 +258,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Die Galerie konnte nicht gespeichert werden"),
         "galleryDescription":
             MessageLookupByLibrary.simpleMessage("Beschreibung"),
-        "galleryDesigner": m17,
+        "galleryDesigner": m19,
         "galleryEditConflict": MessageLookupByLibrary.simpleMessage(
             "Eine Galerie mit dem gewählten Namen existiert bereits"),
         "galleryEditGeneric": MessageLookupByLibrary.simpleMessage(
@@ -254,7 +281,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Die Zugangsdaten für den Account sind falsch"),
         "loginPassword": MessageLookupByLibrary.simpleMessage("Passwort"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Anmelden"),
-        "manageAccountsDeleteSuccess": m18,
+        "manageAccountsDeleteSuccess": m20,
         "manageAccountsTitle":
             MessageLookupByLibrary.simpleMessage("Accounts verwalten"),
         "manageFilesTitle": MessageLookupByLibrary.simpleMessage("Dateien"),
@@ -266,9 +293,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Einfache Seiten"),
         "menuAddAccount":
             MessageLookupByLibrary.simpleMessage("Account hinzufügen"),
+        "menuBlog": MessageLookupByLibrary.simpleMessage("Blog"),
         "menuForms": MessageLookupByLibrary.simpleMessage("Formulare"),
         "menuManageAccounts":
             MessageLookupByLibrary.simpleMessage("Accounts verwalten"),
+        "menuManageBlogCategories":
+            MessageLookupByLibrary.simpleMessage("Kategorien"),
+        "menuManageBlogPosts": MessageLookupByLibrary.simpleMessage("Posts"),
         "menuManageFiles": MessageLookupByLibrary.simpleMessage("Dateien"),
         "menuManageGalleries": MessageLookupByLibrary.simpleMessage("Galerien"),
         "menuManageSegmentPages":
@@ -307,6 +338,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "newAccountTwoFactorInputCode":
             MessageLookupByLibrary.simpleMessage("Zwei Faktor Code"),
         "pickFile": MessageLookupByLibrary.simpleMessage("Datei wählen"),
+        "saveCategory":
+            MessageLookupByLibrary.simpleMessage("Kategorie speichern"),
         "saveFailed":
             MessageLookupByLibrary.simpleMessage("Speichern fehlgeschlagen"),
         "saveGallery":
@@ -315,13 +348,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Eine Seite mit dem gewählten Titel existiert bereits"),
         "segmentPageAddGeneric": MessageLookupByLibrary.simpleMessage(
             "Die Seite konnte nicht gespeichert werden"),
-        "segmentPageDesigner": m19,
+        "segmentPageDesigner": m21,
         "segmentPageEditConflict": MessageLookupByLibrary.simpleMessage(
             "Eine Seite mit dem gewählten Titel existiert bereits"),
         "segmentPageEditGeneric": MessageLookupByLibrary.simpleMessage(
             "Die Seite konnte nicht gespeichert werden"),
         "segmentPageName": MessageLookupByLibrary.simpleMessage("Name"),
-        "segmentPageSegmentCount": m20,
+        "segmentPageSegmentCount": m22,
         "segmentTypeFile": MessageLookupByLibrary.simpleMessage("Datei"),
         "segmentTypeFileNoLink":
             MessageLookupByLibrary.simpleMessage("Kein Link"),

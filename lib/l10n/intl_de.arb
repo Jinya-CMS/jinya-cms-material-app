@@ -161,5 +161,22 @@
   "editFormItemIsRequired": "Erforderlich",
   "editFormItemIsFromAddress": "Absenderadresse",
   "editFormItemOptions": "Optionen",
-  "editFormItemLabelCannotBeEmpty": "Das Label ist erforderlich"
+  "editFormItemLabelCannotBeEmpty": "Das Label ist erforderlich",
+  "menuBlog": "Blog",
+  "menuManageBlogCategories": "Kategorien",
+  "menuManageBlogPosts": "Posts",
+  "failedToDeleteCategoryConflict": "Die Kategorie {name} konnte nicht gelöscht werden, da es verwendet wird",
+  "failedToDeleteCategoryGeneric": "Die Kategorie {name} konnte nicht gelöscht werden",
+  "addBlogCategory": "Kategorie hinzufügen",
+  "addCategoryTitleCannotBeEmpty": "Der Name ist erforderlich",
+  "addBlogCategoryNoParent": "Keine Elternkategorie",
+  "categoryName": "Name",
+  "categoryDescription": "Beschreibung",
+  "categoryParent": "Elternkategorie",
+  "categoryWebhookUrl": "Webhook URL",
+  "categoryWebhookEnabled": "Webhook aktiviert",
+  "saveCategory": "Kategorie speichern",
+  "discardCategory": "Änderungen verwerfen",
+  "editBlogCategory": "Kategorie bearbeiten",
+  "editCategoryTitleCannotBeEmpty": "Der Name ist erforderlich"
 }
