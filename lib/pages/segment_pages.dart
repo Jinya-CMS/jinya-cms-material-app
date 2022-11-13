@@ -198,6 +198,12 @@ class _EditFileSegmentState extends State<_EditFileSegment> {
   }
 }
 
+enum _SegmentType {
+  file,
+  gallery,
+  html,
+}
+
 class _SegmentPageDesigner extends StatefulWidget {
   const _SegmentPageDesigner(this.page, {super.key});
 
@@ -410,28 +416,28 @@ class _SegmentPageDesignerState extends State<_SegmentPageDesigner> {
             itemBuilder: (context) {
               return [
                 PopupMenuItem(
-                  value: 'file',
+                  value: _SegmentType.file,
                   child: Text(l10n.addSegmentTypeFile),
                 ),
                 PopupMenuItem(
-                  value: 'gallery',
+                  value: _SegmentType.gallery,
                   child: Text(l10n.addSegmentTypeGallery),
                 ),
                 PopupMenuItem(
-                  value: 'html',
+                  value: _SegmentType.html,
                   child: Text(l10n.addSegmentTypeHtml),
                 ),
               ];
             },
             onSelected: (value) {
               switch (value) {
-                case 'file':
+                case _SegmentType.file:
                   displayFileSegmentEditor(jinya.Segment(position: 0, file: null), true);
                   break;
-                case 'gallery':
+                case _SegmentType.gallery:
                   displayGallerySegmentEditor(jinya.Segment(position: 0, gallery: null), true);
                   break;
-                case 'html':
+                case _SegmentType.html:
                   displayHtmlSegmentEditor(jinya.Segment(position: 0, html: '<p></p>'), true);
                   break;
               }

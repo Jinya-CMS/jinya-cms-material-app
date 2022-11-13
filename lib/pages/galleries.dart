@@ -205,7 +205,7 @@ class _AddGalleryDialogState extends State<_AddGalleryDialog> {
         child: Form(
           key: _formKey,
           child: Column(
-            children: <Widget>[
+            children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: TextFormField(

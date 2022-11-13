@@ -1469,6 +1469,206 @@ class S {
       args: [],
     );
   }
+
+  /// `Arrange {title}`
+  String formDesigner(Object title) {
+    return Intl.message(
+      'Arrange $title',
+      name: 'formDesigner',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `Text input`
+  String get addFormItemText {
+    return Intl.message(
+      'Text input',
+      name: 'addFormItemText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email input`
+  String get addFormItemEmail {
+    return Intl.message(
+      'Email input',
+      name: 'addFormItemEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Multiline input`
+  String get addFormItemMultiline {
+    return Intl.message(
+      'Multiline input',
+      name: 'addFormItemMultiline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dropdown`
+  String get addFormItemDropdown {
+    return Intl.message(
+      'Dropdown',
+      name: 'addFormItemDropdown',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Checkbox`
+  String get addFormItemCheckbox {
+    return Intl.message(
+      'Checkbox',
+      name: 'addFormItemCheckbox',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email input`
+  String get formItemTypeEmail {
+    return Intl.message(
+      'Email input',
+      name: 'formItemTypeEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Multiline input`
+  String get formItemTypeMultiline {
+    return Intl.message(
+      'Multiline input',
+      name: 'formItemTypeMultiline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Text input`
+  String get formItemTypeText {
+    return Intl.message(
+      'Text input',
+      name: 'formItemTypeText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discard changes`
+  String get editItemDiscard {
+    return Intl.message(
+      'Discard changes',
+      name: 'editItemDiscard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save item`
+  String get editItemSave {
+    return Intl.message(
+      'Save item',
+      name: 'editItemSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Label`
+  String get editFormItemLabel {
+    return Intl.message(
+      'Label',
+      name: 'editFormItemLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Placeholder`
+  String get editFormItemPlaceholder {
+    return Intl.message(
+      'Placeholder',
+      name: 'editFormItemPlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help text`
+  String get editFormItemHelpText {
+    return Intl.message(
+      'Help text',
+      name: 'editFormItemHelpText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Spam filter`
+  String get editFormItemSpamFilter {
+    return Intl.message(
+      'Spam filter',
+      name: 'editFormItemSpamFilter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Is subject`
+  String get editFormItemIsSubject {
+    return Intl.message(
+      'Is subject',
+      name: 'editFormItemIsSubject',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Is required`
+  String get editFormItemIsRequired {
+    return Intl.message(
+      'Is required',
+      name: 'editFormItemIsRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Is from address`
+  String get editFormItemIsFromAddress {
+    return Intl.message(
+      'Is from address',
+      name: 'editFormItemIsFromAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Options`
+  String get editFormItemOptions {
+    return Intl.message(
+      'Options',
+      name: 'editFormItemOptions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The label cannot be empty`
+  String get editFormItemLabelCannotBeEmpty {
+    return Intl.message(
+      'The label cannot be empty',
+      name: 'editFormItemLabelCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -63,19 +63,27 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m15(name) =>
       "Die Datei ${name} konnte nicht hochgeladen werden";
 
-  static String m16(name) => "${name} einrichten";
+  static String m16(title) => "${title} anordnen";
 
-  static String m17(name) => "Account ${name} wurde erfolgreich gelöscht";
+  static String m17(name) => "${name} einrichten";
 
-  static String m18(name) => "${name} einrichten";
+  static String m18(name) => "Account ${name} wurde erfolgreich gelöscht";
 
-  static String m19(count) => "Anzahl Segmente: ${count}";
+  static String m19(name) => "${name} einrichten";
+
+  static String m20(count) => "Anzahl Segmente: ${count}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actionUndo": MessageLookupByLibrary.simpleMessage("Rückgängig"),
         "addFormCancel":
             MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
+        "addFormItemCheckbox": MessageLookupByLibrary.simpleMessage("Checkbox"),
+        "addFormItemDropdown": MessageLookupByLibrary.simpleMessage("Dropdown"),
+        "addFormItemEmail": MessageLookupByLibrary.simpleMessage("Emailfeld"),
+        "addFormItemMultiline":
+            MessageLookupByLibrary.simpleMessage("Mehrzeiliges Feld"),
+        "addFormItemText": MessageLookupByLibrary.simpleMessage("Textfeld"),
         "addFormSave":
             MessageLookupByLibrary.simpleMessage("Formular speichern"),
         "addFormTitle":
@@ -137,6 +145,22 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Datei bearbeiten"),
         "editFormCancel":
             MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
+        "editFormItemHelpText":
+            MessageLookupByLibrary.simpleMessage("Hilfetext"),
+        "editFormItemIsFromAddress":
+            MessageLookupByLibrary.simpleMessage("Absenderadresse"),
+        "editFormItemIsRequired":
+            MessageLookupByLibrary.simpleMessage("Erforderlich"),
+        "editFormItemIsSubject":
+            MessageLookupByLibrary.simpleMessage("Betreff"),
+        "editFormItemLabel": MessageLookupByLibrary.simpleMessage("Label"),
+        "editFormItemLabelCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Das Label ist erforderlich"),
+        "editFormItemOptions": MessageLookupByLibrary.simpleMessage("Optionen"),
+        "editFormItemPlaceholder":
+            MessageLookupByLibrary.simpleMessage("Platzhalter"),
+        "editFormItemSpamFilter":
+            MessageLookupByLibrary.simpleMessage("Spam Filter"),
         "editFormSave":
             MessageLookupByLibrary.simpleMessage("Formular speichern"),
         "editFormTitle":
@@ -151,6 +175,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Der Name ist erforderlich"),
         "editGalleryTitle":
             MessageLookupByLibrary.simpleMessage("Galerie bearbeiten"),
+        "editItemDiscard":
+            MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
+        "editItemSave":
+            MessageLookupByLibrary.simpleMessage("Element speichern"),
         "editSegmentDiscard":
             MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
         "editSegmentFileHasLink":
@@ -185,10 +213,15 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ein Formular mit dem gewählten Titel existiert bereits"),
         "formAddGeneric": MessageLookupByLibrary.simpleMessage(
             "Das Formular konnte nicht gespeichert werden"),
+        "formDesigner": m16,
         "formEditConflict": MessageLookupByLibrary.simpleMessage(
             "Ein Formular mit dem gewählten Titel existiert bereits"),
         "formEditGeneric": MessageLookupByLibrary.simpleMessage(
             "Das Formular konnte nicht gespeichert werden"),
+        "formItemTypeEmail": MessageLookupByLibrary.simpleMessage("Emailfeld"),
+        "formItemTypeMultiline":
+            MessageLookupByLibrary.simpleMessage("Mehrzeiliges Feld"),
+        "formItemTypeText": MessageLookupByLibrary.simpleMessage("Textfeld"),
         "formTitle": MessageLookupByLibrary.simpleMessage("Titel"),
         "formToAddress":
             MessageLookupByLibrary.simpleMessage("Empfängeradresse"),
@@ -198,7 +231,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Die Galerie konnte nicht gespeichert werden"),
         "galleryDescription":
             MessageLookupByLibrary.simpleMessage("Beschreibung"),
-        "galleryDesigner": m16,
+        "galleryDesigner": m17,
         "galleryEditConflict": MessageLookupByLibrary.simpleMessage(
             "Eine Galerie mit dem gewählten Namen existiert bereits"),
         "galleryEditGeneric": MessageLookupByLibrary.simpleMessage(
@@ -221,7 +254,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Die Zugangsdaten für den Account sind falsch"),
         "loginPassword": MessageLookupByLibrary.simpleMessage("Passwort"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Anmelden"),
-        "manageAccountsDeleteSuccess": m17,
+        "manageAccountsDeleteSuccess": m18,
         "manageAccountsTitle":
             MessageLookupByLibrary.simpleMessage("Accounts verwalten"),
         "manageFilesTitle": MessageLookupByLibrary.simpleMessage("Dateien"),
@@ -282,13 +315,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Eine Seite mit dem gewählten Titel existiert bereits"),
         "segmentPageAddGeneric": MessageLookupByLibrary.simpleMessage(
             "Die Seite konnte nicht gespeichert werden"),
-        "segmentPageDesigner": m18,
+        "segmentPageDesigner": m19,
         "segmentPageEditConflict": MessageLookupByLibrary.simpleMessage(
             "Eine Seite mit dem gewählten Titel existiert bereits"),
         "segmentPageEditGeneric": MessageLookupByLibrary.simpleMessage(
             "Die Seite konnte nicht gespeichert werden"),
         "segmentPageName": MessageLookupByLibrary.simpleMessage("Name"),
-        "segmentPageSegmentCount": m19,
+        "segmentPageSegmentCount": m20,
         "segmentTypeFile": MessageLookupByLibrary.simpleMessage("Datei"),
         "segmentTypeFileNoLink":
             MessageLookupByLibrary.simpleMessage("Kein Link"),

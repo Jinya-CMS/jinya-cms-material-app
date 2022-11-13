@@ -293,6 +293,983 @@ class _EditFormDialogState extends State<_EditFormDialog> {
   }
 }
 
+enum _FormItemType {
+  text,
+  email,
+  multiline,
+  dropdown,
+  checkbox,
+}
+
+class _EditTextItem extends StatefulWidget {
+  final jinya.FormItem item;
+  final bool newItem;
+  final jinya.Form form;
+
+  const _EditTextItem(this.item, this.newItem, this.form, {super.key});
+
+  @override
+  State<StatefulWidget> createState() => _EditTextItemState(item, newItem, form);
+}
+
+class _EditTextItemState extends State<_EditTextItem> {
+  final jinya.Form form;
+  final jinya.FormItem item;
+  final bool newItem;
+  final _formKey = GlobalKey<FormState>();
+  final _labelController = TextEditingController();
+  final _placeholderController = TextEditingController();
+  final _helpTextController = TextEditingController();
+  final _spamFilterController = TextEditingController();
+  bool isSubject = false;
+  bool isRequired = false;
+
+  _EditTextItemState(this.item, this.newItem, this.form) {
+    isSubject = item.isSubject ?? false;
+    isRequired = item.isRequired ?? false;
+    _labelController.text = item.label ?? '';
+    _helpTextController.text = item.helpText ?? '';
+    _placeholderController.text = item.placeholder ?? '';
+    _spamFilterController.text = item.spamFilter?.join('\n') ?? '';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return AlertDialog(
+      scrollable: true,
+      title: Text(l10n.formItemTypeText),
+      content: Scrollbar(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return l10n.editFormItemLabelCannotBeEmpty;
+                    }
+
+                    return null;
+                  },
+                  controller: _labelController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemLabel),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _placeholderController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemPlaceholder),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _helpTextController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemHelpText),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _spamFilterController,
+                  maxLines: 5,
+                  decoration: InputDecoration(labelText: l10n.editFormItemSpamFilter),
+                ),
+              ),
+              Row(
+                children: [
+                  Switch(
+                    value: isSubject,
+                    onChanged: (value) {
+                      setState(() {
+                        isSubject = value;
+                      });
+                    },
+                  ),
+                  Text(l10n.editFormItemIsSubject),
+                ],
+              ),
+              Row(
+                children: [
+                  Switch(
+                    value: isRequired,
+                    onChanged: (value) {
+                      setState(() {
+                        isRequired = value;
+                      });
+                    },
+                  ),
+                  Text(l10n.editFormItemIsRequired),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            NavigationService.instance.goBack();
+          },
+          child: Text(l10n.editItemDiscard),
+        ),
+        TextButton(
+          onPressed: () async {
+            if (_formKey.currentState!.validate()) {
+              final apiClient = SettingsDatabase.getClientForCurrentAccount();
+              if (newItem) {
+                await apiClient.createFormItem(
+                  form.id!,
+                  'text',
+                  0,
+                  _labelController.text,
+                  placeholder: _placeholderController.text,
+                  isRequired: isRequired,
+                  isSubject: isSubject,
+                  spamFilter: _spamFilterController.text.split('\n'),
+                  helpText: _helpTextController.text,
+                );
+              } else {
+                await apiClient.updateFormItem(
+                    form.id!,
+                    jinya.FormItem(
+                      label: _labelController.text,
+                      placeholder: _placeholderController.text,
+                      isRequired: isRequired,
+                      isSubject: isSubject,
+                      spamFilter: _spamFilterController.text.split('\n'),
+                      helpText: _helpTextController.text,
+                      position: item.position,
+                    ));
+              }
+              NavigationService.instance.goBack();
+            }
+          },
+          child: Text(l10n.editItemSave),
+        ),
+      ],
+    );
+  }
+}
+
+class _EditMultilineItem extends StatefulWidget {
+  final jinya.FormItem item;
+  final bool newItem;
+  final jinya.Form form;
+
+  const _EditMultilineItem(this.item, this.newItem, this.form, {super.key});
+
+  @override
+  State<StatefulWidget> createState() => _EditMultilineItemState(item, newItem, form);
+}
+
+class _EditMultilineItemState extends State<_EditMultilineItem> {
+  final jinya.Form form;
+  final jinya.FormItem item;
+  final bool newItem;
+  final _formKey = GlobalKey<FormState>();
+  final _labelController = TextEditingController();
+  final _placeholderController = TextEditingController();
+  final _helpTextController = TextEditingController();
+  final _spamFilterController = TextEditingController();
+  bool isRequired = false;
+
+  _EditMultilineItemState(this.item, this.newItem, this.form) {
+    isRequired = item.isRequired ?? false;
+    _labelController.text = item.label ?? '';
+    _helpTextController.text = item.helpText ?? '';
+    _placeholderController.text = item.placeholder ?? '';
+    _spamFilterController.text = item.spamFilter?.join('\n') ?? '';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return AlertDialog(
+      scrollable: true,
+      title: Text(l10n.formItemTypeText),
+      content: Scrollbar(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return l10n.editFormItemLabelCannotBeEmpty;
+                    }
+
+                    return null;
+                  },
+                  controller: _labelController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemLabel),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _placeholderController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemPlaceholder),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _helpTextController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemHelpText),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _spamFilterController,
+                  maxLines: 5,
+                  decoration: InputDecoration(labelText: l10n.editFormItemSpamFilter),
+                ),
+              ),
+              Row(
+                children: [
+                  Switch(
+                    value: isRequired,
+                    onChanged: (value) {
+                      setState(() {
+                        isRequired = value;
+                      });
+                    },
+                  ),
+                  Text(l10n.editFormItemIsRequired),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            NavigationService.instance.goBack();
+          },
+          child: Text(l10n.editItemDiscard),
+        ),
+        TextButton(
+          onPressed: () async {
+            if (_formKey.currentState!.validate()) {
+              final apiClient = SettingsDatabase.getClientForCurrentAccount();
+              if (newItem) {
+                await apiClient.createFormItem(
+                  form.id!,
+                  'textarea',
+                  0,
+                  _labelController.text,
+                  placeholder: _placeholderController.text,
+                  isRequired: isRequired,
+                  spamFilter: _spamFilterController.text.split('\n'),
+                  helpText: _helpTextController.text,
+                );
+              } else {
+                await apiClient.updateFormItem(
+                    form.id!,
+                    jinya.FormItem(
+                      label: _labelController.text,
+                      placeholder: _placeholderController.text,
+                      isRequired: isRequired,
+                      spamFilter: _spamFilterController.text.split('\n'),
+                      helpText: _helpTextController.text,
+                      position: item.position,
+                    ));
+              }
+              NavigationService.instance.goBack();
+            }
+          },
+          child: Text(l10n.editItemSave),
+        ),
+      ],
+    );
+  }
+}
+
+class _EditDropdownItem extends StatefulWidget {
+  final jinya.FormItem item;
+  final bool newItem;
+  final jinya.Form form;
+
+  const _EditDropdownItem(this.item, this.newItem, this.form, {super.key});
+
+  @override
+  State<StatefulWidget> createState() => _EditDropdownItemState(item, newItem, form);
+}
+
+class _EditDropdownItemState extends State<_EditDropdownItem> {
+  final jinya.Form form;
+  final jinya.FormItem item;
+  final bool newItem;
+  final _formKey = GlobalKey<FormState>();
+  final _labelController = TextEditingController();
+  final _placeholderController = TextEditingController();
+  final _helpTextController = TextEditingController();
+  final _optionsController = TextEditingController();
+  bool isRequired = false;
+
+  _EditDropdownItemState(this.item, this.newItem, this.form) {
+    isRequired = item.isRequired ?? false;
+    _labelController.text = item.label ?? '';
+    _helpTextController.text = item.helpText ?? '';
+    _placeholderController.text = item.placeholder ?? '';
+    _optionsController.text = item.options?.join('\n') ?? '';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return AlertDialog(
+      scrollable: true,
+      title: Text(l10n.formItemTypeText),
+      content: Scrollbar(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return l10n.editFormItemLabelCannotBeEmpty;
+                    }
+
+                    return null;
+                  },
+                  controller: _labelController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemLabel),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _placeholderController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemPlaceholder),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _helpTextController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemHelpText),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _optionsController,
+                  maxLines: 5,
+                  decoration: InputDecoration(labelText: l10n.editFormItemOptions),
+                ),
+              ),
+              Row(
+                children: [
+                  Switch(
+                    value: isRequired,
+                    onChanged: (value) {
+                      setState(() {
+                        isRequired = value;
+                      });
+                    },
+                  ),
+                  Text(l10n.editFormItemIsRequired),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            NavigationService.instance.goBack();
+          },
+          child: Text(l10n.editItemDiscard),
+        ),
+        TextButton(
+          onPressed: () async {
+            if (_formKey.currentState!.validate()) {
+              final apiClient = SettingsDatabase.getClientForCurrentAccount();
+              if (newItem) {
+                await apiClient.createFormItem(
+                  form.id!,
+                  'select',
+                  0,
+                  _labelController.text,
+                  placeholder: _placeholderController.text,
+                  isRequired: isRequired,
+                  options: _optionsController.text.split('\n'),
+                  helpText: _helpTextController.text,
+                );
+              } else {
+                await apiClient.updateFormItem(
+                    form.id!,
+                    jinya.FormItem(
+                      label: _labelController.text,
+                      placeholder: _placeholderController.text,
+                      isRequired: isRequired,
+                      options: _optionsController.text.split('\n'),
+                      helpText: _helpTextController.text,
+                      position: item.position,
+                    ));
+              }
+              NavigationService.instance.goBack();
+            }
+          },
+          child: Text(l10n.editItemSave),
+        ),
+      ],
+    );
+  }
+}
+
+class _EditEmailItem extends StatefulWidget {
+  final jinya.FormItem item;
+  final bool newItem;
+  final jinya.Form form;
+
+  const _EditEmailItem(this.item, this.newItem, this.form, {super.key});
+
+  @override
+  State<StatefulWidget> createState() => _EditEmailItemState(item, newItem, form);
+}
+
+class _EditEmailItemState extends State<_EditEmailItem> {
+  final jinya.Form form;
+  final jinya.FormItem item;
+  final bool newItem;
+  final _formKey = GlobalKey<FormState>();
+  final _labelController = TextEditingController();
+  final _placeholderController = TextEditingController();
+  final _helpTextController = TextEditingController();
+  final _spamFilterController = TextEditingController();
+  bool isFromAddress = false;
+  bool isRequired = false;
+
+  _EditEmailItemState(this.item, this.newItem, this.form) {
+    isFromAddress = item.isFromAddress ?? false;
+    isRequired = item.isRequired ?? false;
+    _labelController.text = item.label ?? '';
+    _helpTextController.text = item.helpText ?? '';
+    _placeholderController.text = item.placeholder ?? '';
+    _spamFilterController.text = item.spamFilter?.join('\n') ?? '';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return AlertDialog(
+      scrollable: true,
+      title: Text(l10n.formItemTypeText),
+      content: Scrollbar(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return l10n.editFormItemLabelCannotBeEmpty;
+                    }
+
+                    return null;
+                  },
+                  controller: _labelController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemLabel),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _placeholderController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemPlaceholder),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _helpTextController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemHelpText),
+                ),
+              ),
+              Row(
+                children: [
+                  Switch(
+                    value: isFromAddress,
+                    onChanged: (value) {
+                      setState(() {
+                        isFromAddress = value;
+                      });
+                    },
+                  ),
+                  Text(l10n.editFormItemIsFromAddress),
+                ],
+              ),
+              Row(
+                children: [
+                  Switch(
+                    value: isRequired,
+                    onChanged: (value) {
+                      setState(() {
+                        isRequired = value;
+                      });
+                    },
+                  ),
+                  Text(l10n.editFormItemIsRequired),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            NavigationService.instance.goBack();
+          },
+          child: Text(l10n.editItemDiscard),
+        ),
+        TextButton(
+          onPressed: () async {
+            if (_formKey.currentState!.validate()) {
+              final apiClient = SettingsDatabase.getClientForCurrentAccount();
+              if (newItem) {
+                await apiClient.createFormItem(
+                  form.id!,
+                  'email',
+                  0,
+                  _labelController.text,
+                  placeholder: _placeholderController.text,
+                  isRequired: isRequired,
+                  isFromAddress: isFromAddress,
+                  helpText: _helpTextController.text,
+                );
+              } else {
+                await apiClient.updateFormItem(
+                    form.id!,
+                    jinya.FormItem(
+                      label: _labelController.text,
+                      placeholder: _placeholderController.text,
+                      isRequired: isRequired,
+                      isFromAddress: isFromAddress,
+                      helpText: _helpTextController.text,
+                      position: item.position,
+                    ));
+              }
+              NavigationService.instance.goBack();
+            }
+          },
+          child: Text(l10n.editItemSave),
+        ),
+      ],
+    );
+  }
+}
+
+class _EditCheckboxItem extends StatefulWidget {
+  final jinya.FormItem item;
+  final bool newItem;
+  final jinya.Form form;
+
+  const _EditCheckboxItem(this.item, this.newItem, this.form, {super.key});
+
+  @override
+  State<StatefulWidget> createState() => _EditCheckboxItemState(item, newItem, form);
+}
+
+class _EditCheckboxItemState extends State<_EditCheckboxItem> {
+  final jinya.Form form;
+  final jinya.FormItem item;
+  final bool newItem;
+  final _formKey = GlobalKey<FormState>();
+  final _labelController = TextEditingController();
+  final _placeholderController = TextEditingController();
+  final _helpTextController = TextEditingController();
+  bool isRequired = false;
+
+  _EditCheckboxItemState(this.item, this.newItem, this.form) {
+    isRequired = item.isRequired ?? false;
+    _labelController.text = item.label ?? '';
+    _helpTextController.text = item.helpText ?? '';
+    _placeholderController.text = item.placeholder ?? '';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return AlertDialog(
+      scrollable: true,
+      title: Text(l10n.formItemTypeText),
+      content: Scrollbar(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return l10n.editFormItemLabelCannotBeEmpty;
+                    }
+
+                    return null;
+                  },
+                  controller: _labelController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemLabel),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _placeholderController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemPlaceholder),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: TextFormField(
+                  controller: _helpTextController,
+                  maxLines: 1,
+                  decoration: InputDecoration(labelText: l10n.editFormItemHelpText),
+                ),
+              ),
+              Row(
+                children: [
+                  Switch(
+                    value: isRequired,
+                    onChanged: (value) {
+                      setState(() {
+                        isRequired = value;
+                      });
+                    },
+                  ),
+                  Text(l10n.editFormItemIsRequired),
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            NavigationService.instance.goBack();
+          },
+          child: Text(l10n.editItemDiscard),
+        ),
+        TextButton(
+          onPressed: () async {
+            if (_formKey.currentState!.validate()) {
+              final apiClient = SettingsDatabase.getClientForCurrentAccount();
+              if (newItem) {
+                await apiClient.createFormItem(
+                  form.id!,
+                  'checkbox',
+                  0,
+                  _labelController.text,
+                  placeholder: _placeholderController.text,
+                  isRequired: isRequired,
+                  helpText: _helpTextController.text,
+                );
+              } else {
+                await apiClient.updateFormItem(
+                    form.id!,
+                    jinya.FormItem(
+                      label: _labelController.text,
+                      placeholder: _placeholderController.text,
+                      isRequired: isRequired,
+                      helpText: _helpTextController.text,
+                      position: item.position,
+                    ));
+              }
+              NavigationService.instance.goBack();
+            }
+          },
+          child: Text(l10n.editItemSave),
+        ),
+      ],
+    );
+  }
+}
+
+class _FormDesigner extends StatefulWidget {
+  final jinya.Form form;
+
+  const _FormDesigner(this.form, {super.key});
+
+  @override
+  State<StatefulWidget> createState() => _FormDesignerState(form);
+}
+
+class _FormDesignerState extends State<_FormDesigner> {
+  final jinya.Form form;
+  final apiClient = SettingsDatabase.getClientForCurrentAccount();
+  Iterable<jinya.FormItem> items = [];
+
+  _FormDesignerState(this.form);
+
+  loadItems() async {
+    final items = await apiClient.getFormItems(form.id!);
+    setState(() {
+      this.items = items;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadItems();
+  }
+
+  void resetPositions() {
+    setState(() {
+      for (var i = 0; i < items.length; i++) {
+        items.elementAt(i).position = i;
+      }
+    });
+  }
+
+  Future<void> removeItem(jinya.FormItem item) async {
+    await apiClient.deleteFormItem(form.id!, item.position!);
+  }
+
+  Widget getEntryByType(jinya.FormItem item) {
+    final l10n = AppLocalizations.of(context)!;
+    var subtitle = '';
+    switch (item.type) {
+      case 'text':
+        subtitle = l10n.addFormItemText;
+        break;
+      case 'email':
+        subtitle = l10n.addFormItemEmail;
+        break;
+      case 'textarea':
+        subtitle = l10n.addFormItemMultiline;
+        break;
+      case 'select':
+        subtitle = l10n.addFormItemDropdown;
+        break;
+      case 'checkbox':
+        subtitle = l10n.addFormItemCheckbox;
+        break;
+    }
+
+    return ListTile(
+      title: Text(item.label!),
+      subtitle: Text(subtitle),
+      trailing: IconButton(
+        icon: const Icon(Icons.edit),
+        onPressed: () async {
+          switch (item.type) {
+            case 'text':
+              final dialog = _EditTextItem(item, false, form);
+              await showDialog(context: context, builder: (context) => dialog);
+              await loadItems();
+              break;
+            case 'email':
+              final dialog = _EditEmailItem(item, false, form);
+              await showDialog(context: context, builder: (context) => dialog);
+              await loadItems();
+              break;
+            case 'textarea':
+              final dialog = _EditMultilineItem(item, false, form);
+              await showDialog(context: context, builder: (context) => dialog);
+              await loadItems();
+              break;
+            case 'select':
+              final dialog = _EditDropdownItem(item, false, form);
+              await showDialog(context: context, builder: (context) => dialog);
+              await loadItems();
+              break;
+            case 'checkbox':
+              final dialog = _EditCheckboxItem(item, false, form);
+              await showDialog(context: context, builder: (context) => dialog);
+              await loadItems();
+              break;
+          }
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n.formDesigner(form.title!)),
+        automaticallyImplyLeading: false,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            NavigationService.instance.goBack();
+          },
+        ),
+        actions: [
+          PopupMenuButton(
+            itemBuilder: (context) {
+              return [
+                PopupMenuItem(
+                  value: _FormItemType.text,
+                  child: Text(l10n.addFormItemText),
+                ),
+                PopupMenuItem(
+                  value: _FormItemType.email,
+                  child: Text(l10n.addFormItemEmail),
+                ),
+                PopupMenuItem(
+                  value: _FormItemType.multiline,
+                  child: Text(l10n.addFormItemMultiline),
+                ),
+                PopupMenuItem(
+                  value: _FormItemType.dropdown,
+                  child: Text(l10n.addFormItemDropdown),
+                ),
+                PopupMenuItem(
+                  value: _FormItemType.checkbox,
+                  child: Text(l10n.addFormItemCheckbox),
+                ),
+              ];
+            },
+            onSelected: (value) async {
+              switch (value) {
+                case _FormItemType.text:
+                  final dialog = _EditTextItem(jinya.FormItem(), true, form);
+                  await showDialog(
+                    context: context,
+                    builder: (context) => dialog,
+                  );
+                  await loadItems();
+                  break;
+                case _FormItemType.multiline:
+                  final dialog = _EditMultilineItem(jinya.FormItem(), true, form);
+                  await showDialog(
+                    context: context,
+                    builder: (context) => dialog,
+                  );
+                  await loadItems();
+                  break;
+                case _FormItemType.email:
+                  final dialog = _EditEmailItem(jinya.FormItem(), true, form);
+                  await showDialog(
+                    context: context,
+                    builder: (context) => dialog,
+                  );
+                  await loadItems();
+                  break;
+                case _FormItemType.dropdown:
+                  final dialog = _EditDropdownItem(jinya.FormItem(), true, form);
+                  await showDialog(
+                    context: context,
+                    builder: (context) => dialog,
+                  );
+                  await loadItems();
+                  break;
+                case _FormItemType.checkbox:
+                  final dialog = _EditCheckboxItem(jinya.FormItem(), true, form);
+                  await showDialog(
+                    context: context,
+                    builder: (context) => dialog,
+                  );
+                  await loadItems();
+                  break;
+              }
+            },
+            icon: const Icon(Icons.add),
+          )
+        ],
+      ),
+      body: Scrollbar(
+        child: ReorderableListView(
+          onReorder: (int oldIndex, int newIndex) {
+            final pos = items.toList();
+            final oldPos = pos.elementAt(oldIndex);
+            if (oldIndex > newIndex) {
+              pos.removeAt(oldIndex);
+              pos.insert(newIndex, oldPos);
+            } else {
+              pos.insert(newIndex, oldPos);
+              pos.removeAt(oldIndex);
+            }
+            setState(() {
+              items = pos;
+              resetPositions();
+              apiClient.moveFormItem(form.id!, oldIndex, newIndex);
+            });
+          },
+          children: items
+              .map(
+                (item) => Dismissible(
+                  key: Key(item.id.toString()),
+                  background: Container(
+                    color: Theme.of(context).errorColor,
+                    child: const Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 16.0),
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  onDismissed: (direction) {
+                    removeItem(item);
+                    final filtered = items.where((element) => element.id != item.id);
+                    setState(() {
+                      items = filtered;
+                      resetPositions();
+                    });
+                  },
+                  direction: DismissDirection.endToStart,
+                  child: getEntryByType(item),
+                ),
+              )
+              .toList(),
+        ),
+      ),
+    );
+  }
+}
+
 class Forms extends StatefulWidget {
   const Forms({super.key});
 
@@ -344,10 +1321,10 @@ class _FormsState extends State<Forms> {
             ),
             TextButton(
               onPressed: () async {
-                // await NavigationService.instance.navigateTo(MaterialPageRoute(
-                //   builder: (context) => FormDesigner(page),
-                // ));
-                // await loadPages();
+                await NavigationService.instance.navigateTo(MaterialPageRoute(
+                  builder: (context) => _FormDesigner(form),
+                ));
+                await loadForms();
               },
               child: const Icon(Icons.reorder),
             ),
