@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
-import 'package:jinya_cms_material_app/pages/pages/add_simple_page.dart';
-import 'package:jinya_cms_material_app/pages/pages/edit_simple_page.dart';
+import 'package:jinya_cms_material_app/pages/pages/segment_page_designer.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:jinya_cms_material_app/shared/nav_drawer.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
@@ -100,10 +99,11 @@ class _ListSegmentPagesState extends State<ListSegmentPages> {
               child: const Icon(Icons.edit),
             ),
             TextButton(
-              onPressed: () {
-                // NavigationService.instance.navigateTo(MaterialPageRoute(
-                //   builder: (context) => GalleryDesigner(gallery),
-                // ));
+              onPressed: () async {
+                await NavigationService.instance.navigateTo(MaterialPageRoute(
+                  builder: (context) => SegmentPageDesigner(page),
+                ));
+                await loadPages();
               },
               child: const Icon(Icons.reorder),
             ),

@@ -273,5 +273,33 @@
     "placeholders": {
       "count": {}
     }
-  }
+  },
+  "segmentPageDesigner": "Arrange {name}",
+  "@segmentPageDesigner": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "segmentTypeFile": "File",
+  "@segmentTypeFile": {},
+  "segmentTypeGallery": "Gallery",
+  "@segmentTypeGallery": {},
+  "segmentTypeHtml": "Formatted text",
+  "@segmentTypeHtml": {},
+  "addSegmentTypeFile": "Add file",
+  "@addSegmentTypeFile": {},
+  "addSegmentTypeGallery": "Add gallery",
+  "@addSegmentTypeGallery": {},
+  "addSegmentTypeHtml": "Add formatted text",
+  "@addSegmentTypeHtml": {},
+  "segmentTypeFileNoLink": "No link",
+  "@segmentTypeFileNoLink": {},
+  "editSegmentSave": "Save segment",
+  "@editSegmentSave": {},
+  "editSegmentDiscard": "Discard changes",
+  "@editSegmentDiscard": {},
+  "editSegmentFileHasLink": "Has link",
+  "@editSegmentFileHasLink": {},
+  "editSegmentFileLink": "Link",
+  "@editSegmentFileLink": {}
 }

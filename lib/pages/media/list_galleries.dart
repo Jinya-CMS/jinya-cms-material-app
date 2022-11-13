@@ -166,7 +166,7 @@ class _ListGalleriesState extends State<ListGalleries> {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: query.size.width >= 1080 ? 4 : 2,
                     childAspectRatio: query.size.width >= 1080
-                        ? MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height)
+                        ? 16 / 10
                         : MediaQuery.of(context).size.height / (MediaQuery.of(context).size.width),
                   ),
                   itemCount: galleries.length,

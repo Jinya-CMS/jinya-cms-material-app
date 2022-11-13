@@ -1099,6 +1099,126 @@ class S {
       args: [count],
     );
   }
+
+  /// `Arrange {name}`
+  String segmentPageDesigner(Object name) {
+    return Intl.message(
+      'Arrange $name',
+      name: 'segmentPageDesigner',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `File`
+  String get segmentTypeFile {
+    return Intl.message(
+      'File',
+      name: 'segmentTypeFile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gallery`
+  String get segmentTypeGallery {
+    return Intl.message(
+      'Gallery',
+      name: 'segmentTypeGallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Formatted text`
+  String get segmentTypeHtml {
+    return Intl.message(
+      'Formatted text',
+      name: 'segmentTypeHtml',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add file`
+  String get addSegmentTypeFile {
+    return Intl.message(
+      'Add file',
+      name: 'addSegmentTypeFile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add gallery`
+  String get addSegmentTypeGallery {
+    return Intl.message(
+      'Add gallery',
+      name: 'addSegmentTypeGallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add formatted text`
+  String get addSegmentTypeHtml {
+    return Intl.message(
+      'Add formatted text',
+      name: 'addSegmentTypeHtml',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No link`
+  String get segmentTypeFileNoLink {
+    return Intl.message(
+      'No link',
+      name: 'segmentTypeFileNoLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save segment`
+  String get editSegmentSave {
+    return Intl.message(
+      'Save segment',
+      name: 'editSegmentSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discard changes`
+  String get editSegmentDiscard {
+    return Intl.message(
+      'Discard changes',
+      name: 'editSegmentDiscard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Has link`
+  String get editSegmentFileHasLink {
+    return Intl.message(
+      'Has link',
+      name: 'editSegmentFileHasLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link`
+  String get editSegmentFileLink {
+    return Intl.message(
+      'Link',
+      name: 'editSegmentFileLink',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

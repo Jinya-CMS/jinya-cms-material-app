@@ -53,7 +53,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m14(name) => "Account ${name} successfully deleted";
 
-  static String m15(count) => "Segment count: ${count}";
+  static String m15(name) => "Arrange ${name}";
+
+  static String m16(count) => "Segment count: ${count}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -66,6 +68,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "addSegmentPageTitleCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage(
                 "The page name cannot be empty"),
+        "addSegmentTypeFile": MessageLookupByLibrary.simpleMessage("Add file"),
+        "addSegmentTypeGallery":
+            MessageLookupByLibrary.simpleMessage("Add gallery"),
+        "addSegmentTypeHtml":
+            MessageLookupByLibrary.simpleMessage("Add formatted text"),
         "addSimplePage": MessageLookupByLibrary.simpleMessage("Add page"),
         "addSimplePageTitleCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
             "The page title cannot be empty"),
@@ -98,6 +105,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "The gallery name cannot be empty"),
         "editGalleryTitle":
             MessageLookupByLibrary.simpleMessage("Edit gallery"),
+        "editSegmentDiscard":
+            MessageLookupByLibrary.simpleMessage("Discard changes"),
+        "editSegmentFileHasLink":
+            MessageLookupByLibrary.simpleMessage("Has link"),
+        "editSegmentFileLink": MessageLookupByLibrary.simpleMessage("Link"),
         "editSegmentPage": MessageLookupByLibrary.simpleMessage("Edit page"),
         "editSegmentPageCancel":
             MessageLookupByLibrary.simpleMessage("Discard changes"),
@@ -106,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "editSegmentPageTitleCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage(
                 "The page name cannot be empty"),
+        "editSegmentSave": MessageLookupByLibrary.simpleMessage("Save segment"),
         "editSimplePage": MessageLookupByLibrary.simpleMessage("Edit page"),
         "editSimplePageTitleCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage(
@@ -203,12 +216,19 @@ class MessageLookup extends MessageLookupByLibrary {
             "A segment page with the given title already exists"),
         "segmentPageAddGeneric": MessageLookupByLibrary.simpleMessage(
             "The segment page could not be saved"),
+        "segmentPageDesigner": m15,
         "segmentPageEditConflict": MessageLookupByLibrary.simpleMessage(
             "A segment page with the given title already exists"),
         "segmentPageEditGeneric": MessageLookupByLibrary.simpleMessage(
             "The segment page could not be saved"),
         "segmentPageName": MessageLookupByLibrary.simpleMessage("Name"),
-        "segmentPageSegmentCount": m15,
+        "segmentPageSegmentCount": m16,
+        "segmentTypeFile": MessageLookupByLibrary.simpleMessage("File"),
+        "segmentTypeFileNoLink":
+            MessageLookupByLibrary.simpleMessage("No link"),
+        "segmentTypeGallery": MessageLookupByLibrary.simpleMessage("Gallery"),
+        "segmentTypeHtml":
+            MessageLookupByLibrary.simpleMessage("Formatted text"),
         "simplePageAddConflict": MessageLookupByLibrary.simpleMessage(
             "A simple page with the given title already exists"),
         "simplePageAddGeneric": MessageLookupByLibrary.simpleMessage(

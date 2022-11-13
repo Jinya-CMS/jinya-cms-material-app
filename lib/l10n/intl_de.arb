@@ -104,5 +104,17 @@
   "editSegmentPageSave": "Seite speichern",
   "editSegmentPageTitleCannotBeEmpty": "Der Name ist erforderlich",
   "addSegmentPageTitleCannotBeEmpty": "Der Name ist erforderlich",
-  "segmentPageSegmentCount": "Anzahl Segmente: {count}"
+  "segmentPageSegmentCount": "Anzahl Segmente: {count}",
+  "segmentPageDesigner": "{name} einrichten",
+  "segmentTypeFile": "Datei",
+  "segmentTypeGallery": "Galerie",
+  "segmentTypeHtml": "Formatierter Text",
+  "addSegmentTypeFile": "Datei hinzufügen",
+  "addSegmentTypeGallery": "Galerie hinzufügen",
+  "addSegmentTypeHtml": "Formatierten Text hinzufügen",
+  "segmentTypeFileNoLink": "Kein Link",
+  "editSegmentSave": "Segment speichern",
+  "editSegmentDiscard": "Änderungen verwerfen",
+  "editSegmentFileHasLink": "Hat Link",
+  "editSegmentFileLink": "Link"
 }
