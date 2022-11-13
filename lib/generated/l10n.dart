@@ -1839,6 +1839,266 @@ class S {
       args: [],
     );
   }
+
+  /// `A category with the given name already exists`
+  String get categoryAddConflict {
+    return Intl.message(
+      'A category with the given name already exists',
+      name: 'categoryAddConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The category could not be saved`
+  String get categoryAddGeneric {
+    return Intl.message(
+      'The category could not be saved',
+      name: 'categoryAddGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A category with the given name already exists`
+  String get categoryEditConflict {
+    return Intl.message(
+      'A category with the given name already exists',
+      name: 'categoryEditConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The category could not be saved`
+  String get categoryEditGeneric {
+    return Intl.message(
+      'The category could not be saved',
+      name: 'categoryEditGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add post`
+  String get addBlogPost {
+    return Intl.message(
+      'Add post',
+      name: 'addBlogPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discard post`
+  String get discardPost {
+    return Intl.message(
+      'Discard post',
+      name: 'discardPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save post`
+  String get savePost {
+    return Intl.message(
+      'Save post',
+      name: 'savePost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit post`
+  String get editBlogPost {
+    return Intl.message(
+      'Edit post',
+      name: 'editBlogPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The post {title} is in use and cannot be deleted`
+  String failedToDeletePostConflict(Object title) {
+    return Intl.message(
+      'The post $title is in use and cannot be deleted',
+      name: 'failedToDeletePostConflict',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `The post {title} could not be deleted`
+  String failedToDeletePostGeneric(Object title) {
+    return Intl.message(
+      'The post $title could not be deleted',
+      name: 'failedToDeletePostGeneric',
+      desc: '',
+      args: [title],
+    );
+  }
+
+  /// `Title`
+  String get postTitle {
+    return Intl.message(
+      'Title',
+      name: 'postTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Slug`
+  String get postSlug {
+    return Intl.message(
+      'Slug',
+      name: 'postSlug',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get postCategory {
+    return Intl.message(
+      'Category',
+      name: 'postCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Post image`
+  String get postImage {
+    return Intl.message(
+      'Post image',
+      name: 'postImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Public`
+  String get postPublic {
+    return Intl.message(
+      'Public',
+      name: 'postPublic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No post image`
+  String get postNoHeaderImage {
+    return Intl.message(
+      'No post image',
+      name: 'postNoHeaderImage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The title cannot be empty`
+  String get addPostTitleCannotBeEmpty {
+    return Intl.message(
+      'The title cannot be empty',
+      name: 'addPostTitleCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The slug cannot be empty`
+  String get addPostSlugCannotBeEmpty {
+    return Intl.message(
+      'The slug cannot be empty',
+      name: 'addPostSlugCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A post with the given title or slug already exists`
+  String get postAddConflict {
+    return Intl.message(
+      'A post with the given title or slug already exists',
+      name: 'postAddConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The post could not be saved`
+  String get postAddGeneric {
+    return Intl.message(
+      'The post could not be saved',
+      name: 'postAddGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A post with the given title or slug already exists`
+  String get postEditConflict {
+    return Intl.message(
+      'A post with the given title or slug already exists',
+      name: 'postEditConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The post could not be saved`
+  String get postEditGeneric {
+    return Intl.message(
+      'The post could not be saved',
+      name: 'postEditGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The title cannot be empty`
+  String get editPostTitleCannotBeEmpty {
+    return Intl.message(
+      'The title cannot be empty',
+      name: 'editPostTitleCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The slug cannot be empty`
+  String get editPostSlugCannotBeEmpty {
+    return Intl.message(
+      'The slug cannot be empty',
+      name: 'editPostSlugCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The post could not be saved`
+  String get postSegmentsError {
+    return Intl.message(
+      'The post could not be saved',
+      name: 'postSegmentsError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The post was saved successfully`
+  String get postSegmentsSaved {
+    return Intl.message(
+      'The post was saved successfully',
+      name: 'postSegmentsSaved',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

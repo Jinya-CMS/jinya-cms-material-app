@@ -470,7 +470,7 @@ packages:
       name: jinya_cms_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.16"
+    version: "1.0.21"
   js:
     dependency: transitive
     description:
@@ -784,6 +784,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  slugify:
+    dependency: "direct main"
+    description:
+      name: slugify
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   source_gen:
     dependency: transitive
     description:
@@ -939,12 +946,12 @@ packages:
     source: hosted
     version: "3.0.1"
   uuid:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: uuid
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.6"
+    version: "3.0.7"
   validators:
     dependency: "direct main"
     description:

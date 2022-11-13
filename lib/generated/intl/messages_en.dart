@@ -50,31 +50,37 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m12(name) => "The gallery ${name} could not be deleted";
 
   static String m13(title) =>
-      "The page ${title} is in use and cannot be deleted";
+      "The post ${title} is in use and cannot be deleted";
 
-  static String m14(title) => "The page ${title} could not be deleted";
+  static String m14(title) => "The post ${title} could not be deleted";
 
   static String m15(title) =>
       "The page ${title} is in use and cannot be deleted";
 
   static String m16(title) => "The page ${title} could not be deleted";
 
-  static String m17(name) => "Failed to upload file ${name}";
+  static String m17(title) =>
+      "The page ${title} is in use and cannot be deleted";
 
-  static String m18(title) => "Arrange ${title}";
+  static String m18(title) => "The page ${title} could not be deleted";
 
-  static String m19(name) => "Arrange ${name}";
+  static String m19(name) => "Failed to upload file ${name}";
 
-  static String m20(name) => "Account ${name} successfully deleted";
+  static String m20(title) => "Arrange ${title}";
 
   static String m21(name) => "Arrange ${name}";
 
-  static String m22(count) => "Segment count: ${count}";
+  static String m22(name) => "Account ${name} successfully deleted";
+
+  static String m23(name) => "Arrange ${name}";
+
+  static String m24(count) => "Segment count: ${count}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actionUndo": MessageLookupByLibrary.simpleMessage("Undo"),
         "addBlogCategory": MessageLookupByLibrary.simpleMessage("Add category"),
+        "addBlogPost": MessageLookupByLibrary.simpleMessage("Add post"),
         "addCategoryTitleCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("The name cannot be empty"),
         "addFormCancel":
@@ -93,6 +99,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "The to address cannot be empty"),
         "addFormToAddressWrongFormat": MessageLookupByLibrary.simpleMessage(
             "The to address must be an email"),
+        "addPostSlugCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("The slug cannot be empty"),
+        "addPostTitleCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("The title cannot be empty"),
         "addSegmentPage": MessageLookupByLibrary.simpleMessage("Add page"),
         "addSegmentPageCancel":
             MessageLookupByLibrary.simpleMessage("Discard changes"),
@@ -110,8 +120,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "addSimplePageTitleCannotBeEmpty": MessageLookupByLibrary.simpleMessage(
             "The page title cannot be empty"),
         "appName": MessageLookupByLibrary.simpleMessage("Jinya CMS"),
+        "categoryAddConflict": MessageLookupByLibrary.simpleMessage(
+            "A category with the given name already exists"),
+        "categoryAddGeneric": MessageLookupByLibrary.simpleMessage(
+            "The category could not be saved"),
         "categoryDescription":
             MessageLookupByLibrary.simpleMessage("Description"),
+        "categoryEditConflict": MessageLookupByLibrary.simpleMessage(
+            "A category with the given name already exists"),
+        "categoryEditGeneric": MessageLookupByLibrary.simpleMessage(
+            "The category could not be saved"),
         "categoryName": MessageLookupByLibrary.simpleMessage("Name"),
         "categoryNoParent": MessageLookupByLibrary.simpleMessage("No parent"),
         "categoryParent": MessageLookupByLibrary.simpleMessage("Parent"),
@@ -139,9 +157,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "discard": MessageLookupByLibrary.simpleMessage("Discard changes"),
         "discardCategory":
             MessageLookupByLibrary.simpleMessage("Discard changes"),
+        "discardPost": MessageLookupByLibrary.simpleMessage("Discard post"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "editBlogCategory":
             MessageLookupByLibrary.simpleMessage("Edit category"),
+        "editBlogPost": MessageLookupByLibrary.simpleMessage("Edit post"),
         "editCategoryTitleCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("The name cannot be empty"),
         "editFileCancel":
@@ -184,6 +204,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "editItemDiscard":
             MessageLookupByLibrary.simpleMessage("Discard changes"),
         "editItemSave": MessageLookupByLibrary.simpleMessage("Save item"),
+        "editPostSlugCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("The slug cannot be empty"),
+        "editPostTitleCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("The title cannot be empty"),
         "editSegmentDiscard":
             MessageLookupByLibrary.simpleMessage("Discard changes"),
         "editSegmentFileHasLink":
@@ -210,16 +234,18 @@ class MessageLookup extends MessageLookupByLibrary {
         "failedToDeleteFormGeneric": m10,
         "failedToDeleteGalleryConflict": m11,
         "failedToDeleteGalleryGeneric": m12,
-        "failedToDeleteSegmentPageConflict": m13,
-        "failedToDeleteSegmentPageGeneric": m14,
-        "failedToDeleteSimplePageConflict": m15,
-        "failedToDeleteSimplePageGeneric": m16,
-        "failedUploading": m17,
+        "failedToDeletePostConflict": m13,
+        "failedToDeletePostGeneric": m14,
+        "failedToDeleteSegmentPageConflict": m15,
+        "failedToDeleteSegmentPageGeneric": m16,
+        "failedToDeleteSimplePageConflict": m17,
+        "failedToDeleteSimplePageGeneric": m18,
+        "failedUploading": m19,
         "formAddConflict": MessageLookupByLibrary.simpleMessage(
             "A form with the given title already exists"),
         "formAddGeneric":
             MessageLookupByLibrary.simpleMessage("The form could not be saved"),
-        "formDesigner": m18,
+        "formDesigner": m20,
         "formEditConflict": MessageLookupByLibrary.simpleMessage(
             "A form with the given title already exists"),
         "formEditGeneric":
@@ -237,7 +263,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "The gallery could not be saved"),
         "galleryDescription":
             MessageLookupByLibrary.simpleMessage("Description"),
-        "galleryDesigner": m19,
+        "galleryDesigner": m21,
         "galleryEditConflict": MessageLookupByLibrary.simpleMessage(
             "A gallery with the given name already exists"),
         "galleryEditGeneric": MessageLookupByLibrary.simpleMessage(
@@ -260,7 +286,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your credentials are invalid"),
         "loginPassword": MessageLookupByLibrary.simpleMessage("Password"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
-        "manageAccountsDeleteSuccess": m20,
+        "manageAccountsDeleteSuccess": m22,
         "manageAccountsTitle":
             MessageLookupByLibrary.simpleMessage("Manage accounts"),
         "manageFilesTitle": MessageLookupByLibrary.simpleMessage("Files"),
@@ -316,20 +342,40 @@ class MessageLookup extends MessageLookupByLibrary {
         "newAccountTwoFactorInputCode":
             MessageLookupByLibrary.simpleMessage("Two factor code"),
         "pickFile": MessageLookupByLibrary.simpleMessage("Choose file"),
+        "postAddConflict": MessageLookupByLibrary.simpleMessage(
+            "A post with the given title or slug already exists"),
+        "postAddGeneric":
+            MessageLookupByLibrary.simpleMessage("The post could not be saved"),
+        "postCategory": MessageLookupByLibrary.simpleMessage("Category"),
+        "postEditConflict": MessageLookupByLibrary.simpleMessage(
+            "A post with the given title or slug already exists"),
+        "postEditGeneric":
+            MessageLookupByLibrary.simpleMessage("The post could not be saved"),
+        "postImage": MessageLookupByLibrary.simpleMessage("Post image"),
+        "postNoHeaderImage":
+            MessageLookupByLibrary.simpleMessage("No post image"),
+        "postPublic": MessageLookupByLibrary.simpleMessage("Public"),
+        "postSegmentsError":
+            MessageLookupByLibrary.simpleMessage("The post could not be saved"),
+        "postSegmentsSaved": MessageLookupByLibrary.simpleMessage(
+            "The post was saved successfully"),
+        "postSlug": MessageLookupByLibrary.simpleMessage("Slug"),
+        "postTitle": MessageLookupByLibrary.simpleMessage("Title"),
         "saveCategory": MessageLookupByLibrary.simpleMessage("Save category"),
         "saveFailed": MessageLookupByLibrary.simpleMessage("Save failed"),
         "saveGallery": MessageLookupByLibrary.simpleMessage("Save gallery"),
+        "savePost": MessageLookupByLibrary.simpleMessage("Save post"),
         "segmentPageAddConflict": MessageLookupByLibrary.simpleMessage(
             "A segment page with the given title already exists"),
         "segmentPageAddGeneric": MessageLookupByLibrary.simpleMessage(
             "The segment page could not be saved"),
-        "segmentPageDesigner": m21,
+        "segmentPageDesigner": m23,
         "segmentPageEditConflict": MessageLookupByLibrary.simpleMessage(
             "A segment page with the given title already exists"),
         "segmentPageEditGeneric": MessageLookupByLibrary.simpleMessage(
             "The segment page could not be saved"),
         "segmentPageName": MessageLookupByLibrary.simpleMessage("Name"),
-        "segmentPageSegmentCount": m22,
+        "segmentPageSegmentCount": m24,
         "segmentTypeFile": MessageLookupByLibrary.simpleMessage("File"),
         "segmentTypeFileNoLink":
             MessageLookupByLibrary.simpleMessage("No link"),

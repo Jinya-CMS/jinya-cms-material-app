@@ -130,15 +130,47 @@ class _AddBlogCategoryState extends State<_AddBlogCategory> {
         TextButton(
           onPressed: () async {
             parent = categories.firstWhere((element) => element?.id == parentId);
-            await apiClient.createBlogCategory(
-              _nameController.text,
-              _descriptionController.text,
-              parent?.id,
-              webhookEnabled,
-              _webhookUrlController.text,
-            );
+            try {
+              await apiClient.createBlogCategory(
+                _nameController.text,
+                _descriptionController.text,
+                parent?.id,
+                webhookEnabled,
+                _webhookUrlController.text,
+              );
 
-            NavigationService.instance.goBack();
+              NavigationService.instance.goBack();
+            } on jinya.ConflictException {
+              final dialog = AlertDialog(
+                title: Text(l10n.saveFailed),
+                content: Text(l10n.categoryAddConflict),
+                actions: [
+                  TextButton(
+                    onPressed: () => NavigationService.instance.goBack(),
+                    child: Text(l10n.dismiss),
+                  ),
+                ],
+              );
+              await showDialog(
+                context: context,
+                builder: (context) => dialog,
+              );
+            } catch (ex) {
+              final dialog = AlertDialog(
+                title: Text(l10n.saveFailed),
+                content: Text(l10n.categoryAddGeneric),
+                actions: [
+                  TextButton(
+                    onPressed: () => NavigationService.instance.goBack(),
+                    child: Text(l10n.dismiss),
+                  ),
+                ],
+              );
+              await showDialog(
+                context: context,
+                builder: (context) => dialog,
+              );
+            }
           },
           child: Text(l10n.saveCategory),
         ),
@@ -286,16 +318,48 @@ class _EditBlogCategoryState extends State<_EditBlogCategory> {
         TextButton(
           onPressed: () async {
             final parent = categories.firstWhere((element) => element?.id == parentId);
-            await apiClient.updateBlogCategory(jinya.BlogCategory(
-              id: category.id,
-              name: _nameController.text,
-              description: _descriptionController.text,
-              parent: parent,
-              webhookEnabled: webhookEnabled,
-              webhookUrl: _webhookUrlController.text,
-            ));
+            try {
+              await apiClient.updateBlogCategory(jinya.BlogCategory(
+                id: category.id,
+                name: _nameController.text,
+                description: _descriptionController.text,
+                parent: parent,
+                webhookEnabled: webhookEnabled,
+                webhookUrl: _webhookUrlController.text,
+              ));
 
-            NavigationService.instance.goBack();
+              NavigationService.instance.goBack();
+            } on jinya.ConflictException {
+              final dialog = AlertDialog(
+                title: Text(l10n.saveFailed),
+                content: Text(l10n.categoryEditConflict),
+                actions: [
+                  TextButton(
+                    onPressed: () => NavigationService.instance.goBack(),
+                    child: Text(l10n.dismiss),
+                  ),
+                ],
+              );
+              await showDialog(
+                context: context,
+                builder: (context) => dialog,
+              );
+            } catch (ex) {
+              final dialog = AlertDialog(
+                title: Text(l10n.saveFailed),
+                content: Text(l10n.categoryEditGeneric),
+                actions: [
+                  TextButton(
+                    onPressed: () => NavigationService.instance.goBack(),
+                    child: Text(l10n.dismiss),
+                  ),
+                ],
+              );
+              await showDialog(
+                context: context,
+                builder: (context) => dialog,
+              );
+            }
           },
           child: Text(l10n.saveCategory),
         ),
