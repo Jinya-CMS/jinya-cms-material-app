@@ -159,7 +159,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
                           });
                         },
                         child: Semantics(
-                          label: l10n!.menuSwitchAccount,
+                          label: l10n.menuSwitchAccount,
                           child: CircleAvatar(
                             backgroundColor: Theme.of(context).primaryColor,
                             backgroundImage: CachedNetworkImageProvider(
@@ -216,7 +216,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
                               )),
                           ListTile(
                             leading: const Icon(Icons.add),
-                            title: Text(l10n!.menuAddAccount),
+                            title: Text(l10n.menuAddAccount),
                             iconColor: Theme.of(context).iconTheme.color,
                             onTap: () => Navigator.of(context).push(
                               MaterialPageRoute(
