@@ -7,6 +7,7 @@ import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/pages/blog.dart';
 import 'package:jinya_cms_material_app/pages/forms.dart';
 import 'package:jinya_cms_material_app/pages/media.dart';
+import 'package:jinya_cms_material_app/pages/menus.dart';
 import 'package:jinya_cms_material_app/pages/pages.dart';
 import 'package:jinya_cms_material_app/pages/accounts.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
@@ -138,6 +139,19 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
                 builder: (context) => Blog(),
+              ),
+            );
+          },
+        ),
+      );
+      frontStageItems.add(
+        ListTile(
+          title: Text(l10n.menuMenu),
+          leading: const Icon(Icons.menu),
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => Menus(),
               ),
             );
           },

@@ -11,11 +11,23 @@ import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 const String homePageBackground = 'assets/home/background.jpg';
 
 class HomePage extends StatelessWidget {
+  Future<void> checkApiKey() async {
+    if (!(await JinyaClient(SettingsDatabase.selectedAccount!.url, apiKey: SettingsDatabase.selectedAccount!.apiKey)
+        .validateApiKey(SettingsDatabase.selectedAccount!.apiKey))) {
+      NavigationService.instance.navigateToReplacement(
+        MaterialPageRoute(
+          builder: (context) => LoginPage(),
+        ),
+      );
+    }
+  }
+
   void checkAuth(BuildContext context) async {
     if (SettingsDatabase.selectedAccount == null) {
       final accounts = await getAccounts();
       if (accounts.isNotEmpty) {
         SettingsDatabase.selectedAccount = accounts.first;
+        await checkApiKey();
       } else {
         NavigationService.instance.navigateToReplacement(
           MaterialPageRoute(
@@ -23,14 +35,8 @@ class HomePage extends StatelessWidget {
           ),
         );
       }
-    } else if (!(await JinyaClient(SettingsDatabase.selectedAccount!.url,
-            apiKey: SettingsDatabase.selectedAccount!.apiKey)
-        .validateApiKey(SettingsDatabase.selectedAccount!.apiKey))) {
-      NavigationService.instance.navigateToReplacement(
-        MaterialPageRoute(
-          builder: (context) => LoginPage(),
-        ),
-      );
+    } else {
+      await checkApiKey();
     }
   }
 

@@ -2099,6 +2099,326 @@ class S {
       args: [],
     );
   }
+
+  /// `Menus`
+  String get menuMenu {
+    return Intl.message(
+      'Menus',
+      name: 'menuMenu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The menu {name} is in use and cannot be deleted`
+  String failedToDeleteMenuConflict(Object name) {
+    return Intl.message(
+      'The menu $name is in use and cannot be deleted',
+      name: 'failedToDeleteMenuConflict',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `The menu {name} could not be deleted`
+  String failedToDeleteMenuGeneric(Object name) {
+    return Intl.message(
+      'The menu $name could not be deleted',
+      name: 'failedToDeleteMenuGeneric',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Delete form?`
+  String get deleteMenuTitle {
+    return Intl.message(
+      'Delete form?',
+      name: 'deleteMenuTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete the menu {name}?`
+  String deleteMenuMessage(Object name) {
+    return Intl.message(
+      'Do you really want to delete the menu $name?',
+      name: 'deleteMenuMessage',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Arrange {name}`
+  String menuDesigner(Object name) {
+    return Intl.message(
+      'Arrange $name',
+      name: 'menuDesigner',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Link artist`
+  String get menuDesignerAddItemArtist {
+    return Intl.message(
+      'Link artist',
+      name: 'menuDesignerAddItemArtist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link simple page`
+  String get menuDesignerAddItemSimplePage {
+    return Intl.message(
+      'Link simple page',
+      name: 'menuDesignerAddItemSimplePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link segment page`
+  String get menuDesignerAddItemSegmentPage {
+    return Intl.message(
+      'Link segment page',
+      name: 'menuDesignerAddItemSegmentPage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link form`
+  String get menuDesignerAddItemForm {
+    return Intl.message(
+      'Link form',
+      name: 'menuDesignerAddItemForm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link gallery`
+  String get menuDesignerAddItemGallery {
+    return Intl.message(
+      'Link gallery',
+      name: 'menuDesignerAddItemGallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link blog category`
+  String get menuDesignerAddItemBlogCategory {
+    return Intl.message(
+      'Link blog category',
+      name: 'menuDesignerAddItemBlogCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link blog home page`
+  String get menuDesignerAddItemBlogHomePage {
+    return Intl.message(
+      'Link blog home page',
+      name: 'menuDesignerAddItemBlogHomePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Link external website`
+  String get menuDesignerAddItemExternalLink {
+    return Intl.message(
+      'Link external website',
+      name: 'menuDesignerAddItemExternalLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add group`
+  String get menuDesignerAddItemGroup {
+    return Intl.message(
+      'Add group',
+      name: 'menuDesignerAddItemGroup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The title cannot be empty`
+  String get menuDesignerEditItemTitleCannotBeEmpty {
+    return Intl.message(
+      'The title cannot be empty',
+      name: 'menuDesignerEditItemTitleCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Title`
+  String get menuDesignerEditItemTitle {
+    return Intl.message(
+      'Title',
+      name: 'menuDesignerEditItemTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Route`
+  String get menuDesignerEditItemRoute {
+    return Intl.message(
+      'Route',
+      name: 'menuDesignerEditItemRoute',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Highlighted`
+  String get menuDesignerEditItemHighlighted {
+    return Intl.message(
+      'Highlighted',
+      name: 'menuDesignerEditItemHighlighted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save group`
+  String get menuDesignerEditItemSaveGroup {
+    return Intl.message(
+      'Save group',
+      name: 'menuDesignerEditItemSaveGroup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discard changes`
+  String get menuDesignerEditItemDiscardChanges {
+    return Intl.message(
+      'Discard changes',
+      name: 'menuDesignerEditItemDiscardChanges',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Artist`
+  String get menuDesignerItemArtist {
+    return Intl.message(
+      'Artist',
+      name: 'menuDesignerItemArtist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Simple page`
+  String get menuDesignerItemSimplePage {
+    return Intl.message(
+      'Simple page',
+      name: 'menuDesignerItemSimplePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Segment page`
+  String get menuDesignerItemSegmentPage {
+    return Intl.message(
+      'Segment page',
+      name: 'menuDesignerItemSegmentPage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Form`
+  String get menuDesignerItemForm {
+    return Intl.message(
+      'Form',
+      name: 'menuDesignerItemForm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gallery`
+  String get menuDesignerItemGallery {
+    return Intl.message(
+      'Gallery',
+      name: 'menuDesignerItemGallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blog category`
+  String get menuDesignerItemBlogCategory {
+    return Intl.message(
+      'Blog category',
+      name: 'menuDesignerItemBlogCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blog home page`
+  String get menuDesignerItemBlogHomePage {
+    return Intl.message(
+      'Blog home page',
+      name: 'menuDesignerItemBlogHomePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `External website`
+  String get menuDesignerItemExternalLink {
+    return Intl.message(
+      'External website',
+      name: 'menuDesignerItemExternalLink',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Group`
+  String get menuDesignerItemGroup {
+    return Intl.message(
+      'Group',
+      name: 'menuDesignerItemGroup',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type`
+  String get menuDesignerItemType {
+    return Intl.message(
+      'Type',
+      name: 'menuDesignerItemType',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Route`
+  String get menuDesignerItemRoute {
+    return Intl.message(
+      'Route',
+      name: 'menuDesignerItemRoute',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

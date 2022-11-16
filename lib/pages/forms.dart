@@ -1237,32 +1237,32 @@ class _FormDesignerState extends State<_FormDesigner> {
           children: items
               .map(
                 (item) => Dismissible(
-                  key: Key(item.id.toString()),
-                  background: Container(
-                    color: Theme.of(context).errorColor,
-                    child: const Align(
-                      alignment: Alignment.centerRight,
-                      child: Padding(
-                        padding: EdgeInsets.only(right: 16.0),
-                        child: Icon(
-                          Icons.delete,
-                          color: Colors.white,
-                        ),
-                      ),
+              key: Key(item.id.toString()),
+              background: Container(
+                color: Theme.of(context).errorColor,
+                child: const Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: EdgeInsets.only(right: 16.0),
+                    child: Icon(
+                      Icons.delete,
+                      color: Colors.white,
                     ),
                   ),
-                  onDismissed: (direction) {
-                    removeItem(item);
-                    final filtered = items.where((element) => element.id != item.id);
-                    setState(() {
-                      items = filtered;
-                      resetPositions();
-                    });
-                  },
-                  direction: DismissDirection.endToStart,
-                  child: getEntryByType(item),
                 ),
-              )
+              ),
+              onDismissed: (direction) {
+                removeItem(item);
+                final filtered = items.where((element) => element.id != item.id);
+                setState(() {
+                  items = filtered;
+                  resetPositions();
+                });
+              },
+              direction: DismissDirection.endToStart,
+              child: getEntryByType(item),
+            ),
+          )
               .toList(),
         ),
       ),

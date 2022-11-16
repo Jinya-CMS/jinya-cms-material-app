@@ -30,24 +30,15 @@ class JinyaCmsApp extends StatelessWidget {
       darkTheme: ThemeData.dark().copyWith(
         useMaterial3: true,
         colorScheme: darkColorScheme,
-        iconTheme: Theme.of(context).iconTheme.copyWith(
-              color: Colors.white,
-            ),
-        primaryIconTheme: Theme.of(context).iconTheme.copyWith(
-              color: Colors.white,
-            ),
         toggleableActiveColor: darkColorScheme.primary,
         inputDecorationTheme: const InputDecorationTheme(border: UnderlineInputBorder()),
       ),
       theme: ThemeData(
           useMaterial3: true,
-          colorScheme: lightColorScheme,
-          iconTheme: Theme.of(context).iconTheme.copyWith(
-                color: Colors.black,
-              ),
-          primaryIconTheme: Theme.of(context).iconTheme.copyWith(
-                color: Colors.white,
-              ),
+          tabBarTheme: TabBarTheme.of(context).copyWith(
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.black45,
+          ),
           toggleableActiveColor: lightColorScheme.primary,
           inputDecorationTheme: const InputDecorationTheme(border: UnderlineInputBorder())),
       home: HomePage(),

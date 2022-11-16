@@ -509,5 +509,85 @@
   "postSegmentsError": "The post could not be saved",
   "@postSegmentsError": {},
   "postSegmentsSaved": "The post was saved successfully",
-  "@postSegmentsSaved": {}
+  "@postSegmentsSaved": {},
+  "menuMenu": "Menus",
+  "@menuMenu": {},
+  "failedToDeleteMenuConflict": "The menu {name} is in use and cannot be deleted",
+  "@failedToDeleteMenuConflict": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "failedToDeleteMenuGeneric": "The menu {name} could not be deleted",
+  "@failedToDeleteMenuGeneric": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "deleteMenuTitle": "Delete form?",
+  "@deleteMenuTitle": {},
+  "deleteMenuMessage": "Do you really want to delete the menu {name}?",
+  "@deleteMenuMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "menuDesigner": "Arrange {name}",
+  "@menuDesigner": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "menuDesignerAddItemArtist": "Link artist",
+  "@menuDesignerAddItemArtist": {},
+  "menuDesignerAddItemSimplePage": "Link simple page",
+  "@menuDesignerAddItemSimplePage": {},
+  "menuDesignerAddItemSegmentPage": "Link segment page",
+  "@menuDesignerAddItemSegmentPage": {},
+  "menuDesignerAddItemForm": "Link form",
+  "@menuDesignerAddItemForm": {},
+  "menuDesignerAddItemGallery": "Link gallery",
+  "@menuDesignerAddItemGallery": {},
+  "menuDesignerAddItemBlogCategory": "Link blog category",
+  "@menuDesignerAddItemBlogCategory": {},
+  "menuDesignerAddItemBlogHomePage": "Link blog home page",
+  "@menuDesignerAddItemBlogHomePage": {},
+  "menuDesignerAddItemExternalLink": "Link external website",
+  "@menuDesignerAddItemExternalLink": {},
+  "menuDesignerAddItemGroup": "Add group",
+  "@menuDesignerAddItemGroup": {},
+  "menuDesignerEditItemTitleCannotBeEmpty": "The title cannot be empty",
+  "@menuDesignerEditItemTitleCannotBeEmpty": {},
+  "menuDesignerEditItemTitle": "Title",
+  "@menuDesignerEditItemTitle": {},
+  "menuDesignerEditItemRoute": "Route",
+  "@menuDesignerEditItemRoute": {},
+  "menuDesignerEditItemHighlighted": "Highlighted",
+  "@menuDesignerEditItemHighlighted": {},
+  "menuDesignerEditItemSaveGroup": "Save group",
+  "@menuDesignerEditItemSaveGroup": {},
+  "menuDesignerEditItemDiscardChanges": "Discard changes",
+  "@menuDesignerEditItemDiscardChanges": {},
+  "menuDesignerItemArtist": "Artist",
+  "@menuDesignerItemArtist": {},
+  "menuDesignerItemSimplePage": "Simple page",
+  "@menuDesignerItemSimplePage": {},
+  "menuDesignerItemSegmentPage": "Segment page",
+  "@menuDesignerItemSegmentPage": {},
+  "menuDesignerItemForm": "Form",
+  "@menuDesignerItemForm": {},
+  "menuDesignerItemGallery": "Gallery",
+  "@menuDesignerItemGallery": {},
+  "menuDesignerItemBlogCategory": "Blog category",
+  "@menuDesignerItemBlogCategory": {},
+  "menuDesignerItemBlogHomePage": "Blog home page",
+  "@menuDesignerItemBlogHomePage": {},
+  "menuDesignerItemExternalLink": "External website",
+  "@menuDesignerItemExternalLink": {},
+  "menuDesignerItemGroup": "Group",
+  "@menuDesignerItemGroup": {},
+  "menuDesignerItemType": "Type",
+  "@menuDesignerItem": {},
+  "menuDesignerItemRoute": "Route",
+  "@menuDesignerItemRoute": {}
 }

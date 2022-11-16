@@ -28,61 +28,70 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m2(name) =>
       "Soll die Galerie ${name} wirklich gelöscht werden?";
 
-  static String m3(title) =>
-      "Soll die Seite ${title} wirklich gelöscht werden?";
+  static String m3(name) => "Soll das Menü ${name} wirklich gelöscht werden?";
 
   static String m4(title) =>
       "Soll die Seite ${title} wirklich gelöscht werden?";
 
-  static String m5(name) =>
-      "Die Kategorie ${name} konnte nicht gelöscht werden, da sie verwendet wird";
+  static String m5(title) =>
+      "Soll die Seite ${title} wirklich gelöscht werden?";
 
   static String m6(name) =>
-      "Die Kategorie ${name} konnte nicht gelöscht werden";
+      "Die Kategorie ${name} konnte nicht gelöscht werden, da sie verwendet wird";
 
   static String m7(name) =>
+      "Die Kategorie ${name} konnte nicht gelöscht werden";
+
+  static String m8(name) =>
       "Die Datei ${name} konnte nicht gelöscht werden, da sie verwendet wird";
 
-  static String m8(name) => "Die Datei ${name} konnte nicht gelöscht werden";
-
-  static String m9(title) =>
-      "Das Formular ${title} konnte nicht gelöscht werden, da es verwendet wird";
+  static String m9(name) => "Die Datei ${name} konnte nicht gelöscht werden";
 
   static String m10(title) =>
+      "Das Formular ${title} konnte nicht gelöscht werden, da es verwendet wird";
+
+  static String m11(title) =>
       "Das Formular ${title} konnte nicht gelöscht werden";
 
-  static String m11(name) =>
+  static String m12(name) =>
       "Die Galerie ${name} konnte nicht gelöscht werden, da sie verwendet wird";
 
-  static String m12(name) => "Die Galerie ${name} konnte nicht gelöscht werden";
+  static String m13(name) => "Die Galerie ${name} konnte nicht gelöscht werden";
 
-  static String m13(title) =>
+  static String m14(name) =>
+      "Das Menü ${name} konnte nicht gelöscht werden, da es verwendet wird";
+
+  static String m15(name) => "Das Menü ${name} konnte nicht gelöscht werden";
+
+  static String m16(title) =>
       "Der Post ${title} konnte nicht gelöscht werden, da er verwendet wird";
 
-  static String m14(title) => "Der Post ${title} konnte nicht gelöscht werden";
+  static String m17(title) => "Der Post ${title} konnte nicht gelöscht werden";
 
-  static String m15(title) =>
+  static String m18(title) =>
       "Die Seite ${title} konnte nicht gelöscht werden, da sie verwendet wird";
 
-  static String m16(title) => "Die Seite ${title} konnte nicht gelöscht werden";
+  static String m19(title) => "Die Seite ${title} konnte nicht gelöscht werden";
 
-  static String m17(title) =>
+  static String m20(title) =>
       "Die Seite ${title} konnte nicht gelöscht werden, da sie verwendet wird";
 
-  static String m18(title) => "Die Seite ${title} konnte nicht gelöscht werden";
+  static String m21(title) => "Die Seite ${title} konnte nicht gelöscht werden";
 
-  static String m19(name) =>
+  static String m22(name) =>
       "Die Datei ${name} konnte nicht hochgeladen werden";
 
-  static String m20(title) => "${title} anordnen";
+  static String m23(title) => "${title} anordnen";
 
-  static String m21(name) => "${name} einrichten";
+  static String m24(name) => "${name} einrichten";
 
-  static String m22(name) => "Account ${name} wurde erfolgreich gelöscht";
+  static String m25(name) => "Account ${name} wurde erfolgreich gelöscht";
 
-  static String m23(name) => "${name} einrichten";
+  static String m26(name) => "${name} anordnen";
 
-  static String m24(count) => "Anzahl Segmente: ${count}";
+  static String m27(name) => "${name} einrichten";
+
+  static String m28(count) => "Anzahl Segmente: ${count}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -164,10 +173,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "deleteGalleryMessage": m2,
         "deleteGalleryTitle":
             MessageLookupByLibrary.simpleMessage("Galerie löschen?"),
-        "deleteSegmentPageMessage": m3,
+        "deleteMenuMessage": m3,
+        "deleteMenuTitle":
+            MessageLookupByLibrary.simpleMessage("Menü löschen?"),
+        "deleteSegmentPageMessage": m4,
         "deleteSegmentPageTitle":
             MessageLookupByLibrary.simpleMessage("Seite löschen?"),
-        "deleteSimplePageMessage": m4,
+        "deleteSimplePageMessage": m5,
         "deleteSimplePageTitle":
             MessageLookupByLibrary.simpleMessage("Seite löschen?"),
         "discard": MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
@@ -248,26 +260,28 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Seite bearbeiten"),
         "editSimplePageTitleCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage("Der Titel ist erforderlich"),
-        "failedToDeleteCategoryConflict": m5,
-        "failedToDeleteCategoryGeneric": m6,
-        "failedToDeleteFileConflict": m7,
-        "failedToDeleteFileGeneric": m8,
-        "failedToDeleteFormConflict": m9,
-        "failedToDeleteFormGeneric": m10,
-        "failedToDeleteGalleryConflict": m11,
-        "failedToDeleteGalleryGeneric": m12,
-        "failedToDeletePostConflict": m13,
-        "failedToDeletePostGeneric": m14,
-        "failedToDeleteSegmentPageConflict": m15,
-        "failedToDeleteSegmentPageGeneric": m16,
-        "failedToDeleteSimplePageConflict": m17,
-        "failedToDeleteSimplePageGeneric": m18,
-        "failedUploading": m19,
+        "failedToDeleteCategoryConflict": m6,
+        "failedToDeleteCategoryGeneric": m7,
+        "failedToDeleteFileConflict": m8,
+        "failedToDeleteFileGeneric": m9,
+        "failedToDeleteFormConflict": m10,
+        "failedToDeleteFormGeneric": m11,
+        "failedToDeleteGalleryConflict": m12,
+        "failedToDeleteGalleryGeneric": m13,
+        "failedToDeleteMenuConflict": m14,
+        "failedToDeleteMenuGeneric": m15,
+        "failedToDeletePostConflict": m16,
+        "failedToDeletePostGeneric": m17,
+        "failedToDeleteSegmentPageConflict": m18,
+        "failedToDeleteSegmentPageGeneric": m19,
+        "failedToDeleteSimplePageConflict": m20,
+        "failedToDeleteSimplePageGeneric": m21,
+        "failedUploading": m22,
         "formAddConflict": MessageLookupByLibrary.simpleMessage(
             "Ein Formular mit dem gewählten Titel existiert bereits"),
         "formAddGeneric": MessageLookupByLibrary.simpleMessage(
             "Das Formular konnte nicht gespeichert werden"),
-        "formDesigner": m20,
+        "formDesigner": m23,
         "formEditConflict": MessageLookupByLibrary.simpleMessage(
             "Ein Formular mit dem gewählten Titel existiert bereits"),
         "formEditGeneric": MessageLookupByLibrary.simpleMessage(
@@ -285,7 +299,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Die Galerie konnte nicht gespeichert werden"),
         "galleryDescription":
             MessageLookupByLibrary.simpleMessage("Beschreibung"),
-        "galleryDesigner": m21,
+        "galleryDesigner": m24,
         "galleryEditConflict": MessageLookupByLibrary.simpleMessage(
             "Eine Galerie mit dem gewählten Namen existiert bereits"),
         "galleryEditGeneric": MessageLookupByLibrary.simpleMessage(
@@ -308,7 +322,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Die Zugangsdaten für den Account sind falsch"),
         "loginPassword": MessageLookupByLibrary.simpleMessage("Passwort"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Anmelden"),
-        "manageAccountsDeleteSuccess": m22,
+        "manageAccountsDeleteSuccess": m25,
         "manageAccountsTitle":
             MessageLookupByLibrary.simpleMessage("Accounts verwalten"),
         "manageFilesTitle": MessageLookupByLibrary.simpleMessage("Dateien"),
@@ -321,6 +335,56 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuAddAccount":
             MessageLookupByLibrary.simpleMessage("Account hinzufügen"),
         "menuBlog": MessageLookupByLibrary.simpleMessage("Blog"),
+        "menuDesigner": m26,
+        "menuDesignerAddItemArtist":
+            MessageLookupByLibrary.simpleMessage("Künstler hinzufügen"),
+        "menuDesignerAddItemBlogCategory":
+            MessageLookupByLibrary.simpleMessage("Blog Kategorie verlinken"),
+        "menuDesignerAddItemBlogHomePage":
+            MessageLookupByLibrary.simpleMessage("Blog Startseite verlinken"),
+        "menuDesignerAddItemExternalLink":
+            MessageLookupByLibrary.simpleMessage("Externen Link verlinken"),
+        "menuDesignerAddItemForm":
+            MessageLookupByLibrary.simpleMessage("Forumlar verlinken"),
+        "menuDesignerAddItemGallery":
+            MessageLookupByLibrary.simpleMessage("Galerie verlinken"),
+        "menuDesignerAddItemGroup":
+            MessageLookupByLibrary.simpleMessage("Gruppe hinzufügen"),
+        "menuDesignerAddItemSegmentPage":
+            MessageLookupByLibrary.simpleMessage("Segmentseite verlinken"),
+        "menuDesignerAddItemSimplePage":
+            MessageLookupByLibrary.simpleMessage("Einfache Seite verlinken"),
+        "menuDesignerEditItemDiscardChanges":
+            MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
+        "menuDesignerEditItemHighlighted":
+            MessageLookupByLibrary.simpleMessage("Hervorgehoben"),
+        "menuDesignerEditItemRoute":
+            MessageLookupByLibrary.simpleMessage("Link"),
+        "menuDesignerEditItemSaveGroup":
+            MessageLookupByLibrary.simpleMessage("Gruppe speichern"),
+        "menuDesignerEditItemTitle":
+            MessageLookupByLibrary.simpleMessage("Titel"),
+        "menuDesignerEditItemTitleCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Der Titel ist erforderlich"),
+        "menuDesignerItemArtist":
+            MessageLookupByLibrary.simpleMessage("Künstler"),
+        "menuDesignerItemBlogCategory":
+            MessageLookupByLibrary.simpleMessage("Blog Kategorie"),
+        "menuDesignerItemBlogHomePage":
+            MessageLookupByLibrary.simpleMessage("Blog Startseite"),
+        "menuDesignerItemExternalLink":
+            MessageLookupByLibrary.simpleMessage("Externen Link"),
+        "menuDesignerItemForm":
+            MessageLookupByLibrary.simpleMessage("Forumlar"),
+        "menuDesignerItemGallery":
+            MessageLookupByLibrary.simpleMessage("Galerie"),
+        "menuDesignerItemGroup": MessageLookupByLibrary.simpleMessage("Gruppe"),
+        "menuDesignerItemRoute": MessageLookupByLibrary.simpleMessage("Link"),
+        "menuDesignerItemSegmentPage":
+            MessageLookupByLibrary.simpleMessage("Segmentseite"),
+        "menuDesignerItemSimplePage":
+            MessageLookupByLibrary.simpleMessage("Einfache Seite"),
+        "menuDesignerItemType": MessageLookupByLibrary.simpleMessage("Typ"),
         "menuForms": MessageLookupByLibrary.simpleMessage("Formulare"),
         "menuManageAccounts":
             MessageLookupByLibrary.simpleMessage("Accounts verwalten"),
@@ -334,6 +398,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuManageSimplePages":
             MessageLookupByLibrary.simpleMessage("Einfache Seiten"),
         "menuMedia": MessageLookupByLibrary.simpleMessage("Medien"),
+        "menuMenu": MessageLookupByLibrary.simpleMessage("Menüs"),
         "menuPages": MessageLookupByLibrary.simpleMessage("Seiten"),
         "menuSwitchAccount":
             MessageLookupByLibrary.simpleMessage("Account wechseln"),
@@ -395,13 +460,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "Eine Seite mit dem gewählten Titel existiert bereits"),
         "segmentPageAddGeneric": MessageLookupByLibrary.simpleMessage(
             "Die Seite konnte nicht gespeichert werden"),
-        "segmentPageDesigner": m23,
+        "segmentPageDesigner": m27,
         "segmentPageEditConflict": MessageLookupByLibrary.simpleMessage(
             "Eine Seite mit dem gewählten Titel existiert bereits"),
         "segmentPageEditGeneric": MessageLookupByLibrary.simpleMessage(
             "Die Seite konnte nicht gespeichert werden"),
         "segmentPageName": MessageLookupByLibrary.simpleMessage("Name"),
-        "segmentPageSegmentCount": m24,
+        "segmentPageSegmentCount": m28,
         "segmentTypeFile": MessageLookupByLibrary.simpleMessage("Datei"),
         "segmentTypeFileNoLink":
             MessageLookupByLibrary.simpleMessage("Kein Link"),
