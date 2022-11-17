@@ -329,6 +329,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Link segment page"),
         "menuDesignerAddItemSimplePage":
             MessageLookupByLibrary.simpleMessage("Link simple page"),
+        "menuDesignerEditDialogTitle":
+            MessageLookupByLibrary.simpleMessage("Add item"),
         "menuDesignerEditItemDiscardChanges":
             MessageLookupByLibrary.simpleMessage("Discard changes"),
         "menuDesignerEditItemHighlighted":

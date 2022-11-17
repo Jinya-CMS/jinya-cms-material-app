@@ -42,24 +42,26 @@ class _MenuDesignerItem extends jinya.MenuItem {
         );
 }
 
-class _MenuDesignerEditGroup extends StatefulWidget {
-  const _MenuDesignerEditGroup(this.item, this.menu, {super.key});
+class _MenuDesignerEditDialog extends StatefulWidget {
+  const _MenuDesignerEditDialog(this.item, this.menu, {super.key});
 
   final _MenuDesignerItem? item;
   final jinya.Menu menu;
 
   @override
-  State<_MenuDesignerEditGroup> createState() => _MenuDesignerEditGroupState(item, menu);
+  State<_MenuDesignerEditDialog> createState() => _MenuDesignerEditDialogState(item, menu);
 }
 
-class _MenuDesignerEditGroupState extends State<_MenuDesignerEditGroup> {
+class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
   final _MenuDesignerItem? item;
   final jinya.Menu menu;
   final _formKey = GlobalKey<FormState>();
   bool _isHighlighted = false;
   final _titleController = TextEditingController();
+  final _routeController = TextEditingController();
+  _MenuDesignerItemType type = _MenuDesignerItemType.group;
 
-  _MenuDesignerEditGroupState(this.item, this.menu) {
+  _MenuDesignerEditDialogState(this.item, this.menu) {
     _titleController.text = item?.title ?? '';
     _isHighlighted = item?.highlighted ?? false;
   }
@@ -67,45 +69,119 @@ class _MenuDesignerEditGroupState extends State<_MenuDesignerEditGroup> {
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
+    final children = <Widget>[
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: DropdownButtonFormField(
+          value: type,
+          items: [
+            DropdownMenuItem(
+              value: _MenuDesignerItemType.artist,
+              child: Text(l10n.menuDesignerItemArtist),
+            ),
+            DropdownMenuItem(
+              value: _MenuDesignerItemType.simplePage,
+              child: Text(l10n.menuDesignerItemSimplePage),
+            ),
+            DropdownMenuItem(
+              value: _MenuDesignerItemType.segmentPage,
+              child: Text(l10n.menuDesignerItemSegmentPage),
+            ),
+            DropdownMenuItem(
+              value: _MenuDesignerItemType.form,
+              child: Text(l10n.menuDesignerItemForm),
+            ),
+            DropdownMenuItem(
+              value: _MenuDesignerItemType.gallery,
+              child: Text(l10n.menuDesignerItemGallery),
+            ),
+            DropdownMenuItem(
+              value: _MenuDesignerItemType.blogCategory,
+              child: Text(l10n.menuDesignerItemBlogCategory),
+            ),
+            DropdownMenuItem(
+              value: _MenuDesignerItemType.blogHomePage,
+              child: Text(l10n.menuDesignerItemBlogHomePage),
+            ),
+            DropdownMenuItem(
+              value: _MenuDesignerItemType.externalLink,
+              child: Text(l10n.menuDesignerItemExternalLink),
+            ),
+            DropdownMenuItem(
+              value: _MenuDesignerItemType.group,
+              child: Text(l10n.menuDesignerItemGroup),
+            ),
+          ],
+          onChanged: (value) {
+            setState(() {
+              type = value!;
+            });
+          },
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (value) {
+            if (value!.isEmpty) {
+              return l10n.menuDesignerEditItemTitleCannotBeEmpty;
+            }
+
+            return null;
+          },
+          controller: _titleController,
+          maxLines: 1,
+          decoration: InputDecoration(labelText: l10n.menuDesignerEditItemTitle),
+        ),
+      ),
+    ];
+
+    if (type != _MenuDesignerItemType.group && type != _MenuDesignerItemType.blogHomePage) {
+      children.add(
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            validator: (value) {
+              if (value!.isEmpty) {
+                return l10n.menuDesignerEditItemTitleCannotBeEmpty;
+              }
+
+              return null;
+            },
+            controller: _routeController,
+            maxLines: 1,
+            decoration: InputDecoration(labelText: l10n.menuDesignerEditItemRoute),
+          ),
+        ),
+      );
+    }
+
+    children.add(
+      Row(
+        children: [
+          Switch(
+            value: _isHighlighted,
+            onChanged: (value) {
+              setState(() {
+                _isHighlighted = value;
+              });
+            },
+          ),
+          Text(l10n.menuDesignerEditItemHighlighted),
+        ],
+      ),
+    );
 
     return AlertDialog(
       scrollable: true,
-      title: Text(l10n.menuDesignerItemGroup),
+      title: Text(l10n.menuDesignerEditDialogTitle),
       content: Scrollbar(
         child: Form(
           key: _formKey,
           child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: TextFormField(
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return l10n.menuDesignerEditItemTitleCannotBeEmpty;
-                    }
-
-                    return null;
-                  },
-                  controller: _titleController,
-                  maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.menuDesignerEditItemTitle),
-                ),
-              ),
-              Row(
-                children: [
-                  Switch(
-                    value: _isHighlighted,
-                    onChanged: (value) {
-                      setState(() {
-                        _isHighlighted = value;
-                      });
-                    },
-                  ),
-                  Text(l10n.menuDesignerEditItemHighlighted),
-                ],
-              ),
-            ],
+            children: children,
           ),
         ),
       ),
@@ -358,7 +434,7 @@ class _MenuDesignerState extends State<_MenuDesigner> {
             // TODO: Handle this case.
             break;
           case _MenuDesignerItemType.group:
-            final dialog = _MenuDesignerEditGroup(item, menu);
+            final dialog = _MenuDesignerEditDialog(item, menu);
             await showDialog(context: context, builder: (context) => dialog);
             await loadItems();
             break;
@@ -434,79 +510,11 @@ class _MenuDesignerState extends State<_MenuDesigner> {
           },
         ),
         actions: [
-          PopupMenuButton(
-            itemBuilder: (context) {
-              return [
-                PopupMenuItem(
-                  value: _MenuDesignerItemType.artist,
-                  child: Text(l10n.menuDesignerAddItemArtist),
-                ),
-                PopupMenuItem(
-                  value: _MenuDesignerItemType.simplePage,
-                  child: Text(l10n.menuDesignerAddItemSimplePage),
-                ),
-                PopupMenuItem(
-                  value: _MenuDesignerItemType.segmentPage,
-                  child: Text(l10n.menuDesignerAddItemSegmentPage),
-                ),
-                PopupMenuItem(
-                  value: _MenuDesignerItemType.form,
-                  child: Text(l10n.menuDesignerAddItemForm),
-                ),
-                PopupMenuItem(
-                  value: _MenuDesignerItemType.gallery,
-                  child: Text(l10n.menuDesignerAddItemGallery),
-                ),
-                PopupMenuItem(
-                  value: _MenuDesignerItemType.blogCategory,
-                  child: Text(l10n.menuDesignerAddItemBlogCategory),
-                ),
-                PopupMenuItem(
-                  value: _MenuDesignerItemType.blogHomePage,
-                  child: Text(l10n.menuDesignerAddItemBlogHomePage),
-                ),
-                PopupMenuItem(
-                  value: _MenuDesignerItemType.externalLink,
-                  child: Text(l10n.menuDesignerAddItemExternalLink),
-                ),
-                PopupMenuItem(
-                  value: _MenuDesignerItemType.group,
-                  child: Text(l10n.menuDesignerAddItemGroup),
-                ),
-              ];
-            },
-            onSelected: (value) async {
-              switch (value) {
-                case _MenuDesignerItemType.artist:
-                  // TODO: Handle this case.
-                  break;
-                case _MenuDesignerItemType.simplePage:
-                  // TODO: Handle this case.
-                  break;
-                case _MenuDesignerItemType.segmentPage:
-                  // TODO: Handle this case.
-                  break;
-                case _MenuDesignerItemType.form:
-                  // TODO: Handle this case.
-                  break;
-                case _MenuDesignerItemType.gallery:
-                  // TODO: Handle this case.
-                  break;
-                case _MenuDesignerItemType.blogCategory:
-                  // TODO: Handle this case.
-                  break;
-                case _MenuDesignerItemType.blogHomePage:
-                  // TODO: Handle this case.
-                  break;
-                case _MenuDesignerItemType.externalLink:
-                  // TODO: Handle this case.
-                  break;
-                case _MenuDesignerItemType.group:
-                  final dialog = _MenuDesignerEditGroup(null, menu);
-                  await showDialog(context: context, builder: (context) => dialog);
-                  await loadItems();
-                  break;
-              }
+          IconButton(
+            onPressed: () async {
+              final dialog = _MenuDesignerEditDialog(null, menu);
+              await showDialog(context: context, builder: (context) => dialog);
+              await loadItems();
             },
             icon: const Icon(Icons.add),
           )

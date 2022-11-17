@@ -2419,6 +2419,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Add item`
+  String get menuDesignerEditDialogTitle {
+    return Intl.message(
+      'Add item',
+      name: 'menuDesignerEditDialogTitle',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

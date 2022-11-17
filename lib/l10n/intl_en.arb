@@ -589,5 +589,7 @@
   "menuDesignerItemType": "Type",
   "@menuDesignerItem": {},
   "menuDesignerItemRoute": "Route",
-  "@menuDesignerItemRoute": {}
+  "@menuDesignerItemRoute": {},
+  "menuDesignerEditDialogTitle": "Add item",
+  "@menuDesignerEditDialogTitle": {}
 }

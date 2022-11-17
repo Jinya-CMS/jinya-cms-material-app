@@ -236,5 +236,6 @@
   "menuDesignerItemExternalLink": "Externen Link",
   "menuDesignerItemGroup": "Gruppe",
   "menuDesignerItemType": "Typ",
-  "menuDesignerItemRoute": "Link"
+  "menuDesignerItemRoute": "Link",
+  "menuDesignerEditDialogTitle": "Menüeintrag hinzufügen"
 }
