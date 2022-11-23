@@ -167,6 +167,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "discard": MessageLookupByLibrary.simpleMessage("Discard changes"),
         "discardCategory":
             MessageLookupByLibrary.simpleMessage("Discard changes"),
+        "discardMenu": MessageLookupByLibrary.simpleMessage("Discard changes"),
         "discardPost": MessageLookupByLibrary.simpleMessage("Discard post"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Dismiss"),
         "editBlogCategory":
@@ -309,36 +310,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "manageSimplePagesTitle":
             MessageLookupByLibrary.simpleMessage("Simple pages"),
         "menuAddAccount": MessageLookupByLibrary.simpleMessage("Add account"),
+        "menuAddConflict": MessageLookupByLibrary.simpleMessage(
+            "A menu with the given name already exists"),
+        "menuAddGeneric":
+            MessageLookupByLibrary.simpleMessage("The menu could not be saved"),
         "menuBlog": MessageLookupByLibrary.simpleMessage("Blog"),
         "menuDesigner": m26,
-        "menuDesignerAddItemArtist":
-            MessageLookupByLibrary.simpleMessage("Link artist"),
-        "menuDesignerAddItemBlogCategory":
-            MessageLookupByLibrary.simpleMessage("Link blog category"),
-        "menuDesignerAddItemBlogHomePage":
-            MessageLookupByLibrary.simpleMessage("Link blog home page"),
-        "menuDesignerAddItemExternalLink":
-            MessageLookupByLibrary.simpleMessage("Link external website"),
-        "menuDesignerAddItemForm":
-            MessageLookupByLibrary.simpleMessage("Link form"),
-        "menuDesignerAddItemGallery":
-            MessageLookupByLibrary.simpleMessage("Link gallery"),
-        "menuDesignerAddItemGroup":
-            MessageLookupByLibrary.simpleMessage("Add group"),
-        "menuDesignerAddItemSegmentPage":
-            MessageLookupByLibrary.simpleMessage("Link segment page"),
-        "menuDesignerAddItemSimplePage":
-            MessageLookupByLibrary.simpleMessage("Link simple page"),
+        "menuDesignerAddDialogTitle":
+            MessageLookupByLibrary.simpleMessage("Add menu item"),
         "menuDesignerEditDialogTitle":
-            MessageLookupByLibrary.simpleMessage("Add item"),
+            MessageLookupByLibrary.simpleMessage("Edit menu item"),
         "menuDesignerEditItemDiscardChanges":
             MessageLookupByLibrary.simpleMessage("Discard changes"),
         "menuDesignerEditItemHighlighted":
             MessageLookupByLibrary.simpleMessage("Highlighted"),
         "menuDesignerEditItemRoute":
             MessageLookupByLibrary.simpleMessage("Route"),
-        "menuDesignerEditItemSaveGroup":
-            MessageLookupByLibrary.simpleMessage("Save group"),
+        "menuDesignerEditItemSaveChanges":
+            MessageLookupByLibrary.simpleMessage("Save item"),
         "menuDesignerEditItemTitle":
             MessageLookupByLibrary.simpleMessage("Title"),
         "menuDesignerEditItemTitleCannotBeEmpty":
@@ -361,7 +350,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuDesignerItemSimplePage":
             MessageLookupByLibrary.simpleMessage("Simple page"),
         "menuDesignerItemType": MessageLookupByLibrary.simpleMessage("Type"),
+        "menuEditConflict": MessageLookupByLibrary.simpleMessage(
+            "A menu with the given name already exists"),
+        "menuEditGeneric":
+            MessageLookupByLibrary.simpleMessage("The menu could not be saved"),
         "menuForms": MessageLookupByLibrary.simpleMessage("Forms"),
+        "menuLogo": MessageLookupByLibrary.simpleMessage("Logo"),
         "menuManageAccounts":
             MessageLookupByLibrary.simpleMessage("Manage accounts"),
         "menuManageBlogCategories":
@@ -376,9 +370,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Simple pages"),
         "menuMedia": MessageLookupByLibrary.simpleMessage("Media"),
         "menuMenu": MessageLookupByLibrary.simpleMessage("Menus"),
+        "menuName": MessageLookupByLibrary.simpleMessage("Name"),
+        "menuNameCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("The name cannot be empty"),
+        "menuNoLogo": MessageLookupByLibrary.simpleMessage("No logo"),
         "menuPages": MessageLookupByLibrary.simpleMessage("Pages"),
         "menuSwitchAccount":
             MessageLookupByLibrary.simpleMessage("Switch account"),
+        "menuTheme": MessageLookupByLibrary.simpleMessage("Themes"),
+        "menuThemeLinks": MessageLookupByLibrary.simpleMessage("Links"),
+        "menuThemeSettings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "menuThemeVariables": MessageLookupByLibrary.simpleMessage("Variables"),
         "newAccountActionTwoFactorCode":
             MessageLookupByLibrary.simpleMessage("Request two factor code"),
         "newAccountErrorExists": MessageLookupByLibrary.simpleMessage(
@@ -428,6 +430,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "saveCategory": MessageLookupByLibrary.simpleMessage("Save category"),
         "saveFailed": MessageLookupByLibrary.simpleMessage("Save failed"),
         "saveGallery": MessageLookupByLibrary.simpleMessage("Save gallery"),
+        "saveMenu": MessageLookupByLibrary.simpleMessage("Save menu"),
         "savePost": MessageLookupByLibrary.simpleMessage("Save post"),
         "segmentPageAddConflict": MessageLookupByLibrary.simpleMessage(
             "A segment page with the given title already exists"),
@@ -455,6 +458,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "simplePageEditGeneric": MessageLookupByLibrary.simpleMessage(
             "The simple page could not be saved"),
         "simplePageTitle": MessageLookupByLibrary.simpleMessage("Title"),
+        "themeVariablesSaveError":
+            MessageLookupByLibrary.simpleMessage("Failed to save variables"),
+        "themeVariablesSaved": MessageLookupByLibrary.simpleMessage(
+            "Variables saved successfully"),
         "uploadFiles": MessageLookupByLibrary.simpleMessage("Upload files"),
         "uploadingFiles":
             MessageLookupByLibrary.simpleMessage("Uploading files...")

@@ -1,6 +1,6 @@
 import 'package:fleather/fleather.dart';
-import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:flutter/material.dart';
+import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:jinya_cms_material_app/shared/nav_drawer.dart';
@@ -20,6 +20,14 @@ class _AddFormDialogState extends State<_AddFormDialog> {
   final _toAddressController = TextEditingController();
   final FleatherController _descriptionController = FleatherController();
   final apiClient = SettingsDatabase.getClientForCurrentAccount();
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _toAddressController.dispose();
+    _descriptionController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -159,6 +167,16 @@ class _EditFormDialogState extends State<_EditFormDialog> {
     } catch (ex) {
       hideEditor = true;
     }
+  }
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _toAddressController.dispose();
+    if (!hideEditor) {
+      _descriptionController.dispose();
+    }
+    super.dispose();
   }
 
   final jinya.Form form;
@@ -324,6 +342,14 @@ class _EditTextItemState extends State<_EditTextItem> {
   bool isSubject = false;
   bool isRequired = false;
 
+  @override
+  void dispose() {
+    _labelController.dispose();
+    _placeholderController.dispose();
+    _helpTextController.dispose();
+    _spamFilterController.dispose();
+  }
+
   _EditTextItemState(this.item, this.newItem, this.form) {
     isSubject = item.isSubject ?? false;
     isRequired = item.isRequired ?? false;
@@ -483,6 +509,14 @@ class _EditMultilineItemState extends State<_EditMultilineItem> {
   final _spamFilterController = TextEditingController();
   bool isRequired = false;
 
+  @override
+  void dispose() {
+    _labelController.dispose();
+    _placeholderController.dispose();
+    _helpTextController.dispose();
+    _spamFilterController.dispose();
+  }
+
   _EditMultilineItemState(this.item, this.newItem, this.form) {
     isRequired = item.isRequired ?? false;
     _labelController.text = item.label ?? '';
@@ -625,6 +659,14 @@ class _EditDropdownItemState extends State<_EditDropdownItem> {
   final _helpTextController = TextEditingController();
   final _optionsController = TextEditingController();
   bool isRequired = false;
+
+  @override
+  void dispose() {
+    _labelController.dispose();
+    _placeholderController.dispose();
+    _helpTextController.dispose();
+    _optionsController.dispose();
+  }
 
   _EditDropdownItemState(this.item, this.newItem, this.form) {
     isRequired = item.isRequired ?? false;
@@ -769,6 +811,15 @@ class _EditEmailItemState extends State<_EditEmailItem> {
   final _spamFilterController = TextEditingController();
   bool isFromAddress = false;
   bool isRequired = false;
+
+  @override
+  void dispose() {
+    _labelController.dispose();
+    _placeholderController.dispose();
+    _helpTextController.dispose();
+    _spamFilterController.dispose();
+    super.dispose();
+  }
 
   _EditEmailItemState(this.item, this.newItem, this.form) {
     isFromAddress = item.isFromAddress ?? false;
@@ -917,6 +968,14 @@ class _EditCheckboxItemState extends State<_EditCheckboxItem> {
   final _placeholderController = TextEditingController();
   final _helpTextController = TextEditingController();
   bool isRequired = false;
+
+  @override
+  void dispose() {
+    _labelController.dispose();
+    _placeholderController.dispose();
+    _helpTextController.dispose();
+    super.dispose();
+  }
 
   _EditCheckboxItemState(this.item, this.newItem, this.form) {
     isRequired = item.isRequired ?? false;
@@ -1237,32 +1296,32 @@ class _FormDesignerState extends State<_FormDesigner> {
           children: items
               .map(
                 (item) => Dismissible(
-              key: Key(item.id.toString()),
-              background: Container(
-                color: Theme.of(context).errorColor,
-                child: const Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 16.0),
-                    child: Icon(
-                      Icons.delete,
-                      color: Colors.white,
+                  key: Key(item.id.toString()),
+                  background: Container(
+                    color: Theme.of(context).errorColor,
+                    child: const Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 16.0),
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
+                  onDismissed: (direction) {
+                    removeItem(item);
+                    final filtered = items.where((element) => element.id != item.id);
+                    setState(() {
+                      items = filtered;
+                      resetPositions();
+                    });
+                  },
+                  direction: DismissDirection.endToStart,
+                  child: getEntryByType(item),
                 ),
-              ),
-              onDismissed: (direction) {
-                removeItem(item);
-                final filtered = items.where((element) => element.id != item.id);
-                setState(() {
-                  items = filtered;
-                  resetPositions();
-                });
-              },
-              direction: DismissDirection.endToStart,
-              child: getEntryByType(item),
-            ),
-          )
+              )
               .toList(),
         ),
       ),

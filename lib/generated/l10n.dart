@@ -2160,96 +2160,6 @@ class S {
     );
   }
 
-  /// `Link artist`
-  String get menuDesignerAddItemArtist {
-    return Intl.message(
-      'Link artist',
-      name: 'menuDesignerAddItemArtist',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Link simple page`
-  String get menuDesignerAddItemSimplePage {
-    return Intl.message(
-      'Link simple page',
-      name: 'menuDesignerAddItemSimplePage',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Link segment page`
-  String get menuDesignerAddItemSegmentPage {
-    return Intl.message(
-      'Link segment page',
-      name: 'menuDesignerAddItemSegmentPage',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Link form`
-  String get menuDesignerAddItemForm {
-    return Intl.message(
-      'Link form',
-      name: 'menuDesignerAddItemForm',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Link gallery`
-  String get menuDesignerAddItemGallery {
-    return Intl.message(
-      'Link gallery',
-      name: 'menuDesignerAddItemGallery',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Link blog category`
-  String get menuDesignerAddItemBlogCategory {
-    return Intl.message(
-      'Link blog category',
-      name: 'menuDesignerAddItemBlogCategory',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Link blog home page`
-  String get menuDesignerAddItemBlogHomePage {
-    return Intl.message(
-      'Link blog home page',
-      name: 'menuDesignerAddItemBlogHomePage',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Link external website`
-  String get menuDesignerAddItemExternalLink {
-    return Intl.message(
-      'Link external website',
-      name: 'menuDesignerAddItemExternalLink',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Add group`
-  String get menuDesignerAddItemGroup {
-    return Intl.message(
-      'Add group',
-      name: 'menuDesignerAddItemGroup',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `The title cannot be empty`
   String get menuDesignerEditItemTitleCannotBeEmpty {
     return Intl.message(
@@ -2290,11 +2200,11 @@ class S {
     );
   }
 
-  /// `Save group`
-  String get menuDesignerEditItemSaveGroup {
+  /// `Save item`
+  String get menuDesignerEditItemSaveChanges {
     return Intl.message(
-      'Save group',
-      name: 'menuDesignerEditItemSaveGroup',
+      'Save item',
+      name: 'menuDesignerEditItemSaveChanges',
       desc: '',
       args: [],
     );
@@ -2420,11 +2330,181 @@ class S {
     );
   }
 
-  /// `Add item`
+  /// `Edit menu item`
   String get menuDesignerEditDialogTitle {
     return Intl.message(
-      'Add item',
+      'Edit menu item',
       name: 'menuDesignerEditDialogTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add menu item`
+  String get menuDesignerAddDialogTitle {
+    return Intl.message(
+      'Add menu item',
+      name: 'menuDesignerAddDialogTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Themes`
+  String get menuTheme {
+    return Intl.message(
+      'Themes',
+      name: 'menuTheme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get menuThemeSettings {
+    return Intl.message(
+      'Settings',
+      name: 'menuThemeSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Links`
+  String get menuThemeLinks {
+    return Intl.message(
+      'Links',
+      name: 'menuThemeLinks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Variables`
+  String get menuThemeVariables {
+    return Intl.message(
+      'Variables',
+      name: 'menuThemeVariables',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to save variables`
+  String get themeVariablesSaveError {
+    return Intl.message(
+      'Failed to save variables',
+      name: 'themeVariablesSaveError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Variables saved successfully`
+  String get themeVariablesSaved {
+    return Intl.message(
+      'Variables saved successfully',
+      name: 'themeVariablesSaved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The name cannot be empty`
+  String get menuNameCannotBeEmpty {
+    return Intl.message(
+      'The name cannot be empty',
+      name: 'menuNameCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logo`
+  String get menuLogo {
+    return Intl.message(
+      'Logo',
+      name: 'menuLogo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get menuName {
+    return Intl.message(
+      'Name',
+      name: 'menuName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No logo`
+  String get menuNoLogo {
+    return Intl.message(
+      'No logo',
+      name: 'menuNoLogo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A menu with the given name already exists`
+  String get menuAddConflict {
+    return Intl.message(
+      'A menu with the given name already exists',
+      name: 'menuAddConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The menu could not be saved`
+  String get menuAddGeneric {
+    return Intl.message(
+      'The menu could not be saved',
+      name: 'menuAddGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `A menu with the given name already exists`
+  String get menuEditConflict {
+    return Intl.message(
+      'A menu with the given name already exists',
+      name: 'menuEditConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The menu could not be saved`
+  String get menuEditGeneric {
+    return Intl.message(
+      'The menu could not be saved',
+      name: 'menuEditGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save menu`
+  String get saveMenu {
+    return Intl.message(
+      'Save menu',
+      name: 'saveMenu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Discard changes`
+  String get discardMenu {
+    return Intl.message(
+      'Discard changes',
+      name: 'discardMenu',
       desc: '',
       args: [],
     );

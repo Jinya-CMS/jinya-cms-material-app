@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:flutter/material.dart';
+import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:jinya_cms_material_app/shared/nav_drawer.dart';
@@ -53,72 +53,200 @@ class _MenuDesignerEditDialog extends StatefulWidget {
 }
 
 class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
+  final apiClient = SettingsDatabase.getClientForCurrentAccount();
   final _MenuDesignerItem? item;
   final jinya.Menu menu;
   final _formKey = GlobalKey<FormState>();
   bool _isHighlighted = false;
   final _titleController = TextEditingController();
   final _routeController = TextEditingController();
-  _MenuDesignerItemType type = _MenuDesignerItemType.group;
+  var type = _MenuDesignerItemType.group;
+  int? selectedGalleryId;
+  int? selectedArtistId;
+  int? selectedSimplePageId;
+  int? selectedSegmentPageId;
+  int? selectedFormId;
+  int? selectedBlogCategoryId;
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _routeController.dispose();
+    super.dispose();
+  }
 
   _MenuDesignerEditDialogState(this.item, this.menu) {
     _titleController.text = item?.title ?? '';
+    _routeController.text = item?.route ?? '';
     _isHighlighted = item?.highlighted ?? false;
+    selectedArtistId = item?.artist?.id ?? 0;
+    type = item?.type ?? _MenuDesignerItemType.group;
+  }
+
+  Iterable<jinya.Gallery> galleries = [];
+  Iterable<jinya.Artist> artists = [];
+  Iterable<jinya.SimplePage> simplePages = [];
+  Iterable<jinya.SegmentPage> segmentPages = [];
+  Iterable<jinya.Form> forms = [];
+  Iterable<jinya.BlogCategory> blogCategories = [];
+
+  Future<void> loadArtists() async {
+    final artists = await apiClient.getArtists();
+    setState(() {
+      this.artists = artists;
+      if (artists.isNotEmpty) {
+        selectedArtistId = item?.artist?.id ?? artists.first.id;
+      }
+    });
+  }
+
+  Future<void> loadForms() async {
+    final forms = await apiClient.getForms();
+    setState(() {
+      this.forms = forms;
+      if (forms.isNotEmpty) {
+        selectedFormId = item?.form?.id ?? forms.first.id!;
+      }
+    });
+  }
+
+  Future<void> loadCategories() async {
+    final blogCategories = await apiClient.getBlogCategories();
+    setState(() {
+      this.blogCategories = blogCategories;
+      if (blogCategories.isNotEmpty) {
+        selectedBlogCategoryId = item?.category?.id ?? blogCategories.first.id!;
+      }
+    });
+  }
+
+  Future<void> loadGalleries() async {
+    final galleries = await apiClient.getGalleries();
+    setState(() {
+      this.galleries = galleries;
+      if (galleries.isNotEmpty) {
+        selectedGalleryId = item?.gallery?.id ?? galleries.first.id!;
+      }
+    });
+  }
+
+  Future<void> loadSegmentPages() async {
+    final segmentPages = await apiClient.getSegmentPages();
+    setState(() {
+      this.segmentPages = segmentPages;
+      if (segmentPages.isNotEmpty) {
+        selectedSegmentPageId = item?.segmentPage?.id ?? segmentPages.first.id!;
+      }
+    });
+  }
+
+  Future<void> loadSimplePages() async {
+    final simplePages = await apiClient.getSimplePages();
+    setState(() {
+      this.simplePages = simplePages;
+      if (simplePages.isNotEmpty) {
+        selectedSimplePageId = item?.page?.id ?? simplePages.first.id!;
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadCategories();
+    loadForms();
+    loadGalleries();
+    loadSegmentPages();
+    loadSimplePages();
+    loadArtists();
   }
 
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final children = <Widget>[
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        child: DropdownButtonFormField(
-          value: type,
-          items: [
-            DropdownMenuItem(
-              value: _MenuDesignerItemType.artist,
-              child: Text(l10n.menuDesignerItemArtist),
-            ),
-            DropdownMenuItem(
-              value: _MenuDesignerItemType.simplePage,
-              child: Text(l10n.menuDesignerItemSimplePage),
-            ),
-            DropdownMenuItem(
-              value: _MenuDesignerItemType.segmentPage,
-              child: Text(l10n.menuDesignerItemSegmentPage),
-            ),
-            DropdownMenuItem(
-              value: _MenuDesignerItemType.form,
-              child: Text(l10n.menuDesignerItemForm),
-            ),
-            DropdownMenuItem(
-              value: _MenuDesignerItemType.gallery,
-              child: Text(l10n.menuDesignerItemGallery),
-            ),
-            DropdownMenuItem(
-              value: _MenuDesignerItemType.blogCategory,
-              child: Text(l10n.menuDesignerItemBlogCategory),
-            ),
-            DropdownMenuItem(
-              value: _MenuDesignerItemType.blogHomePage,
-              child: Text(l10n.menuDesignerItemBlogHomePage),
-            ),
-            DropdownMenuItem(
-              value: _MenuDesignerItemType.externalLink,
-              child: Text(l10n.menuDesignerItemExternalLink),
-            ),
-            DropdownMenuItem(
-              value: _MenuDesignerItemType.group,
-              child: Text(l10n.menuDesignerItemGroup),
-            ),
-          ],
-          onChanged: (value) {
-            setState(() {
-              type = value!;
-            });
-          },
-        ),
+    final dropdownMenuItems = <DropdownMenuItem>[
+      DropdownMenuItem(
+        value: _MenuDesignerItemType.group,
+        child: Text(l10n.menuDesignerItemGroup),
       ),
+      DropdownMenuItem(
+        value: _MenuDesignerItemType.blogHomePage,
+        child: Text(l10n.menuDesignerItemBlogHomePage),
+      ),
+      DropdownMenuItem(
+        value: _MenuDesignerItemType.externalLink,
+        child: Text(l10n.menuDesignerItemExternalLink),
+      ),
+      DropdownMenuItem(
+        value: _MenuDesignerItemType.artist,
+        child: Text(l10n.menuDesignerItemArtist),
+      ),
+    ];
+
+    if (simplePages.isNotEmpty) {
+      dropdownMenuItems.add(
+        DropdownMenuItem(
+          value: _MenuDesignerItemType.simplePage,
+          child: Text(l10n.menuDesignerItemSimplePage),
+        ),
+      );
+    }
+
+    if (segmentPages.isNotEmpty) {
+      dropdownMenuItems.add(
+        DropdownMenuItem(
+          value: _MenuDesignerItemType.segmentPage,
+          child: Text(l10n.menuDesignerItemSegmentPage),
+        ),
+      );
+    }
+
+    if (forms.isNotEmpty) {
+      dropdownMenuItems.add(
+        DropdownMenuItem(
+          value: _MenuDesignerItemType.form,
+          child: Text(l10n.menuDesignerItemForm),
+        ),
+      );
+    }
+
+    if (galleries.isNotEmpty) {
+      dropdownMenuItems.add(
+        DropdownMenuItem(
+          value: _MenuDesignerItemType.gallery,
+          child: Text(l10n.menuDesignerItemGallery),
+        ),
+      );
+    }
+
+    if (blogCategories.isNotEmpty) {
+      dropdownMenuItems.add(
+        DropdownMenuItem(
+          value: _MenuDesignerItemType.blogCategory,
+          child: Text(l10n.menuDesignerItemBlogCategory),
+        ),
+      );
+    }
+
+    final children = <Widget>[];
+    if (item == null) {
+      children.add(
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: DropdownButtonFormField(
+            value: type,
+            items: dropdownMenuItems,
+            onChanged: (value) {
+              setState(() {
+                type = value!;
+              });
+            },
+          ),
+        ),
+      );
+    }
+
+    children.add(
       Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: TextFormField(
@@ -135,7 +263,7 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
           decoration: InputDecoration(labelText: l10n.menuDesignerEditItemTitle),
         ),
       ),
-    ];
+    );
 
     if (type != _MenuDesignerItemType.group && type != _MenuDesignerItemType.blogHomePage) {
       children.add(
@@ -158,6 +286,143 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
       );
     }
 
+    switch (type) {
+      case _MenuDesignerItemType.artist:
+        children.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: DropdownButtonFormField(
+              items: artists
+                  .map((e) => DropdownMenuItem(
+                        value: e.id,
+                        child: Text(e.artistName!),
+                      ))
+                  .toList(),
+              value: selectedArtistId,
+              onChanged: (int? value) {
+                setState(() {
+                  selectedArtistId = value!;
+                });
+              },
+              decoration: InputDecoration(label: Text(l10n.menuDesignerItemArtist)),
+            ),
+          ),
+        );
+        break;
+      case _MenuDesignerItemType.simplePage:
+        children.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: DropdownButtonFormField(
+              items: simplePages
+                  .map((e) => DropdownMenuItem(
+                        value: e.id,
+                        child: Text(e.title!),
+                      ))
+                  .toList(),
+              value: selectedArtistId,
+              onChanged: (int? value) {
+                setState(() {
+                  selectedArtistId = value!;
+                });
+              },
+              decoration: InputDecoration(label: Text(l10n.menuDesignerItemSimplePage)),
+            ),
+          ),
+        );
+        break;
+      case _MenuDesignerItemType.segmentPage:
+        children.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: DropdownButtonFormField(
+              items: segmentPages
+                  .map((e) => DropdownMenuItem(
+                        value: e.id,
+                        child: Text(e.name!),
+                      ))
+                  .toList(),
+              value: selectedSegmentPageId,
+              onChanged: (int? value) {
+                setState(() {
+                  selectedSegmentPageId = value!;
+                });
+              },
+              decoration: InputDecoration(label: Text(l10n.menuDesignerItemSegmentPage)),
+            ),
+          ),
+        );
+        break;
+      case _MenuDesignerItemType.form:
+        children.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: DropdownButtonFormField(
+              items: forms
+                  .map((e) => DropdownMenuItem(
+                        value: e.id,
+                        child: Text(e.title!),
+                      ))
+                  .toList(),
+              value: selectedFormId,
+              onChanged: (int? value) {
+                setState(() {
+                  selectedFormId = value!;
+                });
+              },
+              decoration: InputDecoration(label: Text(l10n.menuDesignerItemForm)),
+            ),
+          ),
+        );
+        break;
+      case _MenuDesignerItemType.gallery:
+        children.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: DropdownButtonFormField(
+              items: galleries
+                  .map((e) => DropdownMenuItem(
+                        value: e.id,
+                        child: Text(e.name!),
+                      ))
+                  .toList(),
+              value: selectedGalleryId,
+              onChanged: (int? value) {
+                setState(() {
+                  selectedGalleryId = value!;
+                });
+              },
+              decoration: InputDecoration(label: Text(l10n.menuDesignerItemGallery)),
+            ),
+          ),
+        );
+        break;
+      case _MenuDesignerItemType.blogCategory:
+        children.add(
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: DropdownButtonFormField(
+              items: blogCategories
+                  .map((e) => DropdownMenuItem(
+                        value: e.id,
+                        child: Text(e.name!),
+                      ))
+                  .toList(),
+              value: selectedBlogCategoryId,
+              onChanged: (int? value) {
+                setState(() {
+                  selectedBlogCategoryId = value!;
+                });
+              },
+              decoration: InputDecoration(label: Text(l10n.menuDesignerItemBlogCategory)),
+            ),
+          ),
+        );
+        break;
+      default:
+        break;
+    }
+
     children.add(
       Row(
         children: [
@@ -176,7 +441,7 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
 
     return AlertDialog(
       scrollable: true,
-      title: Text(l10n.menuDesignerEditDialogTitle),
+      title: Text(item == null ? l10n.menuDesignerAddDialogTitle : l10n.menuDesignerEditDialogTitle),
       content: Scrollbar(
         child: Form(
           key: _formKey,
@@ -199,24 +464,38 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
               if (item == null) {
                 await apiClient.createMenuItemByMenu(
                   menu.id!,
-                  '',
+                  _routeController.text,
                   0,
                   _titleController.text,
                   highlighted: _isHighlighted,
+                  artist: type == _MenuDesignerItemType.artist ? selectedArtistId : null,
+                  category: type == _MenuDesignerItemType.blogCategory ? selectedBlogCategoryId : null,
+                  gallery: type == _MenuDesignerItemType.gallery ? selectedGalleryId : null,
+                  segmentPage: type == _MenuDesignerItemType.segmentPage ? selectedSegmentPageId : null,
+                  page: type == _MenuDesignerItemType.simplePage ? selectedSimplePageId : null,
+                  form: type == _MenuDesignerItemType.form ? selectedFormId : null,
+                  blogHomePage: type == _MenuDesignerItemType.blogHomePage,
                 );
               } else {
                 await apiClient.updateMenuItem(
                   item!.id!,
-                  route: '',
+                  route: _routeController.text,
                   position: item!.position,
                   title: _titleController.text,
                   highlighted: _isHighlighted,
+                  artist: type == _MenuDesignerItemType.artist ? selectedArtistId : null,
+                  category: type == _MenuDesignerItemType.blogCategory ? selectedBlogCategoryId : null,
+                  gallery: type == _MenuDesignerItemType.gallery ? selectedGalleryId : null,
+                  segmentPage: type == _MenuDesignerItemType.segmentPage ? selectedSegmentPageId : null,
+                  page: type == _MenuDesignerItemType.simplePage ? selectedSimplePageId : null,
+                  form: type == _MenuDesignerItemType.form ? selectedFormId : null,
+                  blogHomePage: type == _MenuDesignerItemType.blogHomePage,
                 );
               }
               NavigationService.instance.goBack();
             }
           },
-          child: Text(l10n.menuDesignerEditItemSaveGroup),
+          child: Text(l10n.menuDesignerEditItemSaveChanges),
         ),
       ],
     );
@@ -237,48 +516,6 @@ class _MenuDesignerState extends State<_MenuDesigner> {
   final uuid = const Uuid();
   final apiClient = SettingsDatabase.getClientForCurrentAccount();
   List<_MenuDesignerItem> items = [];
-
-  Iterable<jinya.Gallery> galleries = [];
-  Iterable<jinya.Artist> artists = [];
-  Iterable<jinya.SimplePage> simplePages = [];
-  Iterable<jinya.SegmentPage> segmentPages = [];
-  Iterable<jinya.Form> forms = [];
-  Iterable<jinya.BlogCategory> blogCategories = [];
-
-  Future<void> loadForms() async {
-    final forms = await apiClient.getForms();
-    setState(() {
-      this.forms = forms;
-    });
-  }
-
-  Future<void> loadCategories() async {
-    final blogCategories = await apiClient.getBlogCategories();
-    setState(() {
-      this.blogCategories = blogCategories;
-    });
-  }
-
-  Future<void> loadGalleries() async {
-    final galleries = await apiClient.getGalleries();
-    setState(() {
-      this.galleries = galleries;
-    });
-  }
-
-  Future<void> loadSegmentPages() async {
-    final segmentPages = await apiClient.getSegmentPages();
-    setState(() {
-      this.segmentPages = segmentPages;
-    });
-  }
-
-  Future<void> loadSimplePages() async {
-    final simplePages = await apiClient.getSimplePages();
-    setState(() {
-      this.simplePages = simplePages;
-    });
-  }
 
   _MenuDesignerItemType getType(jinya.MenuItem item) {
     if (item.artist != null) {
@@ -408,37 +645,9 @@ class _MenuDesignerState extends State<_MenuDesigner> {
     buttons.add(IconButton(
       icon: const Icon(Icons.edit),
       onPressed: () async {
-        switch (item.type) {
-          case _MenuDesignerItemType.artist:
-            // TODO: Handle this case.
-            break;
-          case _MenuDesignerItemType.simplePage:
-            // TODO: Handle this case.
-            break;
-          case _MenuDesignerItemType.segmentPage:
-            // TODO: Handle this case.
-            break;
-          case _MenuDesignerItemType.form:
-            // TODO: Handle this case.
-            break;
-          case _MenuDesignerItemType.gallery:
-            // TODO: Handle this case.
-            break;
-          case _MenuDesignerItemType.blogCategory:
-            // TODO: Handle this case.
-            break;
-          case _MenuDesignerItemType.blogHomePage:
-            // TODO: Handle this case.
-            break;
-          case _MenuDesignerItemType.externalLink:
-            // TODO: Handle this case.
-            break;
-          case _MenuDesignerItemType.group:
-            final dialog = _MenuDesignerEditDialog(item, menu);
-            await showDialog(context: context, builder: (context) => dialog);
-            await loadItems();
-            break;
-        }
+        final dialog = _MenuDesignerEditDialog(item, menu);
+        await showDialog(context: context, builder: (context) => dialog);
+        await loadItems();
       },
     ));
 
@@ -592,6 +801,305 @@ class _MenuDesignerState extends State<_MenuDesigner> {
   }
 }
 
+class _AddMenuDialog extends StatefulWidget {
+  const _AddMenuDialog({Key? key}) : super(key: key);
+
+  @override
+  State<_AddMenuDialog> createState() => _AddMenuDialogState();
+}
+
+class _AddMenuDialogState extends State<_AddMenuDialog> {
+  final _formKey = GlobalKey<FormState>();
+  final apiClient = SettingsDatabase.getClientForCurrentAccount();
+  final _nameController = TextEditingController();
+  int? _logoId;
+
+  Iterable<jinya.File?> files = [];
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
+
+  Future<void> loadFiles() async {
+    final files = await apiClient.getFiles();
+    setState(() {
+      this.files = [null, ...files];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadFiles();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return AlertDialog(
+      title: Text(l10n.addBlogPost),
+      scrollable: true,
+      content: Scrollbar(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return l10n.menuNameCannotBeEmpty;
+                    }
+
+                    return null;
+                  },
+                  controller: _nameController,
+                  decoration: InputDecoration(label: Text(l10n.menuName)),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: DropdownButtonFormField(
+                  onChanged: (value) {
+                    _logoId = value;
+                  },
+                  items: files.map((file) {
+                    if (file == null) {
+                      return DropdownMenuItem(
+                        value: null,
+                        child: Text(l10n.menuNoLogo),
+                      );
+                    }
+
+                    return DropdownMenuItem(
+                      value: file.id,
+                      child: Text(file.name!),
+                    );
+                  }).toList(),
+                  decoration: InputDecoration(label: Text(l10n.menuLogo)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () async {
+            NavigationService.instance.goBack();
+          },
+          child: Text(l10n.discardMenu),
+        ),
+        TextButton(
+          onPressed: () async {
+            if (_formKey.currentState!.validate()) {
+              try {
+                await apiClient.createMenu(
+                  _nameController.text,
+                  _logoId,
+                );
+
+                NavigationService.instance.goBack();
+              } on jinya.ConflictException {
+                final dialog = AlertDialog(
+                  title: Text(l10n.saveFailed),
+                  content: Text(l10n.menuAddConflict),
+                  actions: [
+                    TextButton(
+                      onPressed: () => NavigationService.instance.goBack(),
+                      child: Text(l10n.dismiss),
+                    ),
+                  ],
+                );
+                await showDialog(
+                  context: context,
+                  builder: (context) => dialog,
+                );
+              } catch (ex) {
+                final dialog = AlertDialog(
+                  title: Text(l10n.saveFailed),
+                  content: Text(l10n.menuAddGeneric),
+                  actions: [
+                    TextButton(
+                      onPressed: () => NavigationService.instance.goBack(),
+                      child: Text(l10n.dismiss),
+                    ),
+                  ],
+                );
+                await showDialog(
+                  context: context,
+                  builder: (context) => dialog,
+                );
+              }
+            }
+          },
+          child: Text(l10n.saveMenu),
+        ),
+      ],
+    );
+  }
+}
+
+class _EditMenuDialog extends StatefulWidget {
+  const _EditMenuDialog(this.menu, {Key? key}) : super(key: key);
+
+  final jinya.Menu menu;
+
+  @override
+  State<_EditMenuDialog> createState() => _EditMenuDialogState(menu);
+}
+
+class _EditMenuDialogState extends State<_EditMenuDialog> {
+  final _formKey = GlobalKey<FormState>();
+  final apiClient = SettingsDatabase.getClientForCurrentAccount();
+  final _nameController = TextEditingController();
+  int? _logoId;
+  final jinya.Menu menu;
+
+  Iterable<jinya.File?> files = [];
+
+  _EditMenuDialogState(this.menu) {
+    _nameController.text = menu.name!;
+    _logoId = menu.logo?.id;
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    super.dispose();
+  }
+
+  Future<void> loadFiles() async {
+    final files = await apiClient.getFiles();
+    setState(() {
+      this.files = [null, ...files];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadFiles();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
+    return AlertDialog(
+      title: Text(l10n.addBlogPost),
+      scrollable: true,
+      content: Scrollbar(
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return l10n.menuNameCannotBeEmpty;
+                    }
+
+                    return null;
+                  },
+                  controller: _nameController,
+                  decoration: InputDecoration(label: Text(l10n.menuName)),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                child: DropdownButtonFormField(
+                  onChanged: (value) {
+                    _logoId = value;
+                  },
+                  value: _logoId,
+                  items: files.map((file) {
+                    if (file == null) {
+                      return DropdownMenuItem(
+                        value: null,
+                        child: Text(l10n.menuNoLogo),
+                      );
+                    }
+
+                    return DropdownMenuItem(
+                      value: file.id,
+                      child: Text(file.name!),
+                    );
+                  }).toList(),
+                  decoration: InputDecoration(label: Text(l10n.menuLogo)),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () async {
+            NavigationService.instance.goBack();
+          },
+          child: Text(l10n.discardMenu),
+        ),
+        TextButton(
+          onPressed: () async {
+            if (_formKey.currentState!.validate()) {
+              try {
+                await apiClient.updateMenu(jinya.Menu(
+                  id: menu.id!,
+                  name: _nameController.text,
+                  logo: files.singleWhere(
+                    (element) => element?.id == _logoId,
+                    orElse: () => null,
+                  ),
+                ));
+
+                NavigationService.instance.goBack();
+              } on jinya.ConflictException {
+                final dialog = AlertDialog(
+                  title: Text(l10n.saveFailed),
+                  content: Text(l10n.menuEditConflict),
+                  actions: [
+                    TextButton(
+                      onPressed: () => NavigationService.instance.goBack(),
+                      child: Text(l10n.dismiss),
+                    ),
+                  ],
+                );
+                await showDialog(
+                  context: context,
+                  builder: (context) => dialog,
+                );
+              } catch (ex) {
+                final dialog = AlertDialog(
+                  title: Text(l10n.saveFailed),
+                  content: Text(l10n.menuEditGeneric),
+                  actions: [
+                    TextButton(
+                      onPressed: () => NavigationService.instance.goBack(),
+                      child: Text(l10n.dismiss),
+                    ),
+                  ],
+                );
+                await showDialog(
+                  context: context,
+                  builder: (context) => dialog,
+                );
+              }
+            }
+          },
+          child: Text(l10n.saveMenu),
+        ),
+      ],
+    );
+  }
+}
+
 class Menus extends StatefulWidget {
   const Menus({super.key});
 
@@ -628,7 +1136,7 @@ class _MenusState extends State<Menus> {
     if (menu.logo != null) {
       children.add(
         CachedNetworkImage(
-          imageUrl: SettingsDatabase.selectedAccount!.url + (menu.logo?.path ?? ''),
+          imageUrl: '${SettingsDatabase.selectedAccount!.url}/api/media/file/${menu.logo!.id!}/content',
           fit: BoxFit.cover,
           height: 240,
           width: double.infinity,
@@ -649,10 +1157,10 @@ class _MenusState extends State<Menus> {
           children: [
             TextButton(
               onPressed: () async {
-                // await showDialog(
-                //   context: context,
-                //   builder: (context) => _EditFormDialog(menu),
-                // );
+                await showDialog(
+                  context: context,
+                  builder: (context) => _EditMenuDialog(menu),
+                );
                 await loadMenus();
               },
               child: const Icon(Icons.edit),
@@ -743,9 +1251,7 @@ class _MenusState extends State<Menus> {
               ? GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: query.size.width >= 1080 ? 4 : 2,
-                    childAspectRatio: query.size.width >= 1080
-                        ? MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height)
-                        : MediaQuery.of(context).size.height / (MediaQuery.of(context).size.width),
+                    childAspectRatio: query.size.width >= 1080 ? 9 / 12 : 9 / 10,
                   ),
                   itemCount: menus.length,
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -762,11 +1268,11 @@ class _MenusState extends State<Menus> {
           ? FloatingActionButton(
               child: const Icon(Icons.add),
               onPressed: () async {
-                // final dialog = _AddFormDialog();
-                // await showDialog(
-                //   context: context,
-                //   builder: (context) => dialog,
-                // );
+                const dialog = _AddMenuDialog();
+                await showDialog(
+                  context: context,
+                  builder: (context) => dialog,
+                );
                 await loadMenus();
               },
             )

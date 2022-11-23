@@ -185,6 +185,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "discard": MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
         "discardCategory":
             MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
+        "discardMenu":
+            MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
         "discardPost":
             MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
         "dismiss": MessageLookupByLibrary.simpleMessage("Schließen"),
@@ -334,36 +336,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Einfache Seiten"),
         "menuAddAccount":
             MessageLookupByLibrary.simpleMessage("Account hinzufügen"),
+        "menuAddConflict": MessageLookupByLibrary.simpleMessage(
+            "Ein Menü mit dem gewählten Namen existiert bereits"),
+        "menuAddGeneric": MessageLookupByLibrary.simpleMessage(
+            "Das Menü konnte nicht gespeichert werden"),
         "menuBlog": MessageLookupByLibrary.simpleMessage("Blog"),
         "menuDesigner": m26,
-        "menuDesignerAddItemArtist":
-            MessageLookupByLibrary.simpleMessage("Künstler hinzufügen"),
-        "menuDesignerAddItemBlogCategory":
-            MessageLookupByLibrary.simpleMessage("Blog Kategorie verlinken"),
-        "menuDesignerAddItemBlogHomePage":
-            MessageLookupByLibrary.simpleMessage("Blog Startseite verlinken"),
-        "menuDesignerAddItemExternalLink":
-            MessageLookupByLibrary.simpleMessage("Externen Link verlinken"),
-        "menuDesignerAddItemForm":
-            MessageLookupByLibrary.simpleMessage("Forumlar verlinken"),
-        "menuDesignerAddItemGallery":
-            MessageLookupByLibrary.simpleMessage("Galerie verlinken"),
-        "menuDesignerAddItemGroup":
-            MessageLookupByLibrary.simpleMessage("Gruppe hinzufügen"),
-        "menuDesignerAddItemSegmentPage":
-            MessageLookupByLibrary.simpleMessage("Segmentseite verlinken"),
-        "menuDesignerAddItemSimplePage":
-            MessageLookupByLibrary.simpleMessage("Einfache Seite verlinken"),
-        "menuDesignerEditDialogTitle":
+        "menuDesignerAddDialogTitle":
             MessageLookupByLibrary.simpleMessage("Menüeintrag hinzufügen"),
+        "menuDesignerEditDialogTitle":
+            MessageLookupByLibrary.simpleMessage("Menüeintrag bearbeiten"),
         "menuDesignerEditItemDiscardChanges":
             MessageLookupByLibrary.simpleMessage("Änderungen verwerfen"),
         "menuDesignerEditItemHighlighted":
             MessageLookupByLibrary.simpleMessage("Hervorgehoben"),
         "menuDesignerEditItemRoute":
             MessageLookupByLibrary.simpleMessage("Link"),
-        "menuDesignerEditItemSaveGroup":
-            MessageLookupByLibrary.simpleMessage("Gruppe speichern"),
+        "menuDesignerEditItemSaveChanges":
+            MessageLookupByLibrary.simpleMessage("Menüeintrag speichern"),
         "menuDesignerEditItemTitle":
             MessageLookupByLibrary.simpleMessage("Titel"),
         "menuDesignerEditItemTitleCannotBeEmpty":
@@ -377,7 +367,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuDesignerItemExternalLink":
             MessageLookupByLibrary.simpleMessage("Externen Link"),
         "menuDesignerItemForm":
-            MessageLookupByLibrary.simpleMessage("Forumlar"),
+            MessageLookupByLibrary.simpleMessage("Formular"),
         "menuDesignerItemGallery":
             MessageLookupByLibrary.simpleMessage("Galerie"),
         "menuDesignerItemGroup": MessageLookupByLibrary.simpleMessage("Gruppe"),
@@ -387,7 +377,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuDesignerItemSimplePage":
             MessageLookupByLibrary.simpleMessage("Einfache Seite"),
         "menuDesignerItemType": MessageLookupByLibrary.simpleMessage("Typ"),
+        "menuEditConflict": MessageLookupByLibrary.simpleMessage(
+            "Ein Menü mit dem gewählten Namen existiert bereits"),
+        "menuEditGeneric": MessageLookupByLibrary.simpleMessage(
+            "Das Menü konnte nicht gespeichert werden"),
         "menuForms": MessageLookupByLibrary.simpleMessage("Formulare"),
+        "menuLogo": MessageLookupByLibrary.simpleMessage("Logo"),
         "menuManageAccounts":
             MessageLookupByLibrary.simpleMessage("Accounts verwalten"),
         "menuManageBlogCategories":
@@ -401,9 +396,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Einfache Seiten"),
         "menuMedia": MessageLookupByLibrary.simpleMessage("Medien"),
         "menuMenu": MessageLookupByLibrary.simpleMessage("Menüs"),
+        "menuName": MessageLookupByLibrary.simpleMessage("Name"),
+        "menuNameCannotBeEmpty":
+            MessageLookupByLibrary.simpleMessage("Der Name ist erforderlich"),
+        "menuNoLogo": MessageLookupByLibrary.simpleMessage("Kein Logo"),
         "menuPages": MessageLookupByLibrary.simpleMessage("Seiten"),
         "menuSwitchAccount":
             MessageLookupByLibrary.simpleMessage("Account wechseln"),
+        "menuTheme": MessageLookupByLibrary.simpleMessage("Erscheinungsbild"),
+        "menuThemeLinks": MessageLookupByLibrary.simpleMessage("Links"),
+        "menuThemeSettings":
+            MessageLookupByLibrary.simpleMessage("Einstellungen"),
+        "menuThemeVariables": MessageLookupByLibrary.simpleMessage("Variablen"),
         "newAccountActionTwoFactorCode":
             MessageLookupByLibrary.simpleMessage("Zwei Faktor Code anfragen"),
         "newAccountErrorExists": MessageLookupByLibrary.simpleMessage(
@@ -457,6 +461,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Speichern fehlgeschlagen"),
         "saveGallery":
             MessageLookupByLibrary.simpleMessage("Galerie speichern"),
+        "saveMenu": MessageLookupByLibrary.simpleMessage("Menü speichern"),
         "savePost": MessageLookupByLibrary.simpleMessage("Post speichern"),
         "segmentPageAddConflict": MessageLookupByLibrary.simpleMessage(
             "Eine Seite mit dem gewählten Titel existiert bereits"),
@@ -484,6 +489,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "simplePageEditGeneric": MessageLookupByLibrary.simpleMessage(
             "Die Seite konnte nicht gespeichert werden"),
         "simplePageTitle": MessageLookupByLibrary.simpleMessage("Titel"),
+        "themeVariablesSaveError": MessageLookupByLibrary.simpleMessage(
+            "Die Variablen konnten nicht gespeichert werden"),
+        "themeVariablesSaved": MessageLookupByLibrary.simpleMessage(
+            "Die Variablen wurden erfolgreich gespeichert"),
         "uploadFiles":
             MessageLookupByLibrary.simpleMessage("Dateien hochladen"),
         "uploadingFiles":

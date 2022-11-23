@@ -1,6 +1,5 @@
 import 'dart:io' as io;
 
-import 'package:path/path.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +7,7 @@ import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
+import 'package:path/path.dart';
 import 'package:prompt_dialog/prompt_dialog.dart';
 
 class _UploadFilesPage extends StatefulWidget {

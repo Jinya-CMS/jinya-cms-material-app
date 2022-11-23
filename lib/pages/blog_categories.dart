@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
-import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 
 class _AddBlogCategory extends StatefulWidget {
@@ -20,6 +20,14 @@ class _AddBlogCategoryState extends State<_AddBlogCategory> {
   final apiClient = SettingsDatabase.getClientForCurrentAccount();
 
   Iterable<jinya.BlogCategory?> categories = [];
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _descriptionController.dispose();
+    _webhookUrlController.dispose();
+    super.dispose();
+  }
 
   Future<void> loadCategories() async {
     final cats = await apiClient.getBlogCategories();
@@ -199,6 +207,14 @@ class _EditBlogCategoryState extends State<_EditBlogCategory> {
   final apiClient = SettingsDatabase.getClientForCurrentAccount();
 
   Iterable<jinya.BlogCategory?> categories = [];
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _descriptionController.dispose();
+    _webhookUrlController.dispose();
+    super.dispose();
+  }
 
   _EditBlogCategoryState(this.category) {
     _nameController.text = category.name!;

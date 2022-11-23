@@ -1,9 +1,9 @@
+import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
-import 'package:fleather/fleather.dart';
 import 'package:notustohtml/notustohtml.dart';
 
 class _EditSimplePage extends StatefulWidget {
@@ -33,6 +33,13 @@ class _EditSimplePageState extends State<_EditSimplePage> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
   FleatherController _contentController = FleatherController();
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _contentController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -149,6 +156,13 @@ class _AddSimplePageState extends State<_AddSimplePage> {
   final _formKey = GlobalKey<FormState>();
   final _titleController = TextEditingController();
   final FleatherController _contentController = FleatherController();
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _contentController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -290,7 +304,7 @@ class _ListSimplePagesState extends State<ListSimplePages> {
           children: [
             TextButton(
               onPressed: () async {
-                await  Navigator.push(
+                await Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => _EditSimplePage(page),

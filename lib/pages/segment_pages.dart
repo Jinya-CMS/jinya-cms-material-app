@@ -1,13 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
-import 'package:prompt_dialog/prompt_dialog.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:fleather/fleather.dart';
-import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:notustohtml/notustohtml.dart';
+import 'package:prompt_dialog/prompt_dialog.dart';
 
 class _EditGallerySegment extends StatefulWidget {
   const _EditGallerySegment(this.segment, this.page, this.galleries, this.newSegment, {super.key});
@@ -46,9 +46,9 @@ class _EditGallerySegmentState extends State<_EditGallerySegment> {
         child: DropdownButton(
           items: galleries
               .map((gal) => DropdownMenuItem(
-            value: gal.id,
-            child: Text(gal.name!),
-          ))
+                    value: gal.id,
+                    child: Text(gal.name!),
+                  ))
               .toList(),
           onChanged: (value) {
             setState(() {
@@ -106,6 +106,12 @@ class _EditFileSegmentState extends State<_EditFileSegment> {
     this.files = files;
   }
 
+  @override
+  void dispose() {
+    linkController.dispose();
+    super.dispose();
+  }
+
   late final jinya.Segment segment;
   final jinya.SegmentPage page;
   late final Iterable<jinya.File> files;
@@ -124,9 +130,9 @@ class _EditFileSegmentState extends State<_EditFileSegment> {
       DropdownButton(
         items: files
             .map((gal) => DropdownMenuItem(
-          value: gal.id,
-          child: Text(gal.name!),
-        ))
+                  value: gal.id,
+                  child: Text(gal.name!),
+                ))
             .toList(),
         onChanged: (value) {
           setState(() {
@@ -467,32 +473,32 @@ class _SegmentPageDesignerState extends State<_SegmentPageDesigner> {
           children: segments
               .map(
                 (segment) => Dismissible(
-              key: Key(segment.id.toString()),
-              background: Container(
-                color: Theme.of(context).errorColor,
-                child: const Align(
-                  alignment: Alignment.centerRight,
-                  child: Padding(
-                    padding: EdgeInsets.only(right: 16.0),
-                    child: Icon(
-                      Icons.delete,
-                      color: Colors.white,
+                  key: Key(segment.id.toString()),
+                  background: Container(
+                    color: Theme.of(context).errorColor,
+                    child: const Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 16.0),
+                        child: Icon(
+                          Icons.delete,
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ),
+                  onDismissed: (direction) {
+                    removeSegment(segment);
+                    final filtered = segments.where((element) => element.id != segment.id);
+                    setState(() {
+                      segments = filtered;
+                      resetPositions();
+                    });
+                  },
+                  direction: DismissDirection.endToStart,
+                  child: getEntryByType(segment),
                 ),
-              ),
-              onDismissed: (direction) {
-                removeSegment(segment);
-                final filtered = segments.where((element) => element.id != segment.id);
-                setState(() {
-                  segments = filtered;
-                  resetPositions();
-                });
-              },
-              direction: DismissDirection.endToStart,
-              child: getEntryByType(segment),
-            ),
-          )
+              )
               .toList(),
         ),
       ),

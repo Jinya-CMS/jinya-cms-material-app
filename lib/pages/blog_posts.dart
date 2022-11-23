@@ -2,14 +2,13 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fleather/fleather.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
+import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
-import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 import 'package:notustohtml/notustohtml.dart';
 import 'package:slugify/slugify.dart';
 import 'package:uuid/uuid.dart';
-import 'package:uuid/uuid_util.dart';
 
 class _AddBlogPost extends StatefulWidget {
   @override
@@ -28,6 +27,13 @@ class _AddBlogPostState extends State<_AddBlogPost> {
 
   Iterable<jinya.BlogCategory> categories = [];
   Iterable<jinya.File?> files = [];
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _slugController.dispose();
+    super.dispose();
+  }
 
   Future<void> loadCategories() async {
     final cats = await apiClient.getBlogCategories();
@@ -177,7 +183,7 @@ class _AddBlogPostState extends State<_AddBlogPost> {
               } on jinya.ConflictException {
                 final dialog = AlertDialog(
                   title: Text(l10n.saveFailed),
-                  content: Text(l10n.categoryAddConflict),
+                  content: Text(l10n.postAddConflict),
                   actions: [
                     TextButton(
                       onPressed: () => NavigationService.instance.goBack(),
@@ -192,7 +198,7 @@ class _AddBlogPostState extends State<_AddBlogPost> {
               } catch (ex) {
                 final dialog = AlertDialog(
                   title: Text(l10n.saveFailed),
-                  content: Text(l10n.categoryAddGeneric),
+                  content: Text(l10n.postAddGeneric),
                   actions: [
                     TextButton(
                       onPressed: () => NavigationService.instance.goBack(),
@@ -235,6 +241,13 @@ class _EditBlogPostState extends State<_EditBlogPost> {
 
   Iterable<jinya.BlogCategory> categories = [];
   Iterable<jinya.File?> files = [];
+
+  @override
+  void dispose() {
+    _titleController.dispose();
+    _slugController.dispose();
+    super.dispose();
+  }
 
   _EditBlogPostState(this.post) {
     _titleController.text = post.title!;
@@ -515,6 +528,12 @@ class _EditFileSegmentState extends State<_EditFileSegment> {
     linkController = TextEditingController(text: segment.link ?? '');
     this.segment = segment;
     this.files = files;
+  }
+
+  @override
+  void dispose() {
+    linkController.dispose();
+    super.dispose();
   }
 
   late final jinya.BlogPostSegment segment;

@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:jinya_cms_material_app/l10n/localizations.dart';
-import 'package:jinya_cms_material_app/data/account_database.dart';
-import 'package:jinya_cms_material_app/shared/nav_drawer.dart';
 import 'package:jinya_cms_api/client/jinya_client.dart';
+import 'package:jinya_cms_material_app/data/account_database.dart';
+import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
+import 'package:jinya_cms_material_app/shared/nav_drawer.dart';
 import 'package:validators/validators.dart';
 
 class NewAccountTwoFactorPage extends StatefulWidget {
@@ -60,6 +60,12 @@ class NewAccountTwoFactorPageState extends State<NewAccountTwoFactorPage> {
         scaffoldManager.showSnackBar(snackbar);
       }
     }
+  }
+
+  @override
+  void dispose() {
+    _codeController.dispose();
+    super.dispose();
   }
 
   @override
@@ -151,6 +157,14 @@ class NewAccountPageState extends State<NewAccountPage> {
   final _formKey = GlobalKey<FormState>();
   ScaffoldMessengerState? scaffoldManager;
   NavigatorState? navigator;
+
+  @override
+  void dispose() {
+    _hostController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   void requestTwoFactorCode() async {
     if (_formKey.currentState!.validate()) {

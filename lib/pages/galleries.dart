@@ -1,9 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:jinya_cms_api/jinya_cms.dart' as jinya;
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 
 class _GalleryDesigner extends StatefulWidget {
   final jinya.Gallery gallery;
@@ -192,6 +192,13 @@ class _AddGalleryDialogState extends State<_AddGalleryDialog> {
   var _orientation = jinya.Orientation.vertical;
   var _type = jinya.Type.sequence;
 
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _descriptionController.dispose();
+    super.dispose();
+  }
+
   final apiClient = SettingsDatabase.getClientForCurrentAccount();
 
   @override
@@ -347,6 +354,13 @@ class _EditGalleryDialogState extends State<_EditGalleryDialog> {
   _EditGalleryDialogState(this.gallery) {
     _nameController.text = gallery.name!;
     _descriptionController.text = gallery.description!;
+  }
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _descriptionController.dispose();
+    super.dispose();
   }
 
   final _formKey = GlobalKey<FormState>();

@@ -39,6 +39,7 @@ class JinyaCmsApp extends StatelessWidget {
             labelColor: Colors.black,
             unselectedLabelColor: Colors.black45,
           ),
+          colorScheme: lightColorScheme,
           toggleableActiveColor: lightColorScheme.primary,
           inputDecorationTheme: const InputDecorationTheme(border: UnderlineInputBorder())),
       home: HomePage(),
