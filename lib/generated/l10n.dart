@@ -2509,6 +2509,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Configuration saved successfully`
+  String get themeConfigurationSaved {
+    return Intl.message(
+      'Configuration saved successfully',
+      name: 'themeConfigurationSaved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to save configuration`
+  String get themeConfigurationSaveError {
+    return Intl.message(
+      'Failed to save configuration',
+      name: 'themeConfigurationSaveError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

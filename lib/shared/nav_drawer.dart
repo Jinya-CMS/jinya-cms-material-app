@@ -10,6 +10,7 @@ import 'package:jinya_cms_material_app/pages/media.dart';
 import 'package:jinya_cms_material_app/pages/menus.dart';
 import 'package:jinya_cms_material_app/pages/pages.dart';
 import 'package:jinya_cms_material_app/pages/accounts.dart';
+import 'package:jinya_cms_material_app/pages/themes.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -151,7 +152,20 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
           onTap: () {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(
-                builder: (context) => Menus(),
+                builder: (context) => const Menus(),
+              ),
+            );
+          },
+        ),
+      );
+      frontStageItems.add(
+        ListTile(
+          title: Text(l10n.menuTheme),
+          leading: const Icon(MdiIcons.pencilRuler),
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => const Themes(),
               ),
             );
           },

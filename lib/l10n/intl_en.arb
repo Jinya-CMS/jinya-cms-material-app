@@ -606,5 +606,10 @@
   "@menuEditGeneric": {},
   "saveMenu": "Save menu",
   "@saveMenu": {},
-  "discardMenu": "Discard changes"
+  "discardMenu": "Discard changes",
+  "@discardMenu": {},
+  "themeConfigurationSaved": "Configuration saved successfully",
+  "@themeConfigurationSaved": {},
+  "themeConfigurationSaveError": "Failed to save configuration",
+  "@themeConfigurationSaveError": {}
 }

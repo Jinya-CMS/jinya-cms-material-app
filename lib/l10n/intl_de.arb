@@ -245,5 +245,7 @@
   "menuEditConflict": "Ein Menü mit dem gewählten Namen existiert bereits",
   "menuEditGeneric": "Das Menü konnte nicht gespeichert werden",
   "saveMenu": "Menü speichern",
-  "discardMenu": "Änderungen verwerfen"
+  "discardMenu": "Änderungen verwerfen",
+  "themeConfigurationSaved": "Die Konfiguration wurde erfolgreich gespeichert",
+  "themeConfigurationSaveError": "Die Konfiguration konnte nicht gespeichert werden"
 }

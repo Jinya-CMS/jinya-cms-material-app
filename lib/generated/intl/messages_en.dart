@@ -458,6 +458,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "simplePageEditGeneric": MessageLookupByLibrary.simpleMessage(
             "The simple page could not be saved"),
         "simplePageTitle": MessageLookupByLibrary.simpleMessage("Title"),
+        "themeConfigurationSaveError": MessageLookupByLibrary.simpleMessage(
+            "Failed to save configuration"),
+        "themeConfigurationSaved": MessageLookupByLibrary.simpleMessage(
+            "Configuration saved successfully"),
         "themeVariablesSaveError":
             MessageLookupByLibrary.simpleMessage("Failed to save variables"),
         "themeVariablesSaved": MessageLookupByLibrary.simpleMessage(
