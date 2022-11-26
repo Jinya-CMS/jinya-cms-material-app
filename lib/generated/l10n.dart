@@ -2529,6 +2529,216 @@ class S {
       args: [],
     );
   }
+
+  /// `Files`
+  String get themeLinksFiles {
+    return Intl.message(
+      'Files',
+      name: 'themeLinksFiles',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Simple pages`
+  String get themeLinksSimplePages {
+    return Intl.message(
+      'Simple pages',
+      name: 'themeLinksSimplePages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Menus`
+  String get themeLinksMenus {
+    return Intl.message(
+      'Menus',
+      name: 'themeLinksMenus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Galleries`
+  String get themeLinksGalleries {
+    return Intl.message(
+      'Galleries',
+      name: 'themeLinksGalleries',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Segment pages`
+  String get themeLinksSegmentPages {
+    return Intl.message(
+      'Segment pages',
+      name: 'themeLinksSegmentPages',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Forms`
+  String get themeLinksForms {
+    return Intl.message(
+      'Forms',
+      name: 'themeLinksForms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Blog categories`
+  String get themeLinksBlogCategories {
+    return Intl.message(
+      'Blog categories',
+      name: 'themeLinksBlogCategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Links saved successfully`
+  String get themeLinksSaved {
+    return Intl.message(
+      'Links saved successfully',
+      name: 'themeLinksSaved',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to save links`
+  String get themeLinksSaveError {
+    return Intl.message(
+      'Failed to save links',
+      name: 'themeLinksSaveError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't activate`
+  String get activateThemeCancel {
+    return Intl.message(
+      'Don\'t activate',
+      name: 'activateThemeCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activate theme`
+  String get activateThemeActivate {
+    return Intl.message(
+      'Activate theme',
+      name: 'activateThemeActivate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activate theme?`
+  String get activateThemeTitle {
+    return Intl.message(
+      'Activate theme?',
+      name: 'activateThemeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to activate theme {name}?`
+  String activateThemeContent(Object name) {
+    return Intl.message(
+      'Do you want to activate theme $name?',
+      name: 'activateThemeContent',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `The theme was activated successfully`
+  String get activateThemeSuccess {
+    return Intl.message(
+      'The theme was activated successfully',
+      name: 'activateThemeSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The theme could not be activated`
+  String get activateThemeFailure {
+    return Intl.message(
+      'The theme could not be activated',
+      name: 'activateThemeFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Don't generate`
+  String get compileThemeCancel {
+    return Intl.message(
+      'Don\'t generate',
+      name: 'compileThemeCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate assets`
+  String get compileThemeActivate {
+    return Intl.message(
+      'Generate assets',
+      name: 'compileThemeActivate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate assets?`
+  String get compileThemeTitle {
+    return Intl.message(
+      'Generate assets?',
+      name: 'compileThemeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to generate the assets for theme {name}?`
+  String compileThemeContent(Object name) {
+    return Intl.message(
+      'Do you want to generate the assets for theme $name?',
+      name: 'compileThemeContent',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `The assets were generated successfully`
+  String get compileThemeSuccess {
+    return Intl.message(
+      'The assets were generated successfully',
+      name: 'compileThemeSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The assets could not be generated`
+  String get compileThemeFailure {
+    return Intl.message(
+      'The assets could not be generated',
+      name: 'compileThemeFailure',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

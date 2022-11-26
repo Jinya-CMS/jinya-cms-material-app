@@ -611,5 +611,55 @@
   "themeConfigurationSaved": "Configuration saved successfully",
   "@themeConfigurationSaved": {},
   "themeConfigurationSaveError": "Failed to save configuration",
-  "@themeConfigurationSaveError": {}
+  "@themeConfigurationSaveError": {},
+  "themeLinksFiles": "Files",
+  "@themeLinksFiles": {},
+  "themeLinksSimplePages": "Simple pages",
+  "@themeLinksSimplePages": {},
+  "themeLinksMenus": "Menus",
+  "@themeLinksMenus": {},
+  "themeLinksGalleries": "Galleries",
+  "@themeLinksGalleries": {},
+  "themeLinksSegmentPages": "Segment pages",
+  "@themeLinksSegmentPages": {},
+  "themeLinksForms": "Forms",
+  "@themeLinksForms": {},
+  "themeLinksBlogCategories": "Blog categories",
+  "@themeLinksBlogCategories": {},
+  "themeLinksSaved": "Links saved successfully",
+  "@themeLinksSaved": {},
+  "themeLinksSaveError": "Failed to save links",
+  "@themeLinksSaveError": {},
+  "activateThemeCancel": "Don't activate",
+  "@activateThemeCancel": {},
+  "activateThemeActivate": "Activate theme",
+  "@activateThemeActivate": {},
+  "activateThemeTitle": "Activate theme?",
+  "@activateThemeTitle": {},
+  "activateThemeContent": "Do you want to activate theme {name}?",
+  "@activateThemeContent": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "activateThemeSuccess": "The theme was activated successfully",
+  "@activateThemeSuccess": {},
+  "activateThemeFailure": "The theme could not be activated",
+  "@activateThemeFailure": {},
+  "compileThemeCancel": "Don't generate",
+  "@compileThemeCancel": {},
+  "compileThemeActivate": "Generate assets",
+  "@compileThemeActivate": {},
+  "compileThemeTitle": "Generate assets?",
+  "@compileThemeTitle": {},
+  "compileThemeContent": "Do you want to generate the assets for theme {name}?",
+  "@compileThemeContent": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "compileThemeSuccess": "The assets were generated successfully",
+  "@compileThemeSuccess": {},
+  "compileThemeFailure": "The assets could not be generated",
+  "@compileThemeFailure": {}
 }

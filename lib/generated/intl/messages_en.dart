@@ -20,73 +20,89 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(name) => "Do you really want to delete the file ${name}?";
+  static String m0(name) => "Do you want to activate theme ${name}?";
 
-  static String m1(title) => "Do you really want to delete the form ${title}?";
+  static String m1(name) =>
+      "Do you want to generate the assets for theme ${name}?";
 
-  static String m2(name) => "Do you really want to delete the gallery ${name}?";
+  static String m2(name) => "Do you really want to delete the file ${name}?";
 
-  static String m3(name) => "Do you really want to delete the menu ${name}?";
+  static String m3(title) => "Do you really want to delete the form ${title}?";
 
-  static String m4(title) => "Do you really want to delete the page ${title}?";
+  static String m4(name) => "Do you really want to delete the gallery ${name}?";
 
-  static String m5(title) => "Do you really want to delete the page ${title}?";
+  static String m5(name) => "Do you really want to delete the menu ${name}?";
 
-  static String m6(name) =>
+  static String m6(title) => "Do you really want to delete the page ${title}?";
+
+  static String m7(title) => "Do you really want to delete the page ${title}?";
+
+  static String m8(name) =>
       "The category ${name} is in use and cannot be deleted";
 
-  static String m7(name) => "The category ${name} could not be deleted";
+  static String m9(name) => "The category ${name} could not be deleted";
 
-  static String m8(name) => "The file ${name} is in use and cannot be deleted";
+  static String m10(name) => "The file ${name} is in use and cannot be deleted";
 
-  static String m9(name) => "The file ${name} could not be deleted";
+  static String m11(name) => "The file ${name} could not be deleted";
 
-  static String m10(title) =>
+  static String m12(title) =>
       "The form ${title} is in use and cannot be deleted";
 
-  static String m11(title) => "The form ${title} could not be deleted";
+  static String m13(title) => "The form ${title} could not be deleted";
 
-  static String m12(name) =>
+  static String m14(name) =>
       "The gallery ${name} is in use and cannot be deleted";
 
-  static String m13(name) => "The gallery ${name} could not be deleted";
+  static String m15(name) => "The gallery ${name} could not be deleted";
 
-  static String m14(name) => "The menu ${name} is in use and cannot be deleted";
+  static String m16(name) => "The menu ${name} is in use and cannot be deleted";
 
-  static String m15(name) => "The menu ${name} could not be deleted";
-
-  static String m16(title) =>
-      "The post ${title} is in use and cannot be deleted";
-
-  static String m17(title) => "The post ${title} could not be deleted";
+  static String m17(name) => "The menu ${name} could not be deleted";
 
   static String m18(title) =>
-      "The page ${title} is in use and cannot be deleted";
+      "The post ${title} is in use and cannot be deleted";
 
-  static String m19(title) => "The page ${title} could not be deleted";
+  static String m19(title) => "The post ${title} could not be deleted";
 
   static String m20(title) =>
       "The page ${title} is in use and cannot be deleted";
 
   static String m21(title) => "The page ${title} could not be deleted";
 
-  static String m22(name) => "Failed to upload file ${name}";
+  static String m22(title) =>
+      "The page ${title} is in use and cannot be deleted";
 
-  static String m23(title) => "Arrange ${title}";
+  static String m23(title) => "The page ${title} could not be deleted";
 
-  static String m24(name) => "Arrange ${name}";
+  static String m24(name) => "Failed to upload file ${name}";
 
-  static String m25(name) => "Account ${name} successfully deleted";
+  static String m25(title) => "Arrange ${title}";
 
   static String m26(name) => "Arrange ${name}";
 
-  static String m27(name) => "Arrange ${name}";
+  static String m27(name) => "Account ${name} successfully deleted";
 
-  static String m28(count) => "Segment count: ${count}";
+  static String m28(name) => "Arrange ${name}";
+
+  static String m29(name) => "Arrange ${name}";
+
+  static String m30(count) => "Segment count: ${count}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "actionUndo": MessageLookupByLibrary.simpleMessage("Undo"),
+        "activateThemeActivate":
+            MessageLookupByLibrary.simpleMessage("Activate theme"),
+        "activateThemeCancel":
+            MessageLookupByLibrary.simpleMessage("Don\'t activate"),
+        "activateThemeContent": m0,
+        "activateThemeFailure": MessageLookupByLibrary.simpleMessage(
+            "The theme could not be activated"),
+        "activateThemeSuccess": MessageLookupByLibrary.simpleMessage(
+            "The theme was activated successfully"),
+        "activateThemeTitle":
+            MessageLookupByLibrary.simpleMessage("Activate theme?"),
         "addBlogCategory": MessageLookupByLibrary.simpleMessage("Add category"),
         "addBlogPost": MessageLookupByLibrary.simpleMessage("Add post"),
         "addCategoryTitleCannotBeEmpty":
@@ -146,22 +162,33 @@ class MessageLookup extends MessageLookupByLibrary {
         "categoryWebhookUrl":
             MessageLookupByLibrary.simpleMessage("Webhook URL"),
         "chooseFiles": MessageLookupByLibrary.simpleMessage("Choose files..."),
+        "compileThemeActivate":
+            MessageLookupByLibrary.simpleMessage("Generate assets"),
+        "compileThemeCancel":
+            MessageLookupByLibrary.simpleMessage("Don\'t generate"),
+        "compileThemeContent": m1,
+        "compileThemeFailure": MessageLookupByLibrary.simpleMessage(
+            "The assets could not be generated"),
+        "compileThemeSuccess": MessageLookupByLibrary.simpleMessage(
+            "The assets were generated successfully"),
+        "compileThemeTitle":
+            MessageLookupByLibrary.simpleMessage("Generate assets?"),
         "createGalleryTitle":
             MessageLookupByLibrary.simpleMessage("Create gallery"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
-        "deleteFileMessage": m0,
+        "deleteFileMessage": m2,
         "deleteFileTitle": MessageLookupByLibrary.simpleMessage("Delete file?"),
-        "deleteFormMessage": m1,
+        "deleteFormMessage": m3,
         "deleteFormTitle": MessageLookupByLibrary.simpleMessage("Delete form?"),
-        "deleteGalleryMessage": m2,
+        "deleteGalleryMessage": m4,
         "deleteGalleryTitle":
             MessageLookupByLibrary.simpleMessage("Delete gallery?"),
-        "deleteMenuMessage": m3,
+        "deleteMenuMessage": m5,
         "deleteMenuTitle": MessageLookupByLibrary.simpleMessage("Delete form?"),
-        "deleteSegmentPageMessage": m4,
+        "deleteSegmentPageMessage": m6,
         "deleteSegmentPageTitle":
             MessageLookupByLibrary.simpleMessage("Delete page?"),
-        "deleteSimplePageMessage": m5,
+        "deleteSimplePageMessage": m7,
         "deleteSimplePageTitle":
             MessageLookupByLibrary.simpleMessage("Delete page?"),
         "discard": MessageLookupByLibrary.simpleMessage("Discard changes"),
@@ -237,28 +264,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "editSimplePageTitleCannotBeEmpty":
             MessageLookupByLibrary.simpleMessage(
                 "The page title cannot be empty"),
-        "failedToDeleteCategoryConflict": m6,
-        "failedToDeleteCategoryGeneric": m7,
-        "failedToDeleteFileConflict": m8,
-        "failedToDeleteFileGeneric": m9,
-        "failedToDeleteFormConflict": m10,
-        "failedToDeleteFormGeneric": m11,
-        "failedToDeleteGalleryConflict": m12,
-        "failedToDeleteGalleryGeneric": m13,
-        "failedToDeleteMenuConflict": m14,
-        "failedToDeleteMenuGeneric": m15,
-        "failedToDeletePostConflict": m16,
-        "failedToDeletePostGeneric": m17,
-        "failedToDeleteSegmentPageConflict": m18,
-        "failedToDeleteSegmentPageGeneric": m19,
-        "failedToDeleteSimplePageConflict": m20,
-        "failedToDeleteSimplePageGeneric": m21,
-        "failedUploading": m22,
+        "failedToDeleteCategoryConflict": m8,
+        "failedToDeleteCategoryGeneric": m9,
+        "failedToDeleteFileConflict": m10,
+        "failedToDeleteFileGeneric": m11,
+        "failedToDeleteFormConflict": m12,
+        "failedToDeleteFormGeneric": m13,
+        "failedToDeleteGalleryConflict": m14,
+        "failedToDeleteGalleryGeneric": m15,
+        "failedToDeleteMenuConflict": m16,
+        "failedToDeleteMenuGeneric": m17,
+        "failedToDeletePostConflict": m18,
+        "failedToDeletePostGeneric": m19,
+        "failedToDeleteSegmentPageConflict": m20,
+        "failedToDeleteSegmentPageGeneric": m21,
+        "failedToDeleteSimplePageConflict": m22,
+        "failedToDeleteSimplePageGeneric": m23,
+        "failedUploading": m24,
         "formAddConflict": MessageLookupByLibrary.simpleMessage(
             "A form with the given title already exists"),
         "formAddGeneric":
             MessageLookupByLibrary.simpleMessage("The form could not be saved"),
-        "formDesigner": m23,
+        "formDesigner": m25,
         "formEditConflict": MessageLookupByLibrary.simpleMessage(
             "A form with the given title already exists"),
         "formEditGeneric":
@@ -276,7 +303,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "The gallery could not be saved"),
         "galleryDescription":
             MessageLookupByLibrary.simpleMessage("Description"),
-        "galleryDesigner": m24,
+        "galleryDesigner": m26,
         "galleryEditConflict": MessageLookupByLibrary.simpleMessage(
             "A gallery with the given name already exists"),
         "galleryEditGeneric": MessageLookupByLibrary.simpleMessage(
@@ -299,7 +326,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your credentials are invalid"),
         "loginPassword": MessageLookupByLibrary.simpleMessage("Password"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
-        "manageAccountsDeleteSuccess": m25,
+        "manageAccountsDeleteSuccess": m27,
         "manageAccountsTitle":
             MessageLookupByLibrary.simpleMessage("Manage accounts"),
         "manageFilesTitle": MessageLookupByLibrary.simpleMessage("Files"),
@@ -315,7 +342,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuAddGeneric":
             MessageLookupByLibrary.simpleMessage("The menu could not be saved"),
         "menuBlog": MessageLookupByLibrary.simpleMessage("Blog"),
-        "menuDesigner": m26,
+        "menuDesigner": m28,
         "menuDesignerAddDialogTitle":
             MessageLookupByLibrary.simpleMessage("Add menu item"),
         "menuDesignerEditDialogTitle":
@@ -436,13 +463,13 @@ class MessageLookup extends MessageLookupByLibrary {
             "A segment page with the given title already exists"),
         "segmentPageAddGeneric": MessageLookupByLibrary.simpleMessage(
             "The segment page could not be saved"),
-        "segmentPageDesigner": m27,
+        "segmentPageDesigner": m29,
         "segmentPageEditConflict": MessageLookupByLibrary.simpleMessage(
             "A segment page with the given title already exists"),
         "segmentPageEditGeneric": MessageLookupByLibrary.simpleMessage(
             "The segment page could not be saved"),
         "segmentPageName": MessageLookupByLibrary.simpleMessage("Name"),
-        "segmentPageSegmentCount": m28,
+        "segmentPageSegmentCount": m30,
         "segmentTypeFile": MessageLookupByLibrary.simpleMessage("File"),
         "segmentTypeFileNoLink":
             MessageLookupByLibrary.simpleMessage("No link"),
@@ -462,6 +489,21 @@ class MessageLookup extends MessageLookupByLibrary {
             "Failed to save configuration"),
         "themeConfigurationSaved": MessageLookupByLibrary.simpleMessage(
             "Configuration saved successfully"),
+        "themeLinksBlogCategories":
+            MessageLookupByLibrary.simpleMessage("Blog categories"),
+        "themeLinksFiles": MessageLookupByLibrary.simpleMessage("Files"),
+        "themeLinksForms": MessageLookupByLibrary.simpleMessage("Forms"),
+        "themeLinksGalleries":
+            MessageLookupByLibrary.simpleMessage("Galleries"),
+        "themeLinksMenus": MessageLookupByLibrary.simpleMessage("Menus"),
+        "themeLinksSaveError":
+            MessageLookupByLibrary.simpleMessage("Failed to save links"),
+        "themeLinksSaved":
+            MessageLookupByLibrary.simpleMessage("Links saved successfully"),
+        "themeLinksSegmentPages":
+            MessageLookupByLibrary.simpleMessage("Segment pages"),
+        "themeLinksSimplePages":
+            MessageLookupByLibrary.simpleMessage("Simple pages"),
         "themeVariablesSaveError":
             MessageLookupByLibrary.simpleMessage("Failed to save variables"),
         "themeVariablesSaved": MessageLookupByLibrary.simpleMessage(

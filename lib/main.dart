@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:jinya_cms_material_app/color_scheme.g.dart';
 import 'package:jinya_cms_material_app/data/account_database.dart';
 import 'package:jinya_cms_material_app/home.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   Hive.registerAdapter(AccountAdapter());
@@ -31,17 +31,24 @@ class JinyaCmsApp extends StatelessWidget {
         useMaterial3: true,
         colorScheme: darkColorScheme,
         toggleableActiveColor: darkColorScheme.primary,
-        inputDecorationTheme: const InputDecorationTheme(border: UnderlineInputBorder()),
+        inputDecorationTheme: const InputDecorationTheme(
+          border: UnderlineInputBorder(),
+          filled: true,
+        ),
       ),
       theme: ThemeData(
-          useMaterial3: true,
-          tabBarTheme: TabBarTheme.of(context).copyWith(
-            labelColor: Colors.black,
-            unselectedLabelColor: Colors.black45,
-          ),
-          colorScheme: lightColorScheme,
-          toggleableActiveColor: lightColorScheme.primary,
-          inputDecorationTheme: const InputDecorationTheme(border: UnderlineInputBorder())),
+        useMaterial3: true,
+        tabBarTheme: TabBarTheme.of(context).copyWith(
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.black45,
+        ),
+        colorScheme: lightColorScheme,
+        toggleableActiveColor: lightColorScheme.primary,
+        inputDecorationTheme: const InputDecorationTheme(
+          border: UnderlineInputBorder(),
+          filled: true,
+        ),
+      ),
       home: HomePage(),
     );
   }
