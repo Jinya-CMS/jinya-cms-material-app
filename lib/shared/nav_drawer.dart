@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:jinya_cms_material_app/data/account_database.dart';
 import 'package:jinya_cms_material_app/home.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
+import 'package:jinya_cms_material_app/pages/artists.dart';
 import 'package:jinya_cms_material_app/pages/blog.dart';
 import 'package:jinya_cms_material_app/pages/forms.dart';
 import 'package:jinya_cms_material_app/pages/media.dart';
@@ -90,15 +91,14 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
   @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
-    final frontStageItems = <ListTile>[];
-    if (SettingsDatabase.selectedAccount!.roles!.contains('ROLE_READER') ||
-        SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')) {
-      frontStageItems.add(
+    final listItems = <ListTile>[];
+    if (SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')) {
+      listItems.add(
         ListTile(
           title: Text(l10n.menuMedia),
           leading: const Icon(MdiIcons.imageMultiple),
           onTap: () {
-            Navigator.of(context).pushReplacement(
+            Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => Media(),
               ),
@@ -106,12 +106,12 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
           },
         ),
       );
-      frontStageItems.add(
+      listItems.add(
         ListTile(
           title: Text(l10n.menuPages),
           leading: const Icon(Icons.menu_book),
           onTap: () {
-            Navigator.of(context).pushReplacement(
+            Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => Pages(),
               ),
@@ -119,12 +119,12 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
           },
         ),
       );
-      frontStageItems.add(
+      listItems.add(
         ListTile(
           title: Text(l10n.menuForms),
           leading: const Icon(MdiIcons.formTextbox),
           onTap: () {
-            Navigator.of(context).pushReplacement(
+            Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => Forms(),
               ),
@@ -132,12 +132,12 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
           },
         ),
       );
-      frontStageItems.add(
+      listItems.add(
         ListTile(
           title: Text(l10n.menuBlog),
           leading: const Icon(MdiIcons.post),
           onTap: () {
-            Navigator.of(context).pushReplacement(
+            Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => Blog(),
               ),
@@ -145,12 +145,12 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
           },
         ),
       );
-      frontStageItems.add(
+      listItems.add(
         ListTile(
           title: Text(l10n.menuMenu),
           leading: const Icon(Icons.menu),
           onTap: () {
-            Navigator.of(context).pushReplacement(
+            Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => const Menus(),
               ),
@@ -158,14 +158,30 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
           },
         ),
       );
-      frontStageItems.add(
+      listItems.add(
         ListTile(
           title: Text(l10n.menuTheme),
           leading: const Icon(MdiIcons.pencilRuler),
           onTap: () {
-            Navigator.of(context).pushReplacement(
+            Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => const Themes(),
+              ),
+            );
+          },
+        ),
+      );
+    }
+
+    if (SettingsDatabase.selectedAccount!.roles!.contains('ROLE_ADMIN')) {
+      listItems.add(
+        ListTile(
+          title: Text(l10n.menuArtists),
+          leading: const Icon(MdiIcons.accountMultiple),
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const Artists(),
               ),
             );
           },
@@ -229,7 +245,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: frontStageItems,
+                      children: listItems,
                     ),
                   ),
                   SlideTransition(

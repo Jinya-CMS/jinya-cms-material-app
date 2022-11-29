@@ -661,5 +661,87 @@
   "compileThemeSuccess": "The assets were generated successfully",
   "@compileThemeSuccess": {},
   "compileThemeFailure": "The assets could not be generated",
-  "@compileThemeFailure": {}
+  "@compileThemeFailure": {},
+  "menuArtists": "Artists",
+  "@menuArtists": {},
+  "disableArtistCancel": "Keep enabled",
+  "@disableArtistCancel": {},
+  "disableArtistConfirm": "Disable artist",
+  "@disableArtistConfirm": {},
+  "disableArtistTitle": "Disable artist?",
+  "@disableArtistTitle": {},
+  "disableArtistContent": "Do you want to disable {name}?",
+  "@disableArtistContent": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "disableArtistFailure": "Disabling the artist failed",
+  "@disableArtistFailure": {},
+  "enableArtistCancel": "Keep disabled",
+  "@enableArtistCancel": {},
+  "enableArtistConfirm": "Enable artist",
+  "@enableArtistConfirm": {},
+  "enableArtistTitle": "Enable artist?",
+  "@enableArtistTitle": {},
+  "enableArtistContent": "Do you want to enable {name}?",
+  "@enableArtistContent": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "enableArtistFailure": "Enabling the artist failed",
+  "@enableArtistFailure": {},
+  "failedToDeleteArtistConflict": "The artist {name} is in use and cannot be deleted",
+  "@failedToDeleteArtistConflict": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "failedToDeleteArtistGeneric": "The artist {name} could not be deleted",
+  "@failedToDeleteArtistGeneric": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "deleteArtistTitle": "Delete form?",
+  "@deleteArtistTitle": {},
+  "deleteArtistMessage": "Do you really want to delete the artist {name}? Please consider to disable {name} if the deletion doesn't work.",
+  "@deleteArtistMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "addArtist": "Add artist",
+  "@addArtist": {},
+  "artistName": "Artist name",
+  "@artistName": {},
+  "email": "Email",
+  "@email": {},
+  "password": "Password",
+  "@password": {},
+  "roleReader": "Reader",
+  "@roleReader": {},
+  "roleWriter": "Writer",
+  "@roleWriter": {},
+  "roleAdmin": "Admin",
+  "@roleAdmin": {},
+  "artistNameCannotBeEmpty": "The artist name cannot be empty",
+  "@artistNameCannotBeEmpty": {},
+  "emailCannotBeEmpty": "The email cannot be empty",
+  "@emailCannotBeEmpty": {},
+  "emailWrongFormat": "The email has the wrong format",
+  "@emailWrongFormat": {},
+  "passwordCannotBeEmpty": "The password cannot be empty",
+  "@passwordCannotBeEmpty": {},
+  "artistAddConflict": "An artist with the given email already exists",
+  "@artistAddConflict": {},
+  "artistAddGeneric": "The artist could not be saved",
+  "@artistAddGeneric": {},
+  "artistEditConflict": "An artist with the given email already exists",
+  "@artistEditConflict": {},
+  "artistEditGeneric": "The artist could not be saved",
+  "@artistEditGeneric": {},
+  "editArtist": "Edit artist",
+  "@editArtist": {}
 }

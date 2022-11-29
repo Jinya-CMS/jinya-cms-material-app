@@ -2739,6 +2739,316 @@ class S {
       args: [],
     );
   }
+
+  /// `Artists`
+  String get menuArtists {
+    return Intl.message(
+      'Artists',
+      name: 'menuArtists',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Keep enabled`
+  String get disableArtistCancel {
+    return Intl.message(
+      'Keep enabled',
+      name: 'disableArtistCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Disable artist`
+  String get disableArtistConfirm {
+    return Intl.message(
+      'Disable artist',
+      name: 'disableArtistConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Disable artist?`
+  String get disableArtistTitle {
+    return Intl.message(
+      'Disable artist?',
+      name: 'disableArtistTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to disable {name}?`
+  String disableArtistContent(Object name) {
+    return Intl.message(
+      'Do you want to disable $name?',
+      name: 'disableArtistContent',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Disabling the artist failed`
+  String get disableArtistFailure {
+    return Intl.message(
+      'Disabling the artist failed',
+      name: 'disableArtistFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Keep disabled`
+  String get enableArtistCancel {
+    return Intl.message(
+      'Keep disabled',
+      name: 'enableArtistCancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable artist`
+  String get enableArtistConfirm {
+    return Intl.message(
+      'Enable artist',
+      name: 'enableArtistConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable artist?`
+  String get enableArtistTitle {
+    return Intl.message(
+      'Enable artist?',
+      name: 'enableArtistTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to enable {name}?`
+  String enableArtistContent(Object name) {
+    return Intl.message(
+      'Do you want to enable $name?',
+      name: 'enableArtistContent',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Enabling the artist failed`
+  String get enableArtistFailure {
+    return Intl.message(
+      'Enabling the artist failed',
+      name: 'enableArtistFailure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The artist {name} is in use and cannot be deleted`
+  String failedToDeleteArtistConflict(Object name) {
+    return Intl.message(
+      'The artist $name is in use and cannot be deleted',
+      name: 'failedToDeleteArtistConflict',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `The artist {name} could not be deleted`
+  String failedToDeleteArtistGeneric(Object name) {
+    return Intl.message(
+      'The artist $name could not be deleted',
+      name: 'failedToDeleteArtistGeneric',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Delete form?`
+  String get deleteArtistTitle {
+    return Intl.message(
+      'Delete form?',
+      name: 'deleteArtistTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete the artist {name}? Please consider to disable {name} if the deletion doesn't work.`
+  String deleteArtistMessage(Object name) {
+    return Intl.message(
+      'Do you really want to delete the artist $name? Please consider to disable $name if the deletion doesn\'t work.',
+      name: 'deleteArtistMessage',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Add artist`
+  String get addArtist {
+    return Intl.message(
+      'Add artist',
+      name: 'addArtist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Artist name`
+  String get artistName {
+    return Intl.message(
+      'Artist name',
+      name: 'artistName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reader`
+  String get roleReader {
+    return Intl.message(
+      'Reader',
+      name: 'roleReader',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Writer`
+  String get roleWriter {
+    return Intl.message(
+      'Writer',
+      name: 'roleWriter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Admin`
+  String get roleAdmin {
+    return Intl.message(
+      'Admin',
+      name: 'roleAdmin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The artist name cannot be empty`
+  String get artistNameCannotBeEmpty {
+    return Intl.message(
+      'The artist name cannot be empty',
+      name: 'artistNameCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The email cannot be empty`
+  String get emailCannotBeEmpty {
+    return Intl.message(
+      'The email cannot be empty',
+      name: 'emailCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The email has the wrong format`
+  String get emailWrongFormat {
+    return Intl.message(
+      'The email has the wrong format',
+      name: 'emailWrongFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The password cannot be empty`
+  String get passwordCannotBeEmpty {
+    return Intl.message(
+      'The password cannot be empty',
+      name: 'passwordCannotBeEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An artist with the given email already exists`
+  String get artistAddConflict {
+    return Intl.message(
+      'An artist with the given email already exists',
+      name: 'artistAddConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The artist could not be saved`
+  String get artistAddGeneric {
+    return Intl.message(
+      'The artist could not be saved',
+      name: 'artistAddGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An artist with the given email already exists`
+  String get artistEditConflict {
+    return Intl.message(
+      'An artist with the given email already exists',
+      name: 'artistEditConflict',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The artist could not be saved`
+  String get artistEditGeneric {
+    return Intl.message(
+      'The artist could not be saved',
+      name: 'artistEditGeneric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit artist`
+  String get editArtist {
+    return Intl.message(
+      'Edit artist',
+      name: 'editArtist',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

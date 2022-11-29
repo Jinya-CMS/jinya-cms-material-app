@@ -270,10 +270,12 @@ class ListFilesState extends State<ListFiles> {
                           } on jinya.ConflictException {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(l10n.failedToDeleteFileConflict(item.name!)),
+                              behavior: SnackBarBehavior.floating,
                             ));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(l10n.failedToDeleteFileGeneric(item.name!)),
+                              behavior: SnackBarBehavior.floating,
                             ));
                           }
                         },
