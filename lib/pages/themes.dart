@@ -53,7 +53,8 @@ class _ThemesState extends State<Themes> {
         isThreeLine: true,
       ),
       CachedNetworkImage(
-        imageUrl: '${SettingsDatabase.selectedAccount!.url}/api/theme/${item.id}/preview',
+        imageUrl:
+            '${SettingsDatabase.selectedAccount!.url}/api/theme/${item.id}/preview',
         fit: BoxFit.cover,
         height: 240,
         width: double.infinity,
@@ -101,10 +102,12 @@ class _ThemesState extends State<Themes> {
                     ),
                   ],
                 );
-                await showDialog(context: context, builder: (context) => dialog);
+                await showDialog(
+                    context: context, builder: (context) => dialog);
                 await loadThemes();
               },
               icon: const Icon(MdiIcons.check),
+              tooltip: l10n.themeActivate,
             ),
             IconButton(
               onPressed: () async {
@@ -136,37 +139,45 @@ class _ThemesState extends State<Themes> {
                     ),
                   ],
                 );
-                await showDialog(context: context, builder: (context) => dialog);
+                await showDialog(
+                    context: context, builder: (context) => dialog);
                 await loadThemes();
               },
               icon: const Icon(MdiIcons.shape),
+              tooltip: l10n.themeAssets,
             ),
             IconButton(
               onPressed: () async {
                 await Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => _ThemeDetailsPage(_ThemeDetailsPage.tabSettings, item),
+                  builder: (context) =>
+                      _ThemeDetailsPage(_ThemeDetailsPage.tabSettings, item),
                 ));
                 await loadThemes();
               },
               icon: const Icon(MdiIcons.cog),
+              tooltip: l10n.themeSettings,
             ),
             IconButton(
               onPressed: () async {
                 await Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => _ThemeDetailsPage(_ThemeDetailsPage.tabLinks, item),
+                  builder: (context) =>
+                      _ThemeDetailsPage(_ThemeDetailsPage.tabLinks, item),
                 ));
                 await loadThemes();
               },
               icon: const Icon(MdiIcons.linkVariant),
+              tooltip: l10n.themeLinks,
             ),
             IconButton(
               onPressed: () async {
                 await Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => _ThemeDetailsPage(_ThemeDetailsPage.tabVariables, item),
+                  builder: (context) =>
+                      _ThemeDetailsPage(_ThemeDetailsPage.tabVariables, item),
                 ));
                 await loadThemes();
               },
               icon: const Icon(MdiIcons.sass),
+              tooltip: l10n.themeVariables,
             ),
           ],
         ),
@@ -230,7 +241,8 @@ class _ThemeDetailsPage extends StatefulWidget {
   const _ThemeDetailsPage(this.initialIndex, this.theme, {super.key});
 
   @override
-  State<_ThemeDetailsPage> createState() => _ThemeDetailsPageState(initialIndex, theme);
+  State<_ThemeDetailsPage> createState() =>
+      _ThemeDetailsPageState(initialIndex, theme);
 }
 
 class _ThemeDetailsPageState extends State<_ThemeDetailsPage> {
@@ -252,22 +264,23 @@ class _ThemeDetailsPageState extends State<_ThemeDetailsPage> {
           bottom: TabBar(
             tabs: [
               Tab(
-                icon: const Icon(MdiIcons.cog),
                 text: l10n.menuThemeSettings,
               ),
               Tab(
-                icon: const Icon(MdiIcons.linkVariant),
                 text: l10n.menuThemeLinks,
               ),
               Tab(
-                icon: const Icon(MdiIcons.sass),
                 text: l10n.menuThemeVariables,
               ),
             ],
           ),
         ),
         body: TabBarView(
-          children: [_ThemeSettingsPage(theme), _ThemeLinksPage(theme), _ThemeVariablesPage(theme)],
+          children: [
+            _ThemeSettingsPage(theme),
+            _ThemeLinksPage(theme),
+            _ThemeVariablesPage(theme)
+          ],
         ),
       ),
     );
@@ -296,8 +309,10 @@ class _ThemeSettingsPageState extends State<_ThemeSettingsPage> {
 
   Future<void> loadThemeConfiguration() async {
     try {
-      final structure = await apiClient.getThemeConfigurationStructure(theme.id!);
-      final defaultConfiguration = await apiClient.getThemeDefaultConfiguration(theme.id!);
+      final structure =
+          await apiClient.getThemeConfigurationStructure(theme.id!);
+      final defaultConfiguration =
+          await apiClient.getThemeDefaultConfiguration(theme.id!);
       setState(() {
         this.structure = structure;
         this.defaultConfiguration = defaultConfiguration;
@@ -306,11 +321,12 @@ class _ThemeSettingsPageState extends State<_ThemeSettingsPage> {
           booleans[group.name!] = {};
           for (var field in group.fields!) {
             if (field.type == 'string') {
-              editors[group.name!]![field.name!] =
-                  TextEditingController(text: theme.configuration?[group.name!]?[field.name!] ?? '');
+              editors[group.name!]![field.name!] = TextEditingController(
+                  text: theme.configuration?[group.name!]?[field.name!] ?? '');
             }
             if (field.type == 'boolean') {
-              booleans[group.name!]![field.name!] = theme.configuration?[group.name!]?[field.name!] == true;
+              booleans[group.name!]![field.name!] =
+                  theme.configuration?[group.name!]?[field.name!] == true;
             }
           }
         }
@@ -368,7 +384,8 @@ class _ThemeSettingsPageState extends State<_ThemeSettingsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: Text(
                       textAlign: TextAlign.start,
                       groupTitle,
@@ -387,12 +404,14 @@ class _ThemeSettingsPageState extends State<_ThemeSettingsPage> {
 
                     if (field.type == 'string') {
                       return Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 16, vertical: 8),
                         child: TextFormField(
                           controller: editors[group.name]![field.name],
                           decoration: InputDecoration(
                             labelText: fieldTitle,
-                            hintText: defaultConfiguration[group.name]![field.name],
+                            hintText:
+                                defaultConfiguration[group.name]![field.name],
                           ),
                         ),
                       );
@@ -400,7 +419,8 @@ class _ThemeSettingsPageState extends State<_ThemeSettingsPage> {
                       return Row(
                         children: [
                           Switch(
-                            value: booleans[group.name]![field.name] ?? defaultConfiguration[group.name]![field.name],
+                            value: booleans[group.name]![field.name] ??
+                                defaultConfiguration[group.name]![field.name],
                             onChanged: (value) {
                               setState(() {
                                 booleans[group.name]![field.name!] = value;
@@ -427,10 +447,12 @@ class _ThemeSettingsPageState extends State<_ThemeSettingsPage> {
             config[group.name!] = {};
             for (var field in group.fields!) {
               if (field.type == 'string') {
-                config[group.name!]![field.name!] = editors[group.name!]![field.name!]?.text ?? '';
+                config[group.name!]![field.name!] =
+                    editors[group.name!]![field.name!]?.text ?? '';
               }
               if (field.type == 'boolean') {
-                config[group.name!]![field.name!] = booleans[group.name!]![field.name!];
+                config[group.name!]![field.name!] =
+                    booleans[group.name!]![field.name!];
               }
             }
           }
@@ -447,6 +469,7 @@ class _ThemeSettingsPageState extends State<_ThemeSettingsPage> {
             ));
           }
         },
+        tooltip: l10n.themeSettingsSave,
         child: const Icon(Icons.save),
       ),
     );
@@ -514,7 +537,8 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
       final themeFile = themeFiles.where((element) => element.name == file);
       if (themeFile.isNotEmpty) {
         final tf = themeFile.first;
-        final selectedFile = files.where((element) => element.id == tf.file!.id);
+        final selectedFile =
+            files.where((element) => element.id == tf.file!.id);
         if (selectedFile.isNotEmpty) {
           selectedFiles[file] = selectedFile.first.id!;
         } else {
@@ -539,7 +563,8 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
       final themePage = themePages.where((element) => element.name == cat);
       if (themePage.isNotEmpty) {
         final tf = themePage.first;
-        final selectedPage = pages.where((element) => element.id == tf.page!.id);
+        final selectedPage =
+            pages.where((element) => element.id == tf.page!.id);
         if (selectedPage.isNotEmpty) {
           selectedPages[cat] = selectedPage.first.id!;
         } else {
@@ -564,7 +589,8 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
       final themeMenu = themeMenus.where((element) => element.name == cat);
       if (themeMenu.isNotEmpty) {
         final tf = themeMenu.first;
-        final selectedMenu = menus.where((element) => element.id == tf.menu!.id);
+        final selectedMenu =
+            menus.where((element) => element.id == tf.menu!.id);
         if (selectedMenu.isNotEmpty) {
           selectedMenus[cat] = selectedMenu.first.id!;
         } else {
@@ -589,7 +615,8 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
       final themeForm = themeForms.where((element) => element.name == cat);
       if (themeForm.isNotEmpty) {
         final tf = themeForm.first;
-        final selectedForm = forms.where((element) => element.id == tf.form!.id);
+        final selectedForm =
+            forms.where((element) => element.id == tf.form!.id);
         if (selectedForm.isNotEmpty) {
           selectedForms[cat] = selectedForm.first.id!;
         } else {
@@ -611,10 +638,12 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
     final galleries = await apiClient.getGalleries();
     final selectedGalleries = <String, int>{};
     for (var cat in links!.galleries!.keys) {
-      final themeGallery = themeGalleries.where((element) => element.name == cat);
+      final themeGallery =
+          themeGalleries.where((element) => element.name == cat);
       if (themeGallery.isNotEmpty) {
         final tf = themeGallery.first;
-        final selectedGallery = galleries.where((element) => element.id == tf.gallery!.id);
+        final selectedGallery =
+            galleries.where((element) => element.id == tf.gallery!.id);
         if (selectedGallery.isNotEmpty) {
           selectedGalleries[cat] = selectedGallery.first.id!;
         } else {
@@ -636,10 +665,12 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
     final segmentPages = await apiClient.getSegmentPages();
     final selectedSegmentPages = <String, int>{};
     for (var cat in links!.segmentPages!.keys) {
-      final themeSegmentPage = themeSegmentPages.where((element) => element.name == cat);
+      final themeSegmentPage =
+          themeSegmentPages.where((element) => element.name == cat);
       if (themeSegmentPage.isNotEmpty) {
         final tf = themeSegmentPage.first;
-        final selectedSegmentPage = segmentPages.where((element) => element.id == tf.segmentPage!.id);
+        final selectedSegmentPage =
+            segmentPages.where((element) => element.id == tf.segmentPage!.id);
         if (selectedSegmentPage.isNotEmpty) {
           selectedSegmentPages[cat] = selectedSegmentPage.first.id!;
         } else {
@@ -661,10 +692,12 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
     final categories = await apiClient.getBlogCategories();
     final selectedCategories = <String, int>{};
     for (var cat in links!.blogCategories!.keys) {
-      final themeCategory = themeCategories.where((element) => element.name == cat);
+      final themeCategory =
+          themeCategories.where((element) => element.name == cat);
       if (themeCategory.isNotEmpty) {
         final tf = themeCategory.first;
-        final selectedCategory = categories.where((element) => element.id == tf.blogCategory!.id);
+        final selectedCategory =
+            categories.where((element) => element.id == tf.blogCategory!.id);
         if (selectedCategory.isNotEmpty) {
           selectedCategories[cat] = selectedCategory.first.id!;
         } else {
@@ -1011,37 +1044,44 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
           final futures = <Future<void>>[];
           if (links!.blogCategories != null) {
             for (var item in links!.blogCategories!.keys) {
-              futures.add(apiClient.updateThemeCategory(theme.id!, item, selectedBlogCategories[item]!));
+              futures.add(apiClient.updateThemeCategory(
+                  theme.id!, item, selectedBlogCategories[item]!));
             }
           }
           if (links!.pages != null) {
             for (var item in links!.pages!.keys) {
-              futures.add(apiClient.updateThemeSimplePage(theme.id!, item, selectedPages[item]!));
+              futures.add(apiClient.updateThemeSimplePage(
+                  theme.id!, item, selectedPages[item]!));
             }
           }
           if (links!.galleries != null) {
             for (var item in links!.galleries!.keys) {
-              futures.add(apiClient.updateThemeGallery(theme.id!, item, selectedGalleries[item]!));
+              futures.add(apiClient.updateThemeGallery(
+                  theme.id!, item, selectedGalleries[item]!));
             }
           }
           if (links!.segmentPages != null) {
             for (var item in links!.segmentPages!.keys) {
-              futures.add(apiClient.updateThemeSegmentPage(theme.id!, item, selectedSegmentPages[item]!));
+              futures.add(apiClient.updateThemeSegmentPage(
+                  theme.id!, item, selectedSegmentPages[item]!));
             }
           }
           if (links!.forms != null) {
             for (var item in links!.files!.keys) {
-              futures.add(apiClient.updateThemeFile(theme.id!, item, selectedFiles[item]!));
+              futures.add(apiClient.updateThemeFile(
+                  theme.id!, item, selectedFiles[item]!));
             }
           }
           if (links!.forms != null) {
             for (var item in links!.forms!.keys) {
-              futures.add(apiClient.updateThemeForm(theme.id!, item, selectedForms[item]!));
+              futures.add(apiClient.updateThemeForm(
+                  theme.id!, item, selectedForms[item]!));
             }
           }
           if (links!.menus != null) {
             for (var item in links!.menus!.keys) {
-              futures.add(apiClient.updateThemeMenu(theme.id!, item, selectedMenus[item]!));
+              futures.add(apiClient.updateThemeMenu(
+                  theme.id!, item, selectedMenus[item]!));
             }
           }
 
@@ -1059,6 +1099,7 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
             ));
           }
         },
+        tooltip: l10n.themeLinksSave,
         child: const Icon(Icons.save),
       ),
     );
@@ -1087,7 +1128,8 @@ class _ThemeVariablesPageState extends State<_ThemeVariablesPage> {
     setState(() {
       this.variables = variables;
       for (var item in variables.keys) {
-        editors[item] = TextEditingController(text: theme.scssVariables?[item] ?? '');
+        editors[item] =
+            TextEditingController(text: theme.scssVariables?[item] ?? '');
       }
     });
   }
@@ -1118,10 +1160,12 @@ class _ThemeVariablesPageState extends State<_ThemeVariablesPage> {
             children: editors.keys
                 .map(
                   (e) => Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     child: TextFormField(
                       controller: editors[e],
-                      decoration: InputDecoration(labelText: e, hintText: variables[e]),
+                      decoration:
+                          InputDecoration(labelText: e, hintText: variables[e]),
                     ),
                   ),
                 )
@@ -1152,6 +1196,7 @@ class _ThemeVariablesPageState extends State<_ThemeVariablesPage> {
             ));
           }
         },
+        tooltip: l10n.themeVariablesSave,
         child: const Icon(Icons.save),
       ),
     );

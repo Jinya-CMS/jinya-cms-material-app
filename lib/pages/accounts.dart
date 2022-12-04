@@ -398,7 +398,7 @@ class ManageAccountsPageState extends State<ManageAccountsPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
+        tooltip: l10n.menuAddAccount,
         onPressed: () {
           Navigator.of(context).push(
             MaterialPageRoute(
@@ -406,6 +406,7 @@ class ManageAccountsPageState extends State<ManageAccountsPage> {
             ),
           );
         },
+        child: const Icon(Icons.add),
       ),
     );
   }

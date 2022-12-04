@@ -18,11 +18,9 @@ class Blog extends StatelessWidget {
           bottom: TabBar(
             tabs: [
               Tab(
-                icon: const Icon(MdiIcons.tag),
                 text: l10n.menuManageBlogCategories,
               ),
               Tab(
-                icon: const Icon(MdiIcons.noteEdit),
                 text: l10n.menuManageBlogPosts,
               ),
             ],

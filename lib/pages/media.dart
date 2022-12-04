@@ -18,11 +18,9 @@ class Media extends StatelessWidget {
           bottom: TabBar(
             tabs: [
               Tab(
-                icon: const Icon(Icons.image),
                 text: l10n.menuManageFiles,
               ),
               Tab(
-                icon: const Icon(MdiIcons.imageMultiple),
                 text: l10n.menuManageGalleries,
               ),
             ],

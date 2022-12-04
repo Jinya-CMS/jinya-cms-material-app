@@ -66,7 +66,10 @@ class _EditSimplePageState extends State<_EditSimplePage> {
                   await apiClient.updateSimplePage(jinya.SimplePage(
                     id: page.id,
                     title: _titleController.text,
-                    content: hideEditor ? page.content : converter.encode(_contentController.document.toDelta()),
+                    content: hideEditor
+                        ? page.content
+                        : converter
+                            .encode(_contentController.document.toDelta()),
                   ));
                   NavigationService.instance.goBack();
                 } on jinya.ConflictException {
@@ -302,7 +305,7 @@ class _ListSimplePagesState extends State<ListSimplePages> {
         ButtonBar(
           alignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await Navigator.push(
                   context,
@@ -312,9 +315,10 @@ class _ListSimplePagesState extends State<ListSimplePages> {
                 );
                 await loadPages();
               },
-              child: const Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
+              tooltip: l10n.editSimplePage,
             ),
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await showDialog(
                   context: context,
@@ -336,11 +340,15 @@ class _ListSimplePagesState extends State<ListSimplePages> {
                             await loadPages();
                           } on jinya.ConflictException {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(l10n.failedToDeleteSimplePageConflict(page.title!)),
+                              content: Text(
+                                  l10n.failedToDeleteSimplePageConflict(
+                                      page.title!)),
                             ));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(l10n.failedToDeleteSimplePageGeneric(page.title!)),
+                              content: Text(
+                                  l10n.failedToDeleteSimplePageGeneric(
+                                      page.title!)),
                             ));
                           }
                         },
@@ -353,10 +361,11 @@ class _ListSimplePagesState extends State<ListSimplePages> {
                   ),
                 );
               },
-              child: Icon(
+              icon: Icon(
                 Icons.delete,
                 color: Theme.of(context).errorColor,
               ),
+              tooltip: l10n.deleteSimplePage,
             ),
           ],
         ),
@@ -374,6 +383,7 @@ class _ListSimplePagesState extends State<ListSimplePages> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final query = MediaQuery.of(context);
 
     return Scaffold(
@@ -387,8 +397,10 @@ class _ListSimplePagesState extends State<ListSimplePages> {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: query.size.width >= 1080 ? 4 : 2,
                     childAspectRatio: query.size.width >= 1080
-                        ? MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height)
-                        : MediaQuery.of(context).size.height / (MediaQuery.of(context).size.width),
+                        ? MediaQuery.of(context).size.width /
+                            (MediaQuery.of(context).size.height)
+                        : MediaQuery.of(context).size.height /
+                            (MediaQuery.of(context).size.width),
                   ),
                   itemCount: pages.length,
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -401,19 +413,21 @@ class _ListSimplePagesState extends State<ListSimplePages> {
                 ),
         ),
       ),
-      floatingActionButton: SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
-          ? FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: () async {
-                await Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => _AddSimplePage(),
-                  ),
-                );
-                await loadPages();
-              },
-            )
-          : null,
+      floatingActionButton:
+          SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
+              ? FloatingActionButton(
+                  onPressed: () async {
+                    await Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => _AddSimplePage(),
+                      ),
+                    );
+                    await loadPages();
+                  },
+                  tooltip: l10n.addSimplePage,
+                  child: const Icon(Icons.add),
+                )
+              : null,
     );
   }
 }

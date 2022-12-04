@@ -424,21 +424,22 @@ class _ListBlogCategoriesState extends State<ListBlogCategories> {
         ButtonBar(
           alignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextButton(
+            IconButton(
               onPressed: () async {
                 final dialog = _EditBlogCategory(category);
                 await showDialog(context: context, builder: (context) => dialog);
                 await loadCategories();
               },
-              child: const Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
+              tooltip: l10n.editBlogCategory,
             ),
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text(l10n.deleteSimplePageTitle),
-                    content: Text(l10n.deleteSimplePageMessage(category.name!)),
+                    title: Text(l10n.deleteBlogCategoryTitle),
+                    content: Text(l10n.deleteBlogCategoryMessage(category.name!)),
                     actions: [
                       TextButton(
                         onPressed: () {
@@ -471,7 +472,8 @@ class _ListBlogCategoriesState extends State<ListBlogCategories> {
                   ),
                 );
               },
-              child: Icon(
+              tooltip: l10n.deleteBlogCategory,
+              icon: Icon(
                 Icons.delete,
                 color: Theme.of(context).errorColor,
               ),
@@ -492,6 +494,7 @@ class _ListBlogCategoriesState extends State<ListBlogCategories> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final query = MediaQuery.of(context);
 
     return Scaffold(
@@ -521,12 +524,13 @@ class _ListBlogCategoriesState extends State<ListBlogCategories> {
       ),
       floatingActionButton: SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
           ? FloatingActionButton(
-              child: const Icon(Icons.add),
+              tooltip: l10n.addBlogCategory,
               onPressed: () async {
                 final dialog = _AddBlogCategory();
                 await showDialog(context: context, builder: (context) => dialog);
                 await loadCategories();
               },
+              child: const Icon(Icons.add),
             )
           : null,
     );

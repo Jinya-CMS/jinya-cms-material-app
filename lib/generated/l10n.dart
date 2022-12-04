@@ -2870,10 +2870,10 @@ class S {
     );
   }
 
-  /// `Delete form?`
+  /// `Delete artist?`
   String get deleteArtistTitle {
     return Intl.message(
-      'Delete form?',
+      'Delete artist?',
       name: 'deleteArtistTitle',
       desc: '',
       args: [],
@@ -3045,6 +3045,366 @@ class S {
     return Intl.message(
       'Edit artist',
       name: 'editArtist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete gallery`
+  String get deleteGallery {
+    return Intl.message(
+      'Delete gallery',
+      name: 'deleteGallery',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete category`
+  String get deleteBlogCategory {
+    return Intl.message(
+      'Delete category',
+      name: 'deleteBlogCategory',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete category?`
+  String get deleteBlogCategoryTitle {
+    return Intl.message(
+      'Delete category?',
+      name: 'deleteBlogCategoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete the category {name}?`
+  String deleteBlogCategoryMessage(Object name) {
+    return Intl.message(
+      'Do you really want to delete the category $name?',
+      name: 'deleteBlogCategoryMessage',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Arrange {name}`
+  String blogPostDesigner(Object name) {
+    return Intl.message(
+      'Arrange $name',
+      name: 'blogPostDesigner',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Delete post`
+  String get deleteBlogPost {
+    return Intl.message(
+      'Delete post',
+      name: 'deleteBlogPost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete post?`
+  String get deleteBlogPostTitle {
+    return Intl.message(
+      'Delete post?',
+      name: 'deleteBlogPostTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you really want to delete the post {name}?`
+  String deleteBlogPostMessage(Object name) {
+    return Intl.message(
+      'Do you really want to delete the post $name?',
+      name: 'deleteBlogPostMessage',
+      desc: '',
+      args: [name],
+    );
+  }
+
+  /// `Add file`
+  String get galleryDesignerAddItem {
+    return Intl.message(
+      'Add file',
+      name: 'galleryDesignerAddItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit segment`
+  String get editBlogPostSegment {
+    return Intl.message(
+      'Edit segment',
+      name: 'editBlogPostSegment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add segment`
+  String get addBlogPostSegment {
+    return Intl.message(
+      'Add segment',
+      name: 'addBlogPostSegment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete form`
+  String get deleteForm {
+    return Intl.message(
+      'Delete form',
+      name: 'deleteForm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add item`
+  String get formDesignerAddItem {
+    return Intl.message(
+      'Add item',
+      name: 'formDesignerAddItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit item`
+  String get editFormItem {
+    return Intl.message(
+      'Edit item',
+      name: 'editFormItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add menu`
+  String get addMenu {
+    return Intl.message(
+      'Add menu',
+      name: 'addMenu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit menu`
+  String get editMenu {
+    return Intl.message(
+      'Edit menu',
+      name: 'editMenu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete menu`
+  String get deleteMenu {
+    return Intl.message(
+      'Delete menu',
+      name: 'deleteMenu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit menu item`
+  String get menuDesignerEditItem {
+    return Intl.message(
+      'Edit menu item',
+      name: 'menuDesignerEditItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Decrease nesting`
+  String get menuDesignerDecreaseItem {
+    return Intl.message(
+      'Decrease nesting',
+      name: 'menuDesignerDecreaseItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Increase nesting`
+  String get menuDesignerIncreaseItem {
+    return Intl.message(
+      'Increase nesting',
+      name: 'menuDesignerIncreaseItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add item`
+  String get menuDesignerAddItem {
+    return Intl.message(
+      'Add item',
+      name: 'menuDesignerAddItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Disable artist`
+  String get disableArtist {
+    return Intl.message(
+      'Disable artist',
+      name: 'disableArtist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enable artist`
+  String get enableArtist {
+    return Intl.message(
+      'Enable artist',
+      name: 'enableArtist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete artist`
+  String get deleteArtist {
+    return Intl.message(
+      'Delete artist',
+      name: 'deleteArtist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete page`
+  String get deleteSegmentPage {
+    return Intl.message(
+      'Delete page',
+      name: 'deleteSegmentPage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit segment`
+  String get editSegmentPageSegment {
+    return Intl.message(
+      'Edit segment',
+      name: 'editSegmentPageSegment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add segment`
+  String get addSegmentPageSegment {
+    return Intl.message(
+      'Add segment',
+      name: 'addSegmentPageSegment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete page`
+  String get deleteSimplePage {
+    return Intl.message(
+      'Delete page',
+      name: 'deleteSimplePage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Activate theme`
+  String get themeActivate {
+    return Intl.message(
+      'Activate theme',
+      name: 'themeActivate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate assets`
+  String get themeAssets {
+    return Intl.message(
+      'Generate assets',
+      name: 'themeAssets',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme settings`
+  String get themeSettings {
+    return Intl.message(
+      'Theme settings',
+      name: 'themeSettings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme links`
+  String get themeLinks {
+    return Intl.message(
+      'Theme links',
+      name: 'themeLinks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme variables`
+  String get themeVariables {
+    return Intl.message(
+      'Theme variables',
+      name: 'themeVariables',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save settings`
+  String get themeSettingsSave {
+    return Intl.message(
+      'Save settings',
+      name: 'themeSettingsSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save links`
+  String get themeLinksSave {
+    return Intl.message(
+      'Save links',
+      name: 'themeLinksSave',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save variables`
+  String get themeVariablesSave {
+    return Intl.message(
+      'Save variables',
+      name: 'themeVariablesSave',
       desc: '',
       args: [],
     );

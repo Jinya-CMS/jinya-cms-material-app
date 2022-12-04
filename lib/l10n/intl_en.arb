@@ -704,7 +704,7 @@
       "name": {}
     }
   },
-  "deleteArtistTitle": "Delete form?",
+  "deleteArtistTitle": "Delete artist?",
   "@deleteArtistTitle": {},
   "deleteArtistMessage": "Do you really want to delete the artist {name}? Please consider to disable {name} if the deletion doesn't work.",
   "@deleteArtistMessage": {
@@ -743,5 +743,89 @@
   "artistEditGeneric": "The artist could not be saved",
   "@artistEditGeneric": {},
   "editArtist": "Edit artist",
-  "@editArtist": {}
+  "@editArtist": {},
+  "deleteGallery": "Delete gallery",
+  "@deleteGallery": {},
+  "deleteBlogCategory": "Delete category",
+  "@deleteBlogCategory": {},
+  "deleteBlogCategoryTitle": "Delete category?",
+  "@deleteBlogCategoryTitle": {},
+  "deleteBlogCategoryMessage": "Do you really want to delete the category {name}?",
+  "@deleteBlogCategoryMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "blogPostDesigner": "Arrange {name}",
+  "@blogPostDesigner": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "deleteBlogPost": "Delete post",
+  "@deleteBlogPost": {},
+  "deleteBlogPostTitle": "Delete post?",
+  "@deleteBlogPostTitle": {},
+  "deleteBlogPostMessage": "Do you really want to delete the post {name}?",
+  "@deleteBlogPostMessage": {
+    "placeholders": {
+      "name": {}
+    }
+  },
+  "galleryDesignerAddItem": "Add file",
+  "@galleryDesignerAddItem": {},
+  "editBlogPostSegment": "Edit segment",
+  "@editBlogPostSegment": {},
+  "addBlogPostSegment": "Add segment",
+  "@addBlogPostSegment": {},
+  "deleteForm": "Delete form",
+  "@deleteForm": {},
+  "formDesignerAddItem": "Add item",
+  "@formDesignerAddItem": {},
+  "editFormItem": "Edit item",
+  "@editFormItem": {},
+  "addMenu": "Add menu",
+  "@addMenu": {},
+  "editMenu": "Edit menu",
+  "@editMenu": {},
+  "deleteMenu": "Delete menu",
+  "@deleteMenu": {},
+  "menuDesignerEditItem": "Edit menu item",
+  "@menuDesignerEditItem": {},
+  "menuDesignerDecreaseItem": "Decrease nesting",
+  "@menuDesignerDecreaseItem": {},
+  "menuDesignerIncreaseItem": "Increase nesting",
+  "@menuDesignerIncreaseItem": {},
+  "menuDesignerAddItem": "Add item",
+  "@menuDesignerAddItem": {},
+  "disableArtist": "Disable artist",
+  "@disableArtist": {},
+  "enableArtist": "Enable artist",
+  "@enableArtist": {},
+  "deleteArtist": "Delete artist",
+  "@deleteArtist": {},
+  "deleteSegmentPage": "Delete page",
+  "@deleteSegmentPage": {},
+  "editSegmentPageSegment": "Edit segment",
+  "@editSegmentPageSegment": {},
+  "addSegmentPageSegment": "Add segment",
+  "@addSegmentPageSegment": {},
+  "deleteSimplePage": "Delete page",
+  "@deleteSimplePage": {},
+  "themeActivate": "Activate theme",
+  "@themeActivate": {},
+  "themeAssets": "Generate assets",
+  "@themeAssets": {},
+  "themeSettings": "Theme settings",
+  "@themeSettings": {},
+  "themeLinks": "Theme links",
+  "@themeLinks": {},
+  "themeVariables": "Theme variables",
+  "@themeVariables": {},
+  "themeSettingsSave": "Save settings",
+  "@themeSettingsSave": {},
+  "themeLinksSave": "Save links",
+  "@themeLinksSave": {},
+  "themeVariablesSave": "Save variables",
+  "@themeVariablesSave": {}
 }

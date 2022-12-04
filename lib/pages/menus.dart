@@ -24,7 +24,8 @@ class _MenuDesignerItem extends jinya.MenuItem {
   _MenuDesignerItem? parent;
   _MenuDesignerItemType type;
 
-  _MenuDesignerItem(this.nestingIndex, this.parent, this.type, jinya.MenuItem item)
+  _MenuDesignerItem(
+      this.nestingIndex, this.parent, this.type, jinya.MenuItem item)
       : super(
           id: item.id,
           position: item.position,
@@ -49,7 +50,8 @@ class _MenuDesignerEditDialog extends StatefulWidget {
   final jinya.Menu menu;
 
   @override
-  State<_MenuDesignerEditDialog> createState() => _MenuDesignerEditDialogState(item, menu);
+  State<_MenuDesignerEditDialog> createState() =>
+      _MenuDesignerEditDialogState(item, menu);
 }
 
 class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
@@ -260,12 +262,14 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
           },
           controller: _titleController,
           maxLines: 1,
-          decoration: InputDecoration(labelText: l10n.menuDesignerEditItemTitle),
+          decoration:
+              InputDecoration(labelText: l10n.menuDesignerEditItemTitle),
         ),
       ),
     );
 
-    if (type != _MenuDesignerItemType.group && type != _MenuDesignerItemType.blogHomePage) {
+    if (type != _MenuDesignerItemType.group &&
+        type != _MenuDesignerItemType.blogHomePage) {
       children.add(
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -280,7 +284,8 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
             },
             controller: _routeController,
             maxLines: 1,
-            decoration: InputDecoration(labelText: l10n.menuDesignerEditItemRoute),
+            decoration:
+                InputDecoration(labelText: l10n.menuDesignerEditItemRoute),
           ),
         ),
       );
@@ -304,7 +309,8 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
                   selectedArtistId = value!;
                 });
               },
-              decoration: InputDecoration(label: Text(l10n.menuDesignerItemArtist)),
+              decoration:
+                  InputDecoration(label: Text(l10n.menuDesignerItemArtist)),
             ),
           ),
         );
@@ -326,7 +332,8 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
                   selectedArtistId = value!;
                 });
               },
-              decoration: InputDecoration(label: Text(l10n.menuDesignerItemSimplePage)),
+              decoration:
+                  InputDecoration(label: Text(l10n.menuDesignerItemSimplePage)),
             ),
           ),
         );
@@ -348,7 +355,8 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
                   selectedSegmentPageId = value!;
                 });
               },
-              decoration: InputDecoration(label: Text(l10n.menuDesignerItemSegmentPage)),
+              decoration: InputDecoration(
+                  label: Text(l10n.menuDesignerItemSegmentPage)),
             ),
           ),
         );
@@ -370,7 +378,8 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
                   selectedFormId = value!;
                 });
               },
-              decoration: InputDecoration(label: Text(l10n.menuDesignerItemForm)),
+              decoration:
+                  InputDecoration(label: Text(l10n.menuDesignerItemForm)),
             ),
           ),
         );
@@ -392,7 +401,8 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
                   selectedGalleryId = value!;
                 });
               },
-              decoration: InputDecoration(label: Text(l10n.menuDesignerItemGallery)),
+              decoration:
+                  InputDecoration(label: Text(l10n.menuDesignerItemGallery)),
             ),
           ),
         );
@@ -414,7 +424,8 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
                   selectedBlogCategoryId = value!;
                 });
               },
-              decoration: InputDecoration(label: Text(l10n.menuDesignerItemBlogCategory)),
+              decoration: InputDecoration(
+                  label: Text(l10n.menuDesignerItemBlogCategory)),
             ),
           ),
         );
@@ -441,7 +452,9 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
 
     return AlertDialog(
       scrollable: true,
-      title: Text(item == null ? l10n.menuDesignerAddDialogTitle : l10n.menuDesignerEditDialogTitle),
+      title: Text(item == null
+          ? l10n.menuDesignerAddDialogTitle
+          : l10n.menuDesignerEditDialogTitle),
       content: Scrollbar(
         child: Form(
           key: _formKey,
@@ -468,12 +481,24 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
                   0,
                   _titleController.text,
                   highlighted: _isHighlighted,
-                  artist: type == _MenuDesignerItemType.artist ? selectedArtistId : null,
-                  category: type == _MenuDesignerItemType.blogCategory ? selectedBlogCategoryId : null,
-                  gallery: type == _MenuDesignerItemType.gallery ? selectedGalleryId : null,
-                  segmentPage: type == _MenuDesignerItemType.segmentPage ? selectedSegmentPageId : null,
-                  page: type == _MenuDesignerItemType.simplePage ? selectedSimplePageId : null,
-                  form: type == _MenuDesignerItemType.form ? selectedFormId : null,
+                  artist: type == _MenuDesignerItemType.artist
+                      ? selectedArtistId
+                      : null,
+                  category: type == _MenuDesignerItemType.blogCategory
+                      ? selectedBlogCategoryId
+                      : null,
+                  gallery: type == _MenuDesignerItemType.gallery
+                      ? selectedGalleryId
+                      : null,
+                  segmentPage: type == _MenuDesignerItemType.segmentPage
+                      ? selectedSegmentPageId
+                      : null,
+                  page: type == _MenuDesignerItemType.simplePage
+                      ? selectedSimplePageId
+                      : null,
+                  form: type == _MenuDesignerItemType.form
+                      ? selectedFormId
+                      : null,
                   blogHomePage: type == _MenuDesignerItemType.blogHomePage,
                 );
               } else {
@@ -483,12 +508,24 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
                   position: item!.position,
                   title: _titleController.text,
                   highlighted: _isHighlighted,
-                  artist: type == _MenuDesignerItemType.artist ? selectedArtistId : null,
-                  category: type == _MenuDesignerItemType.blogCategory ? selectedBlogCategoryId : null,
-                  gallery: type == _MenuDesignerItemType.gallery ? selectedGalleryId : null,
-                  segmentPage: type == _MenuDesignerItemType.segmentPage ? selectedSegmentPageId : null,
-                  page: type == _MenuDesignerItemType.simplePage ? selectedSimplePageId : null,
-                  form: type == _MenuDesignerItemType.form ? selectedFormId : null,
+                  artist: type == _MenuDesignerItemType.artist
+                      ? selectedArtistId
+                      : null,
+                  category: type == _MenuDesignerItemType.blogCategory
+                      ? selectedBlogCategoryId
+                      : null,
+                  gallery: type == _MenuDesignerItemType.gallery
+                      ? selectedGalleryId
+                      : null,
+                  segmentPage: type == _MenuDesignerItemType.segmentPage
+                      ? selectedSegmentPageId
+                      : null,
+                  page: type == _MenuDesignerItemType.simplePage
+                      ? selectedSimplePageId
+                      : null,
+                  form: type == _MenuDesignerItemType.form
+                      ? selectedFormId
+                      : null,
                   blogHomePage: type == _MenuDesignerItemType.blogHomePage,
                 );
               }
@@ -547,10 +584,14 @@ class _MenuDesignerState extends State<_MenuDesigner> {
     final result = <_MenuDesignerItem>[];
 
     for (var item in items) {
-      final resultingItem = _MenuDesignerItem(nestingIndex, parent, getType(item), item);
+      final resultingItem =
+          _MenuDesignerItem(nestingIndex, parent, getType(item), item);
       result.add(resultingItem);
       if (items.isNotEmpty) {
-        result.addAll(flattenItems(parent: resultingItem, nestingIndex: nestingIndex + 1, items: item.items ?? []));
+        result.addAll(flattenItems(
+            parent: resultingItem,
+            nestingIndex: nestingIndex + 1,
+            items: item.items ?? []));
       }
     }
 
@@ -608,7 +649,8 @@ class _MenuDesignerState extends State<_MenuDesigner> {
     if (current != 0) {
       final previous = items.elementAt(current - 1);
 
-      if (item.items?.isNotEmpty == true && item.items?.elementAt(0).position != item.position) {
+      if (item.items?.isNotEmpty == true &&
+          item.items?.elementAt(0).position != item.position) {
         increaseAllowed = !(item.parent == previous);
       } else if (previous.nestingIndex < item.nestingIndex) {
         increaseAllowed = false;
@@ -624,6 +666,7 @@ class _MenuDesignerState extends State<_MenuDesigner> {
           await loadItems();
         },
         icon: const Icon(Icons.format_indent_decrease),
+        tooltip: l10n.menuDesignerDecreaseItem,
       ));
     }
 
@@ -631,14 +674,17 @@ class _MenuDesignerState extends State<_MenuDesigner> {
       buttons.add(IconButton(
         onPressed: () async {
           final previous = items[items.indexOf(item) - 1];
-          if (previous.nestingIndex > 0 && item.nestingIndex == previous.nestingIndex) {
+          if (previous.nestingIndex > 0 &&
+              item.nestingIndex == previous.nestingIndex) {
             await apiClient.moveMenuItemToNewParent(item.id!, previous.id!);
           } else {
-            await apiClient.moveMenuItemToNewParent(item.id!, previous.parent?.id ?? previous.id!);
+            await apiClient.moveMenuItemToNewParent(
+                item.id!, previous.parent?.id ?? previous.id!);
           }
           await loadItems();
         },
         icon: const Icon(Icons.format_indent_increase),
+        tooltip: l10n.menuDesignerIncreaseItem,
       ));
     }
 
@@ -649,6 +695,7 @@ class _MenuDesignerState extends State<_MenuDesigner> {
         await showDialog(context: context, builder: (context) => dialog);
         await loadItems();
       },
+      tooltip: l10n.menuDesignerEditItem,
     ));
 
     var typeOfItem = '';
@@ -726,6 +773,7 @@ class _MenuDesignerState extends State<_MenuDesigner> {
               await loadItems();
             },
             icon: const Icon(Icons.add),
+            tooltip: l10n.menuDesignerAddItem,
           )
         ],
       ),
@@ -735,8 +783,11 @@ class _MenuDesignerState extends State<_MenuDesigner> {
             final dropIdx = newIndex > oldIndex ? newIndex + 1 : newIndex;
             final item = items[oldIndex];
             final menuItemId = item.id;
-            final targetItem = dropIdx == items.length ? items[newIndex] : items[dropIdx];
-            final position = dropIdx == items.length ? items[newIndex].position! + 1 : targetItem.position;
+            final targetItem =
+                dropIdx == items.length ? items[newIndex] : items[dropIdx];
+            final position = dropIdx == items.length
+                ? items[newIndex].position! + 1
+                : targetItem.position;
             final newParent = targetItem.parent?.id;
             final dataParentId = item.parent?.id;
             final parentList = items.where((i) => i.id == dataParentId);
@@ -840,7 +891,7 @@ class _AddMenuDialogState extends State<_AddMenuDialog> {
     final l10n = AppLocalizations.of(context)!;
 
     return AlertDialog(
-      title: Text(l10n.addBlogPost),
+      title: Text(l10n.addMenu),
       scrollable: true,
       content: Scrollbar(
         child: Form(
@@ -991,7 +1042,7 @@ class _EditMenuDialogState extends State<_EditMenuDialog> {
     final l10n = AppLocalizations.of(context)!;
 
     return AlertDialog(
-      title: Text(l10n.addBlogPost),
+      title: Text(l10n.editMenu),
       scrollable: true,
       content: Scrollbar(
         child: Form(
@@ -1136,7 +1187,8 @@ class _MenusState extends State<Menus> {
     if (menu.logo != null) {
       children.add(
         CachedNetworkImage(
-          imageUrl: '${SettingsDatabase.selectedAccount!.url}/api/media/file/${menu.logo!.id!}/content',
+          imageUrl:
+              '${SettingsDatabase.selectedAccount!.url}/api/media/file/${menu.logo!.id!}/content',
           fit: BoxFit.cover,
           height: 240,
           width: double.infinity,
@@ -1155,7 +1207,7 @@ class _MenusState extends State<Menus> {
         ButtonBar(
           alignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await showDialog(
                   context: context,
@@ -1163,18 +1215,20 @@ class _MenusState extends State<Menus> {
                 );
                 await loadMenus();
               },
-              child: const Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
+              tooltip: l10n.addMenu,
             ),
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await NavigationService.instance.navigateTo(MaterialPageRoute(
                   builder: (context) => _MenuDesigner(menu),
                 ));
                 await loadMenus();
               },
-              child: const Icon(Icons.reorder),
+              icon: const Icon(Icons.reorder),
+              tooltip: l10n.menuDesigner(menu.name!),
             ),
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await showDialog(
                   context: context,
@@ -1196,11 +1250,13 @@ class _MenusState extends State<Menus> {
                             await loadMenus();
                           } on jinya.ConflictException {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(l10n.failedToDeleteMenuConflict(menu.name!)),
+                              content: Text(
+                                  l10n.failedToDeleteMenuConflict(menu.name!)),
                             ));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(l10n.failedToDeleteMenuGeneric(menu.name!)),
+                              content: Text(
+                                  l10n.failedToDeleteMenuGeneric(menu.name!)),
                             ));
                           }
                         },
@@ -1213,10 +1269,11 @@ class _MenusState extends State<Menus> {
                   ),
                 );
               },
-              child: Icon(
+              icon: Icon(
                 Icons.delete,
                 color: Theme.of(context).errorColor,
               ),
+              tooltip: l10n.deleteMenu,
             ),
           ],
         ),
@@ -1251,7 +1308,8 @@ class _MenusState extends State<Menus> {
               ? GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: query.size.width >= 1080 ? 4 : 2,
-                    childAspectRatio: query.size.width >= 1080 ? 9 / 12 : 9 / 10,
+                    childAspectRatio:
+                        query.size.width >= 1080 ? 9 / 12 : 9 / 10,
                   ),
                   itemCount: menus.length,
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -1264,19 +1322,21 @@ class _MenusState extends State<Menus> {
                 ),
         ),
       ),
-      floatingActionButton: SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
-          ? FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: () async {
-                const dialog = _AddMenuDialog();
-                await showDialog(
-                  context: context,
-                  builder: (context) => dialog,
-                );
-                await loadMenus();
-              },
-            )
-          : null,
+      floatingActionButton:
+          SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
+              ? FloatingActionButton(
+                  onPressed: () async {
+                    const dialog = _AddMenuDialog();
+                    await showDialog(
+                      context: context,
+                      builder: (context) => dialog,
+                    );
+                    await loadMenus();
+                  },
+                  tooltip: l10n.addMenu,
+                  child: const Icon(Icons.add),
+                )
+              : null,
     );
   }
 }

@@ -10,7 +10,9 @@ import 'package:notustohtml/notustohtml.dart';
 import 'package:prompt_dialog/prompt_dialog.dart';
 
 class _EditGallerySegment extends StatefulWidget {
-  const _EditGallerySegment(this.segment, this.page, this.galleries, this.newSegment, {super.key});
+  const _EditGallerySegment(
+      this.segment, this.page, this.galleries, this.newSegment,
+      {super.key});
 
   final jinya.Segment segment;
   final jinya.SegmentPage page;
@@ -18,11 +20,13 @@ class _EditGallerySegment extends StatefulWidget {
   final bool newSegment;
 
   @override
-  State<StatefulWidget> createState() => _EditGallerySegmentState(segment, page, galleries, newSegment);
+  State<StatefulWidget> createState() =>
+      _EditGallerySegmentState(segment, page, galleries, newSegment);
 }
 
 class _EditGallerySegmentState extends State<_EditGallerySegment> {
-  _EditGallerySegmentState(jinya.Segment segment, this.page, Iterable<jinya.Gallery> galleries, this.newSegment) {
+  _EditGallerySegmentState(jinya.Segment segment, this.page,
+      Iterable<jinya.Gallery> galleries, this.newSegment) {
     selectedGalleryId = segment.gallery?.id ?? galleries.first.id;
     this.galleries = galleries;
     this.segment = segment;
@@ -68,12 +72,15 @@ class _EditGallerySegmentState extends State<_EditGallerySegment> {
         ),
         TextButton(
           onPressed: () async {
-            segment.gallery = galleries.singleWhere((element) => element.id == selectedGalleryId);
+            segment.gallery = galleries
+                .singleWhere((element) => element.id == selectedGalleryId);
 
             if (newSegment) {
-              await apiClient.createSegment(page.id!, jinya.SegmentType.gallery, segment);
+              await apiClient.createSegment(
+                  page.id!, jinya.SegmentType.gallery, segment);
             } else {
-              await apiClient.updateSegment(page.id!, segment.position!, segment);
+              await apiClient.updateSegment(
+                  page.id!, segment.position!, segment);
             }
 
             NavigationService.instance.goBack();
@@ -86,7 +93,8 @@ class _EditGallerySegmentState extends State<_EditGallerySegment> {
 }
 
 class _EditFileSegment extends StatefulWidget {
-  const _EditFileSegment(this.segment, this.page, this.files, this.newSegment, {super.key});
+  const _EditFileSegment(this.segment, this.page, this.files, this.newSegment,
+      {super.key});
 
   final jinya.Segment segment;
   final jinya.SegmentPage page;
@@ -94,11 +102,13 @@ class _EditFileSegment extends StatefulWidget {
   final bool newSegment;
 
   @override
-  State<StatefulWidget> createState() => _EditFileSegmentState(segment, page, files, newSegment);
+  State<StatefulWidget> createState() =>
+      _EditFileSegmentState(segment, page, files, newSegment);
 }
 
 class _EditFileSegmentState extends State<_EditFileSegment> {
-  _EditFileSegmentState(jinya.Segment segment, this.page, Iterable<jinya.File> files, this.newSegment) {
+  _EditFileSegmentState(jinya.Segment segment, this.page,
+      Iterable<jinya.File> files, this.newSegment) {
     selectedFileId = segment.file?.id ?? files.first.id;
     hasLink = segment.action == 'link';
     linkController = TextEditingController(text: segment.target ?? '');
@@ -180,7 +190,8 @@ class _EditFileSegmentState extends State<_EditFileSegment> {
         ),
         TextButton(
           onPressed: () async {
-            segment.file = files.singleWhere((element) => element.id == selectedFileId);
+            segment.file =
+                files.singleWhere((element) => element.id == selectedFileId);
             if (hasLink) {
               segment.target = linkController.text;
               segment.action = 'link';
@@ -190,9 +201,11 @@ class _EditFileSegmentState extends State<_EditFileSegment> {
             }
 
             if (newSegment) {
-              await apiClient.createSegment(page.id!, jinya.SegmentType.file, segment);
+              await apiClient.createSegment(
+                  page.id!, jinya.SegmentType.file, segment);
             } else {
-              await apiClient.updateSegment(page.id!, segment.position!, segment);
+              await apiClient.updateSegment(
+                  page.id!, segment.position!, segment);
             }
 
             NavigationService.instance.goBack();
@@ -231,7 +244,8 @@ class _SegmentPageDesignerState extends State<_SegmentPageDesigner> {
 
   _SegmentPageDesignerState(this.page);
 
-  Future<void> displayHtmlSegmentEditor(jinya.Segment segment, bool newSegment) async {
+  Future<void> displayHtmlSegmentEditor(
+      jinya.Segment segment, bool newSegment) async {
     final l10n = AppLocalizations.of(context)!;
     final delta = converter.decode(segment.html ?? '');
     final document = ParchmentDocument.fromDelta(delta);
@@ -262,9 +276,11 @@ class _SegmentPageDesignerState extends State<_SegmentPageDesigner> {
             segment.html = html;
 
             if (newSegment) {
-              await apiClient.createSegment(page.id!, jinya.SegmentType.html, segment);
+              await apiClient.createSegment(
+                  page.id!, jinya.SegmentType.html, segment);
             } else {
-              await apiClient.updateSegment(page.id!, segment.position!, segment);
+              await apiClient.updateSegment(
+                  page.id!, segment.position!, segment);
             }
 
             await loadSegments();
@@ -280,15 +296,18 @@ class _SegmentPageDesignerState extends State<_SegmentPageDesigner> {
     );
   }
 
-  Future<void> displayGallerySegmentEditor(jinya.Segment segment, bool newSegment) async {
+  Future<void> displayGallerySegmentEditor(
+      jinya.Segment segment, bool newSegment) async {
     await showDialog(
       context: context,
-      builder: (context) => _EditGallerySegment(segment, page, galleries, newSegment),
+      builder: (context) =>
+          _EditGallerySegment(segment, page, galleries, newSegment),
     );
     await loadSegments();
   }
 
-  Future<void> displayFileSegmentEditor(jinya.Segment segment, bool newSegment) async {
+  Future<void> displayFileSegmentEditor(
+      jinya.Segment segment, bool newSegment) async {
     await showDialog(
       context: context,
       builder: (context) => _EditFileSegment(segment, page, files, newSegment),
@@ -343,7 +362,8 @@ class _SegmentPageDesignerState extends State<_SegmentPageDesigner> {
         ),
         isThreeLine: true,
         leading: CachedNetworkImage(
-          imageUrl: '${SettingsDatabase.selectedAccount!.url}/${segment.file!.path!}',
+          imageUrl:
+              '${SettingsDatabase.selectedAccount!.url}/${segment.file!.path!}',
           width: 80,
           height: double.infinity,
           fit: BoxFit.cover,
@@ -353,6 +373,7 @@ class _SegmentPageDesignerState extends State<_SegmentPageDesigner> {
             displayFileSegmentEditor(segment, false);
           },
           icon: const Icon(Icons.edit),
+          tooltip: l10n.editSegmentPageSegment,
         ),
       );
     } else if (segment.gallery != null) {
@@ -365,6 +386,7 @@ class _SegmentPageDesignerState extends State<_SegmentPageDesigner> {
             displayGallerySegmentEditor(segment, false);
           },
           icon: const Icon(Icons.edit),
+          tooltip: l10n.editSegmentPageSegment,
         ),
       );
     } else {
@@ -380,6 +402,7 @@ class _SegmentPageDesignerState extends State<_SegmentPageDesigner> {
                 displayHtmlSegmentEditor(segment, false);
               },
               icon: const Icon(Icons.edit),
+              tooltip: l10n.editSegmentPageSegment,
             ),
           ),
           Padding(
@@ -438,17 +461,21 @@ class _SegmentPageDesignerState extends State<_SegmentPageDesigner> {
             onSelected: (value) {
               switch (value) {
                 case _SegmentType.file:
-                  displayFileSegmentEditor(jinya.Segment(position: 0, file: null), true);
+                  displayFileSegmentEditor(
+                      jinya.Segment(position: 0, file: null), true);
                   break;
                 case _SegmentType.gallery:
-                  displayGallerySegmentEditor(jinya.Segment(position: 0, gallery: null), true);
+                  displayGallerySegmentEditor(
+                      jinya.Segment(position: 0, gallery: null), true);
                   break;
                 case _SegmentType.html:
-                  displayHtmlSegmentEditor(jinya.Segment(position: 0, html: '<p></p>'), true);
+                  displayHtmlSegmentEditor(
+                      jinya.Segment(position: 0, html: '<p></p>'), true);
                   break;
               }
             },
             icon: const Icon(Icons.add),
+            tooltip: l10n.addSegmentPageSegment,
           )
         ],
       ),
@@ -489,7 +516,8 @@ class _SegmentPageDesignerState extends State<_SegmentPageDesigner> {
                   ),
                   onDismissed: (direction) {
                     removeSegment(segment);
-                    final filtered = segments.where((element) => element.id != segment.id);
+                    final filtered =
+                        segments.where((element) => element.id != segment.id);
                     setState(() {
                       segments = filtered;
                       resetPositions();
@@ -545,7 +573,7 @@ class _ListSegmentPagesState extends State<ListSegmentPages> {
         ButtonBar(
           alignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextButton(
+            IconButton(
               onPressed: () async {
                 final response = await prompt(
                   context,
@@ -553,14 +581,18 @@ class _ListSegmentPagesState extends State<ListSegmentPages> {
                   textOK: Text(l10n.editSegmentPageSave),
                   textCancel: Text(l10n.editSegmentPageCancel),
                   initialValue: page.name,
-                  validator: (p0) => p0!.isEmpty ? l10n.editSegmentPageTitleCannotBeEmpty : null,
+                  validator: (p0) => p0!.isEmpty
+                      ? l10n.editSegmentPageTitleCannotBeEmpty
+                      : null,
                   hintText: l10n.segmentPageName,
                 );
 
                 if (response != null) {
                   try {
-                    final client = SettingsDatabase.getClientForCurrentAccount();
-                    await client.updateSegmentPage(jinya.SegmentPage(id: page.id, name: response));
+                    final client =
+                        SettingsDatabase.getClientForCurrentAccount();
+                    await client.updateSegmentPage(
+                        jinya.SegmentPage(id: page.id, name: response));
                     await loadPages();
                   } on jinya.ConflictException {
                     final dialog = AlertDialog(
@@ -595,18 +627,20 @@ class _ListSegmentPagesState extends State<ListSegmentPages> {
                   }
                 }
               },
-              child: const Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
+              tooltip: l10n.editSegmentPage,
             ),
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await NavigationService.instance.navigateTo(MaterialPageRoute(
                   builder: (context) => _SegmentPageDesigner(page),
                 ));
                 await loadPages();
               },
-              child: const Icon(Icons.reorder),
+              icon: const Icon(Icons.reorder),
+              tooltip: l10n.segmentPageDesigner(page.name!),
             ),
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await showDialog(
                   context: context,
@@ -628,11 +662,15 @@ class _ListSegmentPagesState extends State<ListSegmentPages> {
                             await loadPages();
                           } on jinya.ConflictException {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(l10n.failedToDeleteSegmentPageConflict(page.name!)),
+                              content: Text(
+                                  l10n.failedToDeleteSegmentPageConflict(
+                                      page.name!)),
                             ));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(l10n.failedToDeleteSegmentPageGeneric(page.name!)),
+                              content: Text(
+                                  l10n.failedToDeleteSegmentPageGeneric(
+                                      page.name!)),
                             ));
                           }
                         },
@@ -645,15 +683,17 @@ class _ListSegmentPagesState extends State<ListSegmentPages> {
                   ),
                 );
               },
-              child: Icon(
+              icon: Icon(
                 Icons.delete,
                 color: Theme.of(context).errorColor,
               ),
+              tooltip: l10n.deleteSegmentPage,
             ),
           ],
         ),
       );
     }
+
     return Card(
       margin: const EdgeInsets.all(8.0),
       clipBehavior: Clip.antiAlias,
@@ -680,8 +720,10 @@ class _ListSegmentPagesState extends State<ListSegmentPages> {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: query.size.width >= 1080 ? 4 : 2,
                     childAspectRatio: query.size.width >= 1080
-                        ? MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height)
-                        : MediaQuery.of(context).size.height / (MediaQuery.of(context).size.width),
+                        ? MediaQuery.of(context).size.width /
+                            (MediaQuery.of(context).size.height)
+                        : MediaQuery.of(context).size.height /
+                            (MediaQuery.of(context).size.width),
                   ),
                   itemCount: pages.length,
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -694,22 +736,25 @@ class _ListSegmentPagesState extends State<ListSegmentPages> {
                 ),
         ),
       ),
-      floatingActionButton: SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
+      floatingActionButton: SettingsDatabase.selectedAccount!.roles!
+              .contains('ROLE_WRITER')
           ? FloatingActionButton(
-              child: const Icon(Icons.add),
               onPressed: () async {
                 final response = await prompt(
                   context,
                   title: Text(l10n.addSegmentPage),
                   textOK: Text(l10n.addSegmentPageSave),
                   textCancel: Text(l10n.addSegmentPageCancel),
-                  validator: (p0) => p0!.isEmpty ? l10n.addSegmentPageTitleCannotBeEmpty : null,
+                  validator: (p0) => p0!.isEmpty
+                      ? l10n.addSegmentPageTitleCannotBeEmpty
+                      : null,
                   hintText: l10n.segmentPageName,
                 );
 
                 if (response != null) {
                   try {
-                    final client = SettingsDatabase.getClientForCurrentAccount();
+                    final client =
+                        SettingsDatabase.getClientForCurrentAccount();
                     await client.createSegmentPage(response);
                     await loadPages();
                   } on jinya.ConflictException {
@@ -745,6 +790,8 @@ class _ListSegmentPagesState extends State<ListSegmentPages> {
                   }
                 }
               },
+              tooltip: l10n.addSegmentPage,
+              child: const Icon(Icons.add),
             )
           : null,
     );

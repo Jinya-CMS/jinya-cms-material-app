@@ -261,7 +261,8 @@ class _EditFormDialogState extends State<_EditFormDialog> {
             if (_formKey.currentState!.validate()) {
               try {
                 if (!hideEditor) {
-                  form.description = converter.encode(_descriptionController.document.toDelta());
+                  form.description = converter
+                      .encode(_descriptionController.document.toDelta());
                 }
 
                 await apiClient.updateForm(jinya.Form(
@@ -327,7 +328,8 @@ class _EditTextItem extends StatefulWidget {
   const _EditTextItem(this.item, this.newItem, this.form, {super.key});
 
   @override
-  State<StatefulWidget> createState() => _EditTextItemState(item, newItem, form);
+  State<StatefulWidget> createState() =>
+      _EditTextItemState(item, newItem, form);
 }
 
 class _EditTextItemState extends State<_EditTextItem> {
@@ -384,7 +386,8 @@ class _EditTextItemState extends State<_EditTextItem> {
                   },
                   controller: _labelController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemLabel),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemLabel),
                 ),
               ),
               Padding(
@@ -392,7 +395,8 @@ class _EditTextItemState extends State<_EditTextItem> {
                 child: TextFormField(
                   controller: _placeholderController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemPlaceholder),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemPlaceholder),
                 ),
               ),
               Padding(
@@ -400,7 +404,8 @@ class _EditTextItemState extends State<_EditTextItem> {
                 child: TextFormField(
                   controller: _helpTextController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemHelpText),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemHelpText),
                 ),
               ),
               Padding(
@@ -408,7 +413,8 @@ class _EditTextItemState extends State<_EditTextItem> {
                 child: TextFormField(
                   controller: _spamFilterController,
                   maxLines: 5,
-                  decoration: InputDecoration(labelText: l10n.editFormItemSpamFilter),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemSpamFilter),
                 ),
               ),
               Row(
@@ -495,7 +501,8 @@ class _EditMultilineItem extends StatefulWidget {
   const _EditMultilineItem(this.item, this.newItem, this.form, {super.key});
 
   @override
-  State<StatefulWidget> createState() => _EditMultilineItemState(item, newItem, form);
+  State<StatefulWidget> createState() =>
+      _EditMultilineItemState(item, newItem, form);
 }
 
 class _EditMultilineItemState extends State<_EditMultilineItem> {
@@ -550,7 +557,8 @@ class _EditMultilineItemState extends State<_EditMultilineItem> {
                   },
                   controller: _labelController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemLabel),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemLabel),
                 ),
               ),
               Padding(
@@ -558,7 +566,8 @@ class _EditMultilineItemState extends State<_EditMultilineItem> {
                 child: TextFormField(
                   controller: _placeholderController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemPlaceholder),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemPlaceholder),
                 ),
               ),
               Padding(
@@ -566,7 +575,8 @@ class _EditMultilineItemState extends State<_EditMultilineItem> {
                 child: TextFormField(
                   controller: _helpTextController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemHelpText),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemHelpText),
                 ),
               ),
               Padding(
@@ -574,7 +584,8 @@ class _EditMultilineItemState extends State<_EditMultilineItem> {
                 child: TextFormField(
                   controller: _spamFilterController,
                   maxLines: 5,
-                  decoration: InputDecoration(labelText: l10n.editFormItemSpamFilter),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemSpamFilter),
                 ),
               ),
               Row(
@@ -646,7 +657,8 @@ class _EditDropdownItem extends StatefulWidget {
   const _EditDropdownItem(this.item, this.newItem, this.form, {super.key});
 
   @override
-  State<StatefulWidget> createState() => _EditDropdownItemState(item, newItem, form);
+  State<StatefulWidget> createState() =>
+      _EditDropdownItemState(item, newItem, form);
 }
 
 class _EditDropdownItemState extends State<_EditDropdownItem> {
@@ -701,7 +713,8 @@ class _EditDropdownItemState extends State<_EditDropdownItem> {
                   },
                   controller: _labelController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemLabel),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemLabel),
                 ),
               ),
               Padding(
@@ -709,7 +722,8 @@ class _EditDropdownItemState extends State<_EditDropdownItem> {
                 child: TextFormField(
                   controller: _placeholderController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemPlaceholder),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemPlaceholder),
                 ),
               ),
               Padding(
@@ -717,7 +731,8 @@ class _EditDropdownItemState extends State<_EditDropdownItem> {
                 child: TextFormField(
                   controller: _helpTextController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemHelpText),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemHelpText),
                 ),
               ),
               Padding(
@@ -725,7 +740,8 @@ class _EditDropdownItemState extends State<_EditDropdownItem> {
                 child: TextFormField(
                   controller: _optionsController,
                   maxLines: 5,
-                  decoration: InputDecoration(labelText: l10n.editFormItemOptions),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemOptions),
                 ),
               ),
               Row(
@@ -797,7 +813,8 @@ class _EditEmailItem extends StatefulWidget {
   const _EditEmailItem(this.item, this.newItem, this.form, {super.key});
 
   @override
-  State<StatefulWidget> createState() => _EditEmailItemState(item, newItem, form);
+  State<StatefulWidget> createState() =>
+      _EditEmailItemState(item, newItem, form);
 }
 
 class _EditEmailItemState extends State<_EditEmailItem> {
@@ -855,7 +872,8 @@ class _EditEmailItemState extends State<_EditEmailItem> {
                   },
                   controller: _labelController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemLabel),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemLabel),
                 ),
               ),
               Padding(
@@ -863,7 +881,8 @@ class _EditEmailItemState extends State<_EditEmailItem> {
                 child: TextFormField(
                   controller: _placeholderController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemPlaceholder),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemPlaceholder),
                 ),
               ),
               Padding(
@@ -871,7 +890,8 @@ class _EditEmailItemState extends State<_EditEmailItem> {
                 child: TextFormField(
                   controller: _helpTextController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemHelpText),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemHelpText),
                 ),
               ),
               Row(
@@ -956,7 +976,8 @@ class _EditCheckboxItem extends StatefulWidget {
   const _EditCheckboxItem(this.item, this.newItem, this.form, {super.key});
 
   @override
-  State<StatefulWidget> createState() => _EditCheckboxItemState(item, newItem, form);
+  State<StatefulWidget> createState() =>
+      _EditCheckboxItemState(item, newItem, form);
 }
 
 class _EditCheckboxItemState extends State<_EditCheckboxItem> {
@@ -1009,7 +1030,8 @@ class _EditCheckboxItemState extends State<_EditCheckboxItem> {
                   },
                   controller: _labelController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemLabel),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemLabel),
                 ),
               ),
               Padding(
@@ -1017,7 +1039,8 @@ class _EditCheckboxItemState extends State<_EditCheckboxItem> {
                 child: TextFormField(
                   controller: _placeholderController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemPlaceholder),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemPlaceholder),
                 ),
               ),
               Padding(
@@ -1025,7 +1048,8 @@ class _EditCheckboxItemState extends State<_EditCheckboxItem> {
                 child: TextFormField(
                   controller: _helpTextController,
                   maxLines: 1,
-                  decoration: InputDecoration(labelText: l10n.editFormItemHelpText),
+                  decoration:
+                      InputDecoration(labelText: l10n.editFormItemHelpText),
                 ),
               ),
               Row(
@@ -1183,6 +1207,7 @@ class _FormDesignerState extends State<_FormDesigner> {
               break;
           }
         },
+        tooltip: l10n.editFormItem,
       ),
     );
   }
@@ -1203,6 +1228,7 @@ class _FormDesignerState extends State<_FormDesigner> {
         ),
         actions: [
           PopupMenuButton(
+            tooltip: l10n.formDesignerAddItem,
             itemBuilder: (context) {
               return [
                 PopupMenuItem(
@@ -1238,7 +1264,8 @@ class _FormDesignerState extends State<_FormDesigner> {
                   await loadItems();
                   break;
                 case _FormItemType.multiline:
-                  final dialog = _EditMultilineItem(jinya.FormItem(), true, form);
+                  final dialog =
+                      _EditMultilineItem(jinya.FormItem(), true, form);
                   await showDialog(
                     context: context,
                     builder: (context) => dialog,
@@ -1254,7 +1281,8 @@ class _FormDesignerState extends State<_FormDesigner> {
                   await loadItems();
                   break;
                 case _FormItemType.dropdown:
-                  final dialog = _EditDropdownItem(jinya.FormItem(), true, form);
+                  final dialog =
+                      _EditDropdownItem(jinya.FormItem(), true, form);
                   await showDialog(
                     context: context,
                     builder: (context) => dialog,
@@ -1262,7 +1290,8 @@ class _FormDesignerState extends State<_FormDesigner> {
                   await loadItems();
                   break;
                 case _FormItemType.checkbox:
-                  final dialog = _EditCheckboxItem(jinya.FormItem(), true, form);
+                  final dialog =
+                      _EditCheckboxItem(jinya.FormItem(), true, form);
                   await showDialog(
                     context: context,
                     builder: (context) => dialog,
@@ -1312,7 +1341,8 @@ class _FormDesignerState extends State<_FormDesigner> {
                   ),
                   onDismissed: (direction) {
                     removeItem(item);
-                    final filtered = items.where((element) => element.id != item.id);
+                    final filtered =
+                        items.where((element) => element.id != item.id);
                     setState(() {
                       items = filtered;
                       resetPositions();
@@ -1366,7 +1396,7 @@ class _FormsState extends State<Forms> {
         ButtonBar(
           alignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await showDialog(
                   context: context,
@@ -1374,18 +1404,20 @@ class _FormsState extends State<Forms> {
                 );
                 await loadForms();
               },
-              child: const Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
+              tooltip: l10n.editFormTitle,
             ),
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await NavigationService.instance.navigateTo(MaterialPageRoute(
                   builder: (context) => _FormDesigner(form),
                 ));
                 await loadForms();
               },
-              child: const Icon(Icons.reorder),
+              icon: const Icon(Icons.reorder),
+              tooltip: l10n.formDesigner(form.title!),
             ),
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await showDialog(
                   context: context,
@@ -1407,11 +1439,13 @@ class _FormsState extends State<Forms> {
                             await loadForms();
                           } on jinya.ConflictException {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(l10n.failedToDeleteFormConflict(form.title!)),
+                              content: Text(
+                                  l10n.failedToDeleteFormConflict(form.title!)),
                             ));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(l10n.failedToDeleteFormGeneric(form.title!)),
+                              content: Text(
+                                  l10n.failedToDeleteFormGeneric(form.title!)),
                             ));
                           }
                         },
@@ -1424,10 +1458,11 @@ class _FormsState extends State<Forms> {
                   ),
                 );
               },
-              child: Icon(
+              icon: Icon(
                 Icons.delete,
                 color: Theme.of(context).errorColor,
               ),
+              tooltip: l10n.deleteForm,
             ),
           ],
         ),
@@ -1463,8 +1498,10 @@ class _FormsState extends State<Forms> {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: query.size.width >= 1080 ? 4 : 2,
                     childAspectRatio: query.size.width >= 1080
-                        ? MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height)
-                        : MediaQuery.of(context).size.height / (MediaQuery.of(context).size.width),
+                        ? MediaQuery.of(context).size.width /
+                            (MediaQuery.of(context).size.height)
+                        : MediaQuery.of(context).size.height /
+                            (MediaQuery.of(context).size.width),
                   ),
                   itemCount: forms.length,
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -1477,19 +1514,21 @@ class _FormsState extends State<Forms> {
                 ),
         ),
       ),
-      floatingActionButton: SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
-          ? FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: () async {
-                final dialog = _AddFormDialog();
-                await showDialog(
-                  context: context,
-                  builder: (context) => dialog,
-                );
-                await loadForms();
-              },
-            )
-          : null,
+      floatingActionButton:
+          SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
+              ? FloatingActionButton(
+                  child: const Icon(Icons.add),
+                  onPressed: () async {
+                    final dialog = _AddFormDialog();
+                    await showDialog(
+                      context: context,
+                      builder: (context) => dialog,
+                    );
+                    await loadForms();
+                  },
+                  tooltip: l10n.addFormTitle,
+                )
+              : null,
     );
   }
 }

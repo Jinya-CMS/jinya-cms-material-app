@@ -68,6 +68,7 @@ class _UploadFilesPageState extends State<_UploadFilesPage> {
               NavigationService.instance.goBack();
             },
             icon: const Icon(Icons.check),
+            tooltip: l10n.uploadFiles,
           ),
         ],
         leading: IconButton(
@@ -120,7 +121,7 @@ class _UploadFilesPageState extends State<_UploadFilesPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.upload_file),
+        tooltip: l10n.chooseFiles,
         onPressed: () async {
           final result = await FilePicker.platform.pickFiles(
             dialogTitle: l10n.chooseFiles,
@@ -133,6 +134,7 @@ class _UploadFilesPageState extends State<_UploadFilesPage> {
             });
           }
         },
+        child: const Icon(Icons.upload_file),
       ),
     );
   }
@@ -309,6 +311,7 @@ class ListFilesState extends State<ListFiles> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final query = MediaQuery.of(context);
 
     return Scaffold(
@@ -336,6 +339,7 @@ class ListFilesState extends State<ListFiles> {
       ),
       floatingActionButton: SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
           ? FloatingActionButton(
+              tooltip: l10n.uploadFiles,
               child: const Icon(Icons.upload_file),
               onPressed: () {
                 Navigator.of(context).push(

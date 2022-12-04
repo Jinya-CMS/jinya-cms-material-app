@@ -390,8 +390,10 @@ class _EditBlogPostState extends State<_EditBlogPost> {
                   jinya.BlogPost(
                     title: _titleController.text,
                     slug: _slugController.text,
-                    headerImage: files.firstWhere((element) => element?.id == _headerImageId),
-                    category: categories.firstWhere((element) => element.id == _categoryId!),
+                    headerImage: files
+                        .firstWhere((element) => element?.id == _headerImageId),
+                    category: categories
+                        .firstWhere((element) => element.id == _categoryId!),
                     id: post.id,
                     public: _public,
                   ),
@@ -439,7 +441,9 @@ class _EditBlogPostState extends State<_EditBlogPost> {
 }
 
 class _EditGallerySegment extends StatefulWidget {
-  const _EditGallerySegment(this.segment, this.post, this.galleries, this.newSegment, {super.key});
+  const _EditGallerySegment(
+      this.segment, this.post, this.galleries, this.newSegment,
+      {super.key});
 
   final jinya.BlogPostSegment segment;
   final jinya.BlogPost post;
@@ -447,12 +451,13 @@ class _EditGallerySegment extends StatefulWidget {
   final bool newSegment;
 
   @override
-  State<StatefulWidget> createState() => _EditGallerySegmentState(segment, post, galleries, newSegment);
+  State<StatefulWidget> createState() =>
+      _EditGallerySegmentState(segment, post, galleries, newSegment);
 }
 
 class _EditGallerySegmentState extends State<_EditGallerySegment> {
-  _EditGallerySegmentState(
-      jinya.BlogPostSegment segment, this.post, Iterable<jinya.Gallery> galleries, this.newSegment) {
+  _EditGallerySegmentState(jinya.BlogPostSegment segment, this.post,
+      Iterable<jinya.Gallery> galleries, this.newSegment) {
     selectedGalleryId = segment.gallery?.id ?? galleries.first.id;
     this.galleries = galleries;
     this.segment = segment;
@@ -498,7 +503,8 @@ class _EditGallerySegmentState extends State<_EditGallerySegment> {
         ),
         TextButton(
           onPressed: () async {
-            segment.gallery = galleries.singleWhere((element) => element.id == selectedGalleryId);
+            segment.gallery = galleries
+                .singleWhere((element) => element.id == selectedGalleryId);
 
             NavigationService.instance.goBack(result: segment);
           },
@@ -510,7 +516,8 @@ class _EditGallerySegmentState extends State<_EditGallerySegment> {
 }
 
 class _EditFileSegment extends StatefulWidget {
-  const _EditFileSegment(this.segment, this.post, this.files, this.newSegment, {super.key});
+  const _EditFileSegment(this.segment, this.post, this.files, this.newSegment,
+      {super.key});
 
   final jinya.BlogPostSegment segment;
   final jinya.BlogPost post;
@@ -518,11 +525,13 @@ class _EditFileSegment extends StatefulWidget {
   final bool newSegment;
 
   @override
-  State<StatefulWidget> createState() => _EditFileSegmentState(segment, post, files, newSegment);
+  State<StatefulWidget> createState() =>
+      _EditFileSegmentState(segment, post, files, newSegment);
 }
 
 class _EditFileSegmentState extends State<_EditFileSegment> {
-  _EditFileSegmentState(jinya.BlogPostSegment segment, this.post, Iterable<jinya.File> files, this.newSegment) {
+  _EditFileSegmentState(jinya.BlogPostSegment segment, this.post,
+      Iterable<jinya.File> files, this.newSegment) {
     selectedFileId = segment.file?.id ?? files.first.id;
     hasLink = segment.link != '' && segment.link != null;
     linkController = TextEditingController(text: segment.link ?? '');
@@ -604,7 +613,8 @@ class _EditFileSegmentState extends State<_EditFileSegment> {
         ),
         TextButton(
           onPressed: () async {
-            segment.file = files.singleWhere((element) => element.id == selectedFileId);
+            segment.file =
+                files.singleWhere((element) => element.id == selectedFileId);
             if (hasLink) {
               segment.link = linkController.text;
             } else {
@@ -647,7 +657,8 @@ class _BlogPostDesignerState extends State<_BlogPostDesigner> {
 
   _BlogPostDesignerState(this.post);
 
-  Future<void> displayHtmlSegmentEditor(jinya.BlogPostSegment segment, bool newSegment) async {
+  Future<void> displayHtmlSegmentEditor(
+      jinya.BlogPostSegment segment, bool newSegment) async {
     final l10n = AppLocalizations.of(context)!;
     final delta = converter.decode(segment.html ?? '');
     final document = ParchmentDocument.fromDelta(delta);
@@ -693,15 +704,18 @@ class _BlogPostDesignerState extends State<_BlogPostDesigner> {
         segments = [...segments, updatedSegment];
         resetPositions();
       } else {
-        segments.singleWhere((element) => element.id == segment.id).html = updatedSegment.html;
+        segments.singleWhere((element) => element.id == segment.id).html =
+            updatedSegment.html;
       }
     });
   }
 
-  Future<void> displayGallerySegmentEditor(jinya.BlogPostSegment segment, bool newSegment) async {
+  Future<void> displayGallerySegmentEditor(
+      jinya.BlogPostSegment segment, bool newSegment) async {
     final updatedSegment = await showDialog(
       context: context,
-      builder: (context) => _EditGallerySegment(segment, post, galleries, newSegment),
+      builder: (context) =>
+          _EditGallerySegment(segment, post, galleries, newSegment),
     );
     setState(() {
       if (newSegment) {
@@ -709,12 +723,14 @@ class _BlogPostDesignerState extends State<_BlogPostDesigner> {
         segments = [...segments, updatedSegment];
         resetPositions();
       } else {
-        segments.singleWhere((element) => element.id == segment.id).gallery = updatedSegment.gallery;
+        segments.singleWhere((element) => element.id == segment.id).gallery =
+            updatedSegment.gallery;
       }
     });
   }
 
-  Future<void> displayFileSegmentEditor(jinya.BlogPostSegment segment, bool newSegment) async {
+  Future<void> displayFileSegmentEditor(
+      jinya.BlogPostSegment segment, bool newSegment) async {
     final updatedSegment = await showDialog(
       context: context,
       builder: (context) => _EditFileSegment(segment, post, files, newSegment),
@@ -725,7 +741,8 @@ class _BlogPostDesignerState extends State<_BlogPostDesigner> {
         segments = [...segments, updatedSegment];
         resetPositions();
       } else {
-        final foundSegment = segments.singleWhere((element) => element.id == segment.id);
+        final foundSegment =
+            segments.singleWhere((element) => element.id == segment.id);
         foundSegment.link = updatedSegment.link;
         foundSegment.file = updatedSegment.file;
       }
@@ -771,12 +788,15 @@ class _BlogPostDesignerState extends State<_BlogPostDesigner> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(segment.file!.name!),
-            segment.link != null && segment.link!.isNotEmpty ? Text(segment.link!) : Text(l10n.segmentTypeFileNoLink),
+            segment.link != null && segment.link!.isNotEmpty
+                ? Text(segment.link!)
+                : Text(l10n.segmentTypeFileNoLink),
           ],
         ),
         isThreeLine: true,
         leading: CachedNetworkImage(
-          imageUrl: '${SettingsDatabase.selectedAccount!.url}/${segment.file!.path!}',
+          imageUrl:
+              '${SettingsDatabase.selectedAccount!.url}/${segment.file!.path!}',
           width: 80,
           height: double.infinity,
           fit: BoxFit.cover,
@@ -786,6 +806,7 @@ class _BlogPostDesignerState extends State<_BlogPostDesigner> {
             displayFileSegmentEditor(segment, false);
           },
           icon: const Icon(Icons.edit),
+          tooltip: l10n.editBlogPostSegment,
         ),
       );
     } else if (segment.gallery != null) {
@@ -797,6 +818,7 @@ class _BlogPostDesignerState extends State<_BlogPostDesigner> {
             displayGallerySegmentEditor(segment, false);
           },
           icon: const Icon(Icons.edit),
+          tooltip: l10n.editBlogPostSegment,
         ),
       );
     } else {
@@ -811,6 +833,7 @@ class _BlogPostDesignerState extends State<_BlogPostDesigner> {
                 displayHtmlSegmentEditor(segment, false);
               },
               icon: const Icon(Icons.edit),
+              tooltip: l10n.editBlogPostSegment,
             ),
           ),
           Padding(
@@ -837,13 +860,14 @@ class _BlogPostDesignerState extends State<_BlogPostDesigner> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n!.segmentPageDesigner(post.title!)),
+        title: Text(l10n!.blogPostDesigner(post.title!)),
         automaticallyImplyLeading: false,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () {
             NavigationService.instance.goBack();
           },
+          tooltip: l10n.addBlogPostSegment,
         ),
         actions: [
           PopupMenuButton(
@@ -866,13 +890,17 @@ class _BlogPostDesignerState extends State<_BlogPostDesigner> {
             onSelected: (value) {
               switch (value) {
                 case _SegmentType.file:
-                  displayFileSegmentEditor(jinya.BlogPostSegment(position: 0, file: null), true);
+                  displayFileSegmentEditor(
+                      jinya.BlogPostSegment(position: 0, file: null), true);
                   break;
                 case _SegmentType.gallery:
-                  displayGallerySegmentEditor(jinya.BlogPostSegment(position: 0, gallery: null), true);
+                  displayGallerySegmentEditor(
+                      jinya.BlogPostSegment(position: 0, gallery: null), true);
                   break;
                 case _SegmentType.html:
-                  displayHtmlSegmentEditor(jinya.BlogPostSegment(position: 0, html: '<p></p>'), true);
+                  displayHtmlSegmentEditor(
+                      jinya.BlogPostSegment(position: 0, html: '<p></p>'),
+                      true);
                   break;
               }
             },
@@ -915,7 +943,8 @@ class _BlogPostDesignerState extends State<_BlogPostDesigner> {
                     ),
                   ),
                   onDismissed: (direction) {
-                    final filtered = segments.where((element) => element.position != segment.position);
+                    final filtered = segments.where(
+                        (element) => element.position != segment.position);
                     setState(() {
                       segments = filtered;
                       resetPositions();
@@ -987,7 +1016,8 @@ class _ListBlogPostsState extends State<ListBlogPosts> {
     if (post.headerImage != null) {
       children.add(
         CachedNetworkImage(
-          imageUrl: SettingsDatabase.selectedAccount!.url + (post.headerImage?.path ?? ''),
+          imageUrl: SettingsDatabase.selectedAccount!.url +
+              (post.headerImage?.path ?? ''),
           fit: BoxFit.cover,
           height: 240,
           width: double.infinity,
@@ -1006,30 +1036,33 @@ class _ListBlogPostsState extends State<ListBlogPosts> {
         ButtonBar(
           alignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextButton(
+            IconButton(
               onPressed: () async {
                 final dialog = _EditBlogPost(post);
-                await showDialog(context: context, builder: (context) => dialog);
+                await showDialog(
+                    context: context, builder: (context) => dialog);
                 await loadPosts();
               },
-              child: const Icon(Icons.edit),
+              icon: const Icon(Icons.edit),
+              tooltip: l10n.editBlogPost,
             ),
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await NavigationService.instance.navigateTo(MaterialPageRoute(
                   builder: (context) => _BlogPostDesigner(post),
                 ));
                 await loadPosts();
               },
-              child: const Icon(Icons.reorder),
+              icon: const Icon(Icons.reorder),
+              tooltip: l10n.blogPostDesigner(post.title!),
             ),
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    title: Text(l10n.deleteSimplePageTitle),
-                    content: Text(l10n.deleteSimplePageMessage(post.title!)),
+                    title: Text(l10n.deleteBlogPostTitle),
+                    content: Text(l10n.deleteBlogPostMessage(post.title!)),
                     actions: [
                       TextButton(
                         onPressed: () {
@@ -1039,26 +1072,19 @@ class _ListBlogPostsState extends State<ListBlogPosts> {
                       ),
                       TextButton(
                         onPressed: () async {
-                          // await NavigationService.instance.navigateTo(MaterialPageRoute(
-                          // builder: (context) => _SegmentPageDesigner(page),
-                          // ));
-                          await loadPosts();
-                        },
-                        child: const Icon(Icons.reorder),
-                      ),
-                      TextButton(
-                        onPressed: () async {
                           try {
                             await apiClient.deleteBlogPost(post.id!);
                             NavigationService.instance.goBack();
                             await loadPosts();
                           } on jinya.ConflictException {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(l10n.failedToDeletePostConflict(post.title!)),
+                              content: Text(
+                                  l10n.failedToDeletePostConflict(post.title!)),
                             ));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(l10n.failedToDeletePostGeneric(post.title!)),
+                              content: Text(
+                                  l10n.failedToDeletePostGeneric(post.title!)),
                             ));
                           }
                         },
@@ -1071,7 +1097,8 @@ class _ListBlogPostsState extends State<ListBlogPosts> {
                   ),
                 );
               },
-              child: Icon(
+              tooltip: l10n.deleteBlogPost,
+              icon: Icon(
                 Icons.delete,
                 color: Theme.of(context).errorColor,
               ),
@@ -1092,6 +1119,7 @@ class _ListBlogPostsState extends State<ListBlogPosts> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final query = MediaQuery.of(context);
 
     return Scaffold(
@@ -1104,7 +1132,8 @@ class _ListBlogPostsState extends State<ListBlogPosts> {
               ? GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: query.size.width >= 1080 ? 4 : 2,
-                    childAspectRatio: query.size.width >= 1080 ? 9 / 12 : 9 / 10,
+                    childAspectRatio:
+                        query.size.width >= 1080 ? 9 / 12 : 9 / 10,
                   ),
                   itemCount: posts.length,
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -1117,16 +1146,19 @@ class _ListBlogPostsState extends State<ListBlogPosts> {
                 ),
         ),
       ),
-      floatingActionButton: SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
-          ? FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: () async {
-                final dialog = _AddBlogPost();
-                await showDialog(context: context, builder: (context) => dialog);
-                await loadPosts();
-              },
-            )
-          : null,
+      floatingActionButton:
+          SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
+              ? FloatingActionButton(
+                  tooltip: l10n.addBlogPost,
+                  onPressed: () async {
+                    final dialog = _AddBlogPost();
+                    await showDialog(
+                        context: context, builder: (context) => dialog);
+                    await loadPosts();
+                  },
+                  child: const Icon(Icons.add),
+                )
+              : null,
     );
   }
 }

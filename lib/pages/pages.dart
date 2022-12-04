@@ -18,11 +18,9 @@ class Pages extends StatelessWidget {
           bottom: TabBar(
             tabs: [
               Tab(
-                icon: const Icon(MdiIcons.fileDocument),
                 text: l10n.menuManageSimplePages,
               ),
               Tab(
-                icon: const Icon(MdiIcons.fileDocumentMultiple),
                 text: l10n.menuManageSegmentPages,
               ),
             ],

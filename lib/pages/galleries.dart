@@ -67,10 +67,12 @@ class _GalleryDesignerState extends State<_GalleryDesigner> {
           IconButton(
             onPressed: () async {
               final positionIds = positions.map((m) => m.file!.id!);
-              final files = this.files.where((value) => !positionIds.contains(value.id));
+              final files =
+                  this.files.where((value) => !positionIds.contains(value.id));
 
               final dialog = AlertDialog(
                 title: Text(l10n.pickFile),
+                scrollable: true,
                 actions: [
                   TextButton(
                     onPressed: () {
@@ -79,35 +81,32 @@ class _GalleryDesignerState extends State<_GalleryDesigner> {
                     child: Text(l10n.dismiss),
                   ),
                 ],
-                content: ListView.builder(
-                  itemBuilder: (context, index) {
-                    final file = files.elementAt(index);
-
-                    return Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: OutlinedButton(
-                        onPressed: () async {
-                          final position =
-                              await apiClient.createGalleryFilePosition(gallery.id!, file.id!, positions.length);
-                          final data = positions.toList();
-                          data.add(position);
-                          setState(() {
-                            positions = data;
-                          });
-                          NavigationService.instance.goBack();
-                        },
-                        child: CachedNetworkImage(
-                          imageUrl: '${SettingsDatabase.selectedAccount!.url}/${file.path}',
+                content: Column(
+                  children: files
+                      .map(
+                        (file) => ListTile(
+                          key: Key('tile${file.id}'),
+                          onTap: () async {
+                            final position =
+                                await apiClient.createGalleryFilePosition(
+                                    gallery.id!, positions.length, file.id!);
+                            final data = positions.toList();
+                            data.add(position);
+                            setState(() {
+                              positions = data;
+                            });
+                            NavigationService.instance.goBack();
+                          },
+                          title: Text(file.name!),
                         ),
-                      ),
-                    );
-                  },
-                  itemCount: files.length,
+                      )
+                      .toList(),
                 ),
               );
               await showDialog(context: context, builder: (context) => dialog);
             },
             icon: const Icon(Icons.add),
+            tooltip: l10n.galleryDesignerAddItem,
           ),
         ],
         leading: IconButton(
@@ -137,7 +136,8 @@ class _GalleryDesignerState extends State<_GalleryDesigner> {
                 ),
                 onDismissed: (direction) {
                   removePosition(position);
-                  final filtered = positions.where((element) => element.id != position.id);
+                  final filtered =
+                      positions.where((element) => element.id != position.id);
                   setState(() {
                     positions = filtered;
                     resetPositions();
@@ -148,7 +148,8 @@ class _GalleryDesignerState extends State<_GalleryDesigner> {
                   key: Key('tile${position.id}'),
                   title: Text(position.file!.name!),
                   leading: CachedNetworkImage(
-                    imageUrl: '${SettingsDatabase.selectedAccount!.url}/${position.file!.path!}',
+                    imageUrl:
+                        '${SettingsDatabase.selectedAccount!.url}/${position.file!.path!}',
                     width: 80,
                     height: double.infinity,
                     fit: BoxFit.cover,
@@ -234,13 +235,15 @@ class _AddGalleryDialogState extends State<_AddGalleryDialog> {
                 child: TextFormField(
                   controller: _descriptionController,
                   maxLines: 5,
-                  decoration: InputDecoration(labelText: l10n.galleryDescription),
+                  decoration:
+                      InputDecoration(labelText: l10n.galleryDescription),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: DropdownButtonFormField(
-                  decoration: InputDecoration(labelText: l10n.galleryOrientation),
+                  decoration:
+                      InputDecoration(labelText: l10n.galleryOrientation),
                   value: jinya.Orientation.vertical,
                   items: [
                     DropdownMenuItem(
@@ -404,13 +407,15 @@ class _EditGalleryDialogState extends State<_EditGalleryDialog> {
                 child: TextFormField(
                   controller: _descriptionController,
                   maxLines: 5,
-                  decoration: InputDecoration(labelText: l10n.galleryDescription),
+                  decoration:
+                      InputDecoration(labelText: l10n.galleryDescription),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: DropdownButtonFormField(
-                  decoration: InputDecoration(labelText: l10n.galleryOrientation),
+                  decoration:
+                      InputDecoration(labelText: l10n.galleryOrientation),
                   value: gallery.orientation,
                   items: [
                     DropdownMenuItem(
@@ -565,7 +570,9 @@ class _ListGalleriesState extends State<ListGalleries> {
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
           ),
-          gallery.type == jinya.Type.masonry ? Text(l10n.galleryTypeGrid) : Text(l10n.galleryTypeList),
+          gallery.type == jinya.Type.masonry
+              ? Text(l10n.galleryTypeGrid)
+              : Text(l10n.galleryTypeList),
         ],
       ),
     ];
@@ -575,23 +582,26 @@ class _ListGalleriesState extends State<ListGalleries> {
         ButtonBar(
           alignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextButton(
+            IconButton(
               onPressed: () async {
                 final dialog = _EditGalleryDialog(gallery);
-                await showDialog(context: context, builder: (context) => dialog);
+                await showDialog(
+                    context: context, builder: (context) => dialog);
                 await loadGalleries();
               },
-              child: const Icon(Icons.edit),
+              tooltip: l10n.editGalleryTitle,
+              icon: const Icon(Icons.edit),
             ),
-            TextButton(
+            IconButton(
               onPressed: () {
                 NavigationService.instance.navigateTo(MaterialPageRoute(
                   builder: (context) => _GalleryDesigner(gallery),
                 ));
               },
-              child: const Icon(Icons.reorder),
+              tooltip: l10n.galleryDesigner(gallery.name!),
+              icon: const Icon(Icons.reorder),
             ),
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await showDialog(
                   context: context,
@@ -613,11 +623,13 @@ class _ListGalleriesState extends State<ListGalleries> {
                             await loadGalleries();
                           } on jinya.ConflictException {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(l10n.failedToDeleteGalleryConflict(gallery.name!)),
+                              content: Text(l10n.failedToDeleteGalleryConflict(
+                                  gallery.name!)),
                             ));
                           } catch (e) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(l10n.failedToDeleteGalleryGeneric(gallery.name!)),
+                              content: Text(l10n
+                                  .failedToDeleteGalleryGeneric(gallery.name!)),
                             ));
                           }
                         },
@@ -630,7 +642,8 @@ class _ListGalleriesState extends State<ListGalleries> {
                   ),
                 );
               },
-              child: Icon(
+              tooltip: l10n.deleteGallery,
+              icon: Icon(
                 Icons.delete,
                 color: Theme.of(context).errorColor,
               ),
@@ -651,6 +664,7 @@ class _ListGalleriesState extends State<ListGalleries> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final query = MediaQuery.of(context);
 
     return Scaffold(
@@ -665,7 +679,8 @@ class _ListGalleriesState extends State<ListGalleries> {
                     crossAxisCount: query.size.width >= 1080 ? 4 : 2,
                     childAspectRatio: query.size.width >= 1080
                         ? 16 / 10
-                        : MediaQuery.of(context).size.height / (MediaQuery.of(context).size.width),
+                        : MediaQuery.of(context).size.height /
+                            (MediaQuery.of(context).size.width),
                   ),
                   itemCount: galleries.length,
                   padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -678,16 +693,19 @@ class _ListGalleriesState extends State<ListGalleries> {
                 ),
         ),
       ),
-      floatingActionButton: SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
-          ? FloatingActionButton(
-              child: const Icon(Icons.add),
-              onPressed: () async {
-                const dialog = _AddGalleryDialog();
-                await showDialog(context: context, builder: (context) => dialog);
-                await loadGalleries();
-              },
-            )
-          : null,
+      floatingActionButton:
+          SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
+              ? FloatingActionButton(
+                  tooltip: l10n.createGalleryTitle,
+                  child: const Icon(Icons.add),
+                  onPressed: () async {
+                    const dialog = _AddGalleryDialog();
+                    await showDialog(
+                        context: context, builder: (context) => dialog);
+                    await loadGalleries();
+                  },
+                )
+              : null,
     );
   }
 }

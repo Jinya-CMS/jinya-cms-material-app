@@ -144,7 +144,9 @@ class _AddArtistDialogState extends State<_AddArtistDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.discard)),
+        TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(l10n.discard)),
         TextButton(
             onPressed: () async {
               try {
@@ -325,7 +327,9 @@ class _EditArtistDialogState extends State<_EditArtistDialog> {
         ),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.of(context).pop(), child: Text(l10n.discard)),
+        TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: Text(l10n.discard)),
         TextButton(
             onPressed: () async {
               try {
@@ -350,7 +354,8 @@ class _EditArtistDialogState extends State<_EditArtistDialog> {
                   ),
                 );
                 if (_passwordController.text.isNotEmpty) {
-                  await apiClient.changePasswordAdmin(artist.id!, _passwordController.text);
+                  await apiClient.changePasswordAdmin(
+                      artist.id!, _passwordController.text);
                 }
                 navigator.pop();
               } on jinya.ConflictException {
@@ -406,7 +411,8 @@ class _ArtistsState extends State<Artists> {
     if (item.profilePicture!.isNotEmpty) {
       children.add(
         CachedNetworkImage(
-          imageUrl: SettingsDatabase.selectedAccount!.url + (item.profilePicture ?? ''),
+          imageUrl: SettingsDatabase.selectedAccount!.url +
+              (item.profilePicture ?? ''),
           fit: BoxFit.cover,
           height: 240,
           width: double.infinity,
@@ -422,20 +428,21 @@ class _ArtistsState extends State<Artists> {
 
     if (SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')) {
       final buttons = [
-        TextButton(
+        IconButton(
           onPressed: () async {
             final dialog = _EditArtistDialog(item);
             await showDialog(context: context, builder: (context) => dialog);
             await loadArtists();
           },
-          child: const Icon(Icons.edit),
+          icon: const Icon(Icons.edit),
+          tooltip: l10n.editArtist,
         ),
       ];
 
       if (item.id != SettingsDatabase.selectedAccount!.jinyaId) {
         if (item.enabled == true) {
           buttons.add(
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await showDialog(
                   context: context,
@@ -471,12 +478,13 @@ class _ArtistsState extends State<Artists> {
                   ),
                 );
               },
-              child: const Icon(MdiIcons.accountCancel),
+              icon: const Icon(MdiIcons.accountCancel),
+              tooltip: l10n.disableArtist,
             ),
           );
         } else {
           buttons.add(
-            TextButton(
+            IconButton(
               onPressed: () async {
                 await showDialog(
                   context: context,
@@ -509,14 +517,15 @@ class _ArtistsState extends State<Artists> {
                   ),
                 );
               },
-              child: const Icon(MdiIcons.accountCheck),
+              icon: const Icon(MdiIcons.accountCheck),
+              tooltip: l10n.enableArtist,
             ),
           );
         }
       }
 
       buttons.add(
-        TextButton(
+        IconButton(
           onPressed: () async {
             await showDialog(
               context: context,
@@ -538,12 +547,14 @@ class _ArtistsState extends State<Artists> {
                         await loadArtists();
                       } on jinya.ConflictException {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(l10n.failedToDeleteArtistConflict(item.artistName!)),
+                          content: Text(l10n
+                              .failedToDeleteArtistConflict(item.artistName!)),
                           behavior: SnackBarBehavior.floating,
                         ));
                       } catch (e) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text(l10n.failedToDeleteArtistGeneric(item.artistName!)),
+                          content: Text(l10n
+                              .failedToDeleteArtistGeneric(item.artistName!)),
                           behavior: SnackBarBehavior.floating,
                         ));
                       }
@@ -557,10 +568,11 @@ class _ArtistsState extends State<Artists> {
               ),
             );
           },
-          child: Icon(
+          icon: Icon(
             Icons.delete,
             color: Theme.of(context).errorColor,
           ),
+          tooltip: l10n.deleteArtist,
         ),
       );
       children.add(
@@ -613,16 +625,15 @@ class _ArtistsState extends State<Artists> {
                 ),
         ),
       ),
-      floatingActionButton: SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
-          ? FloatingActionButton(
-              child: const Icon(MdiIcons.accountPlus),
-              onPressed: () async {
-                const dialog = _AddArtistDialog();
-                await showDialog(context: context, builder: (context) => dialog);
-                await loadArtists();
-              },
-            )
-          : null,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          const dialog = _AddArtistDialog();
+          await showDialog(context: context, builder: (context) => dialog);
+          await loadArtists();
+        },
+        tooltip: l10n.addArtist,
+        child: const Icon(MdiIcons.accountPlus),
+      ),
     );
   }
 }
