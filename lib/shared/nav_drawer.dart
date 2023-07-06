@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:jinya_cms_material_app/data/account_database.dart';
 import 'package:jinya_cms_material_app/home.dart';
 import 'package:jinya_cms_material_app/l10n/localizations.dart';
+import 'package:jinya_cms_material_app/pages/accounts.dart';
 import 'package:jinya_cms_material_app/pages/artists.dart';
 import 'package:jinya_cms_material_app/pages/blog.dart';
 import 'package:jinya_cms_material_app/pages/forms.dart';
 import 'package:jinya_cms_material_app/pages/media.dart';
 import 'package:jinya_cms_material_app/pages/menus.dart';
 import 'package:jinya_cms_material_app/pages/pages.dart';
-import 'package:jinya_cms_material_app/pages/accounts.dart';
 import 'package:jinya_cms_material_app/pages/themes.dart';
 import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -24,7 +24,8 @@ class JinyaNavigationDrawer extends StatefulWidget {
   }
 }
 
-class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with TickerProviderStateMixin {
+class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
+    with TickerProviderStateMixin {
   static final Animatable<Offset> _drawerDetailsTween = Tween<Offset>(
     begin: const Offset(0.0, -1.0),
     end: Offset.zero,
@@ -96,7 +97,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
       listItems.add(
         ListTile(
           title: Text(l10n.menuMedia),
-          leading: const Icon(MdiIcons.imageMultiple),
+          leading: Icon(MdiIcons.imageMultiple),
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -109,7 +110,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
       listItems.add(
         ListTile(
           title: Text(l10n.menuPages),
-          leading: const Icon(Icons.menu_book),
+          leading: Icon(Icons.menu_book),
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -122,7 +123,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
       listItems.add(
         ListTile(
           title: Text(l10n.menuForms),
-          leading: const Icon(MdiIcons.formTextbox),
+          leading: Icon(MdiIcons.formTextbox),
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -135,7 +136,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
       listItems.add(
         ListTile(
           title: Text(l10n.menuBlog),
-          leading: const Icon(MdiIcons.post),
+          leading: Icon(MdiIcons.post),
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -148,7 +149,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
       listItems.add(
         ListTile(
           title: Text(l10n.menuMenu),
-          leading: const Icon(Icons.menu),
+          leading: Icon(Icons.menu),
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -161,7 +162,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
       listItems.add(
         ListTile(
           title: Text(l10n.menuTheme),
-          leading: const Icon(MdiIcons.pencilRuler),
+          leading: Icon(MdiIcons.pencilRuler),
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -177,7 +178,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
       listItems.add(
         ListTile(
           title: Text(l10n.menuArtists),
-          leading: const Icon(MdiIcons.accountMultiple),
+          leading: Icon(MdiIcons.accountMultiple),
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -195,11 +196,13 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
           child: ListView(
             children: <Widget>[
               UserAccountsDrawerHeader(
-                accountName: Text('${currentUser!.name} (${currentUser!.email})'),
+                accountName:
+                    Text('${currentUser!.name} (${currentUser!.email})'),
                 accountEmail: Text(currentUser!.url),
                 currentAccountPicture: CircleAvatar(
                     backgroundColor: Theme.of(context).primaryColor,
-                    backgroundImage: CachedNetworkImageProvider('${currentUser!.url}${currentUser!.profilePicture}')),
+                    backgroundImage: CachedNetworkImageProvider(
+                        '${currentUser!.url}${currentUser!.profilePicture}')),
                 otherAccountsPictures: accounts
                     .map(
                       (account) => GestureDetector(
@@ -257,7 +260,8 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: <Widget>[
                           ...accounts.map((account) => ListTile(
-                                title: Text('${account.name} (${account.email})'),
+                                title:
+                                    Text('${account.name} (${account.email})'),
                                 subtitle: Text(account.url),
                                 onTap: () {
                                   SettingsDatabase.selectedAccount = account;
@@ -273,7 +277,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
                                 },
                               )),
                           ListTile(
-                            leading: const Icon(Icons.add),
+                            leading: Icon(Icons.add),
                             title: Text(l10n.menuAddAccount),
                             iconColor: Theme.of(context).iconTheme.color,
                             onTap: () => Navigator.of(context).push(
@@ -283,13 +287,14 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer> with Ticke
                             ),
                           ),
                           ListTile(
-                            leading: const Icon(Icons.settings),
+                            leading: Icon(Icons.settings),
                             title: Text(l10n.menuManageAccounts),
                             iconColor: Theme.of(context).iconTheme.color,
                             onTap: () => Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const ManageAccountsPage(),
+                                builder: (context) =>
+                                    const ManageAccountsPage(),
                               ),
                             ),
                           ),

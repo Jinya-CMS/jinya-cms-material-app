@@ -478,7 +478,7 @@ class _ArtistsState extends State<Artists> {
                   ),
                 );
               },
-              icon: const Icon(MdiIcons.accountCancel),
+              icon: Icon(MdiIcons.accountCancel),
               tooltip: l10n.disableArtist,
             ),
           );
@@ -517,7 +517,7 @@ class _ArtistsState extends State<Artists> {
                   ),
                 );
               },
-              icon: const Icon(MdiIcons.accountCheck),
+              icon: Icon(MdiIcons.accountCheck),
               tooltip: l10n.enableArtist,
             ),
           );
@@ -632,7 +632,7 @@ class _ArtistsState extends State<Artists> {
           await loadArtists();
         },
         tooltip: l10n.addArtist,
-        child: const Icon(MdiIcons.accountPlus),
+        child: Icon(MdiIcons.accountPlus),
       ),
     );
   }

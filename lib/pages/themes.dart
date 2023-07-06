@@ -106,7 +106,7 @@ class _ThemesState extends State<Themes> {
                     context: context, builder: (context) => dialog);
                 await loadThemes();
               },
-              icon: const Icon(MdiIcons.check),
+              icon: Icon(MdiIcons.check),
               tooltip: l10n.themeActivate,
             ),
             IconButton(
@@ -143,7 +143,7 @@ class _ThemesState extends State<Themes> {
                     context: context, builder: (context) => dialog);
                 await loadThemes();
               },
-              icon: const Icon(MdiIcons.shape),
+              icon: Icon(MdiIcons.shape),
               tooltip: l10n.themeAssets,
             ),
             IconButton(
@@ -154,7 +154,7 @@ class _ThemesState extends State<Themes> {
                 ));
                 await loadThemes();
               },
-              icon: const Icon(MdiIcons.cog),
+              icon: Icon(MdiIcons.cog),
               tooltip: l10n.themeSettings,
             ),
             IconButton(
@@ -165,7 +165,7 @@ class _ThemesState extends State<Themes> {
                 ));
                 await loadThemes();
               },
-              icon: const Icon(MdiIcons.linkVariant),
+              icon: Icon(MdiIcons.linkVariant),
               tooltip: l10n.themeLinks,
             ),
             IconButton(
@@ -176,7 +176,7 @@ class _ThemesState extends State<Themes> {
                 ));
                 await loadThemes();
               },
-              icon: const Icon(MdiIcons.sass),
+              icon: Icon(MdiIcons.sass),
               tooltip: l10n.themeVariables,
             ),
           ],
