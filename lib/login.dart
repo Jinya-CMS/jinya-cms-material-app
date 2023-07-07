@@ -82,8 +82,9 @@ class LoginPageState extends State<LoginPage> {
   }
 
   void setCanCheckBiometrics() async {
-    setState(() async {
-      canCheckBiometrics = await _localAuth.canCheckBiometrics;
+    final canCheckBiometrics = await _localAuth.canCheckBiometrics;
+    setState(() {
+      this.canCheckBiometrics = canCheckBiometrics;
     });
   }
 
