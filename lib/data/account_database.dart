@@ -1,4 +1,6 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:hive/hive.dart';
+
 part 'account_database.g.dart';
 
 @HiveType(typeId: 0)
@@ -32,9 +34,17 @@ class Account {
   });
 }
 
-Future<void> createAccount(Account account) async {
+Future<void> createAccount(Account account, {String? password}) async {
   final box = Hive.box<Account>('accounts');
   await box.put(account.url, account);
+  const storage = FlutterSecureStorage(
+    aOptions: AndroidOptions(
+      encryptedSharedPreferences: true,
+    ),
+  );
+  if (password != null) {
+    await storage.write(key: account.url, value: password);
+  }
 }
 
 Future<void> deleteAccount(String url) async {
@@ -42,9 +52,15 @@ Future<void> deleteAccount(String url) async {
   await box.delete(url);
 }
 
-Future<void> updateAccount(Account account) async {
+Future<void> updateAccount(Account account, String password) async {
   final box = Hive.box<Account>('accounts');
   await box.put(account.url, account);
+  const storage = FlutterSecureStorage(
+    aOptions: AndroidOptions(
+      encryptedSharedPreferences: true,
+    ),
+  );
+  await storage.write(key: account.url, value: password);
 }
 
 Future<Account?> getAccount(String url) async {

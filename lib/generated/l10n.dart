@@ -3409,6 +3409,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Authenticate with biometry and you don't need to enter your password`
+  String get loginBiometric {
+    return Intl.message(
+      'Authenticate with biometry and you don\'t need to enter your password',
+      name: 'loginBiometric',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login passwordless`
+  String get loginActionBiometric {
+    return Intl.message(
+      'Login passwordless',
+      name: 'loginActionBiometric',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -412,7 +412,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "galleryTypeGrid": MessageLookupByLibrary.simpleMessage("Grid"),
         "galleryTypeList": MessageLookupByLibrary.simpleMessage("List"),
         "keep": MessageLookupByLibrary.simpleMessage("Don\'t delete"),
+        "loginActionBiometric":
+            MessageLookupByLibrary.simpleMessage("Login passwordless"),
         "loginActionLogin": MessageLookupByLibrary.simpleMessage("Login"),
+        "loginBiometric": MessageLookupByLibrary.simpleMessage(
+            "Authenticate with biometry and you don\'t need to enter your password"),
         "loginEmail": MessageLookupByLibrary.simpleMessage("Email"),
         "loginInstance": MessageLookupByLibrary.simpleMessage("Jinya host"),
         "loginInvalidCredentials": MessageLookupByLibrary.simpleMessage(

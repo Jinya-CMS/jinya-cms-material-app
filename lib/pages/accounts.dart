@@ -43,13 +43,15 @@ class NewAccountTwoFactorPageState extends State<NewAccountTwoFactorPage> {
           name: '',
         );
         SettingsDatabase.selectedAccount = account;
-        final currentUser = await SettingsDatabase.getClientForCurrentAccount().getArtistInfo();
+        final currentUser =
+            await SettingsDatabase.getClientForCurrentAccount().getArtistInfo();
         account.name = currentUser.artistName!;
         account.profilePicture = currentUser.profilePicture!;
         account.jinyaId = currentUser.id!;
         account.roles = currentUser.roles;
 
-        await createAccount(account);
+        await createAccount(account,
+            password: widget.newAccountTransferObject.password);
         navigator.push(MaterialPageRoute(
           builder: (context) => const ManageAccountsPage(),
         ));
@@ -121,7 +123,8 @@ class NewAccountTwoFactorPageState extends State<NewAccountTwoFactorPage> {
                     children: <Widget>[
                       ElevatedButton(
                         onPressed: login,
-                        child: Text(l10n.newAccountTwoFactorActionLogin.toUpperCase()),
+                        child: Text(
+                            l10n.newAccountTwoFactorActionLogin.toUpperCase()),
                       ),
                     ],
                   ),
@@ -180,7 +183,8 @@ class NewAccountPageState extends State<NewAccountPage> {
         );
         scaffoldManager!.showSnackBar(snackbar);
       } else {
-        final success = await JinyaClient(host).requestTwoFactorCode(email, password);
+        final success =
+            await JinyaClient(host).requestTwoFactorCode(email, password);
         if (success) {
           final transferObject = NewAccountTransferObject(
             email,
@@ -298,7 +302,8 @@ class NewAccountPageState extends State<NewAccountPage> {
                     children: <Widget>[
                       ElevatedButton(
                         onPressed: requestTwoFactorCode,
-                        child: Text(l10n.newAccountActionTwoFactorCode.toUpperCase()),
+                        child: Text(
+                            l10n.newAccountActionTwoFactorCode.toUpperCase()),
                       ),
                     ],
                   ),

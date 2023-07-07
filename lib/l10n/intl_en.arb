@@ -827,5 +827,9 @@
   "themeLinksSave": "Save links",
   "@themeLinksSave": {},
   "themeVariablesSave": "Save variables",
-  "@themeVariablesSave": {}
+  "@themeVariablesSave": {},
+  "loginBiometric": "Authenticate with biometry and you don't need to enter your password",
+  "@loginBiometric": {},
+  "loginActionBiometric": "Login passwordless",
+  "@loginActionBiometric": {}
 }

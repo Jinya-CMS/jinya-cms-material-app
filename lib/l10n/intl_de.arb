@@ -335,5 +335,7 @@
   "themeVariables": "Themevariablen",
   "themeSettingsSave": "Einstellungen speichern",
   "themeLinksSave": "Links speichern",
-  "themeVariablesSave": "Variablen speichern"
+  "themeVariablesSave": "Variablen speichern",
+  "loginBiometric": "Authentifiziere dich mit Biometrie und du musst dein Passwort nicht eingeben",
+  "loginActionBiometric": "Passwortlos anmelden"
 }

@@ -48,6 +48,8 @@ dependencies:
   flutter_widget_from_html: 0.10.2
   slugify: 2.0.0
   uuid: 3.0.7
+  flutter_secure_storage: 8.0.0
+  local_auth: 2.1.6
 
 dev_dependencies:
   hive_generator: 2.0.0

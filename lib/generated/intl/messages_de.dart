@@ -447,7 +447,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "galleryTypeGrid": MessageLookupByLibrary.simpleMessage("Raster"),
         "galleryTypeList": MessageLookupByLibrary.simpleMessage("Liste"),
         "keep": MessageLookupByLibrary.simpleMessage("Nicht löschen"),
+        "loginActionBiometric":
+            MessageLookupByLibrary.simpleMessage("Passwortlos anmelden"),
         "loginActionLogin": MessageLookupByLibrary.simpleMessage("Anmelden"),
+        "loginBiometric": MessageLookupByLibrary.simpleMessage(
+            "Authentifiziere dich mit Biometrie und du musst dein Passwort nicht eingeben"),
         "loginEmail": MessageLookupByLibrary.simpleMessage("Email"),
         "loginInstance": MessageLookupByLibrary.simpleMessage("Jinya Host"),
         "loginInvalidCredentials": MessageLookupByLibrary.simpleMessage(

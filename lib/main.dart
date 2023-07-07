@@ -30,7 +30,6 @@ class JinyaCmsApp extends StatelessWidget {
       darkTheme: ThemeData.dark().copyWith(
         useMaterial3: true,
         colorScheme: darkColorScheme,
-        toggleableActiveColor: darkColorScheme.primary,
         inputDecorationTheme: const InputDecorationTheme(
           border: UnderlineInputBorder(),
           filled: true,
@@ -43,7 +42,6 @@ class JinyaCmsApp extends StatelessWidget {
           unselectedLabelColor: Colors.black45,
         ),
         colorScheme: lightColorScheme,
-        toggleableActiveColor: lightColorScheme.primary,
         inputDecorationTheme: const InputDecorationTheme(
           border: UnderlineInputBorder(),
           filled: true,
