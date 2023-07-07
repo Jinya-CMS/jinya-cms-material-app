@@ -357,7 +357,7 @@ class ManageAccountsPageState extends State<ManageAccountsPage> {
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           itemBuilder: (context, index) => Dismissible(
             background: Container(
-              color: Theme.of(context).errorColor,
+              color: Theme.of(context).colorScheme.error,
               child: const Align(
                 alignment: Alignment.centerRight,
                 child: Padding(
