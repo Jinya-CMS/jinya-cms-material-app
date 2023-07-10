@@ -66,6 +66,7 @@ class _UploadFilesPageState extends State<_UploadFilesPage> {
               }
               NavigationService.instance.goBack();
               NavigationService.instance.goBack();
+              await onBack!();
             },
             icon: const Icon(Icons.check),
             tooltip: l10n.uploadFiles,
