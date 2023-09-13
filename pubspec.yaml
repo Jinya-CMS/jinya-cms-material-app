@@ -36,7 +36,7 @@ dependencies:
   validators: 3.0.0
   http: 1.1.0
   cached_network_image: 3.2.3
-  file_picker: 5.3.4
+  file_picker: 5.5.0
   path: 1.8.3
   prompt_dialog: 1.0.13
   hive: 2.2.3
@@ -45,11 +45,11 @@ dependencies:
   jinya_cms_api: 2.0.0
   fleather: 1.10.0
   notustohtml: 1.0.0-rc.2
-  flutter_widget_from_html: 0.10.4
+  flutter_widget_from_html: 0.10.5+3
   slugify: 2.0.0
   uuid: 4.0.0
   flutter_secure_storage: 9.0.0
-  local_auth: 2.1.6
+  local_auth: 2.1.7
 
 dev_dependencies:
   hive_generator: 2.0.1
@@ -75,8 +75,9 @@ flutter:
   uses-material-design: true
 
   assets:
-    - images/icon.png
-    - assets/home/background.jpg
+    - assets/home/background.png
+    - assets/home/background-small.png
+    - assets/icons/linux.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -110,8 +111,3 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_intl:
   enabled: true
-flutter_icons:
-  android: "launcher_icon"
-  ios: true
-  image_path: "images/icon.png"
-  min_sdk_android: 21 # android min sdk min:16, default 21

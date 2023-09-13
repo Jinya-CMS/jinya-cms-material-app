@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:jinya_cms_material_app/color_scheme.g.dart';
+import 'package:jinya_cms_material_app/color_schemes.g.dart';
 import 'package:jinya_cms_material_app/data/account_database.dart';
 import 'package:jinya_cms_material_app/home.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
@@ -16,7 +16,7 @@ void main() async {
 class JinyaCmsApp extends StatelessWidget {
   const JinyaCmsApp({super.key});
 
-  // This widget is the root of your application.
+// This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

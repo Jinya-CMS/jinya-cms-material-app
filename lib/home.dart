@@ -8,11 +8,13 @@ import 'package:jinya_cms_material_app/shared/current_user.dart';
 import 'package:jinya_cms_material_app/shared/nav_drawer.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 
-const String homePageBackground = 'assets/home/background.jpg';
+const String homePageSmallBackground = 'assets/home/background-small.png';
+const String homePageBackground = 'assets/home/background.png';
 
 class HomePage extends StatelessWidget {
   Future<void> checkApiKey() async {
-    if (!(await JinyaClient(SettingsDatabase.selectedAccount!.url, apiKey: SettingsDatabase.selectedAccount!.apiKey)
+    if (!(await JinyaClient(SettingsDatabase.selectedAccount!.url,
+            apiKey: SettingsDatabase.selectedAccount!.apiKey)
         .validateApiKey(SettingsDatabase.selectedAccount!.apiKey))) {
       NavigationService.instance.navigateToReplacement(
         MaterialPageRoute(
@@ -43,6 +45,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     checkAuth(context);
+    final query = MediaQuery.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -50,7 +53,7 @@ class HomePage extends StatelessWidget {
       ),
       drawer: const JinyaNavigationDrawer(),
       body: Image.asset(
-        homePageBackground,
+        query.size.width >= 720 ? homePageBackground : homePageSmallBackground,
         fit: BoxFit.cover,
         height: double.infinity,
         width: double.infinity,
