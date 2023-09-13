@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:jinya_cms_material_app/color_scheme.g.dart';
+import 'package:jinya_cms_material_app/color_schemes.g.dart';
 import 'package:jinya_cms_material_app/data/account_database.dart';
 import 'package:jinya_cms_material_app/home.dart';
 import 'package:jinya_cms_material_app/shared/navigator_service.dart';
