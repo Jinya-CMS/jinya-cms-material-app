@@ -32,7 +32,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_launcher_icons: 0.13.1
-  intl: 0.18.0
+  intl: 0.18.1
   validators: 3.0.0
   http: 1.1.0
   cached_network_image: 3.2.3
@@ -47,7 +47,7 @@ dependencies:
   notustohtml: 1.0.0-rc.2
   flutter_widget_from_html: 0.10.4
   slugify: 2.0.0
-  uuid: 3.0.7
+  uuid: 4.0.0
   flutter_secure_storage: 9.0.0
   local_auth: 2.1.6
 
