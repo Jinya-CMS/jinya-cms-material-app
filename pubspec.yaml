@@ -31,7 +31,6 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  flutter_launcher_icons: 0.13.1
   intl: 0.18.1
   validators: 3.0.0
   http: 1.1.0
@@ -75,9 +74,9 @@ flutter:
   uses-material-design: true
 
   assets:
-    - images/icon.png
     - assets/home/background.png
     - assets/home/background-small.png
+    - assets/icons/linux.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -111,12 +110,3 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_intl:
   enabled: true
-flutter_launcher_icons:
-  android: "launcher_icon"
-  ios: true
-  remove_alpha_ios: true
-  min_sdk_android: 21 # android min sdk min:16, default 21
-  adaptive_icon_background: "#0161a3"
-  adaptive_icon_foreground: "images/adaptive-icon.png"
-  image_path_ios: "images/apple-touch-icon.png"
-  image_path_android: "images/icon.png"
