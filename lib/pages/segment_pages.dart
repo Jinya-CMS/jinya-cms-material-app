@@ -11,8 +11,7 @@ import 'package:prompt_dialog/prompt_dialog.dart';
 
 class _EditGallerySegment extends StatefulWidget {
   const _EditGallerySegment(
-      this.segment, this.page, this.galleries, this.newSegment,
-      {super.key});
+      this.segment, this.page, this.galleries, this.newSegment);
 
   final jinya.Segment segment;
   final jinya.SegmentPage page;
@@ -93,8 +92,7 @@ class _EditGallerySegmentState extends State<_EditGallerySegment> {
 }
 
 class _EditFileSegment extends StatefulWidget {
-  const _EditFileSegment(this.segment, this.page, this.files, this.newSegment,
-      {super.key});
+  const _EditFileSegment(this.segment, this.page, this.files, this.newSegment);
 
   final jinya.Segment segment;
   final jinya.SegmentPage page;
@@ -224,7 +222,7 @@ enum _SegmentType {
 }
 
 class _SegmentPageDesigner extends StatefulWidget {
-  const _SegmentPageDesigner(this.page, {super.key});
+  const _SegmentPageDesigner(this.page);
 
   final jinya.SegmentPage page;
 
@@ -502,7 +500,7 @@ class _SegmentPageDesignerState extends State<_SegmentPageDesigner> {
                 (segment) => Dismissible(
                   key: Key(segment.id.toString()),
                   background: Container(
-                    color: Theme.of(context).errorColor,
+                    color: Theme.of(context).colorScheme.error,
                     child: const Align(
                       alignment: Alignment.centerRight,
                       child: Padding(
@@ -675,7 +673,7 @@ class _ListSegmentPagesState extends State<ListSegmentPages> {
                           }
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: Theme.of(context).errorColor,
+                          foregroundColor: Theme.of(context).colorScheme.error,
                         ),
                         child: Text(l10n.delete),
                       ),
@@ -685,7 +683,7 @@ class _ListSegmentPagesState extends State<ListSegmentPages> {
               },
               icon: Icon(
                 Icons.delete,
-                color: Theme.of(context).errorColor,
+                color: Theme.of(context).colorScheme.error,
               ),
               tooltip: l10n.deleteSegmentPage,
             ),

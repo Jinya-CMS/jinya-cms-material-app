@@ -8,7 +8,7 @@ import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 class _GalleryDesigner extends StatefulWidget {
   final jinya.Gallery gallery;
 
-  const _GalleryDesigner(this.gallery, {super.key});
+  const _GalleryDesigner(this.gallery);
 
   @override
   _GalleryDesignerState createState() => _GalleryDesignerState(gallery);
@@ -122,7 +122,7 @@ class _GalleryDesignerState extends State<_GalleryDesigner> {
               (position) => Dismissible(
                 key: Key(position.id.toString()),
                 background: Container(
-                  color: Theme.of(context).errorColor,
+                  color: Theme.of(context).colorScheme.error,
                   child: const Align(
                     alignment: Alignment.centerRight,
                     child: Padding(
@@ -180,7 +180,7 @@ class _GalleryDesignerState extends State<_GalleryDesigner> {
 }
 
 class _AddGalleryDialog extends StatefulWidget {
-  const _AddGalleryDialog({super.key});
+  const _AddGalleryDialog();
 
   @override
   _AddGalleryDialogState createState() => _AddGalleryDialogState();
@@ -345,7 +345,7 @@ class _AddGalleryDialogState extends State<_AddGalleryDialog> {
 class _EditGalleryDialog extends StatefulWidget {
   final jinya.Gallery gallery;
 
-  const _EditGalleryDialog(this.gallery, {super.key});
+  const _EditGalleryDialog(this.gallery);
 
   @override
   _EditGalleryDialogState createState() => _EditGalleryDialogState(gallery);
@@ -634,7 +634,7 @@ class _ListGalleriesState extends State<ListGalleries> {
                           }
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: Theme.of(context).errorColor,
+                          foregroundColor: Theme.of(context).colorScheme.error,
                         ),
                         child: Text(l10n.delete),
                       ),
@@ -645,7 +645,7 @@ class _ListGalleriesState extends State<ListGalleries> {
               tooltip: l10n.deleteGallery,
               icon: Icon(
                 Icons.delete,
-                color: Theme.of(context).errorColor,
+                color: Theme.of(context).colorScheme.error,
               ),
             ),
           ],

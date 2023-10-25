@@ -9,6 +9,8 @@ import 'package:jinya_cms_material_app/shared/nav_drawer.dart';
 import 'package:local_auth/local_auth.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   State<StatefulWidget> createState() => LoginPageState();
 }
@@ -42,7 +44,7 @@ class LoginPageState extends State<LoginPage> {
         await updateAccount(
             SettingsDatabase.selectedAccount!, _passwordController.text);
         navigator.pushReplacement(MaterialPageRoute(
-          builder: (context) => HomePage(),
+          builder: (context) => const HomePage(),
         ));
       } catch (e) {
         final snackbar = SnackBar(

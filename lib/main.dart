@@ -47,7 +47,7 @@ class JinyaCmsApp extends StatelessWidget {
           filled: true,
         ),
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }

@@ -470,7 +470,7 @@ class _ArtistsState extends State<Artists> {
                           }
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: Theme.of(context).errorColor,
+                          foregroundColor: Theme.of(context).colorScheme.error,
                         ),
                         child: Text(l10n.disableArtistConfirm),
                       ),
@@ -560,7 +560,7 @@ class _ArtistsState extends State<Artists> {
                       }
                     },
                     style: TextButton.styleFrom(
-                      foregroundColor: Theme.of(context).errorColor,
+                      foregroundColor: Theme.of(context).colorScheme.error,
                     ),
                     child: Text(l10n.delete),
                   ),
@@ -570,7 +570,7 @@ class _ArtistsState extends State<Artists> {
           },
           icon: Icon(
             Icons.delete,
-            color: Theme.of(context).errorColor,
+            color: Theme.of(context).colorScheme.error,
           ),
           tooltip: l10n.deleteArtist,
         ),

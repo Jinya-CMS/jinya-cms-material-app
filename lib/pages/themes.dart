@@ -238,7 +238,7 @@ class _ThemeDetailsPage extends StatefulWidget {
   final int initialIndex;
   final jinya.Theme theme;
 
-  const _ThemeDetailsPage(this.initialIndex, this.theme, {super.key});
+  const _ThemeDetailsPage(this.initialIndex, this.theme);
 
   @override
   State<_ThemeDetailsPage> createState() =>
@@ -288,7 +288,7 @@ class _ThemeDetailsPageState extends State<_ThemeDetailsPage> {
 }
 
 class _ThemeSettingsPage extends StatefulWidget {
-  const _ThemeSettingsPage(this.theme, {super.key});
+  const _ThemeSettingsPage(this.theme);
 
   final jinya.Theme theme;
 
@@ -389,7 +389,7 @@ class _ThemeSettingsPageState extends State<_ThemeSettingsPage> {
                     child: Text(
                       textAlign: TextAlign.start,
                       groupTitle,
-                      style: Theme.of(context).textTheme.headline5,
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
                   ),
                   ...group.fields!.map((field) {
@@ -477,7 +477,7 @@ class _ThemeSettingsPageState extends State<_ThemeSettingsPage> {
 }
 
 class _ThemeLinksPage extends StatefulWidget {
-  const _ThemeLinksPage(this.theme, {super.key});
+  const _ThemeLinksPage(this.theme);
 
   final jinya.Theme theme;
 
@@ -732,7 +732,7 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         child: Text(
           l10n.themeLinksFiles,
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ));
       children.addAll(
@@ -775,7 +775,7 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         child: Text(
           l10n.themeLinksSimplePages,
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ));
       children.addAll(
@@ -818,7 +818,7 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         child: Text(
           l10n.themeLinksMenus,
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ));
       children.addAll(
@@ -861,7 +861,7 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         child: Text(
           l10n.themeLinksGalleries,
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ));
       children.addAll(
@@ -904,7 +904,7 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         child: Text(
           l10n.themeLinksSegmentPages,
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ));
       children.addAll(
@@ -947,7 +947,7 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         child: Text(
           l10n.themeLinksForms,
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ));
       children.addAll(
@@ -990,7 +990,7 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         child: Text(
           l10n.themeLinksBlogCategories,
-          style: Theme.of(context).textTheme.headline5,
+          style: Theme.of(context).textTheme.headlineSmall,
         ),
       ));
       children.addAll(
@@ -1109,7 +1109,7 @@ class _ThemeLinksPageState extends State<_ThemeLinksPage> {
 class _ThemeVariablesPage extends StatefulWidget {
   final jinya.Theme theme;
 
-  const _ThemeVariablesPage(this.theme, {super.key});
+  const _ThemeVariablesPage(this.theme);
 
   @override
   State<_ThemeVariablesPage> createState() => _ThemeVariablesPageState(theme);

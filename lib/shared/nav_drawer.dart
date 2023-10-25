@@ -101,7 +101,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => Media(),
+                builder: (context) => const Media(),
               ),
             );
           },
@@ -110,11 +110,11 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
       listItems.add(
         ListTile(
           title: Text(l10n.menuPages),
-          leading: Icon(Icons.menu_book),
+          leading: const Icon(Icons.menu_book),
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => Pages(),
+                builder: (context) => const Pages(),
               ),
             );
           },
@@ -127,7 +127,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => Forms(),
+                builder: (context) => const Forms(),
               ),
             );
           },
@@ -140,7 +140,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => Blog(),
+                builder: (context) => const Blog(),
               ),
             );
           },
@@ -149,7 +149,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
       listItems.add(
         ListTile(
           title: Text(l10n.menuMenu),
-          leading: Icon(Icons.menu),
+          leading: const Icon(Icons.menu),
           onTap: () {
             Navigator.of(context).push(
               MaterialPageRoute(
@@ -214,7 +214,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                             loadAccounts();
                             Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
-                                builder: (context) => HomePage(),
+                                builder: (context) => const HomePage(),
                               ),
                             );
                           });
@@ -270,14 +270,14 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                                     loadAccounts();
                                     Navigator.of(context).pushReplacement(
                                       MaterialPageRoute(
-                                        builder: (context) => HomePage(),
+                                        builder: (context) => const HomePage(),
                                       ),
                                     );
                                   });
                                 },
                               )),
                           ListTile(
-                            leading: Icon(Icons.add),
+                            leading: const Icon(Icons.add),
                             title: Text(l10n.menuAddAccount),
                             iconColor: Theme.of(context).iconTheme.color,
                             onTap: () => Navigator.of(context).push(
@@ -287,7 +287,7 @@ class JinyaNavigationDrawerState extends State<JinyaNavigationDrawer>
                             ),
                           ),
                           ListTile(
-                            leading: Icon(Icons.settings),
+                            leading: const Icon(Icons.settings),
                             title: Text(l10n.menuManageAccounts),
                             iconColor: Theme.of(context).iconTheme.color,
                             onTap: () => Navigator.push(

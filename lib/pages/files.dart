@@ -16,7 +16,7 @@ class _UploadFilesPage extends StatefulWidget {
 
   final Function? onBack;
 
-  const _UploadFilesPage({super.key, this.onBack});
+  const _UploadFilesPage({this.onBack});
 }
 
 class _UploadFilesPageState extends State<_UploadFilesPage> {
@@ -88,7 +88,7 @@ class _UploadFilesPageState extends State<_UploadFilesPage> {
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           itemBuilder: (context, index) => Dismissible(
             background: Container(
-              color: Theme.of(context).errorColor,
+              color: Theme.of(context).colorScheme.error,
               child: const Align(
                 alignment: Alignment.centerRight,
                 child: Padding(
@@ -283,7 +283,7 @@ class ListFilesState extends State<ListFiles> {
                           }
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: Theme.of(context).errorColor,
+                          foregroundColor: Theme.of(context).colorScheme.error,
                         ),
                         child: Text(l10n.delete),
                       ),
@@ -293,7 +293,7 @@ class ListFilesState extends State<ListFiles> {
               },
               child: Icon(
                 Icons.delete,
-                color: Theme.of(context).errorColor,
+                color: Theme.of(context).colorScheme.error,
               ),
             ),
           ],

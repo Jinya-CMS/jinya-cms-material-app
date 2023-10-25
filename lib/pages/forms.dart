@@ -325,7 +325,7 @@ class _EditTextItem extends StatefulWidget {
   final bool newItem;
   final jinya.Form form;
 
-  const _EditTextItem(this.item, this.newItem, this.form, {super.key});
+  const _EditTextItem(this.item, this.newItem, this.form);
 
   @override
   State<StatefulWidget> createState() =>
@@ -498,7 +498,7 @@ class _EditMultilineItem extends StatefulWidget {
   final bool newItem;
   final jinya.Form form;
 
-  const _EditMultilineItem(this.item, this.newItem, this.form, {super.key});
+  const _EditMultilineItem(this.item, this.newItem, this.form);
 
   @override
   State<StatefulWidget> createState() =>
@@ -654,7 +654,7 @@ class _EditDropdownItem extends StatefulWidget {
   final bool newItem;
   final jinya.Form form;
 
-  const _EditDropdownItem(this.item, this.newItem, this.form, {super.key});
+  const _EditDropdownItem(this.item, this.newItem, this.form);
 
   @override
   State<StatefulWidget> createState() =>
@@ -810,7 +810,7 @@ class _EditEmailItem extends StatefulWidget {
   final bool newItem;
   final jinya.Form form;
 
-  const _EditEmailItem(this.item, this.newItem, this.form, {super.key});
+  const _EditEmailItem(this.item, this.newItem, this.form);
 
   @override
   State<StatefulWidget> createState() =>
@@ -973,7 +973,7 @@ class _EditCheckboxItem extends StatefulWidget {
   final bool newItem;
   final jinya.Form form;
 
-  const _EditCheckboxItem(this.item, this.newItem, this.form, {super.key});
+  const _EditCheckboxItem(this.item, this.newItem, this.form);
 
   @override
   State<StatefulWidget> createState() =>
@@ -1114,7 +1114,7 @@ class _EditCheckboxItemState extends State<_EditCheckboxItem> {
 class _FormDesigner extends StatefulWidget {
   final jinya.Form form;
 
-  const _FormDesigner(this.form, {super.key});
+  const _FormDesigner(this.form);
 
   @override
   State<StatefulWidget> createState() => _FormDesignerState(form);
@@ -1327,7 +1327,7 @@ class _FormDesignerState extends State<_FormDesigner> {
                 (item) => Dismissible(
                   key: Key(item.id.toString()),
                   background: Container(
-                    color: Theme.of(context).errorColor,
+                    color: Theme.of(context).colorScheme.error,
                     child: const Align(
                       alignment: Alignment.centerRight,
                       child: Padding(
@@ -1360,6 +1360,8 @@ class _FormDesignerState extends State<_FormDesigner> {
 }
 
 class Forms extends StatefulWidget {
+  const Forms({super.key});
+
   @override
   _FormsState createState() => _FormsState();
 }
@@ -1450,7 +1452,7 @@ class _FormsState extends State<Forms> {
                           }
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: Theme.of(context).errorColor,
+                          foregroundColor: Theme.of(context).colorScheme.error,
                         ),
                         child: Text(l10n.delete),
                       ),
@@ -1460,7 +1462,7 @@ class _FormsState extends State<Forms> {
               },
               icon: Icon(
                 Icons.delete,
-                color: Theme.of(context).errorColor,
+                color: Theme.of(context).colorScheme.error,
               ),
               tooltip: l10n.deleteForm,
             ),
@@ -1517,7 +1519,6 @@ class _FormsState extends State<Forms> {
       floatingActionButton:
           SettingsDatabase.selectedAccount!.roles!.contains('ROLE_WRITER')
               ? FloatingActionButton(
-                  child: const Icon(Icons.add),
                   onPressed: () async {
                     final dialog = _AddFormDialog();
                     await showDialog(
@@ -1527,6 +1528,7 @@ class _FormsState extends State<Forms> {
                     await loadForms();
                   },
                   tooltip: l10n.addFormTitle,
+                  child: const Icon(Icons.add),
                 )
               : null,
     );

@@ -44,7 +44,7 @@ class _MenuDesignerItem extends jinya.MenuItem {
 }
 
 class _MenuDesignerEditDialog extends StatefulWidget {
-  const _MenuDesignerEditDialog(this.item, this.menu, {super.key});
+  const _MenuDesignerEditDialog(this.item, this.menu);
 
   final _MenuDesignerItem? item;
   final jinya.Menu menu;
@@ -542,7 +542,7 @@ class _MenuDesignerEditDialogState extends State<_MenuDesignerEditDialog> {
 class _MenuDesigner extends StatefulWidget {
   final jinya.Menu menu;
 
-  const _MenuDesigner(this.menu, {super.key});
+  const _MenuDesigner(this.menu);
 
   @override
   State<StatefulWidget> createState() => _MenuDesignerState(menu);
@@ -818,7 +818,7 @@ class _MenuDesignerState extends State<_MenuDesigner> {
                 (item) => Dismissible(
                   key: Key(uuid.v4()),
                   background: Container(
-                    color: Theme.of(context).errorColor,
+                    color: Theme.of(context).colorScheme.error,
                     child: const Align(
                       alignment: Alignment.centerRight,
                       child: Padding(
@@ -1261,7 +1261,7 @@ class _MenusState extends State<Menus> {
                           }
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: Theme.of(context).errorColor,
+                          foregroundColor: Theme.of(context).colorScheme.error,
                         ),
                         child: Text(l10n.delete),
                       ),
@@ -1271,7 +1271,7 @@ class _MenusState extends State<Menus> {
               },
               icon: Icon(
                 Icons.delete,
-                color: Theme.of(context).errorColor,
+                color: Theme.of(context).colorScheme.error,
               ),
               tooltip: l10n.deleteMenu,
             ),

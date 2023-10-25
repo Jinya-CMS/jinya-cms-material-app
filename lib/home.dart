@@ -12,13 +12,15 @@ const String homePageSmallBackground = 'assets/home/background-small.png';
 const String homePageBackground = 'assets/home/background.png';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   Future<void> checkApiKey() async {
     if (!(await JinyaClient(SettingsDatabase.selectedAccount!.url,
             apiKey: SettingsDatabase.selectedAccount!.apiKey)
         .validateApiKey(SettingsDatabase.selectedAccount!.apiKey))) {
       NavigationService.instance.navigateToReplacement(
         MaterialPageRoute(
-          builder: (context) => LoginPage(),
+          builder: (context) => const LoginPage(),
         ),
       );
     }

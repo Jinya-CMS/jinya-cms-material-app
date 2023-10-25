@@ -190,7 +190,7 @@ class _AddBlogCategoryState extends State<_AddBlogCategory> {
 class _EditBlogCategory extends StatefulWidget {
   final jinya.BlogCategory category;
 
-  const _EditBlogCategory(this.category, {super.key});
+  const _EditBlogCategory(this.category);
 
   @override
   State<StatefulWidget> createState() => _EditBlogCategoryState(category);
@@ -464,7 +464,7 @@ class _ListBlogCategoriesState extends State<ListBlogCategories> {
                           }
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: Theme.of(context).errorColor,
+                          foregroundColor: Theme.of(context).colorScheme.error,
                         ),
                         child: Text(l10n.delete),
                       ),
@@ -475,7 +475,7 @@ class _ListBlogCategoriesState extends State<ListBlogCategories> {
               tooltip: l10n.deleteBlogCategory,
               icon: Icon(
                 Icons.delete,
-                color: Theme.of(context).errorColor,
+                color: Theme.of(context).colorScheme.error,
               ),
             ),
           ],

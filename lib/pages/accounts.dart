@@ -13,7 +13,7 @@ class NewAccountTwoFactorPage extends StatefulWidget {
 
   final NewAccountTransferObject newAccountTransferObject;
 
-  const NewAccountTwoFactorPage(this.newAccountTransferObject);
+  const NewAccountTwoFactorPage(this.newAccountTransferObject, {super.key});
 }
 
 class NewAccountTwoFactorPageState extends State<NewAccountTwoFactorPage> {

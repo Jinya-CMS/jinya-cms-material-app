@@ -7,7 +7,7 @@ import 'package:jinya_cms_material_app/shared/navigator_service.dart';
 import 'package:notustohtml/notustohtml.dart';
 
 class _EditSimplePage extends StatefulWidget {
-  const _EditSimplePage(this.page, {super.key});
+  const _EditSimplePage(this.page);
 
   final jinya.SimplePage page;
 
@@ -148,7 +148,7 @@ class _EditSimplePageState extends State<_EditSimplePage> {
 }
 
 class _AddSimplePage extends StatefulWidget {
-  const _AddSimplePage({super.key});
+  const _AddSimplePage();
 
   @override
   _AddSimplePageState createState() => _AddSimplePageState();
@@ -353,7 +353,7 @@ class _ListSimplePagesState extends State<ListSimplePages> {
                           }
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: Theme.of(context).errorColor,
+                          foregroundColor: Theme.of(context).colorScheme.error,
                         ),
                         child: Text(l10n.delete),
                       ),
@@ -363,7 +363,7 @@ class _ListSimplePagesState extends State<ListSimplePages> {
               },
               icon: Icon(
                 Icons.delete,
-                color: Theme.of(context).errorColor,
+                color: Theme.of(context).colorScheme.error,
               ),
               tooltip: l10n.deleteSimplePage,
             ),
@@ -419,7 +419,7 @@ class _ListSimplePagesState extends State<ListSimplePages> {
                   onPressed: () async {
                     await Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => _AddSimplePage(),
+                        builder: (context) => const _AddSimplePage(),
                       ),
                     );
                     await loadPages();

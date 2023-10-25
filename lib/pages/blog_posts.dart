@@ -223,7 +223,7 @@ class _AddBlogPostState extends State<_AddBlogPost> {
 class _EditBlogPost extends StatefulWidget {
   final jinya.BlogPost post;
 
-  const _EditBlogPost(this.post, {super.key});
+  const _EditBlogPost(this.post);
 
   @override
   State<StatefulWidget> createState() => _EditBlogPostState(post);
@@ -442,8 +442,7 @@ class _EditBlogPostState extends State<_EditBlogPost> {
 
 class _EditGallerySegment extends StatefulWidget {
   const _EditGallerySegment(
-      this.segment, this.post, this.galleries, this.newSegment,
-      {super.key});
+      this.segment, this.post, this.galleries, this.newSegment);
 
   final jinya.BlogPostSegment segment;
   final jinya.BlogPost post;
@@ -516,8 +515,7 @@ class _EditGallerySegmentState extends State<_EditGallerySegment> {
 }
 
 class _EditFileSegment extends StatefulWidget {
-  const _EditFileSegment(this.segment, this.post, this.files, this.newSegment,
-      {super.key});
+  const _EditFileSegment(this.segment, this.post, this.files, this.newSegment);
 
   final jinya.BlogPostSegment segment;
   final jinya.BlogPost post;
@@ -637,7 +635,7 @@ enum _SegmentType {
 }
 
 class _BlogPostDesigner extends StatefulWidget {
-  const _BlogPostDesigner(this.post, {super.key});
+  const _BlogPostDesigner(this.post);
 
   final jinya.BlogPost post;
 
@@ -930,7 +928,7 @@ class _BlogPostDesignerState extends State<_BlogPostDesigner> {
                 (segment) => Dismissible(
                   key: Key(const Uuid().v4()),
                   background: Container(
-                    color: Theme.of(context).errorColor,
+                    color: Theme.of(context).colorScheme.error,
                     child: const Align(
                       alignment: Alignment.centerRight,
                       child: Padding(
@@ -1089,7 +1087,7 @@ class _ListBlogPostsState extends State<ListBlogPosts> {
                           }
                         },
                         style: TextButton.styleFrom(
-                          foregroundColor: Theme.of(context).errorColor,
+                          foregroundColor: Theme.of(context).colorScheme.error,
                         ),
                         child: Text(l10n.delete),
                       ),
@@ -1100,7 +1098,7 @@ class _ListBlogPostsState extends State<ListBlogPosts> {
               tooltip: l10n.deleteBlogPost,
               icon: Icon(
                 Icons.delete,
-                color: Theme.of(context).errorColor,
+                color: Theme.of(context).colorScheme.error,
               ),
             ),
           ],
